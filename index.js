@@ -6,7 +6,7 @@ const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Rout
 
 // const { token } = require('./config.json');
 const token = process.env.TOKEN;
-const clientID = process.env.CLIENTID
+const clientId = process.env.CLIENTID
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
