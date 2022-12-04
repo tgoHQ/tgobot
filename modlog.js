@@ -1,8 +1,19 @@
 //jshint esversion:8
 const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Routes } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
-function create(event) {
-  console.log(JSON.stringify(event));
+function create(raw) {
+
+  const embed = new EmbedBuilder()
+    .setTitle("Mod Log")
+    .setTimestamp()
+    .addFields(
+      {name: "Type", value: raw.reason},
+      {name: "Reason", value: raw.reason}
+    )
+    ;
+
+  console.log(JSON.stringify(raw));
 }
 
 module.exports = {
@@ -10,8 +21,8 @@ module.exports = {
 };
 
 // {
-//   author: userObj,
 //   type: "Mute",
+//   author: userObj,
 //   reason: "you suck",
 //   targetUser: userObj,
 //   duration: 3600000,

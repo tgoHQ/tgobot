@@ -1,5 +1,5 @@
 //jshint esversion:8
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
 const modlog = require("../modlog");
 
 module.exports = {
@@ -15,14 +15,21 @@ module.exports = {
 			.setDescription('Reason for the warn')
 			.setRequired(true))
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
+
+
 	async execute(interaction) {
+
     const targetUser = interaction.options.getUser('user');
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
 		modlog.create({
-			author
+			type: "Warn",
+			author,
+			reason,
+			targetUser,
 		});
-    interaction.reply(`:warning: Warned <@${targetUser.id}> with reason \`${reason}\`.`);
+
+    interaction.reply(`:warning: Warned <@${targetUser.id}> with reason ${inlineCode(reason)}.`);
 	},
 };
