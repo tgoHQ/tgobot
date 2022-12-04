@@ -9,12 +9,12 @@ module.exports = {
   create
 };
 
-const rawmodlog = {
-  author: userObj,
-  type: "Mute",
-  reason: "you suck",
-  targetUser: userObj,
-  duration: 3600000,
-  slowmode: 20,
-  targetChannel: channelObj,
-};
+// {
+//   author: userObj,
+//   type: "Mute",
+//   reason: "you suck",
+//   targetUser: userObj,
+//   duration: 3600000,
+//   slowmode: 20,
+//   targetChannel: channelObj,
+// };
