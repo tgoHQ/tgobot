@@ -26,7 +26,7 @@ module.exports = {
 		//check if the user is actually banned
 		interaction.guild.bans.fetch(targetUser)
 		.then(console.log)
-		.catch(console.error);
+		.catch(console.log("THIS CODE RUNS WHEN THE USER IS NOT BANNED"));
 
     await interaction.guild.bans.remove(targetUser, reason).then(function() {
 
