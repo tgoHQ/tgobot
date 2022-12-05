@@ -10,6 +10,10 @@ module.exports = {
 		option.setName('number')
 			.setDescription('The number of recent messages to delete in this channel. Maximum of 100.')
 			.setRequired(true))
+		.addStringOption(option =>
+		option.setName('reason')
+			.setDescription('Reason for the clean')
+			.setRequired(true))
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
 	async execute(interaction) {
@@ -17,16 +21,18 @@ module.exports = {
     const number = interaction.options.getInteger('number');
 		const author = interaction.user;
 		const targetChannel = interaction.channel;
+		const reason = interaction.getString('reason');
 
     await targetChannel.bulkDelete(number)
       .then(messages => {
 				const bulkDeleteNumber = messages.size;
-				interaction.reply(`:broom: Deleted ${bulkDeleteNumber} messages in ${targetChannel.toString()}.`);
+				interaction.reply(`:broom: Deleted ${bulkDeleteNumber} messages in ${targetChannel.toString()} with reason ${inlineCode(reason)}.`);
 				modlog.create({
 					type: "Bulk Delete",
 					author,
 					targetChannel,
 					bulkDeleteNumber,
+					reason,
 					interaction
 				});
 			});
