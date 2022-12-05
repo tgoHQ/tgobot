@@ -28,7 +28,6 @@ module.exports = {
 		const slowmodeTime = interaction.options.getInteger('time');
 		const author = interaction.user;
 
-		try {
 			await targetChannel.setRateLimitPerUser(slowmodeTime, reason)
 	      .then(function() {
 					interaction.reply(`:stopwatch: Set slowmode in ${targetChannel.toString()} to ${inlineCode(slowmodeTime + " seconds")} with reason ${inlineCode(reason)}.`);
@@ -44,7 +43,5 @@ module.exports = {
 				.catch(function(e) {
 					interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`);
 				})
-		}
-		finally {}
 	},
 };
