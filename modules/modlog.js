@@ -18,6 +18,8 @@ function create(raw) {
   if ('targetChannel' in raw) embed.addFields({name: "Target Channel", value: raw.targetChannel.toString()});
   if ('slowmodeTime' in raw) embed.addFields({name: "Slowmode Time", value: raw.slowmode});
   if ('duration' in raw) embed.addFields({name: "Duration", value: raw.duration});
+  if ('bulkDeleteNumber' in raw) embed.addFields({name: "Messages Deleted", value: raw.bulkDeleteNumber});
+
 
   modlogChannel.send({ embeds: [embed] });
 
