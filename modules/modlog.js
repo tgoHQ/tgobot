@@ -29,12 +29,7 @@ function string(log) { //takes log object and returns string representation
     string = `<:warn:1049224507598061628> Warned ${log.targetUser}`;
   }
   else if (log.type === "Slowmode") {
-    if (log.slowModeInterval == 0) {
-      string = `<:slowmode:1049227157156671508> Disabled slowmode in ${log.targetChannel}`;
-    }
-    else {
-      string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(log.slowmodeInterval)} in ${log.targetChannel}`;
-    }
+    string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(log.slowmodeInterval)} in ${log.targetChannel}`;
   }
   else if (log.type === "Bulk Delete") {
     string = `<:delete:1049226132622409749> Bulk deleted ${log.bulkDeleteNumber} messages in ${log.targetChannel}`;
