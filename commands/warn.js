@@ -22,6 +22,7 @@ module.exports = {
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
+    interaction.reply(`:warning: Warned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
 		modlog.create({
 			type: "Warn",
 			author,
@@ -30,6 +31,5 @@ module.exports = {
 			interaction,
 		});
 
-    interaction.reply(`:warning: Warned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
 	},
 };

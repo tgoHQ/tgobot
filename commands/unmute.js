@@ -23,15 +23,17 @@ module.exports = {
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
-		modlog.create({
-			type: "Unmute",
-			author,
-			reason,
-			targetUser,
-			interaction,
-		});
+		await member.timeout(null, reason).then(function() {
 
-		await member.timeout(null, reason)
-			.then(interaction.reply(`:loud_sound: Unmuted ${targetUser.toString()} with reason ${inlineCode(reason)}.`));
+			interaction.reply(`:loud_sound: Unmuted ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
+			modlog.create({
+				type: "Unmute",
+				author,
+				reason,
+				targetUser,
+				interaction,
+			});
+
+		});
 	},
 };
