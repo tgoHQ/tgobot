@@ -54,7 +54,7 @@ function string(log, includeReason) { //takes log object and returns string repr
   }
 
   if (includeReason == true) {
-    string += `with reason ${inlineCode(log.reason)}.`;
+    string += ` with reason ${inlineCode(log.reason)}.`;
   }
   else {
     string += '.';
@@ -66,13 +66,9 @@ function string(log, includeReason) { //takes log object and returns string repr
 function post(log, modlogChannel) { //posts a log object to the modlog channel
 
   const embed = new EmbedBuilder()
-    .setTitle("Mod Log")
     .setColor("137c5a")
-    .setDescription(string(log))
-    .addFields(
-      {name: "Author", value: log.author.toString()},
-      {name: "Reason", value: log.reason}
-    );
+    .setDescription(string(log, true))
+    .setAuthor({name: log.author.toString(), iconURL: log.author.defaultAvatarURL});
 
   modlogChannel.send({ embeds: [embed] });
 }
