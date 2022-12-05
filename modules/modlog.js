@@ -22,11 +22,11 @@ function string(log) { //takes log object and returns string representation
 
   let humanDuration;
   if ("duration" in log) {
-    humanDuration = humanizeDuration(duration);
+    humanDuration = humanizeDuration(log.duration);
   }
 
   if (log.type === "Warn") {
-    string = `<:warn:1049224507598061628> Warned ${log.targetUser}}`;
+    string = `<:warn:1049224507598061628> Warned ${log.targetUser}`;
   }
   else if (log.type === "Slowmode") {
     if (log.slowModeInterval == 0) {
