@@ -34,7 +34,7 @@ Environmental variables:
 | MODLOG\_CHANNEL\_ID | id of the modlog channel in your server | true     |
 | APPEALS_URL         | url to visit for moderation appeals     | true     |
 
-To launch, run this command, replacing "123" with the correct values:
+To launch:
 ```
-$ TOKEN=123 CLIENTID=123 MODLOG_CHANNEL_ID=123 node .
+$ node .
 ```
