@@ -36,7 +36,7 @@ module.exports = {
 
 		await member.timeout(duration, reason)
 			.then(function() {
-				interaction.reply(`:mute: Muted ${targetUser.toString()} for ${inlineCode(durationRaw)} with reason ${inlineCode(reason)}.`);
+				interaction.reply(`:mute: Muted ${targetUser.toString()} for ${inlineCode(durationHuman)} with reason ${inlineCode(reason)}.`);
 				modlog.create({
 					type: "Mute",
 					author,
