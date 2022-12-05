@@ -22,14 +22,14 @@ module.exports = {
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
-    interaction.reply(`<:warn:1049224507598061628> Warned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
-		modlog.create({
+    // interaction.reply(`<:warn:1049224507598061628> Warned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
+		await modlog.create({
 			type: "Warn",
 			author,
 			reason,
 			targetUser,
 			interaction,
-		});
-
+		})
+		.then(string => interaction.reply(string))
 	},
 };
