@@ -33,6 +33,6 @@ module.exports = {
 					interaction,
 				});
 			})
-			.catch(function(e) {interaction.channel.send(`:octagonal_sign: Error: ${inlineCode(e.message)}`)})
+			.catch(function(e) {interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`)})
 	}
 };
