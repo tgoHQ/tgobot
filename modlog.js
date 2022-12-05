@@ -9,13 +9,13 @@ function create(raw) {
     .setTitle("Mod Log")
     .setColor("137c5a")
     .addFields(
-      {name: "Author", value: raw.author},
+      {name: "Author", value: raw.author.toString()},
       {name: "Type", value: raw.type},
       {name: "Reason", value: raw.reason}
     );
 
-  if ('targetUser' in raw) embed.addFields({name: "Target User", value: raw.targetUser});
-  if ('targetChannel' in raw) embed.addFields({name: "Target Channel", value: raw.targetChannel});
+  if ('targetUser' in raw) embed.addFields({name: "Target User", value: raw.targetUser.toString()});
+  if ('targetChannel' in raw) embed.addFields({name: "Target Channel", value: raw.targetChannel.toString()});
   if ('slowmode' in raw) embed.addFields({name: "Slowmode Amount", value: raw.slowmode});
   if ('duration' in raw) embed.addFields({name: "Duration", value: raw.duration});
 
