@@ -34,6 +34,9 @@ function string(log) { //takes log object and returns string representation
   else if (log.type === "Bulk Delete") {
     string = `<:delete:1049226132622409749> Bulk deleted ${log.bulkDeleteNumber} messages in ${log.targetChannel}`;
   }
+  else if (log.type === "Ban") {
+    string = `:hammer: Banned ${log.targetUser}`;
+  }
 
   return string;
 }
