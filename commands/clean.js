@@ -21,7 +21,7 @@ module.exports = {
     const number = interaction.options.getInteger('number');
 		const author = interaction.user;
 		const targetChannel = interaction.channel;
-		const reason = interaction.getString('reason');
+		const reason = interaction.options.getString('reason');
 
     await targetChannel.bulkDelete(number)
       .then(messages => {
