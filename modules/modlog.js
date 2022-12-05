@@ -3,6 +3,13 @@ const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Rout
 const { EmbedBuilder } = require('discord.js');
 const humanizeDuration = require("humanize-duration");
 
+const types = [
+	warn: {
+		icon: "a",
+	},
+];
+
+
 function create(raw) {
 
   const modlogChannel = raw.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
