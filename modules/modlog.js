@@ -29,7 +29,7 @@ function string(log) { //takes log object and returns string representation
     string = `<:warn:1049224507598061628> Warned ${log.targetUser}}`;
   }
   else if (log.type === "Slowmode") {
-    if (log.slowModeInterval === 0) {
+    if (log.slowModeInterval == 0) {
       string = `<:slowmode:1049227157156671508> Disabled slowmode in ${log.targetChannel}`;
     }
     else {
