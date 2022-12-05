@@ -31,6 +31,8 @@ function string(log) { //takes log object and returns string representation
       string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(log.slowmodeInterval)} in ${log.targetChannel}`;
     }
   }
+
+  return string;
 }
 
 function post(log, modlogChannel) { //posts a log object to the modlog channel
