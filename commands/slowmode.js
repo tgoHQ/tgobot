@@ -1,5 +1,5 @@
 //jshint esversion:10
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
