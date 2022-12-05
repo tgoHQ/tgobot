@@ -34,7 +34,7 @@ module.exports = {
 						interaction,
 					});
 				})
-				.catch(function(e) {interaction.reply(e.message)})
+				.catch(function(e) {interaction.reply(`:octagonal_sign: Error: ${e.message}`)})
 		}
 		catch {}
 
