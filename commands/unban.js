@@ -35,7 +35,7 @@ module.exports = {
 						interaction,
 					});
 				})
-				.catch(interaction.reply("That user is not banned!"))
+				.catch(function(e) {interaction.reply("Error: " + e)})
 		}
 		catch {}
 
