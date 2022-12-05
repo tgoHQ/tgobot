@@ -28,9 +28,9 @@ module.exports = {
 		const slowmodeTime = interaction.options.getInteger('time');
 		const author = interaction.user;
 
-			await targetChannel.setRateLimitPerUser(slowmodeTime, reason)
+			await targetChannel.setRateLimitPerUser(slowmodeTime, areason)
 	      .then(function() {
-					interaction.reply(`:stopwatch: Set slowmode in ${atargetChannel.toString()} to ${inlineCode(slowmodeTime + " seconds")} with reason ${inlineCode(reason)}.`);
+					interaction.reply(`:stopwatch: Set slowmode in ${targetChannel.toString()} to ${inlineCode(slowmodeTime + " seconds")} with reason ${inlineCode(reason)}.`);
 					modlog.create({
 						type: "Slowmode",
 						author,
