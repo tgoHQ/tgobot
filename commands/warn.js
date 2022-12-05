@@ -1,5 +1,5 @@
 //jshint esversion:8
-const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const modlog = require("../modules/modlog");
 
 module.exports = {
@@ -29,6 +29,6 @@ module.exports = {
 			targetUser,
 			interaction,
 		})
-		.then(string => interaction.reply(string))
+			.then(string => interaction.reply(string))
 	},
 };

@@ -1,5 +1,5 @@
-//jshint esversion:10
-const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
+//jshint esversion:8
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const modlog = require("../modules/modlog");
 
 module.exports = {
@@ -24,14 +24,14 @@ module.exports = {
 
 		await interaction.guild.bans.remove(targetUser, reason) //unban the target user
 			.then(function() {
-				interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
 				modlog.create({
 					type: "Unban",
 					author,
 					reason,
 					targetUser,
 					interaction,
-				});
+				})
+					.then(string => interaction.reply(string))
 			})
 	}
 };

@@ -20,6 +20,11 @@ async function create(raw) { //creates a new log
 function string(log) { //takes log object and returns string representation
   let string;
 
+  let humanDuration;
+  if ("duration" in log) {
+    humanDuration = humanizeDuration(duration);
+  }
+
   if (log.type === "Warn") {
     string = `<:warn:1049224507598061628> Warned ${log.targetUser}}`;
   }
@@ -36,6 +41,15 @@ function string(log) { //takes log object and returns string representation
   }
   else if (log.type === "Ban") {
     string = `:hammer: Banned ${log.targetUser}`;
+  }
+  else if (log.type === "Unmute") {
+    string = `:loud_sound: Unmuted ${log.targetUser}`;
+  }
+  else if (log.type === "Mute") {
+    string = `:mute: Muted ${log.targetUser} for ${humanDuration}`;
+  }
+  else if (log.type === "Unban") {
+    string = `:unlock: Unbanned ${log.targetUser}`;
   }
 
   return string;

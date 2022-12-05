@@ -1,5 +1,5 @@
 //jshint esversion:8
-const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const modlog = require("../modules/modlog");
 
 module.exports = {
@@ -23,17 +23,16 @@ module.exports = {
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
-		await member.timeout(null, reason).then(function() {
-
-			interaction.reply(`:loud_sound: Unmuted ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
-			modlog.create({
-				type: "Unmute",
-				author,
-				reason,
-				targetUser,
-				interaction,
-			});
-
+		await member.timeout(null, reason)
+			.then(function() {
+				modlog.create({
+					type: "Unmute",
+					author,
+					reason,
+					targetUser,
+					interaction,
+				})
+				.then(string => interaction.reply(string))
 		});
 	},
 };
