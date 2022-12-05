@@ -31,6 +31,9 @@ function string(log) { //takes log object and returns string representation
       string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(log.slowmodeInterval)} in ${log.targetChannel}`;
     }
   }
+  else if (log.type === "Bulk Delete") {
+    string = `<:delete:1049226132622409749> Bulk deleted ${log.bulkDeleteNumber} messages in ${log.targetChannel}`;
+  }
 
   return string;
 }

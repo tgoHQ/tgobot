@@ -25,8 +25,7 @@ module.exports = {
 
     await targetChannel.bulkDelete(number)
       .then(messages => {
-				const bulkDeleteNumber = messages.size;
-				interaction.reply(`<:delete:1049226132622409749> Deleted ${bulkDeleteNumber} messages in ${targetChannel.toString()} with reason ${inlineCode(reason)}.`);
+				const bulkDeleteNumber = messages.size; //get the number of messages that were actually deleted
 				modlog.create({
 					type: "Bulk Delete",
 					author,
@@ -34,7 +33,8 @@ module.exports = {
 					bulkDeleteNumber,
 					reason,
 					interaction
-				});
+				})
+					.then(string => interaction.reply(string))
 			});
 	},
 };
