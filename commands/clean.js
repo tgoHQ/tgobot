@@ -1,5 +1,5 @@
 //jshint esversion:8
-const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const modlog = require("../modules/modlog");
 
 module.exports = {
@@ -25,8 +25,7 @@ module.exports = {
 
     await targetChannel.bulkDelete(number)
       .then(messages => {
-				const bulkDeleteNumber = messages.size;
-				interaction.reply(`:broom: Deleted ${bulkDeleteNumber} messages in ${targetChannel.toString()} with reason ${inlineCode(reason)}.`);
+				const bulkDeleteNumber = messages.size; //get the number of messages that were actually deleted
 				modlog.create({
 					type: "Bulk Delete",
 					author,
@@ -34,7 +33,8 @@ module.exports = {
 					bulkDeleteNumber,
 					reason,
 					interaction
-				});
+				})
+					.then(string => interaction.reply(string))
 			});
 	},
 };

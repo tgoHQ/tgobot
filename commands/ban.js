@@ -1,5 +1,5 @@
 //jshint esversion:8
-const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const modlog = require("../modules/modlog");
 
 module.exports = {
@@ -24,14 +24,14 @@ module.exports = {
 
     await interaction.guild.bans.create(targetUser, {reason: reason})
       .then(function() {
-				interaction.reply(`:hammer: Banned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
 				modlog.create({
 					type: "Ban",
 					author,
 					reason,
 					targetUser,
 					interaction
-				});
+				})
+					.then(string => interaction.reply(string))
 			})
 	},
 };

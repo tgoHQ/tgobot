@@ -1,5 +1,5 @@
 //jshint esversion:8
-const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const modlog = require("../modules/modlog");
 
 module.exports = {
@@ -22,14 +22,13 @@ module.exports = {
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
-    interaction.reply(`:warning: Warned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
-		modlog.create({
+		await modlog.create({
 			type: "Warn",
 			author,
 			reason,
 			targetUser,
 			interaction,
-		});
-
+		})
+			.then(string => interaction.reply(string))
 	},
 };

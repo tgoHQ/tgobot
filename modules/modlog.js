@@ -1,34 +1,84 @@
 //jshint esversion:8
-const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Routes } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Routes, inlineCode } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
 const humanizeDuration = require("humanize-duration");
 
-function create(raw) {
-
-  const modlogChannel = raw.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
-
-  const embed = new EmbedBuilder()
-    .setTitle("Mod Log")
-    .setColor("137c5a")
-    .addFields(
-      {name: "Author", value: raw.author.toString()},
-      {name: "Type", value: raw.type},
-      {name: "Reason", value: raw.reason}
-    );
-
-  if ('targetUser' in raw) embed.addFields({name: "Target User", value: raw.targetUser.toString()});
-  if ('targetChannel' in raw) embed.addFields({name: "Target Channel", value: raw.targetChannel.toString()});
-  if ('slowmodeInterval' in raw) embed.addFields({name: "Slowmode Interval", value: humanizeDuration(raw.slowmodeInterval)});
-  if ('duration' in raw) embed.addFields({name: "Duration", value: humanizeDuration(raw.duration)});
-  if ('bulkDeleteNumber' in raw) embed.addFields({name: "Messages Deleted", value: raw.bulkDeleteNumber.toString()});
+const appealsURL = process.env.APPEALS_URL;
 
 
-  modlogChannel.send({ embeds: [embed] });
+async function create(raw) { //creates a new log
+
+  //clean up log
+
+  //save log to db
+  //then
+
+  //post log to modlog channel
+  post(raw, raw.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
+
+  //dm target user if applicable
+  if ("targetUser" in raw) {
+    raw.interaction.client.users.send(raw.targetUser, string(raw, true) + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
+  }
+
+  //return string for response
+  return string(raw);
 
 }
 
+function string(log, includeReason) { //takes log object and returns string representation. include reason bool
+  let string;
+
+  let humanDuration;
+  if ("duration" in log) {
+    humanDuration = humanizeDuration(log.duration);
+  }
+
+  if (log.type === "Warn") {
+    string = `<:warn:1049224507598061628> Warned ${log.targetUser}`;
+  }
+  else if (log.type === "Slowmode") {
+    string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(log.slowmodeInterval)} in ${log.targetChannel}`;
+  }
+  else if (log.type === "Bulk Delete") {
+    string = `<:delete:1049226132622409749> Bulk deleted ${log.bulkDeleteNumber} messages in ${log.targetChannel}`;
+  }
+  else if (log.type === "Mute") {
+    string = `<:timeout:1049257820882747432> Muted ${log.targetUser} for ${humanDuration}`;
+  }
+  else if (log.type === "Unmute") {
+    string = `<:timeout:1049257820882747432> Unmuted ${log.targetUser}`;
+  }
+  else if (log.type === "Ban") {
+    string = `<:ban:1049256901562609684> Banned ${log.targetUser}`;
+  }
+  else if (log.type === "Unban") {
+    string = `<:ban:1049256901562609684> Unbanned ${log.targetUser}`;
+  }
+
+  if (includeReason == true) {
+    string += ` with reason ${inlineCode(log.reason)}.`;
+  }
+  else {
+    string += '.';
+  }
+
+  return string;
+}
+
+function post(log, modlogChannel) { //posts a log object to the modlog channel
+
+  const embed = new EmbedBuilder()
+    .setColor("137c5a")
+    .setDescription(string(log, true))
+    .setAuthor({name: log.author.username, iconURL: log.author.displayAvatarURL()});
+    console.log(log.author.displayAvatarURL());
+
+  modlogChannel.send({ embeds: [embed] });
+}
+
 module.exports = {
-  create
+  create, string
 };
 
 // {

@@ -1,8 +1,7 @@
 //jshint esversion:8
-const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const modlog = require("../modules/modlog");
 const parse = require('parse-duration');
-const humanizeDuration = require("humanize-duration");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -26,17 +25,13 @@ module.exports = {
 
     const member = interaction.options.getMember('user');
 		const targetUser = member.user;
-
 		const durationRaw = interaction.options.getString('duration');
 		const duration = parse(durationRaw);
-		const durationHuman = humanizeDuration(duration);
-
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
 		await member.timeout(duration, reason)
 			.then(function() {
-				interaction.reply(`:mute: Muted ${targetUser.toString()} for ${inlineCode(durationHuman)} with reason ${inlineCode(reason)}.`);
 				modlog.create({
 					type: "Mute",
 					author,
@@ -44,7 +39,8 @@ module.exports = {
 					targetUser,
 					duration,
 					interaction
-				});
+				})
+					.then(string => interaction.reply(string))
 			})
 	},
 };
