@@ -7,7 +7,7 @@
     "start": "node ."
   },
   "author": "",
-  "license": "ISC",
+  "license": "AGPL-3.0-only",
   "dependencies": {
     "dayjs": "^1.11.6",
     "discord.js": "^14.7.1",
