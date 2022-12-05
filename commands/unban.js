@@ -25,7 +25,7 @@ module.exports = {
 
 		//check if the user is actually banned
 		try {
-			interaction.guild.bans.fetch(targetUser)
+			await interaction.guild.bans.fetch(targetUser)
 		}
 		catch {
 			interaction.reply("That user is not banned!")
