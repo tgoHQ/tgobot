@@ -27,7 +27,7 @@ module.exports = {
 		const author = interaction.user;
 
 		try {
-			await targetChannel.setRateLimitPerUser(time, reason)
+			await targetChannel.setRateLimitPerUser(slowmodeTime, reason)
 	      .then(function() {
 					interaction.reply(`:stopwatch: Set slowmode in ${channel.toString()} to ${inlineCode(slowmodeTime + " seconds")} with reason ${inlineCode(reason)}.`);
 					modlog.create({
