@@ -10,7 +10,7 @@ async function create(raw) { //creates a new log
   //save log to db
 
   //post log to modlog channel
-  post(raw, log.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
+  post(raw, raw.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
 
   //return string for response
   return string(raw);
