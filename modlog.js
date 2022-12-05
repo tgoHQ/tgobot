@@ -2,6 +2,9 @@
 const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Routes } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
 
+const modlogChannel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
+
+
 function create(raw) {
 
   const embed = new EmbedBuilder()
@@ -12,6 +15,7 @@ function create(raw) {
       {name: "Reason", value: raw.reason}
     )
     ;
+  modlogChannel.send({ embeds: [embed] });
 
   console.log(JSON.stringify(raw));
 }
