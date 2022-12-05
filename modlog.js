@@ -7,12 +7,15 @@ function create(raw) {
 
   const embed = new EmbedBuilder()
     .setTitle("Mod Log")
-    .setTimestamp()
+    .setColor("137c5a")
     .addFields(
-      {name: "Type", value: raw.reason},
+      {name: "Type", value: raw.type},
+      {name: "Target User", value: raw.targetUser},
+      {name: "Target Channel", value: raw.targetChannel},
+      {name: "Slowmode Amount", value: raw.slowmode},
+      {name: "Duration", value: raw.duration},
       {name: "Reason", value: raw.reason}
-    )
-    ;
+    );
   modlogChannel.send({ embeds: [embed] });
 
 }
