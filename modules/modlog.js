@@ -39,17 +39,17 @@ function string(log) { //takes log object and returns string representation
   else if (log.type === "Bulk Delete") {
     string = `<:delete:1049226132622409749> Bulk deleted ${log.bulkDeleteNumber} messages in ${log.targetChannel}`;
   }
+  else if (log.type === "Mute") {
+    string = `<:timeout:1049257820882747432> Muted ${log.targetUser} for ${humanDuration}`;
+  }
+  else if (log.type === "Unmute") {
+    string = `<:timeout:1049257820882747432> Unmuted ${log.targetUser}`;
+  }
   else if (log.type === "Ban") {
     string = `<:ban:1049256901562609684> Banned ${log.targetUser}`;
   }
-  else if (log.type === "Unmute") {
-    string = `:loud_sound: Unmuted ${log.targetUser}`;
-  }
-  else if (log.type === "Mute") {
-    string = `:mute: Muted ${log.targetUser} for ${humanDuration}`;
-  }
   else if (log.type === "Unban") {
-    string = `:unlock: Unbanned ${log.targetUser}`;
+    string = `<:ban:1049256901562609684> Unbanned ${log.targetUser}`;
   }
 
   return string;
