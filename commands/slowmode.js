@@ -8,10 +8,6 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('slowmode')
 		.setDescription('Sets slowmode on a channel.')
-    .addChannelOption(option =>
-		option.setName('channel')
-			.setDescription('The channel to slowmode')
-			.setRequired(true))
 		.addStringOption(option =>
 		option.setName('time')
 			.setDescription('Slowmode interval. Set to 0 seconds to disable slowmode.')
@@ -24,7 +20,7 @@ module.exports = {
 
 	async execute(interaction) {
 
-    const targetChannel = interaction.options.getChannel('channel');
+    const targetChannel = interaction.channel;
     const reason = interaction.options.getString('reason');
 
 		const slowmodeIntervalRaw = interaction.options.getString('time');
