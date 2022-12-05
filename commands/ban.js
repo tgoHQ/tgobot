@@ -1,5 +1,6 @@
 //jshint esversion:8
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
+const modlog = require("../modules/modlog");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -14,11 +15,23 @@ module.exports = {
 			.setDescription('Reason for the ban')
 			.setRequired(true))
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
-	async execute(interaction) {
-    const user = interaction.options.getUser('user');
-    const reason = interaction.options.getString('reason');
 
-    await interaction.guild.bans.create(user, {reason: reason})
-      .then(interaction.reply(`:hammer: Banned <@${user.id}> with reason \`${reason}\`.`));
+	async execute(interaction) {
+
+    const targetUser = interaction.options.getUser('user');
+    const reason = interaction.options.getString('reason');
+		const author = interaction.user;
+
+    await interaction.guild.bans.create(targetUser, {reason: reason})
+      .then(function() {
+				interaction.reply(`:hammer: Banned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
+				modlog.create({
+					type: "Ban",
+					author,
+					reason,
+					targetUser,
+					interaction
+				});
+			})
 	},
 };
