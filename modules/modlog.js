@@ -15,7 +15,7 @@ async function create(raw) { //creates a new log
 
   //dm target user if applicable
   if ("targetUser" in raw) {
-    raw.interaction.client.users.send(raw.targetUser, string(raw) + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
+    raw.interaction.client.users.send(raw.targetUser, string(raw, true) + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
   }
 
   //return string for response
@@ -23,7 +23,7 @@ async function create(raw) { //creates a new log
 
 }
 
-function string(log) { //takes log object and returns string representation
+function string(log, includeReason) { //takes log object and returns string representation. include reason bool
   let string;
 
   let humanDuration;
@@ -51,6 +51,13 @@ function string(log) { //takes log object and returns string representation
   }
   else if (log.type === "Unban") {
     string = `<:ban:1049256901562609684> Unbanned ${log.targetUser}`;
+  }
+
+  if (includeReason == true) {
+    string += `with reason ${inlineCode(log.reason)}.`;
+  }
+  else {
+    string += '.';
   }
 
   return string;
