@@ -28,12 +28,13 @@ module.exports = {
 };
 
 // {
-//   type: "Mute",
+//   type: string,
 //   author: userObj,
-//   reason: "you suck",
+//   reason: string,
 //   targetUser: userObj,
-//   duration: 3600000,
-//   slowmodeTime: 20,
+//   duration: int(ms),
+//   slowmodeTime: int,
 //   targetChannel: channelObj,
+//   bulkDeleteNumber: int,
 //   interaction: interaction
 // };
