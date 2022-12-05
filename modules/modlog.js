@@ -15,7 +15,7 @@ async function create(raw) { //creates a new log
 
   //dm target user if applicable
   if ("targetUser" in raw) {
-    raw.interaction.client.users.send(raw.targetUser, 'content');
+    raw.interaction.client.users.send(raw.targetUser, string(raw) + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
   }
 
   //return string for response
