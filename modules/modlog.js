@@ -17,7 +17,7 @@ function create(raw) {
   if ('targetUser' in raw) embed.addFields({name: "Target User", value: raw.targetUser.toString()});
   if ('targetChannel' in raw) embed.addFields({name: "Target Channel", value: raw.targetChannel.toString()});
   if ('slowmodeTime' in raw) embed.addFields({name: "Slowmode Time", value: raw.slowmode});
-  if ('duration' in raw) embed.addFields({name: "Duration", value: raw.duration});
+  if ('duration' in raw) embed.addFields({name: "Duration", value: raw.duration.toString()});
   if ('bulkDeleteNumber' in raw) embed.addFields({name: "Messages Deleted", value: raw.bulkDeleteNumber.toString()});
 
 
