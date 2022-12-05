@@ -35,7 +35,7 @@ module.exports = {
 						interaction,
 					});
 				})
-				.catch(function(e) {interaction.reply(e)})
+				.catch(function(e) {interaction.reply('Error' + e)})
 		}
 		catch {}
 
