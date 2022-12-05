@@ -68,7 +68,8 @@ function post(log, modlogChannel) { //posts a log object to the modlog channel
   const embed = new EmbedBuilder()
     .setColor("137c5a")
     .setDescription(string(log, true))
-    .setAuthor({name: log.author.toString(), iconURL: log.author.defaultAvatarURL});
+    .setAuthor({name: log.author.username, iconURL: log.author.defaultAvatarURL});
+    console.log(log.author.defaultAvatarURL);
 
   modlogChannel.send({ embeds: [embed] });
 }
