@@ -31,8 +31,7 @@ module.exports = {
 					interaction.reply(`:stopwatch: Set slowmode in <#${channel.id}> to \`${time}s\` with reason \`${reason}\`.`)
 				})
 				.catch(function(e) {
-					// interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`);
-					interaction.reply(`:octagonal_sign: Error: ${e.message}`);
+					interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`);
 				})
 		}
 		catch {}
