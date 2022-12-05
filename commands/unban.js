@@ -32,21 +32,16 @@ module.exports = {
 			return
 		}
 
-			// .then( //the user is banned, unban them
-			// 	await interaction.guild.bans.remove(targetUser, reason)
-			// 	// 	.then(function() {
-			// 	// 		interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
-			// 	// 		modlog.create({
-			// 	// 			type: "Unban",
-			// 	// 			author,
-			// 	// 			reason,
-			// 	// 			targetUser,
-			// 	// 			interaction,
-			// 	// 		});
-			// 	//
-			// 	// 	}
-			// 	// )
-			// )
-			// .catch();
-	},
+		await interaction.guild.bans.remove(targetUser, reason)
+			.then(function() {
+				interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
+				modlog.create({
+					type: "Unban",
+					author,
+					reason,
+					targetUser,
+					interaction,
+				});
+			})
+	}
 };
