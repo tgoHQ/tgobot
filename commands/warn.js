@@ -28,6 +28,7 @@ module.exports = {
 			author,
 			reason,
 			targetUser,
+			interaction,
 		});
 
     interaction.reply(`:warning: Warned <@${targetUser.id}> with reason ${inlineCode(reason)}.`);

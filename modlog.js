@@ -2,7 +2,7 @@
 const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Routes } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
 
-const modlogChannel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
+const modlogChannel = interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
 
 
 function create(raw) {
