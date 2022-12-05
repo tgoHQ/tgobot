@@ -22,7 +22,7 @@ module.exports = {
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
-    interaction.reply(`:warning: Warned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
+    interaction.reply(`<:icons_warning:908958943466893323> Warned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
 		modlog.create({
 			type: "Warn",
 			author,
