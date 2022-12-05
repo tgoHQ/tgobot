@@ -23,18 +23,21 @@ module.exports = {
 		const author = interaction.user;
 
 
+		try {
+			await interaction.guild.bans.remove(targetUser, reason)
+				.then(function() {
+					interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
+					modlog.create({
+						type: "Unban",
+						author,
+						reason,
+						targetUser,
+						interaction,
+					});
+				})
+				.catch(interaction.reply("That user is not banned!"))
+		}
+		catch {}
 
-		await interaction.guild.bans.remove(targetUser, reason)
-			.then(function() {
-				interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
-				modlog.create({
-					type: "Unban",
-					author,
-					reason,
-					targetUser,
-					interaction,
-				});
-			})
-			.catch(interaction.reply("That user is not banned!"))
 	}
 };
