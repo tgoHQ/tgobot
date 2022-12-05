@@ -16,7 +16,7 @@ function create(raw) {
 
   if ('targetUser' in raw) embed.addFields({name: "Target User", value: raw.targetUser.toString()});
   if ('targetChannel' in raw) embed.addFields({name: "Target Channel", value: raw.targetChannel.toString()});
-  if ('slowmode' in raw) embed.addFields({name: "Slowmode Amount", value: raw.slowmode});
+  if ('slowmodeTime' in raw) embed.addFields({name: "Slowmode Time", value: raw.slowmode});
   if ('duration' in raw) embed.addFields({name: "Duration", value: raw.duration});
 
   modlogChannel.send({ embeds: [embed] });
@@ -33,7 +33,7 @@ module.exports = {
 //   reason: "you suck",
 //   targetUser: userObj,
 //   duration: 3600000,
-//   slowmode: 20,
+//   slowmodeTime: 20,
 //   targetChannel: channelObj,
 //   interaction: interaction
 // };

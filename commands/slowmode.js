@@ -21,14 +21,23 @@ module.exports = {
 
 	async execute(interaction) {
 
-    const channel = interaction.options.getChannel('channel');
+    const targetChannel = interaction.options.getChannel('channel');
     const reason = interaction.options.getString('reason');
-		const time = interaction.options.getInteger('time');
+		const slowmodeTime = interaction.options.getInteger('time');
+		const author = interaction.user;
 
 		try {
-			await channel.setRateLimitPerUser(time, reason)
+			await targetChannel.setRateLimitPerUser(time, reason)
 	      .then(function() {
-					interaction.reply(`:stopwatch: Set slowmode in <#${channel.id}> to \`${time}s\` with reason \`${reason}\`.`)
+					interaction.reply(`:stopwatch: Set slowmode in ${channel.toString()} to ${inlineCode(slowmodeTime + " seconds")} with reason ${inlineCode(reason)}.`);
+					modlog.create({
+						type: "Slowmode",
+						author,
+						reason,
+						targetChannel,
+						slowmodeTime,
+						interaction,
+					});
 				})
 				.catch(function(e) {
 					interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`);
