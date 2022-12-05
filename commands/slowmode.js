@@ -7,7 +7,7 @@ const humanizeDuration = require("humanize-duration");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('slowmode')
-		.setDescription('Sets slowmode on a channel.')
+		.setDescription('Sets slowmode on the current channel.')
 		.addStringOption(option =>
 		option.setName('time')
 			.setDescription('Slowmode interval. Set to 0 seconds to disable slowmode.')
