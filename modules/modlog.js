@@ -18,7 +18,7 @@ function create(raw) {
 
   if ('targetUser' in raw) embed.addFields({name: "Target User", value: raw.targetUser.toString()});
   if ('targetChannel' in raw) embed.addFields({name: "Target Channel", value: raw.targetChannel.toString()});
-  if ('slowmodeTime' in raw) embed.addFields({name: "Slowmode Time", value: raw.slowmodeTime.toString()});
+  if ('slowmodeInterval' in raw) embed.addFields({name: "Slowmode Interval", value: humanizeDuration(raw.slowmodeInterval)});
   if ('duration' in raw) embed.addFields({name: "Duration", value: humanizeDuration(raw.duration)});
   if ('bulkDeleteNumber' in raw) embed.addFields({name: "Messages Deleted", value: raw.bulkDeleteNumber.toString()});
 
@@ -37,7 +37,7 @@ module.exports = {
 //   reason: string,
 //   targetUser: userObj,
 //   duration: int(ms),
-//   slowmodeTime: int,
+//   slowmodeInterval: int,
 //   targetChannel: channelObj,
 //   bulkDeleteNumber: int,
 //   interaction: interaction
