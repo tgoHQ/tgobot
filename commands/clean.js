@@ -1,5 +1,6 @@
 //jshint esversion:8
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
+const modlog = require("../modules/modlog");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -9,11 +10,31 @@ module.exports = {
 		option.setName('number')
 			.setDescription('The number of recent messages to delete in this channel. Maximum of 100.')
 			.setRequired(true))
+		.addStringOption(option =>
+		option.setName('reason')
+			.setDescription('Reason for the clean')
+			.setRequired(true))
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
-	async execute(interaction) {
-    const number = interaction.options.getInteger('number');
 
-    await interaction.channel.bulkDelete(number)
-      .then(messages => interaction.reply(`:broom: Deleted ${messages.size} messages in <#${interaction.channel.id}>.`));
+	async execute(interaction) {
+
+    const number = interaction.options.getInteger('number');
+		const author = interaction.user;
+		const targetChannel = interaction.channel;
+		const reason = interaction.options.getString('reason');
+
+    await targetChannel.bulkDelete(number)
+      .then(messages => {
+				const bulkDeleteNumber = messages.size;
+				interaction.reply(`:broom: Deleted ${bulkDeleteNumber} messages in ${targetChannel.toString()} with reason ${inlineCode(reason)}.`);
+				modlog.create({
+					type: "Bulk Delete",
+					author,
+					targetChannel,
+					bulkDeleteNumber,
+					reason,
+					interaction
+				});
+			});
 	},
 };

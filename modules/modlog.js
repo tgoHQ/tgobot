@@ -1,0 +1,44 @@
+//jshint esversion:8
+const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Routes } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
+const humanizeDuration = require("humanize-duration");
+
+function create(raw) {
+
+  const modlogChannel = raw.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
+
+  const embed = new EmbedBuilder()
+    .setTitle("Mod Log")
+    .setColor("137c5a")
+    .addFields(
+      {name: "Author", value: raw.author.toString()},
+      {name: "Type", value: raw.type},
+      {name: "Reason", value: raw.reason}
+    );
+
+  if ('targetUser' in raw) embed.addFields({name: "Target User", value: raw.targetUser.toString()});
+  if ('targetChannel' in raw) embed.addFields({name: "Target Channel", value: raw.targetChannel.toString()});
+  if ('slowmodeInterval' in raw) embed.addFields({name: "Slowmode Interval", value: humanizeDuration(raw.slowmodeInterval)});
+  if ('duration' in raw) embed.addFields({name: "Duration", value: humanizeDuration(raw.duration)});
+  if ('bulkDeleteNumber' in raw) embed.addFields({name: "Messages Deleted", value: raw.bulkDeleteNumber.toString()});
+
+
+  modlogChannel.send({ embeds: [embed] });
+
+}
+
+module.exports = {
+  create
+};
+
+// {
+//   type: string,
+//   author: userObj,
+//   reason: string,
+//   targetUser: userObj,
+//   duration: int(ms),
+//   slowmodeInterval: int,
+//   targetChannel: channelObj,
+//   bulkDeleteNumber: int,
+//   interaction: interaction
+// };
