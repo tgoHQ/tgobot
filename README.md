@@ -30,8 +30,9 @@ Environmental variables:
 | Variable            | Value                                   | Required |
 |---------------------|-----------------------------------------|----------|
 | TOKEN               | your Discord bot's token                | true     |
-| CLIENTID            | your Discord application's client ID    | true     |
+| CLIENT_ID           | your Discord application's client ID    | true     |
 | MODLOG\_CHANNEL\_ID | id of the modlog channel in your server | true     |
+| APPEALS_URL         | url to visit for moderation appeals     | true     |
 
 To launch, run this command, replacing "123" with the correct values:
 ```

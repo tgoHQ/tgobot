@@ -3,6 +3,9 @@ const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Rout
 const { EmbedBuilder } = require('discord.js');
 const humanizeDuration = require("humanize-duration");
 
+const appealsURL = process.env.APPEALS_URL;
+
+
 async function create(raw) { //creates a new log
 
   //clean up log
