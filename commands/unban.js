@@ -1,4 +1,4 @@
-//jshint esversion:8
+//jshint esversion:10
 const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
 const modlog = require("../modlog");
 
@@ -24,22 +24,29 @@ module.exports = {
 
 
 		//check if the user is actually banned
-		interaction.guild.bans.fetch(targetUser)
-			.then( //the user is banned, unban them
-				await interaction.guild.bans.remove(targetUser, reason)
-				// 	.then(function() {
-				// 		interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
-				// 		modlog.create({
-				// 			type: "Unban",
-				// 			author,
-				// 			reason,
-				// 			targetUser,
-				// 			interaction,
-				// 		});
-				//
-				// 	}
-				// )
-			)
-			.catch(interaction.reply("That user is not banned!"));
+		try {
+			interaction.guild.bans.fetch(targetUser)
+		}
+		catch {
+			interaction.reply("That user is not banned!")
+			return
+		}
+
+			// .then( //the user is banned, unban them
+			// 	await interaction.guild.bans.remove(targetUser, reason)
+			// 	// 	.then(function() {
+			// 	// 		interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
+			// 	// 		modlog.create({
+			// 	// 			type: "Unban",
+			// 	// 			author,
+			// 	// 			reason,
+			// 	// 			targetUser,
+			// 	// 			interaction,
+			// 	// 		});
+			// 	//
+			// 	// 	}
+			// 	// )
+			// )
+			// .catch();
 	},
 };
