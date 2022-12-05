@@ -43,10 +43,6 @@ module.exports = {
 					interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`);
 				})
 		}
-		catch {
-			function(e) {
-				console.warn(e)
-			}
-		}
+		// catch {}
 	},
 };
