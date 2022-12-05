@@ -1,6 +1,6 @@
 //jshint esversion:8
 const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
-const modlog = require("../modlog");
+const modlog = require("../modules/modlog");
 
 module.exports = {
 	data: new SlashCommandBuilder()

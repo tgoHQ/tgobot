@@ -1,6 +1,7 @@
 //jshint esversion:10
 const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
-const modlog = require("../modlog");
+const modlog = require("../modules/modlog");
+const error = require("../modules/error");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -34,7 +35,7 @@ module.exports = {
 						interaction,
 					});
 				})
-				.catch(function(e) {interaction.reply(`:octagonal_sign: Error: ${e.message}`)})
+				.catch(function(e) {error.error(interaction, e)})
 		}
 		catch {}
 
