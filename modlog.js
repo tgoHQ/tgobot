@@ -35,4 +35,5 @@ module.exports = {
 //   duration: 3600000,
 //   slowmode: 20,
 //   targetChannel: channelObj,
+//   interaction: interaction
 // };

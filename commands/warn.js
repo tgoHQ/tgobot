@@ -16,7 +16,6 @@ module.exports = {
 			.setRequired(true))
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
 
-
 	async execute(interaction) {
 
     const targetUser = interaction.options.getUser('user');
@@ -31,6 +30,6 @@ module.exports = {
 			interaction,
 		});
 
-    interaction.reply(`:warning: Warned <@${targetUser.id}> with reason ${inlineCode(reason)}.`);
+    interaction.reply(`:warning: Warned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
 	},
 };
