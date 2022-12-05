@@ -31,7 +31,7 @@ module.exports = {
 
 		await targetChannel.setRateLimitPerUser(slowmodeInterval / 1000, reason)
       .then(function() {
-				interaction.reply(`<:slowmode:1049227157156671508> Set slowmode in ${targetChannel.toString()} to ${inlineCode(slowmodeIntervalHuman)} with reason ${inlineCode(reason)}.`);
+				// interaction.reply(`<:slowmode:1049227157156671508> Set slowmode in ${targetChannel.toString()} to ${inlineCode(slowmodeIntervalHuman)} with reason ${inlineCode(reason)}.`);
 				modlog.create({
 					type: "Slowmode",
 					author,
@@ -39,7 +39,8 @@ module.exports = {
 					targetChannel,
 					slowmodeInterval,
 					interaction,
-				});
+				})
+					.then(string => interaction.reply(string))
 			})
 	},
 };

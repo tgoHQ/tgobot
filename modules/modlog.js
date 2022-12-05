@@ -18,7 +18,19 @@ async function create(raw) { //creates a new log
 }
 
 function string(log) { //takes log object and returns string representation
-  if (log.type === "Warn") return `<:warn:1049224507598061628> Warned ${log.targetUser} with reason: ${inlineCode(log.reason)}.`;
+  let string;
+
+  if (log.type === "Warn") {
+    string = `<:warn:1049224507598061628> Warned ${log.targetUser}}`;
+  }
+  else if (log.type === "Slowmode") {
+    if (log.slowModeInterval === 0) {
+      string = `<:slowmode:1049227157156671508> Disabled slowmode in ${log.targetChannel}`;
+    }
+    else {
+      string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(log.slowmodeInterval)} in ${log.targetChannel}`;
+    }
+  }
 }
 
 function post(log, modlogChannel) { //posts a log object to the modlog channel
