@@ -27,7 +27,7 @@ module.exports = {
 
 		try {
 			await channel.setRateLimitPerUser(time, reason)
-	      .then(interaction.reply(`:stopwatch: Set slowmode in <#${channel.id}> to \`${time}s\` with reason \`${reason}\`.`))
+	      .then(function() {interaction.reply(`:stopwatch: Set slowmode in <#${channel.id}> to \`${time}s\` with reason \`${reason}\`.`)})
 				.catch(function(e) {interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`)})
 		}
 		catch {}
