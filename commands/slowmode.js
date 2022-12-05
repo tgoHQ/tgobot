@@ -32,7 +32,9 @@ module.exports = {
 				})
 				.catch(function(e) {interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`)})
 		}
-		catch {}
+		catch {
+			console.error(e)
+		}
 
 	},
 };
