@@ -26,19 +26,20 @@ module.exports = {
 		//check if the user is actually banned
 		interaction.guild.bans.fetch(targetUser)
 		.then( //the user is banned, unban them
-			await interaction.guild.bans.remove(targetUser, reason).then(function() {
+			await interaction.guild.bans.remove(targetUser, reason)
+				.then(function() {
+					interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
+					modlog.create({
+						type: "Unban",
+						author,
+						reason,
+						targetUser,
+						interaction,
+					});
 
-				interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
-				modlog.create({
-					type: "Unban",
-					author,
-					reason,
-					targetUser,
-					interaction,
-				});
-
-			);
-		})
+				}
+			)
+		)
 		.catch(interaction.reply("That user is not banned!"));
 	},
 };
