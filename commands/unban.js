@@ -22,6 +22,12 @@ module.exports = {
 		const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
+
+		//check if the user is actually banned
+		interaction.guild.bans.fetch(targetUser)
+		.then(console.log)
+		.catch(console.error);
+
     await interaction.guild.bans.remove(targetUser, reason).then(function() {
 
 			interaction.reply(`:unlock: Unbanned ${targetUser.toString()} with reason ${inlineCode(reason)}.`);
