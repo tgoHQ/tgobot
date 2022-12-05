@@ -26,7 +26,7 @@ module.exports = {
     await targetChannel.bulkDelete(number)
       .then(messages => {
 				const bulkDeleteNumber = messages.size;
-				interaction.reply(`:broom: Deleted ${bulkDeleteNumber} messages in ${targetChannel.toString()} with reason ${inlineCode(reason)}.`);
+				interaction.reply(`<:delete:1049226132622409749> Deleted ${bulkDeleteNumber} messages in ${targetChannel.toString()} with reason ${inlineCode(reason)}.`);
 				modlog.create({
 					type: "Bulk Delete",
 					author,
