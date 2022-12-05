@@ -2,7 +2,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits, inlineCode } = require('discord.js');
 const modlog = require("../modules/modlog");
 
-
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('slowmode')
@@ -28,20 +27,20 @@ module.exports = {
 		const slowmodeTime = interaction.options.getInteger('time');
 		const author = interaction.user;
 
-			await targetChannel.setRateLimitPerUser(slowmodeTime, areason)
-	      .then(function() {
-					interaction.reply(`:stopwatch: Set slowmode in ${targetChannel.toString()} to ${inlineCode(slowmodeTime + " seconds")} with reason ${inlineCode(reason)}.`);
-					modlog.create({
-						type: "Slowmode",
-						author,
-						reason,
-						targetChannel,
-						slowmodeTime,
-						interaction,
-					});
-				})
-				.catch(function(e) {
-					interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`);
-				})
+		await targetChannel.setRateLimitPerUser(slowmodeTime, reason)
+      .then(function() {
+				interaction.reply(`:stopwatch: Set slowmode in ${targetChannel.toString()} to ${inlineCode(slowmodeTime + " seconds")} with reason ${inlineCode(reason)}.`);
+				modlog.create({
+					type: "Slowmode",
+					author,
+					reason,
+					targetChannel,
+					slowmodeTime,
+					interaction,
+				});
+			})
+			.catch(function(e) {
+				interaction.reply(`:octagonal_sign: Error: ${inlineCode(e.message)}`);
+			})
 	},
 };
