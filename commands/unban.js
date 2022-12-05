@@ -35,7 +35,10 @@ module.exports = {
 						interaction,
 					});
 				})
-				.catch(function(e) {error.error(interaction, e)})
+				.catch(function(e) {
+					error.error(interaction, e);
+					console.log("yuh");
+				})
 		}
 		catch {}
 
