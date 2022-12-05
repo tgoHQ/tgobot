@@ -68,17 +68,11 @@ function post(log, modlogChannel) { //posts a log object to the modlog channel
   const embed = new EmbedBuilder()
     .setTitle("Mod Log")
     .setColor("137c5a")
+    .setDescription(string(log))
     .addFields(
       {name: "Author", value: log.author.toString()},
-      {name: "Type", value: log.type},
       {name: "Reason", value: log.reason}
     );
-
-  if ('targetUser' in log) embed.addFields({name: "Target User", value: log.targetUser.toString()});
-  if ('targetChannel' in log) embed.addFields({name: "Target Channel", value: log.targetChannel.toString()});
-  if ('slowmodeInterval' in log) embed.addFields({name: "Slowmode Interval", value: humanizeDuration(log.slowmodeInterval)});
-  if ('duration' in log) embed.addFields({name: "Duration", value: humanizeDuration(log.duration)});
-  if ('bulkDeleteNumber' in log) embed.addFields({name: "Messages Deleted", value: log.bulkDeleteNumber.toString()});
 
   modlogChannel.send({ embeds: [embed] });
 }
