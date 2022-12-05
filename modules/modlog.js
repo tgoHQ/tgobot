@@ -1,8 +1,10 @@
 //jshint esversion:8
 const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Routes } = require('discord.js');
 const { EmbedBuilder } = require('discord.js');
+const humanizeDuration = require("humanize-duration");
 
 function create(raw) {
+
   const modlogChannel = raw.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
 
   const embed = new EmbedBuilder()
@@ -17,7 +19,7 @@ function create(raw) {
   if ('targetUser' in raw) embed.addFields({name: "Target User", value: raw.targetUser.toString()});
   if ('targetChannel' in raw) embed.addFields({name: "Target Channel", value: raw.targetChannel.toString()});
   if ('slowmodeTime' in raw) embed.addFields({name: "Slowmode Time", value: raw.slowmodeTime.toString()});
-  if ('duration' in raw) embed.addFields({name: "Duration", value: raw.duration.toString()});
+  if ('duration' in raw) embed.addFields({name: "Duration", value: humanizeDuration(raw.duration)});
   if ('bulkDeleteNumber' in raw) embed.addFields({name: "Messages Deleted", value: raw.bulkDeleteNumber.toString()});
 
 
