@@ -35,7 +35,7 @@ module.exports = {
 						interaction,
 					});
 				})
-				.catch(function(e) {interaction.reply(e.toString())})
+				.catch(function(e) {interaction.reply(e.message)})
 		}
 		catch {}
 
