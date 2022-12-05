@@ -8,9 +8,15 @@ async function create(raw) { //creates a new log
   //clean up log
 
   //save log to db
+  //then
 
   //post log to modlog channel
   post(raw, raw.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
+
+  //dm target user if applicable
+  if ("targetUser" in raw) {
+    raw.interaction.client.users.send(raw.targetUser, 'content');
+  }
 
   //return string for response
   return string(raw);
