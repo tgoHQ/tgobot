@@ -21,6 +21,7 @@ module.exports = {
     const member = interaction.options.getMember('user');
 		const targetUser = member.user;
     const reason = interaction.options.getString('reason');
+		const author = interaction.user;
 
 		modlog.create({
 			type: "Unmute",
