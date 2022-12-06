@@ -1,6 +1,5 @@
 //jshint esversion:8
-const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Routes, inlineCode } = require('discord.js');
-const { EmbedBuilder } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, AuditLogEvent, REST, Routes, inlineCode, EmbedBuilder } = require('discord.js');
 const humanizeDuration = require("humanize-duration");
 
 const appealsURL = process.env.APPEALS_URL;
