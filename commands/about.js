@@ -10,7 +10,7 @@ module.exports = {
       .setColor("137c5a")
       .setTitle("tgobot3")
       .addFields(
-				{name: "Ping", value: client.ws.ping + "ms"},
+				// {name: "Ping", value: client.ws.ping + "ms"},
         {name: "<:djs:1049834255498354689> discord.js", value: "Built with the [discord.js](https://discord.js.org/) library."},
         {name: "<:shine:1049289235548614697> Icons", value: "The icons used by this bot are provided by [iconsdiscord](https://discord.com/invite/aPvvhefmt3)."},
         {name: "<:github:1049292058583638038> Open Source", value: "This bot is open source and its code is freely available on [Github](https://github.com/kevin8181/tgobot3) under the AGPL-3.0 license."},
