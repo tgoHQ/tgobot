@@ -65,7 +65,7 @@ function string(log, includeReason) { //takes log object and returns string repr
   return string;
 }
 
-function post(log, modlogChannel) { //posts a log object to the modlog channel
+async function post(log, modlogChannel) { //posts a log object to the modlog channel
 
   const embed = new EmbedBuilder()
     .setColor("137c5a")
@@ -73,7 +73,9 @@ function post(log, modlogChannel) { //posts a log object to the modlog channel
     .setAuthor({name: log.author.username, iconURL: log.author.displayAvatarURL()});
     console.log(log.author.displayAvatarURL());
 
-  modlogChannel.send({ embeds: [embed] });
+  return await modlogChannel.send({ embeds: [embed] });
+
+  //return message obj
 }
 
 module.exports = {
