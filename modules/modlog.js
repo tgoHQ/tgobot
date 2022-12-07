@@ -71,7 +71,6 @@ async function post(log, modlogChannel) { //posts a log object to the modlog cha
     .setColor("137c5a")
     .setDescription(string(log, true))
     .setAuthor({name: log.author.username, iconURL: log.author.displayAvatarURL()});
-    console.log(log.author.displayAvatarURL());
 
   return await modlogChannel.send({ embeds: [embed] });
 
