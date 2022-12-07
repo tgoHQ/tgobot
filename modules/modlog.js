@@ -14,6 +14,7 @@ async function create(raw) { //creates a new log
 
   //post log to modlog channel
   post(raw, raw.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
+  //get message object returned from post and save to db
 
   //dm target user if applicable
   if ("targetUser" in raw) {
@@ -65,7 +66,7 @@ function string(log, includeReason) { //takes log object and returns string repr
   return string;
 }
 
-async function post(log, modlogChannel) { //posts a log object to the modlog channel
+async function post(log, modlogChannel) { //posts a log object to the modlog channel, returns the message object
 
   const embed = new EmbedBuilder()
     .setColor("137c5a")
@@ -74,7 +75,6 @@ async function post(log, modlogChannel) { //posts a log object to the modlog cha
 
   return await modlogChannel.send({ embeds: [embed] });
 
-  //return message obj
 }
 
 module.exports = {
