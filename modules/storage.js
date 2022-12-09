@@ -5,7 +5,7 @@ function readAll(file) { //returns whole file as json
   let json;
 
   //make path
-  const path = `../storage/${file}.json`;
+  const path = `.../storage/${file}.json`;
 
   //read file
   const data = fs.readFileSync(path, function (err) {
