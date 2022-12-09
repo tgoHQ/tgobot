@@ -11,7 +11,7 @@ module.exports = {
 			.setRequired(true)),
 	async execute(interaction) {
     const channel = interaction.options.getChannel('channel');
-    const members = channel.members.length();
+    const members = channel.members.size;
 
     if (true) {
       await interaction.reply(members);
