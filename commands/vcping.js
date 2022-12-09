@@ -14,10 +14,10 @@ module.exports = {
     const connected = channel.members.toJSON().length;
 
     if (connected >= 2) {
-      await interaction.reply(`There are ${connected} users connected to ${channel}! <@&${process.env.VC_PING_ROLE_ID}>`);
+      await interaction.reply(`<@&${process.env.VC_PING_ROLE_ID}>, there are ${connected} users connected to ${channel}!`);
     }
     else {
-      await interaction.reply(`There are ${connected} users connected to ${channel}. There must be at least 2 for a VC ping to be made.`);
+      await interaction.reply(`There are ${connected} users connected to ${channel}. There must be at least 2 for a VC ping to be sent.`);
     }
 	},
 };
