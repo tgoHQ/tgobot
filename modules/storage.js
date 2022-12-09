@@ -11,7 +11,8 @@ function readAll(file) { //returns whole file as json
   //read file
   const data = fs.readFileSync(path.resolve(__dirname, fileStr), function (err) {
     if (err) throw err;
-  });
+  })
+  .catch(e => console.log(e));
 
   try { //return parsed json
     json = JSON.parse(data);
