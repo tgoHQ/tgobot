@@ -10,16 +10,14 @@ module.exports = {
 			.setDescription('Channel where the VC is happening.')
 			.setRequired(true)),
 	async execute(interaction) {
-    // const cachedChannel = interaction.options.getChannel('channel');
-    // cachedChannel.fetch(true);
     const channel = interaction.options.getChannel('channel');
     const connected = channel.members.toJSON().length;
 
-    if (true) {
-      await interaction.reply(connected.toString());
+    if (connected >= 2) {
+      await interaction.reply(`There are ${connected} users connected to ${channel}! <@&1050738822771658827>`);
     }
     else {
-      await interaction.reply("There aren't enough people connected to run the command!");
+      await interaction.reply(`There are ${connected} users connected to ${channel}. There must be at least 2 for a VC ping to be made.`);
     }
 	},
 };
