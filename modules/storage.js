@@ -6,13 +6,12 @@ function readAll(file) { //returns whole file as json
   let json;
 
   //make path
-  const fileStr = `../storage/${file}.json`;
+  const fileStr = path.join(__dirname, '..', 'storage', `${file}.json`);
 
   //read file
-  const data = fs.readFileSync(path.resolve(__dirname, fileStr), function (err) {
+  const data = fs.readFileSync(fileStr, function (err) {
     if (err) throw err;
-  })
-  .catch(e => console.log(e));
+  });
 
   try { //return parsed json
     json = JSON.parse(data);
