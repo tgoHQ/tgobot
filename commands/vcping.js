@@ -11,6 +11,7 @@ module.exports = {
 			.setRequired(true)),
 	async execute(interaction) {
     const channel = interaction.options.getChannel('channel');
+    channel.fetch(true);
     const connected = channel.members.toJSON().length;
 
     if (true) {
