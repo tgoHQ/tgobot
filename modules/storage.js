@@ -1,14 +1,15 @@
 //jshint esversion:10
 const fs = require('fs');
+const path = require('path');
 
 function readAll(file) { //returns whole file as json
   let json;
 
   //make path
-  const path = `.../storage/${file}.json`;
+  const fileStr = `../storage/${file}.json`;
 
   //read file
-  const data = fs.readFileSync(path, function (err) {
+  const data = fs.readFileSync(path.resolve(__dirname, fileStr), function (err) {
     if (err) throw err;
   });
 
