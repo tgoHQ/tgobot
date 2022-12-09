@@ -4,9 +4,19 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('vcping')
-		.setDescription('Notifies people that a vc is happening.'),
+		.setDescription('Notifies people that a vc is happening.')
+    .addChannelOption(option =>
+    option.setName('channel')
+			.setDescription('Channel where the VC is happening.')
+			.setRequired(true)),
 	async execute(interaction) {
+    const channel = interaction.options.getChannel('channel');
 
-		await interaction.reply("success");
+    if (channel.members) {
+      await interaction.reply(JSON.stringify(members));
+    }
+    else {
+      await interaction.reply("There aren't enough people connected to run the command!");
+    }
 	},
 };
