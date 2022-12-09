@@ -15,7 +15,7 @@ module.exports = {
     console.log(connected);
 
     if (true) {
-      await interaction.reply(members.toString());
+      await interaction.reply(connected.toString());
     }
     else {
       await interaction.reply("There aren't enough people connected to run the command!");
