@@ -11,9 +11,10 @@ module.exports = {
 			.setRequired(true)),
 	async execute(interaction) {
     const channel = interaction.options.getChannel('channel');
+    const members = channel.members.length();
 
     if (true) {
-      await interaction.reply(channel.members.length);
+      await interaction.reply(members);
     }
     else {
       await interaction.reply("There aren't enough people connected to run the command!");
