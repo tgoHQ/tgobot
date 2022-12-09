@@ -1,5 +1,5 @@
 //jshint esversion:8
-const { SlashCommandBuilder, EmbedBuilder, ChannelType } = require('discord.js');
+const { SlashCommandBuilder, ChannelType } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
