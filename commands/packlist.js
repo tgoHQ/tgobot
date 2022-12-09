@@ -17,6 +17,7 @@ module.exports = {
 		const author = interaction.user;
 
     storage.write("packlist", author.id, packlist);
+    storage.read("packlist", "a");
 
 	},
 };
