@@ -3,8 +3,12 @@ const fs = require('fs');
 
 function readAll(file) { //returns whole file as json
   let json;
+
+  //make path
+  const path = `../storage/${file}.json`;
+
   //read file
-  const data = fs.readFileSync(file, function (err) {
+  const data = fs.readFileSync(path, function (err) {
     if (err) throw err;
   });
 
