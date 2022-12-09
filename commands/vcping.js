@@ -14,7 +14,7 @@ module.exports = {
     const connected = channel.members.toJSON().length;
 
     if (connected >= 2) {
-      await interaction.reply(`There are ${connected} users connected to ${channel}! <@&1050738822771658827>`);
+      await interaction.reply(`There are ${connected} users connected to ${channel}! <@&${process.env.VC_PING_ROLE_ID}>`);
     }
     else {
       await interaction.reply(`There are ${connected} users connected to ${channel}. There must be at least 2 for a VC ping to be made.`);
