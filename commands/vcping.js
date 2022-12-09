@@ -13,7 +13,7 @@ module.exports = {
     const channel = interaction.options.getChannel('channel');
 
     if (true) {
-      await interaction.reply(channel.members.array().length);
+      await interaction.reply(channel.members.length);
     }
     else {
       await interaction.reply("There aren't enough people connected to run the command!");
