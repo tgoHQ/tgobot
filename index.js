@@ -9,7 +9,10 @@ const token = process.env.TOKEN;
 const clientId = process.env.CLIENT_ID;
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds],
+  intents: [
+    GatewayIntentBits.Guilds,
+    Intents.FLAGS.GUILD_VOICE_STATES
+  ],
   presence: {
     activities: [
       {
