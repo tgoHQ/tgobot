@@ -10,8 +10,9 @@ module.exports = {
 			.setDescription('Channel where the VC is happening.')
 			.setRequired(true)),
 	async execute(interaction) {
+    const cachedChannel = interaction.options.getChannel('channel');
+    cachedChannel.fetch(true);
     const channel = interaction.options.getChannel('channel');
-    channel.fetch(true);
     const connected = channel.members.toJSON().length;
 
     if (true) {
