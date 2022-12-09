@@ -12,8 +12,8 @@ module.exports = {
 	async execute(interaction) {
     const channel = interaction.options.getChannel('channel');
 
-    if (channel.members) {
-      await interaction.reply(JSON.stringify(members));
+    if (true) {
+      await interaction.reply(JSON.stringify(channel.members));
     }
     else {
       await interaction.reply("There aren't enough people connected to run the command!");
