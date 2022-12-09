@@ -31,7 +31,7 @@ function write(file, key, value) { //sets the value of a key in a file
   const json = readAll(file);
   //update key to new value
   json[key] = value;
-  console.log("updated json: " + json);
+  console.log("updated json: " + JSON.stringify(json));
 
   //write updated file
   fs.writeFileSync(file, JSON.stringify(json), function (err) {
