@@ -20,14 +20,14 @@ module.exports = {
         setTimeout(() => { //disable cooldown later
           interaction.client.vcPingCooldown = false;
         },
-        5000);
+        1000 * 60 * 60 * 6);
       }
       else {
         await interaction.reply(`<:no:1050760960668868670> There are ${connected} users connected to ${channel}. There must be at least 2 for a VC ping to be sent.`);
       }
     }
     else { //command is still on cooldown
-      await interaction.reply(`<:no:1050760960668868670> This command is on cooldown.`);
+      await interaction.reply(`<:no:1050760960668868670> This command is on a cooldown. The bot will only ping once every 6 hours.`);
     }
 
 	},
