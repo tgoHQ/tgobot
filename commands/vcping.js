@@ -12,7 +12,7 @@ module.exports = {
 	async execute(interaction) {
     const channel = interaction.options.getChannel('channel');
     const connected = channel.members;
-    console.log(connected.toJSON());
+    console.log(connected.toJSON().length);
 
     if (true) {
       // await interaction.reply(connected.toString());
