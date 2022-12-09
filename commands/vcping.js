@@ -9,7 +9,7 @@ module.exports = {
     option.setName('channel')
 			.setDescription('Channel where the VC is happening.')
 			.setRequired(true))
-      .addChannelTypes(ChannelType.GuildVoice),
+      .addChannelTypes([2]),
 	async execute(interaction) {
     const channel = interaction.options.getChannel('channel');
     const connected = channel.members.toJSON().length;
