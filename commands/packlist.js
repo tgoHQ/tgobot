@@ -16,7 +16,7 @@ module.exports = {
     const packlist = interaction.options.getString('packlist');
 		const author = interaction.user;
 
-    storage.write("packlist", author.id, packlist);
+    storage.write("packlist", "z", packlist);
     interaction.reply(storage.read("packlist", "a"));
 
 	},
