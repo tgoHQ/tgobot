@@ -11,6 +11,7 @@ const clientId = process.env.CLIENT_ID;
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
     128
   ],
   presence: {
