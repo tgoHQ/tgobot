@@ -2,8 +2,8 @@
 const { Events } = require('discord.js');
 
 module.exports = {
-	name: Events.MessageDeleteBulk,
+	name: Events.MessageDelete,
 	execute(message) {
-		message.channel.send("saw bulk delete event");
+		message.channel.send("saw delete event");
 	},
 };
