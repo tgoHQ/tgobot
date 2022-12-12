@@ -2,7 +2,7 @@
 const { Events } = require('discord.js');
 
 module.exports = {
-	name: Events.MessageDelete,
+	name: Events.messageDeleteBulk,
 	execute(client) {
 		console.log(`got event!`);
 	},
