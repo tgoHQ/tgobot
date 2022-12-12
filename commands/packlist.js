@@ -4,20 +4,11 @@ const storage = require('../modules/storage');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('setpacklist')
-		.setDescription('.')
-    .addStringOption(option =>
-  		option.setName('packlist')
-  			.setDescription('data to save')
-  			.setRequired(true)
-    ),
+		.setName('packlist')
+		.setDescription('.'),
 	async execute(interaction) {
 
-    const packlist = interaction.options.getString('packlist');
-		const author = interaction.user;
 
-    storage.write("packlist", "z", packlist);
-    interaction.reply(storage.read("packlist", "a"));
 
 	},
 };
