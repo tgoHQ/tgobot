@@ -82,8 +82,4 @@ for (const file of eventFiles) {
 	}
 }
 
-client.on("messageDelete", function(message){
-    console.log(`message is deleted -> ${message}`);
-});
-
 client.login(token);
