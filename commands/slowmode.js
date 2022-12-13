@@ -33,8 +33,7 @@ module.exports = {
 					reason,
 					targetChannel,
 					slowmodeInterval,
-					interaction,
-				})
+				}, interaction.client)
 					.then(string => interaction.reply(string))
 			})
 	},

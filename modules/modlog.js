@@ -5,9 +5,9 @@ const humanizeDuration = require("humanize-duration");
 const appealsURL = process.env.APPEALS_URL;
 
 
-async function create(raw) { //creates a new log
+async function create(raw, client) { //creates a new log
 
-  // if (raw.author.id == raw.interaction.client.user.id) {
+  // if (raw.author.id == client.user.id) {
   //   return;
   // }
 
@@ -17,12 +17,12 @@ async function create(raw) { //creates a new log
   //then
 
   //post log to modlog channel
-  post(raw, raw.interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
+  post(raw, client.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
   //get message object returned from post and save to db
 
   //dm target user if applicable
   if ("targetUser" in raw) {
-    raw.interaction.client.users.send(raw.targetUser, string(raw, true) + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
+    client.users.send(raw.targetUser, string(raw, true) + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
   }
 
   //return string for response

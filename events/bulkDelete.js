@@ -14,7 +14,7 @@ module.exports = {
 			targetChannel: channel,
 
 		}
-		modlog.create();
+		modlog.create(log, client);
 
 	},
 };

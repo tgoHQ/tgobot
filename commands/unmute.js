@@ -30,8 +30,7 @@ module.exports = {
 					author,
 					reason,
 					targetUser,
-					interaction,
-				})
+				}, interaction. client)
 				.then(string => interaction.reply(string))
 		});
 	},

@@ -32,8 +32,7 @@ module.exports = {
 					targetChannel,
 					bulkDeleteNumber,
 					reason,
-					interaction
-				})
+				}, interaction.client)
 					.then(string => interaction.reply(string))
 			});
 	},
