@@ -7,9 +7,9 @@ const appealsURL = process.env.APPEALS_URL;
 
 async function create(raw) { //creates a new log
 
-  if (raw.author.id == raw.interaction.client.user.id) {
-    return;
-  }
+  // if (raw.author.id == raw.interaction.client.user.id) {
+  //   return;
+  // }
 
   //clean up log
 
