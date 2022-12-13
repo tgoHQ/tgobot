@@ -4,7 +4,7 @@ const modlog = require("../modules/modlog");
 
 
 module.exports = {
-	name: Events.MessageDeleteBulk,
+	name: Events.MessageDelete,
 	execute(client, messages, channel) {
 		message.channel.send("saw bulk delete event");
 		message.channel.send(client.user.username);
