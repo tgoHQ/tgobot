@@ -17,7 +17,7 @@ async function create(raw, client) { //creates a new log
   //then
 
   //post log to modlog channel
-  post(raw, client.channels.get(process.env.MODLOG_CHANNEL_ID));
+  post(raw, client.channels.fetch(process.env.MODLOG_CHANNEL_ID));
   //get message object returned from post and save to db
 
   //dm target user if applicable
