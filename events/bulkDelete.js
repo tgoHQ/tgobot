@@ -6,8 +6,7 @@ const modlog = require("../modules/modlog");
 module.exports = {
 	name: Events.MessageDelete,
 	execute(client, messages, channel) {
-		message.channel.send("saw bulk delete event");
-		message.channel.send(client.user.username);
+		client.channels.fetch(process.env.MODLOG_CHANNEL_ID).send("saw bulk delete event");
 
 		//pull together all information from audit log
 
