@@ -1,13 +1,12 @@
 //jshint esversion:8
 const { Events } = require('discord.js');
 const modlog = require("../modules/modlog");
-const client = require("../index.js");
 
 
 module.exports = {
 	name: Events.MessageDelete,
-	execute(message) {
+	execute(client, message) {
 		message.channel.send("saw bulk delete event");
-		console.log(client.user.username);
+		message.channel.send(client.user.username);
 	},
 };
