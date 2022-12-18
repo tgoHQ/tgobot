@@ -4,7 +4,7 @@ const humanizeDuration = require("humanize-duration");
 
 const appealsURL = process.env.APPEALS_URL;
 
-async function post(modLog, modlogChannel) { //posts a log object to the modlog channel, returns the message object
+async function postEmbed(modLog, modlogChannel) { //posts a log object to the modlog channel, returns the message object
 
   const embed = new EmbedBuilder()
     .setColor("137c5a")
@@ -70,7 +70,7 @@ module.exports = class ModLog {
     //then
 
     //post log to modlog channel
-    post(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID));
+    postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID));
 
     //get message object returned from post and save to db
 
