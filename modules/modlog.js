@@ -39,7 +39,7 @@ class ModLog {
       client.users.send(raw.targetUser, string(raw, true) + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
     }
   }
-  get string(includeReason) {
+  get string() {
     let string;
 
     let humanDuration;
@@ -69,7 +69,7 @@ class ModLog {
       string = `<:ban:1049256901562609684> Unbanned ${this.targetUser}`;
     }
 
-    if (includeReason == true) {
+    if (true == true) {
       string += ` with reason ${inlineCode(this.reason)}.`;
     }
     else {
