@@ -36,7 +36,7 @@ module.exports = class ModLog {
 
     //dm target user if applicable
     if ("targetUser" in raw) {
-      client.users.send(raw.targetUser, string(raw, true) + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
+      client.users.send(raw.targetUser, this.string + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
     }
   }
   get string() {
