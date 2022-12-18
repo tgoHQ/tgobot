@@ -25,19 +25,6 @@ module.exports = class ModLog {
     this.slowmodeInterval = raw.slowmodeInterval;
     this.targetChannel = raw.targetChannel;
     this.bulkDeleteNumber = raw.bulkDeleteNumber;
-
-    //save log to db
-    //then
-
-    //post log to modlog channel
-    post(raw, client.channels.fetch(process.env.MODLOG_CHANNEL_ID));
-
-    //get message object returned from post and save to db
-
-    //dm target user if applicable
-    if ("targetUser" in raw) {
-      client.users.send(raw.targetUser, this.string + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
-    }
   }
   get string() {
     let string;
@@ -77,6 +64,20 @@ module.exports = class ModLog {
     }
 
     return "a";
+  }
+  async post() {
+    //save log to db
+    //then
+
+    //post log to modlog channel
+    post(raw, client.channels.fetch(process.env.MODLOG_CHANNEL_ID));
+
+    //get message object returned from post and save to db
+
+    //dm target user if applicable
+    if ("targetUser" in raw) {
+      client.users.send(raw.targetUser, this.string + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
+    }
   }
 };
 
