@@ -70,13 +70,13 @@ module.exports = class ModLog {
     //then
 
     //post log to modlog channel
-    post(raw, client.channels.fetch(process.env.MODLOG_CHANNEL_ID));
+    post(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID));
 
     //get message object returned from post and save to db
 
     //dm target user if applicable
-    if ("targetUser" in raw) {
-      client.users.send(raw.targetUser, this.string + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
+    if ("targetUser" in this) {
+      client.users.send(this.targetUser, this.string + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6");
     }
   }
 };
