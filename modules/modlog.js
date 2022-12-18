@@ -4,12 +4,12 @@ const humanizeDuration = require("humanize-duration");
 
 const appealsURL = process.env.APPEALS_URL;
 
-async function post(log, modlogChannel) { //posts a log object to the modlog channel, returns the message object
+async function post(modLog, modlogChannel) { //posts a log object to the modlog channel, returns the message object
 
   const embed = new EmbedBuilder()
     .setColor("137c5a")
-    .setDescription(string(log, true))
-    .setAuthor({name: log.author.username, iconURL: log.author.displayAvatarURL()});
+    .setDescription(modLog.string)
+    .setAuthor({name: modLog.author.username, iconURL: modLog.author.displayAvatarURL()});
 
   return await modlogChannel.send({ embeds: [embed] });
 
