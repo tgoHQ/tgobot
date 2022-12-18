@@ -15,7 +15,7 @@ async function post(log, modlogChannel) { //posts a log object to the modlog cha
 
 }
 
-class ModLog {
+module.exports = class ModLog {
   constructor(raw, client) {
     this.type = raw.type;
     this.author = raw.author;
@@ -79,10 +79,6 @@ class ModLog {
     return string;
   }
 }
-
-module.exports = {
-  ModLog
-};
 
 // {
 //   type: string,
