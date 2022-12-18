@@ -22,12 +22,12 @@ module.exports = {
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
-		await new ModLog({
+		const modLog = new ModLog({
 			type: "Warn",
 			author,
 			reason,
 			targetUser,
 		}, interaction.client)
-			.then(string => interaction.reply(string))
+		interaction.reply(modLog.string);
 	},
 };
