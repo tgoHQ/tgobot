@@ -76,7 +76,7 @@ module.exports = class ModLog {
       string += '.';
     }
 
-    return string;
+    return "a";
   }
 };
 
