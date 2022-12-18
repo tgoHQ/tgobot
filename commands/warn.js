@@ -1,6 +1,6 @@
 //jshint esversion:8
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
-const modlog = require("../modules/modlog");
+const ModLog = require("../modules/modlog");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -22,7 +22,7 @@ module.exports = {
     const reason = interaction.options.getString('reason');
 		const author = interaction.user;
 
-		await modlog.create({
+		await new ModLog({
 			type: "Warn",
 			author,
 			reason,
