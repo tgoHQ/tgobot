@@ -28,6 +28,6 @@ module.exports = {
 			reason,
 			targetUser,
 		}, interaction.client)
-		await modLog.post().then(function() {interaction.reply(modLog.string);})
+		await modLog.post(interaction.client).then(function() {interaction.reply(modLog.string);})
 	},
 };
