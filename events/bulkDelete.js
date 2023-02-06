@@ -1,7 +1,5 @@
-//jshint esversion:8
-const { Events } = require('discord.js');
+const { Events } = require("discord.js");
 const modlog = require("../modules/modlog");
-
 
 module.exports = {
 	name: Events.MessageDelete,
@@ -12,9 +10,7 @@ module.exports = {
 		const log = {
 			type: "Bulk Delete",
 			targetChannel: channel,
-
-		}
+		};
 		modlog.create(log, client);
-
 	},
 };

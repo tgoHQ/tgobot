@@ -1,10 +1,9 @@
-//jshint esversion:8
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('help')
-		.setDescription('Lists commands you can use'),
+		.setName("help")
+		.setDescription("Lists commands you can use"),
 	async execute(interaction) {
 		await interaction.reply(`
 </help:1048477111612080149>: Shows this message!
