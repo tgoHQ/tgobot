@@ -71,12 +71,13 @@ module.exports = class ModLog {
 		//then
 
 		//post log to modlog channel
-		// postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID)); //TODO fix this
-		console.log(JSON.stringify(interaction.guild.channels));
-		console.log(process.env.MODLOG_CHANNEL_ID);
-		console.log(
-			interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID).id
-		);
+		postEmbed(
+			this,
+			interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID)
+		); //TODO fix this
+		// console.log(
+		// 	interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID).id
+		// );
 
 		//get message object returned from post and save to db
 
