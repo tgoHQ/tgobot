@@ -33,7 +33,7 @@ module.exports = {
 			},
 			interaction.client
 		);
-		await modLog.post(interaction.client).then(function () {
+		modLog.post(interaction.client).then(function () {
 			interaction.reply(modLog.string);
 		});
 	},

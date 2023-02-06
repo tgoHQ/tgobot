@@ -30,15 +30,24 @@ async function postEmbed(modLog, modlogChannel) {
 }
 
 module.exports = class ModLog {
-	constructor(raw) {
-		this.type = raw.type;
-		this.author = raw.author;
-		this.reason = raw.reason;
-		this.targetUser = raw.targetUser;
-		this.duration = raw.duration;
-		this.slowmodeInterval = raw.slowmodeInterval;
-		this.targetChannel = raw.targetChannel;
-		this.bulkDeleteNumber = raw.bulkDeleteNumber;
+	constructor({
+		type,
+		author,
+		reason,
+		targetUser,
+		duration,
+		slowmodeInterval,
+		targetChannel,
+		bulkDeleteNumber,
+	}) {
+		this.type = type;
+		this.author = author;
+		this.reason = reason;
+		this.targetUser = targetUser;
+		this.duration = duration;
+		this.slowmodeInterval = slowmodeInterval;
+		this.targetChannel = targetChannel;
+		this.bulkDeleteNumber = bulkDeleteNumber;
 	}
 	get string() {
 		let string;

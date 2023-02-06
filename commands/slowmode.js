@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const modlog = require("../modules/modlog");
 const parse = require("parse-duration");
+const ModLog = require("../modules/modlog");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -29,21 +30,17 @@ module.exports = {
 		const slowmodeInterval = parse(slowmodeIntervalRaw);
 		const author = interaction.user;
 
-		await targetChannel
-			.setRateLimitPerUser(slowmodeInterval / 1000, reason)
-			.then(function () {
-				modlog
-					.create(
-						{
-							type: "Slowmode",
-							author,
-							reason,
-							targetChannel,
-							slowmodeInterval,
-						},
-						interaction.client
-					)
-					.then((string) => interaction.reply(string));
-			});
+		await targetChannel.setRateLimitPerUser(slowmodeInterval / 1000, reason);
+		const modlog = new ModLog({
+			type: "Slowmode",
+			author,
+			reason,
+			slowmodeInterval,
+			targetChannel,
+		});
+
+		modlog
+			.post(interaction.client)
+			.then(() => interaction.reply(modlog.string));
 	},
 };
