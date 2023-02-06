@@ -11,8 +11,6 @@ const {
 } = require("discord.js");
 const humanizeDuration = require("humanize-duration");
 
-const appealsURL = process.env.APPEALS_URL;
-
 async function postEmbed(modLog, modlogChannel) {
 	//posts a log object to the modlog channel, returns the message object
 
@@ -78,6 +76,7 @@ module.exports = class ModLog {
 
 		//post log to modlog channel
 		console.log(JSON.stringify(client).channels);
+		console.log(client.channels.fetch(process.env.MODLOG_CHANNEL_ID).id);
 		postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID));
 
 		//get message object returned from post and save to db
@@ -86,7 +85,7 @@ module.exports = class ModLog {
 		if ("targetUser" in this) {
 			client.users.send(
 				this.targetUser,
-				this.string + "\nFor appeals: https://forms.gle/4jWKXXXjWPhp9GbW6"
+				this.string + `\nFor appeals: ${process.env.APPEALS_URL}`
 			);
 		}
 	}
