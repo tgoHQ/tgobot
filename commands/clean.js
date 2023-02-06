@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const ModLog = require("../modules/modlog");
 const modlog = require("../modules/modlog");
 
 module.exports = {
@@ -29,18 +30,16 @@ module.exports = {
 
 		await targetChannel.bulkDelete(number).then((messages) => {
 			const bulkDeleteNumber = messages.size; //get the number of messages that were actually deleted
-			modlog
-				.create(
-					{
-						type: "Bulk Delete",
-						author,
-						targetChannel,
-						bulkDeleteNumber,
-						reason,
-					},
-					interaction.client
-				)
-				.then((string) => interaction.reply(string));
+
+			const modlog = new ModLog({
+				type: "Bulk Delete",
+				author,
+				targetChannel,
+				bulkDeleteNumber,
+				reason,
+			});
+			modlog.post(interaction.client);
+			interaction.reply(modlog.string);
 		});
 	},
 };

@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const ModLog = require("../modules/modlog");
 const modlog = require("../modules/modlog");
 
 module.exports = {
@@ -23,18 +24,15 @@ module.exports = {
 
 		await interaction.guild.bans
 			.create(targetUser, { reason: reason })
-			.then(function () {
-				modlog
-					.create(
-						{
-							type: "Ban",
-							author,
-							reason,
-							targetUser,
-						},
-						interaction.client
-					)
-					.then((string) => interaction.reply(string));
+			.then(() => {
+				const modlog = new ModLog({
+					type: "Ban",
+					author,
+					reason,
+					targetUser,
+				});
+				modlog.post(interaction.client);
+				interaction.reply(modlog.string);
 			});
 	},
 };
