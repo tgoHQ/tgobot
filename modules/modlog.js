@@ -65,14 +65,19 @@ module.exports = class ModLog {
 				string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(
 					this.slowmodeInterval
 				)} in ${this.targetChannel}`;
+				break;
 			case "Bulk Delete":
 				string = `<:delete:1049226132622409749> Bulk deleted ${this.bulkDeleteNumber} messages in ${this.targetChannel}`;
+				break;
 			case "Mute":
 				string = `<:timeout:1049257820882747432> Muted ${this.targetUser} for ${humanDuration}`;
+				break;
 			case "Unmute":
 				string = `<:timeout:1049257820882747432> Unmuted ${this.targetUser}`;
+				break;
 			case "Ban":
 				string = `<:ban:1049256901562609684> Banned ${this.targetUser}`;
+				break;
 			case "Unban":
 				string = `<:ban:1049256901562609684> Unbanned ${this.targetUser}`;
 		}
