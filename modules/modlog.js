@@ -91,7 +91,7 @@ module.exports = class ModLog {
 		//then
 
 		//post log to modlog channel
-		// postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID)); //TODO fix this
+		postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID)); //TODO fix this
 
 		//get message object returned from post and save to db
 
