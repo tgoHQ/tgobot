@@ -9,26 +9,6 @@ const {
 } = require("discord.js");
 const humanizeDuration = require("humanize-duration");
 
-/**
- * posts a modlog instance to the mod log channel as an embed
- * @param {ModLog} modLog
- * @param {*} modlogChannel mod log channel object
- * @returns message object
- */
-async function postEmbed(modLog, modlogChannel) {
-	//posts a log object to the modlog channel, returns the message object
-
-	const embed = new EmbedBuilder()
-		.setColor("137c5a")
-		.setDescription(modLog.string)
-		.setAuthor({
-			name: modLog.author.username,
-			iconURL: modLog.author.displayAvatarURL(),
-		});
-
-	return await modlogChannel.send({ embeds: [embed] });
-}
-
 module.exports = class ModLog {
 	constructor({
 		type,
@@ -91,7 +71,8 @@ module.exports = class ModLog {
 		//then
 
 		//post log to modlog channel
-		postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID)); //TODO fix this
+		// postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID)); //TODO fix this
+		console.log(JSON.stringify(client));
 
 		//get message object returned from post and save to db
 
@@ -105,14 +86,22 @@ module.exports = class ModLog {
 	}
 };
 
-// {
-//   type: string,
-//   author: userObj,
-//   reason: string,
-//   targetUser: userObj,
-//   duration: int(ms),
-//   slowmodeInterval: int,
-//   targetChannel: channelObj,
-//   bulkDeleteNumber: int,
-//   interaction: interaction
-// };
+/**
+ * posts a modlog instance to the mod log channel as an embed
+ * @param {ModLog} modLog
+ * @param {*} modlogChannel mod log channel object
+ * @returns message object
+ */
+async function postEmbed(modLog, modlogChannel) {
+	//posts a log object to the modlog channel, returns the message object
+
+	const embed = new EmbedBuilder()
+		.setColor("137c5a")
+		.setDescription(modLog.string)
+		.setAuthor({
+			name: modLog.author.username,
+			iconURL: modLog.author.displayAvatarURL(),
+		});
+
+	return await modlogChannel.send({ embeds: [embed] });
+}
