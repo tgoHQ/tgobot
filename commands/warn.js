@@ -24,16 +24,13 @@ module.exports = {
 		const reason = interaction.options.getString("reason");
 		const author = interaction.user;
 
-		const modLog = new ModLog(
-			{
-				type: "Warn",
-				author,
-				reason,
-				targetUser,
-			},
-			interaction.client
-		);
-		modLog.post(interaction.client);
+		const modLog = new ModLog({
+			type: "Warn",
+			author,
+			reason,
+			targetUser,
+		});
+		modLog.post(interaction);
 		interaction.reply(modLog.string);
 	},
 };

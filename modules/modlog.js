@@ -66,21 +66,23 @@ module.exports = class ModLog {
 
 		return string;
 	}
-	async post(client) {
+	async post(interaction) {
 		//save log to db
 		//then
 
 		//post log to modlog channel
 		// postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID)); //TODO fix this
-		console.log(JSON.stringify(client.channels.client));
+		console.log(JSON.stringify(interaction.guild.channels));
 		console.log(process.env.MODLOG_CHANNEL_ID);
-		console.log(client.channels.fetch(process.env.MODLOG_CHANNEL_ID).id);
+		console.log(
+			interaction.guild.channels.fetch(process.env.MODLOG_CHANNEL_ID).id
+		);
 
 		//get message object returned from post and save to db
 
 		//dm target user if applicable
 		if ("targetUser" in this) {
-			client.users.send(
+			interaction.client.users.send(
 				this.targetUser,
 				this.string + `\nFor appeals: ${process.env.APPEALS_URL}`
 			);
