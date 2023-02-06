@@ -51,6 +51,7 @@ module.exports = class ModLog {
 		switch (this.type) {
 			case "Warn":
 				string = `<:warn:1049224507598061628> Warned ${this.targetUser}`;
+				break;
 			case "Slowmode":
 				string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(
 					this.slowmodeInterval
