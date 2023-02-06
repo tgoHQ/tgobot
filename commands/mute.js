@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
-const modlog = require("../modules/modlog");
+const ModLog = require("../modules/modlog");
 const parse = require("parse-duration");
 
 module.exports = {
@@ -34,19 +34,16 @@ module.exports = {
 		const reason = interaction.options.getString("reason");
 		const author = interaction.user;
 
-		await member.timeout(duration, reason).then(function () {
-			modlog
-				.create(
-					{
-						type: "Mute",
-						author,
-						reason,
-						targetUser,
-						duration,
-					},
-					interaction.client
-				)
-				.then((string) => interaction.reply(string));
+		await member.timeout(duration, reason).then(() => {
+			const modlog = new ModLog({
+				type: "Mute",
+				author,
+				reason,
+				targetUser,
+				duration,
+			});
+			modlog.post(interaction.client);
+			interaction.reply(modlog.string);
 		});
 	},
 };

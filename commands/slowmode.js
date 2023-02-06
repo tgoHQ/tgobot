@@ -30,17 +30,19 @@ module.exports = {
 		const slowmodeInterval = parse(slowmodeIntervalRaw);
 		const author = interaction.user;
 
-		await targetChannel.setRateLimitPerUser(slowmodeInterval / 1000, reason);
-		const modlog = new ModLog({
-			type: "Slowmode",
-			author,
-			reason,
-			slowmodeInterval,
-			targetChannel,
-		});
+		await targetChannel
+			.setRateLimitPerUser(slowmodeInterval / 1000, reason)
+			.then(() => {
+				const modlog = new ModLog({
+					type: "Slowmode",
+					author,
+					reason,
+					slowmodeInterval,
+					targetChannel,
+				});
 
-		modlog
-			.post(interaction.client)
-			.then(() => interaction.reply(modlog.string));
+				modlog.post(interaction.client);
+				interaction.reply(modlog.string);
+			});
 	},
 };

@@ -33,8 +33,7 @@ module.exports = {
 			},
 			interaction.client
 		);
-		modLog.post(interaction.client).then(function () {
-			interaction.reply(modLog.string);
-		});
+		modLog.post(interaction.client);
+		interaction.reply(modLog.string);
 	},
 };
