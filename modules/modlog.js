@@ -1,9 +1,7 @@
 const {
 	Client,
 	Collection,
-	Events,
 	GatewayIntentBits,
-	AuditLogEvent,
 	REST,
 	Routes,
 	inlineCode,
@@ -11,6 +9,12 @@ const {
 } = require("discord.js");
 const humanizeDuration = require("humanize-duration");
 
+/**
+ * posts a modlog instance to the mod log channel as an embed
+ * @param {ModLog} modLog
+ * @param {*} modlogChannel mod log channel object
+ * @returns message object
+ */
 async function postEmbed(modLog, modlogChannel) {
 	//posts a log object to the modlog channel, returns the message object
 
@@ -44,40 +48,35 @@ module.exports = class ModLog {
 			humanDuration = humanizeDuration(this.duration);
 		}
 
-		if (this.type === "Warn") {
-			string = `<:warn:1049224507598061628> Warned ${this.targetUser}`;
-		} else if (log.type === "Slowmode") {
-			string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(
-				this.slowmodeInterval
-			)} in ${this.targetChannel}`;
-		} else if (this.type === "Bulk Delete") {
-			string = `<:delete:1049226132622409749> Bulk deleted ${this.bulkDeleteNumber} messages in ${this.targetChannel}`;
-		} else if (this.type === "Mute") {
-			string = `<:timeout:1049257820882747432> Muted ${this.targetUser} for ${humanDuration}`;
-		} else if (this.type === "Unmute") {
-			string = `<:timeout:1049257820882747432> Unmuted ${this.targetUser}`;
-		} else if (this.type === "Ban") {
-			string = `<:ban:1049256901562609684> Banned ${this.targetUser}`;
-		} else if (this.type === "Unban") {
-			string = `<:ban:1049256901562609684> Unbanned ${this.targetUser}`;
+		switch (this.type) {
+			case "Warn":
+				string = `<:warn:1049224507598061628> Warned ${this.targetUser}`;
+			case "Slowmode":
+				string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(
+					this.slowmodeInterval
+				)} in ${this.targetChannel}`;
+			case "Bulk Delete":
+				string = `<:delete:1049226132622409749> Bulk deleted ${this.bulkDeleteNumber} messages in ${this.targetChannel}`;
+			case "Mute":
+				string = `<:timeout:1049257820882747432> Muted ${this.targetUser} for ${humanDuration}`;
+			case "Unmute":
+				string = `<:timeout:1049257820882747432> Unmuted ${this.targetUser}`;
+			case "Ban":
+				string = `<:ban:1049256901562609684> Banned ${this.targetUser}`;
+			case "Unban":
+				string = `<:ban:1049256901562609684> Unbanned ${this.targetUser}`;
 		}
 
-		if (true == true) {
-			string += ` with reason ${inlineCode(this.reason)}.`;
-		} else {
-			string += ".";
-		}
+		string += ` with reason ${inlineCode(this.reason)}.`;
 
-		return "a";
+		return string;
 	}
 	async post(client) {
 		//save log to db
 		//then
 
 		//post log to modlog channel
-		console.log(JSON.stringify(client).channels);
-		console.log(client.channels.fetch(process.env.MODLOG_CHANNEL_ID).id);
-		postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID));
+		// postEmbed(this, client.channels.fetch(process.env.MODLOG_CHANNEL_ID)); //TODO fix this
 
 		//get message object returned from post and save to db
 
