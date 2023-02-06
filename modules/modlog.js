@@ -75,7 +75,7 @@ module.exports = class ModLog {
 		console.log(JSON.stringify(interaction.guild.channels));
 		console.log(process.env.MODLOG_CHANNEL_ID);
 		console.log(
-			interaction.guild.channels.fetch(process.env.MODLOG_CHANNEL_ID).id
+			interaction.guild.channels.get(process.env.MODLOG_CHANNEL_ID).id
 		);
 
 		//get message object returned from post and save to db
