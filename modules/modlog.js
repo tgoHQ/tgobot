@@ -75,7 +75,7 @@ module.exports = class ModLog {
 		console.log(JSON.stringify(client.channels));
 		console.log(process.env.MODLOG_CHANNEL_ID);
 		console.log(
-			JSON.stringify(client.channels.fetch(process.env.MODLOG_CHANNEL))
+			JSON.stringify(client.channels.fetch(process.env.MODLOG_CHANNEL_ID))
 		);
 
 		//get message object returned from post and save to db
