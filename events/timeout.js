@@ -5,6 +5,10 @@ module.exports = {
 	execute(client, guildMemberUpdate) {
 		console.log("guild member update event");
 
+		if (!guildMemberUpdate.communicationDisabledUntilTimestamp) {
+			return;
+		}
+
 		console.log(
 			"timestamp",
 			guildMemberUpdate.communicationDisabledUntilTimestamp
