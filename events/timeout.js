@@ -17,7 +17,7 @@ module.exports = {
 			targetUser: guildMemberUpdate.user,
 		});
 
-		modlog.post();
+		// modlog.post();
 
 		// console.log(
 		// 	"timestamp",
