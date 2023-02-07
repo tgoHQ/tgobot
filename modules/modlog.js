@@ -79,7 +79,9 @@ module.exports = class ModLog {
 					this.targetUser,
 					this.string + `\nFor appeals: ${process.env.APPEALS_URL}`
 				);
-			} catch (err) {}
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 };
