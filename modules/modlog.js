@@ -74,10 +74,12 @@ module.exports = class ModLog {
 
 		//dm target user if applicable
 		if ("targetUser" in this) {
-			client.users.send(
-				this.targetUser,
-				this.string + `\nFor appeals: ${process.env.APPEALS_URL}`
-			);
+			try {
+				client.users.send(
+					this.targetUser,
+					this.string + `\nFor appeals: ${process.env.APPEALS_URL}`
+				);
+			} catch (err) {}
 		}
 	}
 };
