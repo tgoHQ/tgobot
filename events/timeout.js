@@ -5,12 +5,12 @@ module.exports = {
 	execute(client, guildMemberUpdate) {
 		console.log("guild member update event");
 
-		console.log(JSON.stringify(guildMemberUpdate));
+		// console.log(JSON.stringify(guildMemberUpdate));
 		//if user isn't timed out, return
-		if (!guildMemberUpdate.communication_disabled_until) {
-			return;
-		}
+		// if (!guildMemberUpdate.communication_disabled_until) {
+		// 	return;
+		// }
 
-		console.log("user is timed out");
+		// console.log("user is timed out");
 	},
 };
