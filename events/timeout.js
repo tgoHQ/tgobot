@@ -2,7 +2,14 @@ const { Events } = require("discord.js");
 
 module.exports = {
 	name: Events.GuildMemberUpdate,
-	execute() {
-		console.log("yo");
+	execute(client, guildMemberUpdate) {
+		console.log("guild member update event");
+
+		//if user isn't timed out, return
+		if (!guildMemberUpdate.communication_disabled_until) {
+			return;
+		}
+
+		console.log("user is timed out");
 	},
 };
