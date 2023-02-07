@@ -1,4 +1,5 @@
-const { Events } = require("discord.js");
+const { Events, userMention } = require("discord.js");
+const ModLog = require("../modules/modlog");
 
 module.exports = {
 	name: Events.GuildMemberUpdate,
@@ -9,23 +10,20 @@ module.exports = {
 			return;
 		}
 
-		console.log(
-			"timestamp",
-			guildMemberUpdate.communicationDisabledUntilTimestamp
-		);
-		const timeoutEndDate = new Date(
-			guildMemberUpdate.communicationDisabledUntilTimestamp
-		);
-		console.log("end date", timeoutEndDate);
-		console.log(
-			"difference",
-			guildMemberUpdate.communicationDisabledUntilTimestamp - Date.now()
-		);
-		//if user isn't timed out, return
-		// if (!guildMemberUpdate.communication_disabled_until) {
-		// 	return;
-		// }
+		const modlog = new ModLog({
+			type: "Mute",
+			author: client.user,
+			reason: "",
+			targetUser: guildMemberUpdate.user,
+		});
 
-		// console.log("user is timed out");
+		// console.log(
+		// 	"timestamp",
+		// 	guildMemberUpdate.communicationDisabledUntilTimestamp
+		// );
+		// console.log(
+		// 	"difference",
+		// 	guildMemberUpdate.communicationDisabledUntilTimestamp - Date.now()
+		// );
 	},
 };

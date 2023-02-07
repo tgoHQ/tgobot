@@ -32,11 +32,6 @@ module.exports = class ModLog {
 	get string() {
 		let string;
 
-		let humanDuration;
-		if ("duration" in this) {
-			humanDuration = humanizeDuration(this.duration);
-		}
-
 		switch (this.type) {
 			case "Warn":
 				string = `<:warn:1049224507598061628> Warned ${this.targetUser}`;
@@ -50,7 +45,9 @@ module.exports = class ModLog {
 				string = `<:delete:1049226132622409749> Bulk deleted ${this.bulkDeleteNumber} messages in ${this.targetChannel}`;
 				break;
 			case "Mute":
-				string = `<:timeout:1049257820882747432> Muted ${this.targetUser} for ${humanDuration}`;
+				string = `<:timeout:1049257820882747432> Muted ${this.targetUser}${
+					this.duration ? ` for ${humanizeDuration(this.duration)}` : ""
+				}`;
 				break;
 			case "Unmute":
 				string = `<:timeout:1049257820882747432> Unmuted ${this.targetUser}`;
