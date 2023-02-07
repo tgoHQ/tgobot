@@ -13,7 +13,10 @@ module.exports = {
 			guildMemberUpdate.communicationDisabledUntilTimestamp
 		);
 		console.log("end date", timeoutEndDate);
-		console.log("difference", timeoutEndDate.getTime - new Date().getTime);
+		console.log(
+			"difference",
+			guildMemberUpdate.communicationDisabledUntilTimestamp - Date.now()
+		);
 		//if user isn't timed out, return
 		// if (!guildMemberUpdate.communication_disabled_until) {
 		// 	return;
