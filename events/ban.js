@@ -15,6 +15,9 @@ module.exports = {
 
 		console.log(process.env.GUILD_ID);
 
-		modlog.post({ guild: client.guilds.fetch(process.env.GUILD_ID), client });
+		modlog.post({
+			guild: client.guilds.cache.get(process.env.GUILD_ID),
+			client,
+		});
 	},
 };
