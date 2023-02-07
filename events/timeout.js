@@ -2,7 +2,7 @@ const { Events } = require("discord.js");
 
 module.exports = {
 	name: Events.GuildMemberUpdate,
-	execute(client) {
+	execute(client, guildMemberUpdate) {
 		console.log("guild member update event");
 
 		// console.log(JSON.stringify(guildMemberUpdate));
