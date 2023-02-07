@@ -6,9 +6,9 @@ module.exports = {
 	execute(client, guildMemberUpdate) {
 		console.log("guild member update event");
 
-		// if (!guildMemberUpdate.communicationDisabledUntilTimestamp) {
-		// 	return;
-		// }
+		if (!guildMemberUpdate.communicationDisabledUntilTimestamp) {
+			return;
+		}
 
 		const modlog = new ModLog({
 			type: "Mute",
@@ -16,6 +16,8 @@ module.exports = {
 			reason: "",
 			targetUser: guildMemberUpdate.user,
 		});
+
+		modlog.post();
 
 		// console.log(
 		// 	"timestamp",
