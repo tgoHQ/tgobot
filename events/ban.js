@@ -12,5 +12,7 @@ module.exports = {
 			reason: "",
 			targetUser: user,
 		});
+
+		modlog.post({ guild: client.guilds.fetch(process.env.GUILD_ID), client });
 	},
 };

@@ -63,21 +63,18 @@ module.exports = class ModLog {
 
 		return string;
 	}
-	async post(interaction) {
+	async post({ guild, client }) {
 		//save log to db
 		//then
 
 		//post log to modlog channel
-		postEmbed(
-			this,
-			interaction.guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID)
-		);
+		postEmbed(this, guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
 
 		//get message object returned from post and save to db
 
 		//dm target user if applicable
 		if ("targetUser" in this) {
-			interaction.client.users.send(
+			client.users.send(
 				this.targetUser,
 				this.string + `\nFor appeals: ${process.env.APPEALS_URL}`
 			);
