@@ -73,16 +73,16 @@ module.exports = class ModLog {
 		//get message object returned from post and save to db
 
 		//dm target user if applicable
-		if ("targetUser" in this) {
-			try {
-				client.users.send(
-					this.targetUser,
-					this.string + `\nFor appeals: ${process.env.APPEALS_URL}`
-				);
-			} catch (err) {
-				console.log(err);
-			}
-		}
+		// if ("targetUser" in this) {
+		// 	try {
+		// 		client.users.send(
+		// 			this.targetUser,
+		// 			this.string + `\nFor appeals: ${process.env.APPEALS_URL}`
+		// 		);
+		// 	} catch (err) {
+		// 		console.log(err);
+		// 	}
+		// }
 	}
 };
 
