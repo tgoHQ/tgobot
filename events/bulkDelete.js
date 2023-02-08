@@ -4,6 +4,7 @@ const ModLog = require("../modules/modlog");
 module.exports = {
 	name: Events.MessageBulkDelete,
 	async execute(client, bulkDelete) {
+		console.log(JSON.stringify(bulkDelete));
 		const fetchedLogs = await bulkDelete.guild.fetchAuditLogs({
 			limit: 1,
 			type: AuditLogEvent.MessageBulkDelete,
