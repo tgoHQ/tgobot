@@ -4,8 +4,11 @@ const ModLog = require("../modules/modlog");
 module.exports = {
 	name: Events.MessageBulkDelete,
 	async execute(client, bulkDelete) {
+		const bulkDeleteNumber = bulkDelete.messages.length;
+
 		console.log(JSON.stringify(bulkDelete));
-		const fetchedLogs = await bulkDelete.guild.fetchAuditLogs({
+
+		const fetchedLogs = await bulkDelete.channel.guild.fetchAuditLogs({
 			limit: 1,
 			type: AuditLogEvent.MessageBulkDelete,
 		});
@@ -16,13 +19,12 @@ module.exports = {
 		// Perform a coherence check to make sure that there's *something*
 		if (!bulkDeleteLog) {
 			return console.log(
-				`${bulkDelete.user.tag} was banned from ${bulkDelete.guild.name} but no audit log could be found.`
+				`Someone bulk deleted ${bulkDeleteNumber} messages in ${bulkDelete.channel.name} but no audit log could be found.`
 			);
 		}
 
 		// Now grab the user object of the person who did the deletion
 		const { executor } = bulkDeleteLog;
-		const bulkDeleteNumber = bulkDeleteLog.messages.length;
 
 		if (executor.id === client.user.id) {
 			console.log("saw bulkDelete executed by bot");
