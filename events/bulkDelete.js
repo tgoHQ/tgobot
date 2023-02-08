@@ -3,13 +3,10 @@ const ModLog = require("../modules/modlog");
 
 module.exports = {
 	name: Events.MessageBulkDelete,
-	async execute(client, bulkDelete) {
-		// const bulkDeleteNumber = bulkDelete.messages.size;
+	async execute(client, messages, channel) {
+		const bulkDeleteNumber = messages.size;
 
-		console.log(JSON.stringify(bulkDelete));
-		console.log(JSON.stringify(bulkDelete.messages));
-
-		const fetchedLogs = await bulkDelete.channel.guild.fetchAuditLogs({
+		const fetchedLogs = await channel.guild.fetchAuditLogs({
 			limit: 1,
 			type: AuditLogEvent.MessageBulkDelete,
 		});
@@ -20,7 +17,7 @@ module.exports = {
 		// Perform a coherence check to make sure that there's *something*
 		if (!bulkDeleteLog) {
 			return console.log(
-				`Someone bulk deleted ${bulkDeleteNumber} messages in ${bulkDelete.channel.name} but no audit log could be found.`
+				`Someone bulk deleted ${bulkDeleteNumber} messages in ${channel.name} but no audit log could be found.`
 			);
 		}
 
