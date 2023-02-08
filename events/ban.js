@@ -1,4 +1,4 @@
-const { Events } = require("discord.js");
+const { Events, AuditLogEvent } = require("discord.js");
 const ModLog = require("../modules/modlog");
 
 module.exports = {
