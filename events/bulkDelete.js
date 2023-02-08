@@ -4,9 +4,10 @@ const ModLog = require("../modules/modlog");
 module.exports = {
 	name: Events.MessageBulkDelete,
 	async execute(client, bulkDelete) {
-		const bulkDeleteNumber = bulkDelete.messages.size;
+		// const bulkDeleteNumber = bulkDelete.messages.size;
 
 		console.log(JSON.stringify(bulkDelete));
+		console.log(JSON.stringify(bulkDelete.messages));
 
 		const fetchedLogs = await bulkDelete.channel.guild.fetchAuditLogs({
 			limit: 1,
