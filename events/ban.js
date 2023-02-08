@@ -38,7 +38,7 @@ module.exports = {
 			type: "Ban",
 			author: executor,
 			reason: "",
-			targetUser: user,
+			targetUser: ban.user,
 		});
 
 		console.log(process.env.GUILD_ID);
