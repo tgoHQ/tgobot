@@ -32,6 +32,7 @@ module.exports = {
 		const modlog = new ModLog({
 			type: "Bulk Delete",
 			author: executor,
+			targetChannel: channel,
 			reason: bulkDeleteLog.reason,
 			bulkDeleteNumber,
 		});
