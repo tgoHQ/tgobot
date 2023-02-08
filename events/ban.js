@@ -4,6 +4,7 @@ const ModLog = require("../modules/modlog");
 module.exports = {
 	name: Events.GuildBanAdd,
 	async execute(client, ban) {
+		console.log(JSON.stringify(ban));
 		const fetchedLogs = await ban.guild.fetchAuditLogs({
 			limit: 1,
 			type: AuditLogEvent.MemberBanAdd,
@@ -30,18 +31,12 @@ module.exports = {
 			return;
 		}
 
-		console.log(
-			`${ban.user.tag} got hit with the swift hammer of justice in the guild ${ban.guild.name}, wielded by the mighty ${executor.tag}`
-		);
-
 		const modlog = new ModLog({
 			type: "Ban",
 			author: executor,
-			reason: "",
+			reason: "null",
 			targetUser: ban.user,
 		});
-
-		console.log(process.env.GUILD_ID);
 
 		modlog.post({
 			guild: client.guilds.cache.get(process.env.GUILD_ID),

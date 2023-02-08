@@ -7,7 +7,7 @@ module.exports = {
 		const modlog = new ModLog({
 			type: "Unban",
 			author: client.user,
-			reason: "",
+			reason: "null",
 			targetUser: user,
 		});
 
