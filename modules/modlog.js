@@ -42,7 +42,11 @@ module.exports = class ModLog {
 				)} in ${this.targetChannel}`;
 				break;
 			case "Bulk Delete":
-				string = `<:delete:1049226132622409749> Bulk deleted ${this.bulkDeleteNumber} messages in ${this.targetChannel}`;
+				string = `<:delete:1049226132622409749> Bulk deleted ${
+					this.bulkDeleteNumber === 1
+						? this.bulkDeleteNumber + " message"
+						: this.bulkDeleteNumber + " messages"
+				} in ${this.targetChannel}`;
 				break;
 			case "Mute":
 				string = `<:timeout:1049257820882747432> Muted ${this.targetUser}${
