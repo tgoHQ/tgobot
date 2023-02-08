@@ -4,7 +4,6 @@ const ModLog = require("../modules/modlog");
 module.exports = {
 	name: Events.GuildBanAdd,
 	async execute(client, ban) {
-		console.log(JSON.stringify(ban));
 		const fetchedLogs = await ban.guild.fetchAuditLogs({
 			limit: 1,
 			type: AuditLogEvent.MemberBanAdd,
@@ -34,7 +33,7 @@ module.exports = {
 		const modlog = new ModLog({
 			type: "Ban",
 			author: executor,
-			reason: "null",
+			reason: banLog.reason,
 			targetUser: ban.user,
 		});
 
