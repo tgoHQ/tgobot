@@ -4,8 +4,6 @@ const ModLog = require("../modules/modlog");
 module.exports = {
 	name: Events.GuildBanRemove,
 	execute(client, { user }) {
-		console.log(user);
-
 		const modlog = new ModLog({
 			type: "Unban",
 			author: client.user,
