@@ -4,7 +4,7 @@ const ModLog = require("../modules/modlog");
 module.exports = {
 	name: Events.MessageBulkDelete,
 	async execute(client, bulkDelete) {
-		const bulkDeleteNumber = bulkDelete.messages.length;
+		const bulkDeleteNumber = bulkDelete.messages.size;
 
 		console.log(JSON.stringify(bulkDelete));
 
