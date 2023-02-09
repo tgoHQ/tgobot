@@ -19,7 +19,6 @@ module.exports = {
 		console.log(
 			humanizeDuration(new Date() - member.user.createdAt, {
 				largest: 2,
-				round: true,
 				units: ["y", "mo", "d", "h", "m", "s"],
 			})
 		);
