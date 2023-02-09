@@ -53,6 +53,7 @@ module.exports = class ModLog {
 				break;
 			case "Unban":
 				string = `<:ban:1049256901562609684> Unbanned ${this.targetUser}`;
+				break;
 			case "Kick":
 				string = `<:kick:1073030912230572143> Kicked ${this.targetUser}`;
 		}
