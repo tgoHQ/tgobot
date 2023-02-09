@@ -14,7 +14,7 @@ module.exports = {
 		const embed = new EmbedBuilder()
 			.setColor("137c5a")
 			.setTitle("User Joined")
-			.setImage(member.user.displayAvatarURL)
+			// .setImage(member.user.displayAvatarURL)
 			.setDescription(member.user.toString())
 			.addFields({ name: "Username", value: member.user.tag });
 
