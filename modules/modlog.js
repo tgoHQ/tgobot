@@ -58,7 +58,7 @@ module.exports = class ModLog {
 	}
 	get string() {
 		console.log(this.type);
-		({ emoji, verb } = this.type);
+		const { emoji, verb } = this.type;
 
 		let beginning = emoji + " " + verb + " ";
 		let middle;
