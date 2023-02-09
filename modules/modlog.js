@@ -12,7 +12,7 @@ module.exports = class ModLog {
 		targetChannel,
 		bulkDeleteNumber,
 	}) {
-		this.type = modLog.types[type];
+		this.type = ModLog.types[type];
 		this.author = author;
 		this.reason = reason;
 		this.targetUser = targetUser;
