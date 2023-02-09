@@ -42,7 +42,7 @@ module.exports = {
 				targetUser,
 				duration,
 			});
-			modlog.post(client);
+			modlog.post(interaction.client);
 			interaction.reply(modlog.string);
 		});
 	},

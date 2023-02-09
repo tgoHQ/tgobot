@@ -33,7 +33,7 @@ module.exports = {
 				reason,
 				targetUser,
 			});
-			modlog.post(client);
+			modlog.post(interaction.client);
 			interaction.reply(modlog.string);
 		});
 	},
