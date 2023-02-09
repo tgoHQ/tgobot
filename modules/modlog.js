@@ -1,12 +1,4 @@
-const {
-	Client,
-	Collection,
-	GatewayIntentBits,
-	REST,
-	Routes,
-	inlineCode,
-	EmbedBuilder,
-} = require("discord.js");
+const { inlineCode, EmbedBuilder } = require("discord.js");
 const humanizeDuration = require("humanize-duration");
 
 module.exports = class ModLog {

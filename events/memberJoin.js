@@ -1,4 +1,8 @@
-const { Events } = require("discord.js");
+const {
+	Events,
+	EmbedBuilder,
+	TeamMemberMembershipState,
+} = require("discord.js");
 
 module.exports = {
 	name: Events.GuildMemberAdd,
@@ -7,6 +11,13 @@ module.exports = {
 			process.env.PERMANENT_LOG_CHANNEL_ID
 		);
 
-		console.log(permanentLogChannel.name);
+		const embed = new EmbedBuilder()
+			.setColor("137c5a")
+			.setTitle("User Joined")
+			.setImage(member.user.displayAvatarURL)
+			.setDescription(member.user.toString())
+			.addFields({ name: "Username", value: member.user.tag });
+
+		permanentLogChannel.send({ embeds: [embed] });
 	},
 };
