@@ -13,15 +13,18 @@ module.exports = {
 			.setTitle("User Joined")
 			.setThumbnail(member.user.displayAvatarURL())
 			.setDescription(member.user.toString())
-			.addFields({ name: "Username", value: member.user.tag });
+			.addFields(
+				{ name: "Username", value: member.user.tag },
+				{
+					name: "Account Age",
+					value: humanizeDuration(new Date() - member.user.createdAt, {
+						largest: 2,
+						units: ["y", "mo", "d", "h", "m", "s"],
+					}),
+				}
+			);
 
 		permanentLogChannel.send({ embeds: [embed] });
-		console.log(
-			humanizeDuration(new Date() - member.user.createdAt, {
-				largest: 2,
-				units: ["y", "mo", "d", "h", "m", "s"],
-			})
-		);
 	},
 };
 
