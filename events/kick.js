@@ -33,6 +33,8 @@ module.exports = {
 			return;
 		}
 
+		//TODO check the time between now and the audit log to avoid saying a previously kicked user was kicked again, when this time it was a leave
+
 		if (executor.id === client.user.id) {
 			console.log("saw ban executed by bot");
 			return;
