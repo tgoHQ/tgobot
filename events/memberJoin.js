@@ -16,11 +16,13 @@ module.exports = {
 			.addFields({ name: "Username", value: member.user.tag });
 
 		permanentLogChannel.send({ embeds: [embed] });
-		console.log(humanizeDuration(new Date() - member.user.createdAt), {
-			largest: 2,
-			round: true,
-			units: ["y", "mo", "d", "h", "m", "s"],
-		});
+		console.log(
+			humanizeDuration(new Date() - member.user.createdAt, {
+				largest: 2,
+				round: true,
+				units: ["y", "mo", "d", "h", "m", "s"],
+			})
+		);
 	},
 };
 
