@@ -1,4 +1,4 @@
-const { inlineCode, EmbedBuilder } = require("discord.js");
+const { inlineCode, EmbedBuilder, Message } = require("discord.js");
 const humanizeDuration = require("humanize-duration");
 
 module.exports = class ModLog {
@@ -101,5 +101,7 @@ async function postEmbed(modLog, modlogChannel) {
 			iconURL: modLog.author.displayAvatarURL(),
 		});
 
-	return await modlogChannel.send({ embeds: [embed] });
+	const message = await modlogChannel.send({ embeds: [embed] });
+	message.crosspost();
+	return message;
 }
