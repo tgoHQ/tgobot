@@ -110,6 +110,7 @@ module.exports = class ModLog {
 		//then
 
 		//post log to modlog channel
+		console.log(client.guilds.cache.get(process.env.GUILD_ID).name);
 		postEmbed(this, client.guilds.cache.get(process.env.GUILD_ID));
 
 		//get message object returned from post and save to db
