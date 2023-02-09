@@ -57,6 +57,7 @@ module.exports = class ModLog {
 		this.bulkDeleteNumber = bulkDeleteNumber;
 	}
 	get string() {
+		console.log(this.type);
 		({ emoji, verb } = this.type);
 
 		let beginning = emoji + " " + verb + " ";
