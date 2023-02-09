@@ -1,15 +1,16 @@
-//jshint esversion:8
-const { Events } = require('discord.js');
+const { Events } = require("discord.js");
 
 module.exports = {
 	name: Events.InteractionCreate,
-	async execute(interaction) {
+	async execute(client, interaction) {
 		if (!interaction.isChatInputCommand()) return;
 
 		const command = interaction.client.commands.get(interaction.commandName);
 
 		if (!command) {
-			console.error(`No command matching ${interaction.commandName} was found.`);
+			console.error(
+				`No command matching ${interaction.commandName} was found.`
+			);
 			return;
 		}
 
@@ -18,7 +19,11 @@ module.exports = {
 		} catch (error) {
 			console.error(`Error executing ${interaction.commandName}`);
 			console.error(error);
-      await interaction.reply({ content: '<:error:1049228381486583819> There was an error while executing this command!', ephemeral: true });
+			await interaction.reply({
+				content:
+					"<:error:1049228381486583819> There was an error while executing this command!",
+				ephemeral: true,
+			});
 		}
 	},
 };
