@@ -105,7 +105,7 @@ module.exports = class ModLog {
 
 		return beginning + middle + end;
 	}
-	async post({ client }) {
+	async post(client) {
 		//save log to db
 		//then
 
