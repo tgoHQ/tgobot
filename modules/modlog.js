@@ -12,7 +12,7 @@ module.exports = class ModLog {
 		targetChannel,
 		bulkDeleteNumber,
 	}) {
-		this.type = type;
+		this.type = modLog.types[type];
 		this.author = author;
 		this.reason = reason;
 		this.targetUser = targetUser;
@@ -22,52 +22,59 @@ module.exports = class ModLog {
 		this.bulkDeleteNumber = bulkDeleteNumber;
 	}
 	get string() {
-		let string;
+		({ emoji, verb } = this.type);
+
+		let beginning = emoji + " " + verb + " ";
+		let middle;
 
 		switch (this.type) {
 			case "Warn":
-				string = `<:warn:1049224507598061628> Warned ${this.targetUser}`;
+				middle = this.targetUser;
 				break;
+
 			case "Slowmode":
-				string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(
-					this.slowmodeInterval
-				)} in ${this.targetChannel}`;
-				break;
-			case "Bulk Delete":
-				string = `<:delete:1049226132622409749> Bulk deleted ${
-					this.bulkDeleteNumber === 1
-						? this.bulkDeleteNumber + " message"
-						: this.bulkDeleteNumber + " messages"
-				} in ${this.targetChannel}`;
-				break;
-			case "Mute":
-				string = `<:timeout:1049257820882747432> Muted ${this.targetUser}${
-					this.duration ? ` for ${humanizeDuration(this.duration)}` : ""
+				middle = `to ${humanizeDuration(this.slowmodeInterval)} in ${
+					this.targetChannel
 				}`;
 				break;
+
+			case "Bulk Delete":
+				middle = `${this.bulkDeleteNumber} message
+					${this.bulkDeleteNumber === 1 ? "" : "s"} in ${this.targetChannel}`;
+				break;
+
+			case "Mute":
+				middle = `${this.targetUser} ${
+					this.duration ? `for ${humanizeDuration(this.duration)}` : ""
+				}`;
+				break;
+
 			case "Unmute":
-				string = `<:timeout:1049257820882747432> Unmuted ${this.targetUser}`;
+				middle = this.targetUser;
 				break;
+
 			case "Ban":
-				string = `<:ban:1049256901562609684> Banned ${this.targetUser}`;
+				middle = this.targetUser;
 				break;
+
 			case "Unban":
-				string = `<:ban:1049256901562609684> Unbanned ${this.targetUser}`;
+				middle = this.targetUser;
 				break;
+
 			case "Kick":
-				string = `<:kick:1073030912230572143> Kicked ${this.targetUser}`;
+				middle = this.targetUser;
 		}
 
-		string += ` with reason ${inlineCode(this.reason)}.`;
+		const end = this.reason ? ` with reason ${inlineCode(this.reason)}.` : ".";
 
-		return string;
+		return beginning + middle + end;
 	}
-	async post({ guild, client }) {
+	async post({ client }) {
 		//save log to db
 		//then
 
 		//post log to modlog channel
-		postEmbed(this, guild.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
+		postEmbed(this, client.guilds.cache.get(process.env.GUILD_ID));
 
 		//get message object returned from post and save to db
 
@@ -83,16 +90,51 @@ module.exports = class ModLog {
 		// 	}
 		// }
 	}
+
+	types = {
+		Warn: {
+			emoji: "<:warn:1049224507598061628>",
+			verb: "Warned",
+		},
+		Slowmode: {
+			emoji: "<:slowmode:1049227157156671508>",
+			verb: "Set slowmode",
+		},
+		"Bulk Delete": {
+			emoji: "<:delete:1049226132622409749>",
+			verb: "Bulk deleted",
+		},
+		Mute: {
+			emoji: "<:timeout:1049257820882747432>",
+			verb: "Muted",
+		},
+		Unmute: {
+			emoji: "<:timeout:1049257820882747432>",
+			verb: "Unmuted",
+		},
+		Ban: {
+			emoji: "<:ban:1049256901562609684>",
+			verb: "Banned",
+		},
+		Unban: {
+			emoji: "<:ban:1049256901562609684>",
+			verb: "Unbanned",
+		},
+		Kick: {
+			emoji: "<:kick:1073030912230572143>",
+			verb: "Kicked",
+		},
+	};
 };
 
 /**
  * posts a modlog instance to the mod log channel as an embed
  * @param {ModLog} modLog
- * @param {*} modlogChannel mod log channel object
- * @returns message object
+ * @param {*} modlogChannel channel
+ * @returns message
  */
-async function postEmbed(modLog, modlogChannel) {
-	//posts a log object to the modlog channel, returns the message object
+async function postEmbed(modLog, channel) {
+	//posts a log object to a channel, returns the message
 
 	const embed = new EmbedBuilder()
 		.setColor("137c5a")
@@ -102,7 +144,7 @@ async function postEmbed(modLog, modlogChannel) {
 			iconURL: modLog.author.displayAvatarURL(),
 		});
 
-	const message = await modlogChannel.send({ embeds: [embed] });
+	const message = await channel.send({ embeds: [embed] });
 	message.crosspost();
 	return message;
 }
