@@ -41,7 +41,7 @@ module.exports = {
 					targetChannel,
 				});
 
-				modlog.post(interaction);
+				modlog.post(client);
 				interaction.reply(modlog.string);
 			});
 	},
