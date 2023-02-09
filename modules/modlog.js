@@ -53,6 +53,7 @@ module.exports = class ModLog {
 				break;
 			case "Unban":
 				string = `<:ban:1049256901562609684> Unbanned ${this.targetUser}`;
+				break;
 			case "Kick":
 				string = `<:kick:1073030912230572143> Kicked ${this.targetUser}`;
 		}
@@ -101,5 +102,7 @@ async function postEmbed(modLog, modlogChannel) {
 			iconURL: modLog.author.displayAvatarURL(),
 		});
 
-	return await modlogChannel.send({ embeds: [embed] });
+	const message = await modlogChannel.send({ embeds: [embed] });
+	message.crosspost();
+	return message;
 }
