@@ -1,6 +1,41 @@
 const { inlineCode, EmbedBuilder } = require("discord.js");
 const humanizeDuration = require("humanize-duration");
 
+const types = {
+	Warn: {
+		emoji: "<:warn:1049224507598061628>",
+		verb: "Warned",
+	},
+	Slowmode: {
+		emoji: "<:slowmode:1049227157156671508>",
+		verb: "Set slowmode",
+	},
+	"Bulk Delete": {
+		emoji: "<:delete:1049226132622409749>",
+		verb: "Bulk deleted",
+	},
+	Mute: {
+		emoji: "<:timeout:1049257820882747432>",
+		verb: "Muted",
+	},
+	Unmute: {
+		emoji: "<:timeout:1049257820882747432>",
+		verb: "Unmuted",
+	},
+	Ban: {
+		emoji: "<:ban:1049256901562609684>",
+		verb: "Banned",
+	},
+	Unban: {
+		emoji: "<:ban:1049256901562609684>",
+		verb: "Unbanned",
+	},
+	Kick: {
+		emoji: "<:kick:1073030912230572143>",
+		verb: "Kicked",
+	},
+};
+
 module.exports = class ModLog {
 	constructor({
 		type,
@@ -12,7 +47,7 @@ module.exports = class ModLog {
 		targetChannel,
 		bulkDeleteNumber,
 	}) {
-		this.type = ModLog.types[type];
+		this.type = types[type];
 		this.author = author;
 		this.reason = reason;
 		this.targetUser = targetUser;
@@ -90,41 +125,6 @@ module.exports = class ModLog {
 		// 	}
 		// }
 	}
-
-	types = {
-		Warn: {
-			emoji: "<:warn:1049224507598061628>",
-			verb: "Warned",
-		},
-		Slowmode: {
-			emoji: "<:slowmode:1049227157156671508>",
-			verb: "Set slowmode",
-		},
-		"Bulk Delete": {
-			emoji: "<:delete:1049226132622409749>",
-			verb: "Bulk deleted",
-		},
-		Mute: {
-			emoji: "<:timeout:1049257820882747432>",
-			verb: "Muted",
-		},
-		Unmute: {
-			emoji: "<:timeout:1049257820882747432>",
-			verb: "Unmuted",
-		},
-		Ban: {
-			emoji: "<:ban:1049256901562609684>",
-			verb: "Banned",
-		},
-		Unban: {
-			emoji: "<:ban:1049256901562609684>",
-			verb: "Unbanned",
-		},
-		Kick: {
-			emoji: "<:kick:1073030912230572143>",
-			verb: "Kicked",
-		},
-	};
 };
 
 /**
