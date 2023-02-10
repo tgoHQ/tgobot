@@ -22,6 +22,7 @@ const client = new Client({
 		GatewayIntentBits.GuildBans,
 		GatewayIntentBits.GuildMembers,
 		GatewayIntentBits.GuildVoiceStates,
+		GatewayIntentBits.MessageContent,
 	],
 	presence: {
 		activities: [
