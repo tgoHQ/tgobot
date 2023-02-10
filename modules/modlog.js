@@ -56,6 +56,7 @@ module.exports = class ModLog {
 		this.targetChannel = targetChannel;
 		this.bulkDeleteNumber = bulkDeleteNumber;
 	}
+
 	get string() {
 		console.log(this.type);
 		const { emoji, verb } = this.type;
@@ -105,6 +106,7 @@ module.exports = class ModLog {
 
 		return beginning + middle + end;
 	}
+
 	async post(client) {
 		//save log to db
 		//then
@@ -129,7 +131,7 @@ module.exports = class ModLog {
 };
 
 /**
- * posts a modlog instance to the mod log channel as an embed
+ * posts a modlog to the mod log channel as an embed
  * @param {ModLog} modLog
  * @param {*} modlogChannel channel
  * @returns message
