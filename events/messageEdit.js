@@ -7,12 +7,12 @@ module.exports = {
 	execute(client, oldMessage, newMessage) {
 		console.log("message update event");
 
-		if (message.guild?.id != process.env.GUILD_ID) {
+		if (newMessage.guild?.id != process.env.GUILD_ID) {
 			console.log("message updated from outside main guild");
 			return;
 		}
 
-		const temporaryLogChannel = message.guild.channels.cache.get(
+		const temporaryLogChannel = newMessage.guild.channels.cache.get(
 			process.env.TEMPORARY_LOG_CHANNEL_ID
 		);
 
