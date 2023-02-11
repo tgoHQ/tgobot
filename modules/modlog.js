@@ -58,7 +58,6 @@ module.exports = class ModLog {
 	}
 
 	get string() {
-		console.log(this.type);
 		const { emoji, verb } = this.type;
 
 		let beginning = emoji + " " + verb + " ";
@@ -67,6 +66,7 @@ module.exports = class ModLog {
 		switch (this.type) {
 			case "Warn":
 				middle = this.targetUser;
+				console.log(middle);
 				break;
 
 			case "Slowmode":
