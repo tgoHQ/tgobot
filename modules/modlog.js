@@ -47,7 +47,8 @@ module.exports = class ModLog {
 		targetChannel,
 		bulkDeleteNumber,
 	}) {
-		this.type = types[type];
+		this.type = type;
+		this.typeData = types[type];
 		this.author = author;
 		this.reason = reason;
 		this.targetUser = targetUser;
@@ -58,7 +59,7 @@ module.exports = class ModLog {
 	}
 
 	get string() {
-		const { emoji, verb } = this.type;
+		const { emoji, verb } = this.typeData;
 
 		let beginning = emoji + " " + verb + " ";
 		let middle;
