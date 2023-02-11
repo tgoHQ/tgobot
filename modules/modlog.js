@@ -67,8 +67,6 @@ module.exports = class ModLog {
 		switch (this.type) {
 			case "Warn":
 				middle = this.targetUser;
-				console.log(a + this.targetUser.toString());
-				console.log(middle);
 				break;
 
 			case "Slowmode":
