@@ -1,3 +1,5 @@
+//TODO make this work on older messages
+
 const { Events, EmbedBuilder } = require("discord.js");
 
 module.exports = {
@@ -14,7 +16,6 @@ module.exports = {
 			process.env.TEMPORARY_LOG_CHANNEL_ID
 		);
 
-		console.log(message.content);
 		const embed = new EmbedBuilder()
 			.setColor("ff3131")
 			.setTitle("Message Deleted")
