@@ -76,8 +76,9 @@ module.exports = class ModLog {
 				break;
 
 			case "Bulk Delete":
-				middle = `${this.bulkDeleteNumber} message
-					${this.bulkDeleteNumber === 1 ? "" : "s"} in ${this.targetChannel}`;
+				middle = `${this.bulkDeleteNumber} message${
+					this.bulkDeleteNumber === 1 ? "" : "s"
+				} in ${this.targetChannel}`;
 				break;
 
 			case "Mute":
