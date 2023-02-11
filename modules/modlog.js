@@ -104,7 +104,7 @@ module.exports = class ModLog {
 
 		const end = this.reason ? ` with reason ${inlineCode(this.reason)}.` : ".";
 
-		return beginning + middle + end;
+		return beginning + middle.toString() + end;
 	}
 
 	async post(client) {
