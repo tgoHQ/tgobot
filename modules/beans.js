@@ -1,12 +1,14 @@
 async function callDB(url, method, body) {
 	try {
-		const response = await fetch(`${process.env.NOCODB_URL}${url}`, {
+		const opts = {
 			headers: {
 				"xc-token": process.env.NOCODB_TOKEN,
 			},
 			method: method,
-			body: body,
-		});
+		};
+		if (body) opts.body = body;
+
+		const response = await fetch(`${process.env.NOCODB_URL}${url}`, opts);
 
 		if (!response.ok) {
 			console.error("db call returned bad status code");
