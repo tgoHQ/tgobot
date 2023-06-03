@@ -25,7 +25,7 @@ async function callDB(url, method, body) {
 
 module.exports = {
 	topBeans: async function topBeans() {
-		const data = await callDB("/beans?sort=-quantity", "GET", {});
+		const data = await callDB("/beans?sort=-quantity", "GET");
 		console.log(data);
 	},
 };
