@@ -1,7 +1,7 @@
 module.exports = {
 	callDB: async function callDB(url, method, body) {
 		try {
-			const response = await fetch(process.env.NOCODB_URL + url, {
+			const response = await fetch(`${process.env.NOCODB_URL}${url}`, {
 				headers: {
 					"xc-token": process.env.NOCODB_TOKEN,
 				},
