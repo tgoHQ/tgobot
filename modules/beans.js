@@ -11,7 +11,7 @@ module.exports = {
 
 			if (!response.ok) {
 				console.error("db call returned bad status code");
-				return {};
+				console.log(await response.json());
 			}
 
 			return await response.json();
