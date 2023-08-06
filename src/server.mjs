@@ -43,7 +43,7 @@ const commandFiles = fs
 const commands = [];
 // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 for (const file of commandFiles) {
-	const command = import(`./commands/${file}`);
+	const command = import(`commands/${file}`);
 	commands.push(command.data.toJSON());
 }
 // Construct and prepare an instance of the REST module
