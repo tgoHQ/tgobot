@@ -11,7 +11,6 @@ import {
 	Intents,
 } from "discord.js";
 
-// const { token } = require('./config.json');
 const token = process.env.TOKEN;
 const clientId = process.env.CLIENT_ID;
 
@@ -45,7 +44,7 @@ const commandFiles = fs
 const commands = [];
 // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
+	const command = import(`./commands/${file}`);
 	commands.push(command.data.toJSON());
 }
 // Construct and prepare an instance of the REST module
@@ -74,7 +73,7 @@ client.commands = new Collection();
 const commandsPath = path.join(__dirname, "commands");
 for (const file of commandFiles) {
 	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
+	const command = import(filePath);
 	client.commands.set(command.data.name, command);
 }
 
@@ -85,7 +84,7 @@ const eventFiles = fs
 	.filter((file) => file.endsWith(".js"));
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
-	const event = require(filePath);
+	const event = import(filePath);
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(client, ...args));
 	} else {

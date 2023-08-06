@@ -1,6 +1,6 @@
-const { SlashCommandBuilder, ChannelType } = require("discord.js");
+import { SlashCommandBuilder, ChannelType } from "discord.js";
 
-module.exports = {
+export default {
 	data: new SlashCommandBuilder()
 		.setName("vcping")
 		.setDescription("Notifies people that a vc is happening.")

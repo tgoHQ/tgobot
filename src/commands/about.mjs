@@ -1,7 +1,7 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const humanizeDuration = require("humanize-duration");
+import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
+import humanizeDuration from "humanize-duration";
 
-module.exports = {
+export default {
 	data: new SlashCommandBuilder()
 		.setName("about")
 		.setDescription("Displays information about this bot."),

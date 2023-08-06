@@ -1,4 +1,4 @@
-module.exports = async function callDB(url, method, body) {
+export default async function callDB(url, method, body) {
 	try {
 		const opts = {
 			headers: {
@@ -21,7 +21,7 @@ module.exports = async function callDB(url, method, body) {
 		console.error("db call error");
 		console.error(e);
 	}
-};
+}
 
 async function topBeans() {
 	const data = await callDB("/beans?sort=-quantity", "GET");

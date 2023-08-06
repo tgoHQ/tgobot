@@ -1,13 +1,12 @@
-const { SlashCommandBuilder } = require("discord.js");
-
-module.exports = {
+import { SlashCommandBuilder } from "discord.js";
+export default {
 	data: new SlashCommandBuilder()
 		.setName("help")
 		.setDescription("Lists commands you can use"),
 	async execute(interaction) {
 		await interaction.reply(`
 </help:1048477111612080149>: Shows this message!
-</role:852006609366548481>: See the available roles and choose yours.
+<id:customize>: See the available roles and choose yours.
 </rank:1010973721076432957>: Check your current level and rank in the server.
 </leaderboard:1010973726558388304>: See the full leaderboard of server ranks.
 </stats message:1025501230044286982>: See server statistics.
