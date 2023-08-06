@@ -1,20 +1,20 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
-import ModLog from "../modules/modlog.mjs";
+import ModLog from "../../modules/modlog.mjs";
 
 export default {
 	data: new SlashCommandBuilder()
-		.setName("unban")
-		.setDescription("Unbans a user.")
+		.setName("warn")
+		.setDescription("Warns a user.")
 		.addUserOption((option) =>
 			option
 				.setName("user")
-				.setDescription("The user to unban")
+				.setDescription("The user to warn")
 				.setRequired(true)
 		)
 		.addStringOption((option) =>
 			option
 				.setName("reason")
-				.setDescription("Reason for the unban")
+				.setDescription("Reason for the warn")
 				.setRequired(true)
 		)
 		.setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
@@ -24,17 +24,13 @@ export default {
 		const reason = interaction.options.getString("reason");
 		const author = interaction.user;
 
-		await interaction.guild.bans
-			.remove(targetUser, reason) //unban the target user
-			.then(() => {
-				const modlog = new ModLog({
-					type: "Unban",
-					author,
-					reason,
-					targetUser,
-				});
-				modlog.post(interaction.client);
-				interaction.reply(modlog.string);
-			});
+		const modLog = new ModLog({
+			type: "Warn",
+			author,
+			reason,
+			targetUser,
+		});
+		modLog.post(interaction.client);
+		interaction.reply(modLog.string);
 	},
 };
