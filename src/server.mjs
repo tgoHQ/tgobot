@@ -8,7 +8,6 @@ import {
 	AuditLogEvent,
 	REST,
 	Routes,
-	Intents,
 } from "discord.js";
 
 const token = process.env.TOKEN;
