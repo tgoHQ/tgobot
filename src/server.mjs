@@ -36,7 +36,7 @@ const client = new Client({
 
 // Grab all the command files
 const commandFiles = fs
-	.readdirSync("./commands")
+	.readdirSync("commands")
 	.filter((file) => file.endsWith(".js"));
 
 //deploy slash commands
