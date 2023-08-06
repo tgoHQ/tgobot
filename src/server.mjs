@@ -36,14 +36,14 @@ const client = new Client({
 
 // Grab all the command files
 const commandFiles = fs
-	.readdirSync("commands")
+	.readdirSync(path.resolve("src/commands"))
 	.filter((file) => file.endsWith(".js"));
 
 //deploy slash commands
 const commands = [];
 // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 for (const file of commandFiles) {
-	const command = import(`commands/${file}`);
+	const command = import(path.resolve("src/commands", file));
 	commands.push(command.data.toJSON());
 }
 // Construct and prepare an instance of the REST module
