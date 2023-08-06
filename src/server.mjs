@@ -1,6 +1,6 @@
-const fs = require("node:fs");
-const path = require("node:path");
-const {
+import fs from "node:fs";
+import path from "node:path";
+import {
 	Client,
 	Collection,
 	Events,
@@ -9,7 +9,7 @@ const {
 	REST,
 	Routes,
 	Intents,
-} = require("discord.js");
+} from "discord.js";
 
 // const { token } = require('./config.json');
 const token = process.env.TOKEN;
