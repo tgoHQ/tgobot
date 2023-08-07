@@ -25,6 +25,7 @@ export default async function register() {
 			for (const file of commandFiles) {
 				const filePath = path.join(commandsPath, file);
 				const command = import(filePath);
+				console.log(command.data);
 				if ("data" in command && "execute" in command) {
 					commands.push(command.data.toJSON());
 				} else {
