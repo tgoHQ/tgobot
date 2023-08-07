@@ -24,8 +24,8 @@ export default async function register() {
 			// Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 			for (const file of commandFiles) {
 				const filePath = path.join(commandsPath, file);
-				const command = await import(filePath);
-				console.log(command);
+				const command = (await import(filePath)).default;
+				console.log(command.default);
 				if ("data" in command && "execute" in command) {
 					commands.push(command.data.toJSON());
 				} else {
