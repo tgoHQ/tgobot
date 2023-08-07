@@ -23,11 +23,13 @@ const client = new Client({
 	},
 });
 
-import register from "./commands/register.mjs";
-await register();
+import commands from "./commands/index.mjs";
 
-import load from "./commands/load.mjs";
-await load(client);
+import registerSlashCommands from "./commands/register.mjs";
+await registerSlashCommands(commands);
+
+import useSlashCommands from "./commands/use.mjs";
+await useSlashCommands(client, commands);
 
 //load events
 const eventsPath = path.join(__dirname, "events");
