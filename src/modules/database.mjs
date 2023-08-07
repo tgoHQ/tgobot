@@ -23,7 +23,7 @@ export default async function graphql(query, variables = {}) {
 
 		return result.data;
 	} catch (error) {
-		console.error(error);
+		console.log(error);
 		return undefined;
 	}
 }
