@@ -36,4 +36,8 @@ export default async function useSlashCommands(client, commands) {
 			}
 		}
 	});
+
+	console.log(
+		`Client listening for ${commands.length} application (/) commands.`
+	);
 }
