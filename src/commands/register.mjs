@@ -19,7 +19,7 @@ export default async function register() {
 			const commandsPath = path.join(foldersPath, folder);
 			const commandFiles = fs
 				.readdirSync(commandsPath)
-				.filter((file) => file.endsWith(".js"));
+				.filter((file) => file.endsWith(".mjs"));
 
 			// Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 			for (const file of commandFiles) {
