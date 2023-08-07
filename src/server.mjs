@@ -32,7 +32,7 @@ import useSlashCommands from "./commands/use.mjs";
 await useSlashCommands(client, commands);
 
 //load events
-const eventsPath = path.join(__dirname, "events");
+const eventsPath = path.resolve("src/events");
 const eventFiles = fs
 	.readdirSync(eventsPath)
 	.filter((file) => file.endsWith(".js"));
