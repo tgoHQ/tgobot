@@ -125,7 +125,7 @@ export default class ModLog {
 			author: this.author.id,
 			reason: this.reason,
 		};
-		graphql(query, variables);
+		await graphql(query, variables);
 
 		//dm target user if applicable
 		// if ("targetUser" in this) {
