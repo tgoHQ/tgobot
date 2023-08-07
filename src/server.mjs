@@ -19,7 +19,7 @@ const client = new Client({
 		],
 	},
 	allowedMentions: {
-		parse: ["roles", "users"],
+		parse: ["users"],
 	},
 });
 
@@ -35,7 +35,7 @@ await useSlashCommands(client, commands);
 const eventsPath = path.resolve("src/events");
 const eventFiles = fs
 	.readdirSync(eventsPath)
-	.filter((file) => file.endsWith(".js"));
+	.filter((file) => file.endsWith(".mjs"));
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const event = import(filePath);
@@ -45,6 +45,7 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(client, ...args));
 	}
 }
+console.log(`Client listening for ${eventFiles.length} events.`);
 
 await client.login(process.env.TOKEN);
 console.log("Client logged in!");
