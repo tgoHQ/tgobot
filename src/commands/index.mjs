@@ -32,4 +32,4 @@ async function getCommands() {
 	return commands;
 }
 
-export default getCommands();
+export default await getCommands();
