@@ -47,5 +47,4 @@ for (const file of eventFiles) {
 }
 console.log(`Client listening for ${eventFiles.length} events.`);
 
-await client.login(process.env.TOKEN);
-console.log("Client logged in!");
+client.login(process.env.TOKEN);

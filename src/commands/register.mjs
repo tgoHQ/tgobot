@@ -1,9 +1,9 @@
 import { REST, Routes } from "discord.js";
 
 export default async function registerSlashCommands(commands) {
-	const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
-	const GUILD_ID = process.env.DISCORD_GUILD_ID;
-	const TOKEN = process.env.DISCORD_BOT_TOKEN;
+	const CLIENT_ID = process.env.CLIENT_ID;
+	const GUILD_ID = process.env.GUILD_ID;
+	const TOKEN = process.env.TOKEN;
 
 	// Construct and prepare an instance of the REST module
 	const rest = new REST().setToken(TOKEN);
