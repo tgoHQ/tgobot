@@ -5,10 +5,8 @@ import { Events, EmbedBuilder } from "discord.js";
 export default {
 	name: Events.MessageDelete,
 	execute(client, message) {
-		if (message.guild?.id != process.env.GUILD_ID) {
-			console.log("message deleted from outside main guild");
-			return;
-		}
+		//if message deleted is not from main guild
+		if (message.guild?.id != process.env.GUILD_ID) return;
 
 		const temporaryLogChannel = message.guild.channels.cache.get(
 			process.env.TEMPORARY_LOG_CHANNEL_ID

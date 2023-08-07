@@ -3,7 +3,14 @@ import humanizeDuration from "humanize-duration";
 
 export default {
 	name: Events.GuildMemberAdd,
-	execute(client, member) {
+	async execute(client, member) {
+		if (member.user.bot === true) {
+			await member.guild.members.addRole({
+				user: member.user,
+				role: process.env.BOT_ROLE_ID,
+			});
+		}
+
 		const permanentLogChannel = member.guild.channels.cache.get(
 			process.env.PERMANENT_LOG_CHANNEL_ID
 		);

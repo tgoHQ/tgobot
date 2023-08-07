@@ -5,8 +5,10 @@ import { Events, EmbedBuilder } from "discord.js";
 export default {
 	name: Events.MessageUpdate,
 	execute(client, oldMessage, newMessage) {
+		//if message edited is not from main guild
 		if (newMessage.guild?.id != process.env.GUILD_ID) return;
 
+		//if text content hasn't changed
 		if (oldMessage.content === newMessage.content) return;
 
 		const temporaryLogChannel = newMessage.guild.channels.cache.get(
