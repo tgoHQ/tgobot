@@ -17,7 +17,7 @@ export default {
 				.setDescription("Reason for the warn")
 				.setRequired(true)
 		)
-		.setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
+		.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
 	async execute(interaction) {
 		const targetUser = interaction.options.getUser("user");

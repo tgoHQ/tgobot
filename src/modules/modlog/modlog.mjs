@@ -7,7 +7,7 @@ import {
 	Message,
 } from "discord.js";
 import humanizeDuration from "humanize-duration";
-import graphql from "./database.mjs";
+import graphql from "../database.mjs";
 
 const types = {
 	Warn: {
