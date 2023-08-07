@@ -126,16 +126,19 @@ export default class ModLog {
 
 		//save log to db
 		const query = `
-			mutation insertModLog($author: String = "", $reason: String = "", $message: String = "") {
-				insert_modlog_one(object: {author: $author, reason: $reason, message: $message}) {
-					id
-				}
+		mutation MyMutation($author: String = "", $reason: String = "", $modlog_message: String = "", $target_channel: String = "", $target_user: String = "") {
+			insert_modlog_one(object: {author: $author, reason: $reason, modlog_message: $modlog_message, target_channel: $target_channel, target_user: $target_user}) {
+			  id
 			}
+		  }
+		  
 		`;
 		const variables = {
 			author: this.author.id,
 			reason: this.reason,
-			message: modLogMessage.id,
+			modlog_message: modLogMessage.id,
+			target_user: this.targetUser.id,
+			target_channel: this.targetChannel.id,
 		};
 		console.log(await graphql(query, variables));
 
