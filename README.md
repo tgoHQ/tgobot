@@ -1,6 +1,9 @@
 <div align="center">
-  # `tgobot3`
-  ### Node.js Discord bot specializing in moderation.
+
+# `tgobot3`
+
+### Node.js Discord bot specializing in moderation.
+
 </div>
 
 ## Features
