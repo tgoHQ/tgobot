@@ -38,7 +38,8 @@ const eventFiles = fs
 	.filter((file) => file.endsWith(".mjs"));
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
-	const event = import(filePath).default;
+	const event = import(filePath);
+	console.log(event.name);
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(client, ...args));
 	} else {
