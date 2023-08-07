@@ -1,17 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import {
-	Client,
-	Collection,
-	Events,
-	GatewayIntentBits,
-	AuditLogEvent,
-	REST,
-	Routes,
-} from "discord.js";
-
-const token = process.env.TOKEN;
-const clientId = process.env.CLIENT_ID;
+import { Client, GatewayIntentBits } from "discord.js";
 
 const client = new Client({
 	intents: [
@@ -55,4 +44,5 @@ for (const file of eventFiles) {
 	}
 }
 
-client.login(token);
+await client.login(process.env.TOKEN);
+console.log("Client logged in!");
