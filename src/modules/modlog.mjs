@@ -126,7 +126,7 @@ export default class ModLog {
 
 		//save log to db
 		const query = `
-		mutation MyMutation($author: String, $reason: String, $modlog_message: String, $target_channel: String, $target_user: String, $duration: Integer) {
+		mutation MyMutation($author: String, $reason: String, $modlog_message: String, $target_channel: String, $target_user: String, $duration: Int) {
 			insert_modlog_one(object: {author: $author, reason: $reason, modlog_message: $modlog_message, target_channel: $target_channel, target_user: $target_user, duration: $duration}) {
 			  id
 			}
