@@ -137,8 +137,8 @@ export default class ModLog {
 			author: this.author.id,
 			reason: this.reason,
 			modlog_message: modLogMessage.id,
-			target_user: this.targetUser.id,
-			target_channel: this.targetChannel.id,
+			target_user: this.targetUser?.id,
+			target_channel: this.targetChannel?.id,
 		};
 		console.log(await graphql(query, variables));
 
