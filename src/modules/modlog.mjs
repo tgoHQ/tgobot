@@ -1,4 +1,11 @@
-import { inlineCode, EmbedBuilder, User } from "discord.js";
+import {
+	inlineCode,
+	EmbedBuilder,
+	Client,
+	GuildChannel,
+	TextChannel,
+	Message,
+} from "discord.js";
 import humanizeDuration from "humanize-duration";
 import graphql from "./database.mjs";
 
@@ -109,14 +116,18 @@ export default class ModLog {
 		return beginning + middle.toString() + end;
 	}
 
+	/**
+	 *
+	 * @param {Client} client
+	 */
 	async post(client) {
 		//post log to modlog channel
 		const modLogMessage = await postEmbed(this, client);
 
 		//save log to db
 		const query = `
-			mutation MyMutation($author: String = "", $reason: String = "") {
-				insert_modlog_one(object: {author: $author, reason: $reason}) {
+			mutation insertModLog($author: String = "", $reason: String = "", $message: String = "") {
+				insert_modlog_one(object: {author: $author, reason: $reason, message: $message}) {
 					id
 				}
 			}
@@ -124,6 +135,7 @@ export default class ModLog {
 		const variables = {
 			author: this.author.id,
 			reason: this.reason,
+			message: modLogMessage.id,
 		};
 		console.log(await graphql(query, variables));
 
@@ -144,11 +156,15 @@ export default class ModLog {
 /**
  * posts a modlog to the mod log channel as an embed
  * @param {ModLog} modLog
- * @returns message
+ * @param {Client} client
+ * @returns {Promise<Message>}
  */
 async function postEmbed(modLog, client) {
 	//posts a log object to a channel, returns the message
 
+	/**
+	 * @type {TextChannel}
+	 */
 	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
 
 	const embed = new EmbedBuilder()
@@ -158,11 +174,10 @@ async function postEmbed(modLog, client) {
 			name: modLog.author.username,
 			iconURL: modLog.author.displayAvatarURL(),
 		});
-
 	const message = await channel.send({ embeds: [embed] });
 
 	//publish in announcement channel
-	message.crosspost();
+	await message.crosspost();
 
 	return message;
 }
