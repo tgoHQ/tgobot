@@ -1,4 +1,4 @@
-import { Collection, Client, SlashCommandBuilder } from "discord.js";
+import { Collection, Client, Events } from "discord.js";
 
 /**
  * @param {Client} client
