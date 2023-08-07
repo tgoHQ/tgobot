@@ -1,5 +1,6 @@
-import { inlineCode, EmbedBuilder } from "discord.js";
+import { inlineCode, EmbedBuilder, User } from "discord.js";
 import humanizeDuration from "humanize-duration";
+import graphql from "./database.mjs";
 
 const types = {
 	Warn: {
@@ -109,13 +110,22 @@ export default class ModLog {
 	}
 
 	async post(client) {
-		//save log to db
-		//then
-
 		//post log to modlog channel
-		postEmbed(this, client.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
+		const modLogMessage = await postEmbed(this);
 
-		//get message object returned from post and save to db
+		//save log to db
+		const query = `
+			mutation MyMutation($author: String = "", $reason: String = "") {
+				insert_modlog_one(object: {author: $author, reason: $reason}) {
+					id
+				}
+			}
+		`;
+		const variables = {
+			author: this.author.id,
+			reason: this.reason,
+		};
+		graphql(query, variables);
 
 		//dm target user if applicable
 		// if ("targetUser" in this) {
@@ -134,11 +144,12 @@ export default class ModLog {
 /**
  * posts a modlog to the mod log channel as an embed
  * @param {ModLog} modLog
- * @param {*} modlogChannel channel
  * @returns message
  */
-async function postEmbed(modLog, channel) {
+async function postEmbed(modLog) {
 	//posts a log object to a channel, returns the message
+
+	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
 
 	const embed = new EmbedBuilder()
 		.setColor("137c5a")
@@ -149,7 +160,10 @@ async function postEmbed(modLog, channel) {
 		});
 
 	const message = await channel.send({ embeds: [embed] });
+
+	//publish in announcement channel
 	message.crosspost();
+
 	return message;
 }
 

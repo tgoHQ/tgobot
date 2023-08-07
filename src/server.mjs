@@ -19,7 +19,7 @@ const client = new Client({
 		],
 	},
 	allowedMentions: {
-		parse: ["users"],
+		parse: ["roles", "users"],
 	},
 });
 

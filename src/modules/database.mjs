@@ -1,29 +1,29 @@
-export default async function callDB(url, method, body) {
+/**
+ *
+ * @param {string} query
+ * @param {string} variables
+ * @returns
+ */
+export default async function graphql(query, variables = {}) {
 	try {
-		const opts = {
+		const response = await fetch(process.env.HASURA_BASE_URL, {
+			method: "POST",
 			headers: {
-				"xc-token": process.env.NOCODB_TOKEN,
+				"content-type": "application/json",
+				"x-hasura-admin-secret": process.env.HASURA_SECRET,
 			},
-			method: method,
-		};
-		if (body) opts.body = body;
+			body: JSON.stringify({
+				query,
+				variables,
+			}),
+		});
+		const result = await response.json();
 
-		const response = await fetch(`${process.env.NOCODB_URL}${url}`, opts);
+		if (result.errors) throw result.errors;
 
-		if (!response.ok) {
-			console.error("db call returned bad status code");
-			console.log(await response.json());
-			return {};
-		}
-
-		return await response.json();
-	} catch (e) {
-		console.error("db call error");
-		console.error(e);
+		return result.data;
+	} catch (error) {
+		console.error(error);
+		return undefined;
 	}
-}
-
-async function topBeans() {
-	const data = await callDB("/beans?sort=-quantity", "GET");
-	console.log(data);
 }
