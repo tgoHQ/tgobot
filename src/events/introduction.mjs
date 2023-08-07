@@ -1,6 +1,6 @@
-const { Events } = require("discord.js");
+import { Events } from "discord.js";
 
-module.exports = {
+export default {
 	name: Events.MessageCreate,
 	execute(client, message) {
 		if (message.channel.id != process.env.INTRODUCTION_CHANNEL_ID) return;

@@ -1,27 +1,20 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
-const ModLog = require("../modules/modlog");
-const parse = require("parse-duration");
+import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
+import ModLog from "../../modules/modlog.mjs";
 
-module.exports = {
+export default {
 	data: new SlashCommandBuilder()
-		.setName("mute")
-		.setDescription("Mutes a user.")
+		.setName("unmute")
+		.setDescription("Unmutes a user.")
 		.addUserOption((option) =>
 			option
 				.setName("user")
-				.setDescription("The user to mute")
-				.setRequired(true)
-		)
-		.addStringOption((option) =>
-			option
-				.setName("duration")
-				.setDescription("Duration of the mute")
+				.setDescription("The user to unmute")
 				.setRequired(true)
 		)
 		.addStringOption((option) =>
 			option
 				.setName("reason")
-				.setDescription("Reason for the mute")
+				.setDescription("Reason for the unmute")
 				.setRequired(true)
 		)
 		.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
@@ -29,18 +22,15 @@ module.exports = {
 	async execute(interaction) {
 		const member = interaction.options.getMember("user");
 		const targetUser = member.user;
-		const durationRaw = interaction.options.getString("duration");
-		const duration = parse(durationRaw);
 		const reason = interaction.options.getString("reason");
 		const author = interaction.user;
 
-		await member.timeout(duration, reason).then(() => {
+		await member.timeout(null, reason).then(() => {
 			const modlog = new ModLog({
-				type: "Mute",
+				type: "Unmute",
 				author,
 				reason,
 				targetUser,
-				duration,
 			});
 			modlog.post(interaction.client);
 			interaction.reply(modlog.string);

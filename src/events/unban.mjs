@@ -1,7 +1,7 @@
-const { Events, AuditLogEvent } = require("discord.js");
-const ModLog = require("../modules/modlog");
+import { Events, AuditLogEvent } from "discord.js";
+import ModLog from "../modules/modlog.mjs";
 
-module.exports = {
+export default {
 	name: Events.GuildBanRemove,
 	async execute(client, unban) {
 		const fetchedLogs = await unban.guild.fetchAuditLogs({

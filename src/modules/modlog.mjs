@@ -1,5 +1,5 @@
-const { inlineCode, EmbedBuilder } = require("discord.js");
-const humanizeDuration = require("humanize-duration");
+import { inlineCode, EmbedBuilder } from "discord.js";
+import humanizeDuration from "humanize-duration";
 
 const types = {
 	Warn: {
@@ -36,7 +36,7 @@ const types = {
 	},
 };
 
-module.exports = class ModLog {
+export default class ModLog {
 	constructor({
 		type,
 		author,
@@ -129,7 +129,7 @@ module.exports = class ModLog {
 		// 	}
 		// }
 	}
-};
+}
 
 /**
  * posts a modlog to the mod log channel as an embed
@@ -152,3 +152,5 @@ async function postEmbed(modLog, channel) {
 	message.crosspost();
 	return message;
 }
+
+//

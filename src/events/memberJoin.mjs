@@ -1,7 +1,7 @@
-const { Events, EmbedBuilder } = require("discord.js");
-const humanizeDuration = require("humanize-duration");
+import { Events, EmbedBuilder } from "discord.js";
+import humanizeDuration from "humanize-duration";
 
-module.exports = {
+export default {
 	name: Events.GuildMemberAdd,
 	execute(client, member) {
 		const permanentLogChannel = member.guild.channels.cache.get(

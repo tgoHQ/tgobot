@@ -1,9 +1,8 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
-const modlog = require("../modules/modlog");
-const parse = require("parse-duration");
-const ModLog = require("../modules/modlog");
+import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
+import ModLog from "../../modules/modlog.mjs";
+import parseDuration from "parse-duration";
 
-module.exports = {
+export default {
 	data: new SlashCommandBuilder()
 		.setName("slowmode")
 		.setDescription("Sets slowmode on the current channel.")
@@ -27,7 +26,7 @@ module.exports = {
 		const targetChannel = interaction.channel;
 		const reason = interaction.options.getString("reason");
 		const slowmodeIntervalRaw = interaction.options.getString("time");
-		const slowmodeInterval = parse(slowmodeIntervalRaw);
+		const slowmodeInterval = parseDuration(slowmodeIntervalRaw);
 		const author = interaction.user;
 
 		await targetChannel

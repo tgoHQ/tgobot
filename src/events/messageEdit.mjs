@@ -1,8 +1,8 @@
 //TODO make this work on older messages
 
-const { Events, EmbedBuilder } = require("discord.js");
+import { Events, EmbedBuilder } from "discord.js";
 
-module.exports = {
+export default {
 	name: Events.MessageUpdate,
 	execute(client, oldMessage, newMessage) {
 		console.log("message update event");
