@@ -6,6 +6,8 @@
 
 </div>
 
+![GitHub](https://img.shields.io/github/license/kevin8181/tgobot3?color=%23137c5a&link=https%3A%2F%2Fchoosealicense.com%2Flicenses%2Fagpl-3.0%2F) ![GitHub issues](https://img.shields.io/github/issues/kevin8181/tgobot3?color=%23e4b400&link=https%3A%2F%2Fgithub.com%2Fkevin8181%2Ftgobot3%2Fissues) ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/kevin8181/tgobot3?color=%234a78fc&link=https%3A%2F%2Fgithub.com%2Fkevin8181%2Ftgobot3%2Fcommits)
+
 ## Features
 
 - Full set of moderation slash commands
