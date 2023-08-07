@@ -19,7 +19,7 @@ export default async function graphql(query, variables = {}) {
 		});
 		const result = await response.json();
 
-		if (result.errors) throw result.errors;
+		if (result.errors) console.log(result.errors);
 
 		return result.data;
 	} catch (error) {
