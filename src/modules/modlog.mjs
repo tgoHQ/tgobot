@@ -111,7 +111,7 @@ export default class ModLog {
 
 	async post(client) {
 		//post log to modlog channel
-		const modLogMessage = await postEmbed(this);
+		const modLogMessage = await postEmbed(this, client);
 
 		//save log to db
 		const query = `
@@ -146,7 +146,7 @@ export default class ModLog {
  * @param {ModLog} modLog
  * @returns message
  */
-async function postEmbed(modLog) {
+async function postEmbed(modLog, client) {
 	//posts a log object to a channel, returns the message
 
 	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
