@@ -20,7 +20,7 @@ async function getCommands() {
 			const filePath = path.join(commandsPath, file);
 			const command = (await import(filePath)).default;
 
-			if (command.data && typeof command.execute === "function") {
+			if (command?.data && typeof command?.execute === "function") {
 				commands.push(command);
 			} else {
 				console.log(
