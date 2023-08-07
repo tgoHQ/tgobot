@@ -5,8 +5,6 @@ import { Events, EmbedBuilder } from "discord.js";
 export default {
 	name: Events.MessageDelete,
 	execute(client, message) {
-		console.log("message deleted event");
-
 		if (message.guild?.id != process.env.GUILD_ID) {
 			console.log("message deleted from outside main guild");
 			return;

@@ -5,8 +5,6 @@ import { Events, EmbedBuilder } from "discord.js";
 export default {
 	name: Events.MessageUpdate,
 	execute(client, oldMessage, newMessage) {
-		console.log("message update event");
-
 		if (newMessage.guild?.id != process.env.GUILD_ID) return;
 
 		if (oldMessage.content === newMessage.content) return;

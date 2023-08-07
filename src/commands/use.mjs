@@ -1,5 +1,11 @@
 import { Collection, Client, Events } from "discord.js";
 
+const failReply = {
+	content:
+		"<:error:1049228381486583819> There was an error while executing this command!",
+	ephemeral: true,
+};
+
 /**
  * @param {Client} client
  * @param {*} commands
@@ -17,23 +23,23 @@ export default async function useSlashCommands(client, commands) {
 
 		const command = client.commands.get(interaction.commandName);
 
-		if (!command) return;
+		if (!command) {
+			console.error(
+				`No command matching ${interaction.commandName} was found.`
+			);
+			return await interaction.reply(failReply);
+		}
 
 		try {
 			await command.execute(interaction);
 		} catch (error) {
-			console.error(error);
+			console.error(`Error executing ${interaction.commandName}`, error);
+
 			if (interaction.replied || interaction.deferred) {
-				await interaction.followUp({
-					content: "There was an error while executing this command!",
-					ephemeral: true,
-				});
-			} else {
-				await interaction.reply({
-					content: "There was an error while executing this command!",
-					ephemeral: true,
-				});
+				return await interaction.followUp(failReply);
 			}
+
+			await interaction.reply(failReply);
 		}
 	});
 

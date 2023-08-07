@@ -38,7 +38,7 @@ const eventFiles = fs
 	.filter((file) => file.endsWith(".mjs"));
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
-	const event = import(filePath);
+	const event = (await import(filePath)).default;
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(client, ...args));
 	} else {
@@ -47,5 +47,4 @@ for (const file of eventFiles) {
 }
 console.log(`Client listening for ${eventFiles.length} events.`);
 
-await client.login(process.env.TOKEN);
-console.log("Client logged in!");
+client.login(process.env.TOKEN);
