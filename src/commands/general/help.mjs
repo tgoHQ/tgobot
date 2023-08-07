@@ -3,6 +3,7 @@ export default {
 	data: new SlashCommandBuilder()
 		.setName("help")
 		.setDescription("Lists commands you can use"),
+
 	async execute(interaction) {
 		await interaction.reply(`
 </help:1048477111612080149>: Shows this message!
