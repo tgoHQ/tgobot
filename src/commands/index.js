@@ -7,14 +7,14 @@ async function getCommands() {
 	const foldersPath = path.resolve("src/commands");
 	const commandFolders = fs
 		.readdirSync(foldersPath)
-		.filter((file) => !file.endsWith(".mjs"));
+		.filter((file) => !file.endsWith(".js"));
 
 	for (const folder of commandFolders) {
 		// Grab all the command files from the commands directory
 		const commandsPath = path.join(foldersPath, folder);
 		const commandFiles = fs
 			.readdirSync(commandsPath)
-			.filter((file) => file.endsWith(".mjs"));
+			.filter((file) => file.endsWith(".js"));
 
 		for (const file of commandFiles) {
 			const filePath = path.join(commandsPath, file);

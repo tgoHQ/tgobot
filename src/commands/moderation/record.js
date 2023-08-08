@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
-import graphql from "../../modules/database.mjs";
+import graphql from "../../modules/database.js";
 
 export default {
 	data: new SlashCommandBuilder()
