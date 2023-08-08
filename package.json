@@ -2,7 +2,7 @@
 	"name": "tgobot",
 	"version": "1.0.0",
 	"description": "",
-	"main": "src/server.mjs",
+	"main": "src/server.js",
 	"type": "module",
 	"scripts": {
 		"start": "node .",
