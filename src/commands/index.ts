@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 async function getCommands() {
-	const commands = [];
+	const commands: any[] = [];
 
 	const foldersPath = path.resolve("src/commands");
 	const commandFolders = fs

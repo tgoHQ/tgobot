@@ -8,7 +8,7 @@ export default {
 
 	async execute(interaction) {
 		const embed = new EmbedBuilder()
-			.setColor("137c5a")
+			.setColor("#137c5a")
 			.setTitle("tgobot3")
 			.addFields(
 				// {name: "Ping", value: client.ws.ping + "ms"},

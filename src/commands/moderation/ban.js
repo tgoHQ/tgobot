@@ -1,4 +1,8 @@
-import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
+import {
+	SlashCommandBuilder,
+	PermissionFlagsBits,
+	CommandInteraction,
+} from "discord.js";
 import ModLog from "../../modules/modlog/modlog.js";
 export default {
 	data: new SlashCommandBuilder()

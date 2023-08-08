@@ -1,4 +1,4 @@
-import { Collection, Client, Events } from "discord.js";
+import { Collection, Events, Interaction } from "discord.js";
 
 const failReply = {
 	content:
@@ -6,10 +6,6 @@ const failReply = {
 	ephemeral: true,
 };
 
-/**
- * @param {Client} client
- * @param {*} commands
- */
 export default async function useSlashCommands(client, commands) {
 	//add commands to client
 	client.commands = new Collection();
@@ -18,7 +14,7 @@ export default async function useSlashCommands(client, commands) {
 	}
 
 	//listen for commands being run
-	client.on(Events.InteractionCreate, async (interaction) => {
+	client.on(Events.InteractionCreate, async (interaction: Interaction) => {
 		if (!interaction.isChatInputCommand()) return;
 
 		const command = client.commands.get(interaction.commandName);

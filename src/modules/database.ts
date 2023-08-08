@@ -6,6 +6,12 @@
  */
 export default async function graphql(query, variables = {}) {
 	try {
+		if (!(process.env.HASURA_BASE_URL && process.env.HASURA_SECRET)) {
+			throw new Error(
+				"HASURA_BASE_URL and HASURA_SECRET env variables are required!"
+			);
+		}
+
 		const response = await fetch(process.env.HASURA_BASE_URL, {
 			method: "POST",
 			headers: {

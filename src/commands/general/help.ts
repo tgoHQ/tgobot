@@ -1,10 +1,10 @@
-import { SlashCommandBuilder } from "discord.js";
+import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 export default {
 	data: new SlashCommandBuilder()
 		.setName("help")
 		.setDescription("Lists commands you can use"),
 
-	async execute(interaction) {
+	async execute(interaction: CommandInteraction) {
 		await interaction.reply(`
 </help:1048477111612080149>: Shows this message!
 <id:customize>: See the available roles and choose yours.

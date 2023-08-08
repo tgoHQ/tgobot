@@ -1,10 +1,9 @@
 import {
 	inlineCode,
 	EmbedBuilder,
-	Client,
-	GuildChannel,
 	TextChannel,
-	Message,
+	User,
+	Client,
 } from "discord.js";
 import humanizeDuration from "humanize-duration";
 import graphql from "../database.js";
@@ -44,7 +43,18 @@ const types = {
 	},
 };
 
+type ModLogType = any; //TODO
+
 export default class ModLog {
+	author: User;
+	reason: string;
+	duration: number;
+	targetUser: User;
+	slowmodeInterval: number;
+	targetChannel: TextChannel;
+	bulkDeleteNumber: number;
+	type: ModLogType;
+
 	constructor({
 		type,
 		author,
@@ -56,7 +66,6 @@ export default class ModLog {
 		bulkDeleteNumber,
 	}) {
 		this.type = type;
-		this.typeData = types[type];
 		this.author = author;
 		this.reason = reason;
 		this.targetUser = targetUser;
@@ -67,14 +76,14 @@ export default class ModLog {
 	}
 
 	get string() {
-		const { emoji, verb } = this.typeData;
+		const { emoji, verb } = types[this.type];
 
 		let beginning = emoji + " " + verb + " ";
-		let middle;
+		let middle: string;
 
 		switch (this.type) {
 			case "Warn":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
 				break;
 
 			case "Slowmode":
@@ -96,19 +105,23 @@ export default class ModLog {
 				break;
 
 			case "Unmute":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
 				break;
 
 			case "Ban":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
 				break;
 
 			case "Unban":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
 				break;
 
 			case "Kick":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
+				break;
+
+			default:
+				middle = "error";
 		}
 
 		const end = this.reason ? ` with reason ${inlineCode(this.reason)}.` : ".";
@@ -120,7 +133,7 @@ export default class ModLog {
 	 *
 	 * @param {Client} client
 	 */
-	async post(client) {
+	async post(client: Client) {
 		//post log to modlog channel
 		const modLogMessage = await postEmbed(this, client);
 
@@ -136,7 +149,7 @@ export default class ModLog {
 		const variables = {
 			author: this.author.id,
 			reason: this.reason,
-			modlog_message: modLogMessage.id,
+			modlog_message: modLogMessage?.id,
 			target_user: this.targetUser?.id,
 			target_channel: this.targetChannel?.id,
 			duration: this.duration,
@@ -144,7 +157,7 @@ export default class ModLog {
 			bulk_delete_number: this.bulkDeleteNumber,
 			type: this.type,
 		};
-		console.log(await graphql(query, variables));
+		console.log(await graphql(query, variables.toString()));
 
 		//dm target user if applicable
 		// if ("targetUser" in this) {
@@ -162,20 +175,25 @@ export default class ModLog {
 
 /**
  * posts a modlog to the mod log channel as an embed
- * @param {ModLog} modLog
- * @param {Client} client
- * @returns {Promise<Message>}
  */
-async function postEmbed(modLog, client) {
+async function postEmbed(modLog: ModLog, client: Client) {
 	//posts a log object to a channel, returns the message
 
-	/**
-	 * @type {TextChannel}
-	 */
+	if (!process.env.MODLOG_CHANNEL_ID) {
+		return;
+	}
+
 	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
 
+	if (!(channel instanceof TextChannel)) {
+		console.log(
+			"ModLog channel could not be found. Check the value of your MODLOG_CHANNEL_ID env variable."
+		);
+		return;
+	}
+
 	const embed = new EmbedBuilder()
-		.setColor("137c5a")
+		.setColor("#137c5a")
 		.setDescription(modLog.string)
 		.setAuthor({
 			name: modLog.author.username,
