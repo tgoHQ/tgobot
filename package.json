@@ -1,15 +1,10 @@
 {
 	"name": "tgobot",
-	"version": "1.0.0",
-	"description": "",
 	"main": "src/server.js",
 	"type": "module",
 	"scripts": {
-		"start": "node .",
-		"build": "tsc"
+		"start": "node ."
 	},
-	"author": "",
-	"license": "AGPL-3.0-only",
 	"dependencies": {
 		"dayjs": "^1.11.6",
 		"discord.js": "^14.7.1",

@@ -43,18 +43,7 @@ const types = {
 	},
 };
 
-type ModLogType = any; //TODO
-
 export default class ModLog {
-	author: User;
-	reason: string;
-	duration: number;
-	targetUser: User;
-	slowmodeInterval: number;
-	targetChannel: TextChannel;
-	bulkDeleteNumber: number;
-	type: ModLogType;
-
 	constructor({
 		type,
 		author,
@@ -79,7 +68,7 @@ export default class ModLog {
 		const { emoji, verb } = types[this.type];
 
 		let beginning = emoji + " " + verb + " ";
-		let middle: string;
+		let middle;
 
 		switch (this.type) {
 			case "Warn":
@@ -133,7 +122,7 @@ export default class ModLog {
 	 *
 	 * @param {Client} client
 	 */
-	async post(client: Client) {
+	async post(client) {
 		//post log to modlog channel
 		const modLogMessage = await postEmbed(this, client);
 
@@ -176,7 +165,7 @@ export default class ModLog {
 /**
  * posts a modlog to the mod log channel as an embed
  */
-async function postEmbed(modLog: ModLog, client: Client) {
+async function postEmbed(modLog, client) {
 	//posts a log object to a channel, returns the message
 
 	if (!process.env.MODLOG_CHANNEL_ID) {

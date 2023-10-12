@@ -14,7 +14,7 @@ export default async function useSlashCommands(client, commands) {
 	}
 
 	//listen for commands being run
-	client.on(Events.InteractionCreate, async (interaction: Interaction) => {
+	client.on(Events.InteractionCreate, async (interaction) => {
 		if (!interaction.isChatInputCommand()) return;
 
 		const command = client.commands.get(interaction.commandName);

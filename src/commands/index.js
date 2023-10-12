@@ -2,12 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 
 async function getCommands() {
-	const commands: any[] = [];
+	const commands = [];
 
 	const foldersPath = path.resolve("src/commands");
+
+	const folderNameRegex = /^[^.]+$/;
 	const commandFolders = fs
 		.readdirSync(foldersPath)
-		.filter((file) => !file.endsWith(".js"));
+		.filter((file) => folderNameRegex.test(file));
 
 	for (const folder of commandFolders) {
 		// Grab all the command files from the commands directory

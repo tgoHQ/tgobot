@@ -4,7 +4,7 @@ import { Events, EmbedBuilder, Client } from "discord.js";
 
 export default {
 	name: Events.MessageUpdate,
-	execute(client: Client, oldMessage, newMessage) {
+	execute(client, oldMessage, newMessage) {
 		//if message edited is not from main guild
 		if (newMessage.guild?.id != process.env.GUILD_ID) return;
 
