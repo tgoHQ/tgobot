@@ -4,7 +4,7 @@ export default {
 		.setName("help")
 		.setDescription("Lists commands you can use"),
 
-	async execute(interaction: CommandInteraction) {
+	async execute(interaction) {
 		await interaction.reply(`
 </help:1048477111612080149>: Shows this message!
 <id:customize>: See the available roles and choose yours.
