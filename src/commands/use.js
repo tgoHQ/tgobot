@@ -1,4 +1,4 @@
-import { Collection, Events, Interaction } from "discord.js";
+import { Collection, Events } from "discord.js";
 
 const failReply = {
 	content:
