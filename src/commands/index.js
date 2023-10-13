@@ -1,37 +1,26 @@
-import fs from "node:fs";
-import path from "node:path";
+import about from "./general/about.js";
+import help from "./general/help.js";
+import vcping from "./general/vcping.js";
 
-async function getCommands() {
-	const commands = [];
+import ban from "./moderation/ban.js";
+import clean from "./moderation/clean.js";
+import mute from "./moderation/mute.js";
+import record from "./moderation/record.js";
+import slowmode from "./moderation/slowmode.js";
+import unban from "./moderation/unban.js";
+import unmute from "./moderation/unmute.js";
+import warn from "./moderation/warn.js";
 
-	const foldersPath = path.resolve("src/commands");
-
-	const folderNameRegex = /^[^.]+$/;
-	const commandFolders = fs
-		.readdirSync(foldersPath)
-		.filter((file) => folderNameRegex.test(file));
-
-	for (const folder of commandFolders) {
-		// Grab all the command files from the commands directory
-		const commandsPath = path.join(foldersPath, folder);
-		const commandFiles = fs
-			.readdirSync(commandsPath)
-			.filter((file) => file.endsWith(".js"));
-
-		for (const file of commandFiles) {
-			const filePath = path.join(commandsPath, file);
-			const command = (await import(filePath)).default;
-
-			if (command?.data && typeof command?.execute === "function") {
-				commands.push(command);
-			} else {
-				console.log(
-					`[WARNING] The command at ${filePath} is missing a required "data" or "execute" export.`
-				);
-			}
-		}
-	}
-	return commands;
-}
-
-export default await getCommands();
+export default [
+	about,
+	help,
+	vcping,
+	ban,
+	clean,
+	mute,
+	record,
+	slowmode,
+	unban,
+	unmute,
+	warn,
+];

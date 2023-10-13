@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import { Client, GatewayIntentBits } from "discord.js";
 
 const client = new Client({
@@ -24,18 +22,19 @@ const client = new Client({
 });
 
 import commands from "./commands/index.js";
+console.log(`Pulled ${commands.length} commands from index!`);
 
-import registerSlashCommands from "./commands/register.js";
+import registerSlashCommands from "./modules/registerSlashCommands.js";
 await registerSlashCommands(commands);
 
-import useSlashCommands from "./commands/use.js";
+import useSlashCommands from "./modules/useSlashCommands.js";
 await useSlashCommands(client, commands);
 
-//load events
+// //load events
 const eventsPath = path.resolve("src/events");
 const eventFiles = fs
 	.readdirSync(eventsPath)
-	.filter((file) => file.endsWith(".mjs"));
+	.filter((file) => file.endsWith(".js"));
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const event = (await import(filePath)).default;
