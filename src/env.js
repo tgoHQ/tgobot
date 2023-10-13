@@ -1,1 +1,0 @@
-export const TEMPORARY_LOG_CHANNEL = process.env.TEMPORARY_LOG_CHANNEL_ID;
