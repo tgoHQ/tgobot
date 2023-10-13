@@ -3,7 +3,8 @@ import {
 	PermissionFlagsBits,
 	CommandInteraction,
 } from "discord.js";
-import ModLog from "modules/modlog/modlog.ts";
+import ModLog from "../../modules/modlog/modlog.js";
+
 export default {
 	data: new SlashCommandBuilder()
 		.setName("ban")
