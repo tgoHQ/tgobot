@@ -1,3 +1,26 @@
 import about from "./general/about.js";
+import help from "./general/help.js";
+import vcping from "./general/vcping.js";
 
-export default [about];
+import ban from "./moderation/ban.js";
+import clean from "./moderation/clean.js";
+import mute from "./moderation/mute.js";
+import record from "./moderation/record.js";
+import slowmode from "./moderation/slowmode.js";
+import unban from "./moderation/unban.js";
+import unmute from "./moderation/unmute.js";
+import warn from "./moderation/warn.js";
+
+export default [
+	about,
+	help,
+	vcping,
+	ban,
+	clean,
+	mute,
+	record,
+	slowmode,
+	unban,
+	unmute,
+	warn,
+];
