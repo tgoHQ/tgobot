@@ -1,5 +1,6 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
-import ModLog from "../../modules/modlog.mjs";
+import ModLog from "../../modules/modlog/modlog.js";
+
 import parseDuration from "parse-duration";
 
 export default {

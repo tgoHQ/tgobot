@@ -19,16 +19,16 @@ const client = new Client({
 		],
 	},
 	allowedMentions: {
-		parse: ["users"],
+		parse: ["roles", "users"],
 	},
 });
 
-import commands from "./commands/index.mjs";
+import commands from "./commands/index.js";
 
-import registerSlashCommands from "./commands/register.mjs";
+import registerSlashCommands from "./commands/register.js";
 await registerSlashCommands(commands);
 
-import useSlashCommands from "./commands/use.mjs";
+import useSlashCommands from "./commands/use.js";
 await useSlashCommands(client, commands);
 
 //load events

@@ -1,5 +1,12 @@
-import { inlineCode, EmbedBuilder } from "discord.js";
+import {
+	inlineCode,
+	EmbedBuilder,
+	TextChannel,
+	User,
+	Client,
+} from "discord.js";
 import humanizeDuration from "humanize-duration";
+import graphql from "../database.js";
 
 const types = {
 	Warn: {
@@ -48,7 +55,6 @@ export default class ModLog {
 		bulkDeleteNumber,
 	}) {
 		this.type = type;
-		this.typeData = types[type];
 		this.author = author;
 		this.reason = reason;
 		this.targetUser = targetUser;
@@ -59,14 +65,14 @@ export default class ModLog {
 	}
 
 	get string() {
-		const { emoji, verb } = this.typeData;
+		const { emoji, verb } = types[this.type];
 
 		let beginning = emoji + " " + verb + " ";
 		let middle;
 
 		switch (this.type) {
 			case "Warn":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
 				break;
 
 			case "Slowmode":
@@ -88,19 +94,23 @@ export default class ModLog {
 				break;
 
 			case "Unmute":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
 				break;
 
 			case "Ban":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
 				break;
 
 			case "Unban":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
 				break;
 
 			case "Kick":
-				middle = this.targetUser;
+				middle = this.targetUser.toString();
+				break;
+
+			default:
+				middle = "error";
 		}
 
 		const end = this.reason ? ` with reason ${inlineCode(this.reason)}.` : ".";
@@ -108,14 +118,35 @@ export default class ModLog {
 		return beginning + middle.toString() + end;
 	}
 
+	/**
+	 *
+	 * @param {Client} client
+	 */
 	async post(client) {
-		//save log to db
-		//then
-
 		//post log to modlog channel
-		postEmbed(this, client.channels.cache.get(process.env.MODLOG_CHANNEL_ID));
+		const modLogMessage = await postEmbed(this, client);
 
-		//get message object returned from post and save to db
+		//save log to db
+		const query = `
+		mutation MyMutation($author: String, $reason: String, $modlog_message: String, $target_channel: String, $target_user: String, $duration: Int, $slowmode_interval: Int, $bulk_delete_number: Int, $type: modlog_type) {
+			insert_modlog_one(object: {author: $author, reason: $reason, modlog_message: $modlog_message, target_channel: $target_channel, target_user: $target_user, duration: $duration, slowmode_interval: $slowmode_interval, bulk_delete_number: $bulk_delete_number, type: $type}) {
+			  id
+			}
+		  }
+		  
+		`;
+		const variables = {
+			author: this.author.id,
+			reason: this.reason,
+			modlog_message: modLogMessage?.id,
+			target_user: this.targetUser?.id,
+			target_channel: this.targetChannel?.id,
+			duration: this.duration,
+			slowmode_interval: this.slowmodeInterval,
+			bulk_delete_number: this.bulkDeleteNumber,
+			type: this.type,
+		};
+		console.log(await graphql(query, variables.toString()));
 
 		//dm target user if applicable
 		// if ("targetUser" in this) {
@@ -133,23 +164,35 @@ export default class ModLog {
 
 /**
  * posts a modlog to the mod log channel as an embed
- * @param {ModLog} modLog
- * @param {*} modlogChannel channel
- * @returns message
  */
-async function postEmbed(modLog, channel) {
+async function postEmbed(modLog, client) {
 	//posts a log object to a channel, returns the message
 
+	if (!process.env.MODLOG_CHANNEL_ID) {
+		return;
+	}
+
+	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
+
+	if (!(channel instanceof TextChannel)) {
+		console.log(
+			"ModLog channel could not be found. Check the value of your MODLOG_CHANNEL_ID env variable."
+		);
+		return;
+	}
+
 	const embed = new EmbedBuilder()
-		.setColor("137c5a")
+		.setColor("#137c5a")
 		.setDescription(modLog.string)
 		.setAuthor({
 			name: modLog.author.username,
 			iconURL: modLog.author.displayAvatarURL(),
 		});
-
 	const message = await channel.send({ embeds: [embed] });
-	message.crosspost();
+
+	//publish in announcement channel
+	await message.crosspost();
+
 	return message;
 }
 
