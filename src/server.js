@@ -31,7 +31,7 @@ import useSlashCommands from "./modules/useSlashCommands.js";
 await useSlashCommands(client, commands);
 
 // //load events
-import events from "./events/index.js";
-events.load(client);
+import loadEvents from "./events/index.js";
+loadEvents(client);
 
 client.login(process.env.TOKEN);
