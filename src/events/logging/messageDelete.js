@@ -22,7 +22,7 @@ export default {
 			.setTitle("Message Deleted")
 			.setURL(message.url)
 			.setDescription(
-				`Message deleted by ${message.author} in ${message.channel}.`
+				`Message by ${message.author} deleted in ${message.channel}.`
 			)
 			.setFields({ name: "Content", value: message.content });
 
