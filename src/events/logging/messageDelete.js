@@ -7,13 +7,13 @@ export default {
 	execute(client, message) {
 		if (!message.guild || message.guild.id != process.env.GUILD_ID) return; //if message deleted is not from main guild, return
 
-		const temporaryLogChannel = message.guild.channels.cache.get(
-			process.env.TEMPORARY_LOG_CHANNEL_ID
+		const logChannel = message.guild.channels.cache.get(
+			process.env.LOG_CHANNEL_ID
 		);
 
-		if (!(temporaryLogChannel instanceof TextChannel)) {
+		if (!(logChannel instanceof TextChannel)) {
 			throw new Error(
-				"Temporary log channel is not a valid text channel. Check your env variable TEMPORARY_LOG_CHANNEL_ID."
+				"Log channel is not a valid text channel. Check your env variable LOG_CHANNEL_ID."
 			);
 		}
 
@@ -22,10 +22,10 @@ export default {
 			.setTitle("Message Deleted")
 			.setURL(message.url)
 			.setDescription(
-				`Message deleted by ${message.author} in ${message.channel}.`
+				`Message by ${message.author} deleted in ${message.channel}.`
 			)
 			.setFields({ name: "Content", value: message.content });
 
-		temporaryLogChannel.send({ embeds: [embed] });
+		logChannel.send({ embeds: [embed] });
 	},
 };
