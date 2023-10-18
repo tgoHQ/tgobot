@@ -1,13 +1,16 @@
 import { Client } from "discord.js";
-import ban from "./events/ban.js";
-import bulkDelete from "./events/bulkDelete.js";
+
+import ban from "./moderation/ban.js";
+import bulkDelete from "./moderation/bulkDelete.js";
+import kick from "./moderation/kick.js";
+import unban from "./moderation/unban.js";
+
+import memberJoin from "./logging/memberJoin.js";
+import messageDelete from "./logging/messageDelete.js";
+import messageEdit from "./logging/messageEdit.js";
+
 import introduction from "./events/introduction.js";
-import kick from "./events/kick.js";
-import memberJoin from "./events/memberJoin.js";
-import messageDelete from "./events/messageDelete.js";
-import messageEdit from "./events/messageEdit.js";
 import ready from "./events/ready.js";
-import unban from "./events/unban.js";
 
 const events = [
 	ban,
