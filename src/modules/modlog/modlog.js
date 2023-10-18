@@ -1,10 +1,4 @@
-import {
-	inlineCode,
-	EmbedBuilder,
-	TextChannel,
-	User,
-	Client,
-} from "discord.js";
+import { inlineCode, EmbedBuilder, TextChannel, Client } from "discord.js";
 import humanizeDuration from "humanize-duration";
 import graphql from "../database.js";
 
@@ -146,7 +140,9 @@ export default class ModLog {
 			bulk_delete_number: this.bulkDeleteNumber,
 			type: this.type,
 		};
-		console.log(await graphql(query, variables.toString()));
+
+		// save to DB
+		// console.log(await graphql(query, variables.toString()));
 
 		//dm target user if applicable
 		// if ("targetUser" in this) {
