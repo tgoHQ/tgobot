@@ -1,6 +1,6 @@
 //TODO make this work on older messages
 
-import { Events, EmbedBuilder, Client } from "discord.js";
+import { Events, EmbedBuilder, TextChannel } from "discord.js";
 
 export default {
 	name: Events.MessageUpdate,
