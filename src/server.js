@@ -31,15 +31,9 @@ import useSlashCommands from "./modules/useSlashCommands.js";
 await useSlashCommands(client, commands);
 
 // //load events
-import path from "node:path";
-import fs from "node:fs";
-const eventsPath = path.resolve("src/events");
-const eventFiles = fs
-	.readdirSync(eventsPath)
-	.filter((file) => file.endsWith(".js"));
-for (const file of eventFiles) {
-	const filePath = path.join(eventsPath, file);
-	const event = (await import(filePath)).default;
+import events from "./events/index.js";
+
+for (const event of events) {
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(client, ...args));
 	} else {
