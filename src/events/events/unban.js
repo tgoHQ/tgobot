@@ -1,5 +1,5 @@
 import { Events, AuditLogEvent } from "discord.js";
-import ModLog from "../../modules/modlog/modlog.mjs";
+import ModLog from "../../modules/modlog/modlog.js";
 
 export default {
 	name: Events.GuildBanRemove,
