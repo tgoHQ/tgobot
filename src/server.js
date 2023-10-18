@@ -32,6 +32,7 @@ await useSlashCommands(client, commands);
 
 // //load events
 import path from "node:path";
+import fs from "node:fs";
 const eventsPath = path.resolve("src/events");
 const eventFiles = fs
 	.readdirSync(eventsPath)
