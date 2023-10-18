@@ -5,7 +5,6 @@ import vcping from "./general/vcping.js";
 import ban from "./moderation/ban.js";
 import clean from "./moderation/clean.js";
 import mute from "./moderation/mute.js";
-import record from "./moderation/record.js";
 import slowmode from "./moderation/slowmode.js";
 import unban from "./moderation/unban.js";
 import unmute from "./moderation/unmute.js";
@@ -18,7 +17,6 @@ export default [
 	ban,
 	clean,
 	mute,
-	record,
 	slowmode,
 	unban,
 	unmute,

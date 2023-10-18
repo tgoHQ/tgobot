@@ -11,7 +11,6 @@ export default {
 			.setColor("#137c5a")
 			.setTitle("tgobot3")
 			.addFields(
-				// {name: "Ping", value: client.ws.ping + "ms"},
 				{
 					name: "<:djs:1049834255498354689> discord.js",
 					value:

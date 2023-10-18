@@ -1,12 +1,5 @@
-import {
-	inlineCode,
-	EmbedBuilder,
-	TextChannel,
-	User,
-	Client,
-} from "discord.js";
+import { inlineCode, EmbedBuilder, TextChannel, Client } from "discord.js";
 import humanizeDuration from "humanize-duration";
-import graphql from "../database.js";
 
 const types = {
 	Warn: {
@@ -146,7 +139,9 @@ export default class ModLog {
 			bulk_delete_number: this.bulkDeleteNumber,
 			type: this.type,
 		};
-		console.log(await graphql(query, variables.toString()));
+
+		// save to DB
+		// console.log(await graphql(query, variables.toString()));
 
 		//dm target user if applicable
 		// if ("targetUser" in this) {
@@ -173,6 +168,7 @@ async function postEmbed(modLog, client) {
 	}
 
 	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
+	console.log(channel);
 
 	if (!(channel instanceof TextChannel)) {
 		console.log(

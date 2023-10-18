@@ -1,19 +1,23 @@
 //TODO make this work on older messages
 
-import { Events, EmbedBuilder, Client } from "discord.js";
+import { Events, EmbedBuilder, TextChannel } from "discord.js";
 
 export default {
 	name: Events.MessageUpdate,
 	execute(client, oldMessage, newMessage) {
-		//if message edited is not from main guild
-		if (newMessage.guild?.id != process.env.GUILD_ID) return;
+		if (newMessage.guild?.id != process.env.GUILD_ID) return; //if message edited is not from main guild, return
 
-		//if text content hasn't changed
-		if (oldMessage.content === newMessage.content) return;
+		if (oldMessage.content === newMessage.content) return; //if text content of message hasn't changed, return
 
 		const temporaryLogChannel = newMessage.guild.channels.cache.get(
 			process.env.TEMPORARY_LOG_CHANNEL_ID
 		);
+
+		if (!(temporaryLogChannel instanceof TextChannel)) {
+			throw new Error(
+				"Temporary log channel is not a valid text channel. Check your env variable TEMPORARY_LOG_CHANNEL_ID."
+			);
+		}
 
 		const embed = new EmbedBuilder()
 			.setColor("#4a78fc")

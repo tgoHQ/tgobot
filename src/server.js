@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, GatewayIntentBits, TextChannel } from "discord.js";
 
 const client = new Client({
 	intents: [
@@ -17,7 +17,7 @@ const client = new Client({
 		],
 	},
 	allowedMentions: {
-		parse: ["roles", "users"],
+		parse: ["users"],
 	},
 });
 
@@ -31,19 +31,7 @@ import useSlashCommands from "./modules/useSlashCommands.js";
 await useSlashCommands(client, commands);
 
 // //load events
-const eventsPath = path.resolve("src/events");
-const eventFiles = fs
-	.readdirSync(eventsPath)
-	.filter((file) => file.endsWith(".js"));
-for (const file of eventFiles) {
-	const filePath = path.join(eventsPath, file);
-	const event = (await import(filePath)).default;
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(client, ...args));
-	} else {
-		client.on(event.name, (...args) => event.execute(client, ...args));
-	}
-}
-console.log(`Client listening for ${eventFiles.length} events.`);
+import loadEvents from "./events/index.js";
+loadEvents(client);
 
 client.login(process.env.TOKEN);
