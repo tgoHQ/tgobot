@@ -32,7 +32,6 @@ await useSlashCommands(client, commands);
 
 // //load events
 import events from "./events/index.js";
-
 for (const event of events) {
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(client, ...args));
@@ -40,6 +39,6 @@ for (const event of events) {
 		client.on(event.name, (...args) => event.execute(client, ...args));
 	}
 }
-console.log(`Client listening for ${eventFiles.length} events.`);
+console.log(`Client listening for ${events.length} events.`);
 
 client.login(process.env.TOKEN);
