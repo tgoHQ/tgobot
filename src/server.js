@@ -34,4 +34,14 @@ await useSlashCommands(client, commands);
 import loadEvents from "./events/index.js";
 loadEvents(client);
 
+const temporaryLogChannel = message.guild.channels.cache.get(
+	process.env.TEMPORARY_LOG_CHANNEL_ID
+);
+if (!(temporaryLogChannel instanceof TextChannel)) {
+	throw new Error(
+		"Temporary log channel is not a valid text channel. Check your env variable TEMPORARY_LOG_CHANNEL_ID."
+	);
+}
+client.env.temporaryLogChannel = temporaryLogChannel;
+
 client.login(process.env.TOKEN);

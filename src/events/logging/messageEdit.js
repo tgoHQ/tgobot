@@ -9,16 +9,6 @@ export default {
 
 		if (oldMessage.content === newMessage.content) return; //if text content of message hasn't changed, return
 
-		const temporaryLogChannel = newMessage.guild.channels.cache.get(
-			process.env.TEMPORARY_LOG_CHANNEL_ID
-		);
-
-		if (!(temporaryLogChannel instanceof TextChannel)) {
-			throw new Error(
-				"Temporary log channel is not a valid text channel. Check your env variable TEMPORARY_LOG_CHANNEL_ID."
-			);
-		}
-
 		const embed = new EmbedBuilder()
 			.setColor("#4a78fc")
 			.setTitle("Message Edited")
@@ -31,6 +21,6 @@ export default {
 				{ name: "After", value: newMessage.content }
 			);
 
-		temporaryLogChannel.send({ embeds: [embed] });
+		client.env.temporaryLogChannel.send({ embeds: [embed] });
 	},
 };
