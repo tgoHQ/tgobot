@@ -31,6 +31,7 @@ import useSlashCommands from "./modules/useSlashCommands.js";
 await useSlashCommands(client, commands);
 
 // //load events
+import path from "node:path";
 const eventsPath = path.resolve("src/events");
 const eventFiles = fs
 	.readdirSync(eventsPath)
