@@ -1,3 +1,4 @@
+import { Client } from "discord.js";
 import ban from "./events/ban.js";
 import bulkDelete from "./events/bulkDelete.js";
 import introduction from "./events/introduction.js";
@@ -8,7 +9,7 @@ import messageEdit from "./events/messageEdit.js";
 import ready from "./events/ready.js";
 import unban from "./events/unban.js";
 
-export default [
+const events = [
 	ban,
 	bulkDelete,
 	introduction,
@@ -19,3 +20,18 @@ export default [
 	ready,
 	unban,
 ];
+
+/**
+ * Loads events onto client
+ * @param {Client} client
+ */
+export default function load(client) {
+	for (const event of events) {
+		if (event.once) {
+			client.once(event.name, (...args) => event.execute(client, ...args));
+		} else {
+			client.on(event.name, (...args) => event.execute(client, ...args));
+		}
+	}
+	console.log(`Client listening for ${events.length} events.`);
+}
