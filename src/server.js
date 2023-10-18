@@ -35,6 +35,7 @@ import loadEvents from "./events/index.js";
 loadEvents(client);
 
 const guild = client.guilds.cache.get(process.env.GUILD_ID);
+console.log(guild);
 
 const temporaryLogChannel = guild.channels.cache.get(
 	process.env.TEMPORARY_LOG_CHANNEL_ID
