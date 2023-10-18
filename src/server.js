@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, GatewayIntentBits, TextChannel } from "discord.js";
 
 const client = new Client({
 	intents: [
@@ -34,7 +34,9 @@ await useSlashCommands(client, commands);
 import loadEvents from "./events/index.js";
 loadEvents(client);
 
-const temporaryLogChannel = message.guild.channels.cache.get(
+const guild = client.guilds.cache.get(process.env.GUILD_ID);
+
+const temporaryLogChannel = guild.channels.cache.get(
 	process.env.TEMPORARY_LOG_CHANNEL_ID
 );
 if (!(temporaryLogChannel instanceof TextChannel)) {
