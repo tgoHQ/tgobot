@@ -37,14 +37,4 @@ loadEvents(client);
 const guild = client.guilds.cache.get(process.env.GUILD_ID);
 console.log(guild);
 
-const temporaryLogChannel = guild.channels.cache.get(
-	process.env.TEMPORARY_LOG_CHANNEL_ID
-);
-if (!(temporaryLogChannel instanceof TextChannel)) {
-	throw new Error(
-		"Temporary log channel is not a valid text channel. Check your env variable TEMPORARY_LOG_CHANNEL_ID."
-	);
-}
-client.env.temporaryLogChannel = temporaryLogChannel;
-
 client.login(process.env.TOKEN);
