@@ -11,8 +11,8 @@ export default {
 			});
 		}
 
-		const permanentLogChannel = member.guild.channels.cache.get(
-			process.env.PERMANENT_LOG_CHANNEL_ID
+		const logChannel = member.guild.channels.cache.get(
+			process.env.LOG_CHANNEL_ID
 		);
 
 		const embed = new EmbedBuilder()
@@ -31,7 +31,7 @@ export default {
 				}
 			);
 
-		permanentLogChannel.send({ embeds: [embed] });
+		logChannel.send({ embeds: [embed] });
 	},
 };
 
