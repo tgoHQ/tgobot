@@ -5,9 +5,6 @@ export default {
 		.setDescription("Lists commands you can use"),
 
 	async execute(interaction) {
-		await interaction.reply(`
-
-    `);
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")
 			.setTitle("TGO Command Help").setDescription(`
