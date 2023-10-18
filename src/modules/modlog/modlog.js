@@ -1,6 +1,5 @@
 import { inlineCode, EmbedBuilder, TextChannel, Client } from "discord.js";
 import humanizeDuration from "humanize-duration";
-import graphql from "../database.js";
 
 const types = {
 	Warn: {
@@ -169,6 +168,7 @@ async function postEmbed(modLog, client) {
 	}
 
 	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
+	console.log(channel);
 
 	if (!(channel instanceof TextChannel)) {
 		console.log(
