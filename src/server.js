@@ -17,7 +17,7 @@ const client = new Client({
 		],
 	},
 	allowedMentions: {
-		parse: ["roles", "users"],
+		parse: ["users"],
 	},
 });
 
@@ -35,6 +35,3 @@ import loadEvents from "./events/index.js";
 loadEvents(client);
 
 client.login(process.env.TOKEN);
-
-const guild = client.guilds.cache.get(process.env.GUILD_ID);
-console.log(guild);
