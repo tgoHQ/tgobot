@@ -1,4 +1,4 @@
-import { inlineCode, EmbedBuilder, TextChannel, Client } from "discord.js";
+import { inlineCode, EmbedBuilder, NewsChannel, Client } from "discord.js";
 import humanizeDuration from "humanize-duration";
 
 const types = {
@@ -170,7 +170,7 @@ async function postEmbed(modLog, client) {
 	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
 	console.log(channel);
 
-	if (!(channel instanceof TextChannel)) {
+	if (!(channel instanceof NewsChannel)) {
 		console.log(
 			"ModLog channel could not be found. Check the value of your MODLOG_CHANNEL_ID env variable."
 		);
