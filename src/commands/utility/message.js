@@ -15,12 +15,19 @@ export default {
 				.setRequired(true)
 				.addChannelTypes(ChannelType.GuildAnnouncement, ChannelType.GuildText)
 		)
+		.addTextOption((option) =>
+			option
+				.setname("value")
+				.setDescription("The message to be sent. Plain text or JSON.")
+				.setRequired(true)
+		)
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
 	async execute(interaction) {
 		const channel = interaction.options.getChannel("channel");
+		const message = interaction.options.getText("value");
 
-		await channel.send("test").then(() => {
+		await channel.send(message).then(() => {
 			interaction.reply("sent");
 		});
 	},
