@@ -10,6 +10,8 @@ import unban from "./moderation/unban.js";
 import unmute from "./moderation/unmute.js";
 import warn from "./moderation/warn.js";
 
+import message from "./utility/message.js";
+
 export default [
 	about,
 	help,
@@ -21,4 +23,5 @@ export default [
 	unban,
 	unmute,
 	warn,
+	message,
 ];
