@@ -30,7 +30,7 @@ export default {
 			reason,
 			targetUser,
 		});
-		modLog.post(interaction.client);
+		modLog.init(interaction.client);
 		interaction.reply(modLog.string);
 	},
 };
