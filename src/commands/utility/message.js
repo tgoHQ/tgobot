@@ -21,13 +21,33 @@ export default {
 				.setDescription("The message to be sent. Plain text or JSON.")
 				.setRequired(true)
 		)
+		.addBooleanOption((option) =>
+			option
+				.setName("rich")
+				.setDescription(
+					"Pass true to interpret message as JSON. If false, the message will be interpreted as plain text."
+				)
+				.setRequired(true)
+		)
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
 	async execute(interaction) {
 		const channel = interaction.options.getChannel("channel");
-		const message = interaction.options.getString("value");
+		const value = interaction.options.getString("value");
+		const rich = interaction.options.getBoolean("rich");
+		let messageJSON;
 
-		await channel.send(message).then(() => {
+		if (rich) {
+			try {
+				messageJSON = JSON.parse(rich);
+			} catch {
+				return interaction.reply(
+					"The JSON you provided is improperly formatted."
+				);
+			}
+		}
+
+		await channel.send(messageJSON || value).then(() => {
 			interaction.reply("sent");
 		});
 	},
