@@ -15,7 +15,7 @@ export default {
 				.setRequired(true)
 				.addChannelTypes(ChannelType.GuildAnnouncement, ChannelType.GuildText)
 		)
-		.addTextOption((option) =>
+		.addStringOption((option) =>
 			option
 				.setname("value")
 				.setDescription("The message to be sent. Plain text or JSON.")
@@ -25,7 +25,7 @@ export default {
 
 	async execute(interaction) {
 		const channel = interaction.options.getChannel("channel");
-		const message = interaction.options.getText("value");
+		const message = interaction.options.getString("value");
 
 		await channel.send(message).then(() => {
 			interaction.reply("sent");
