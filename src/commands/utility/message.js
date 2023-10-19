@@ -2,6 +2,7 @@ import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
 	ChannelType,
+	Embed,
 } from "discord.js";
 
 export default {
@@ -23,9 +24,9 @@ export default {
 		)
 		.addBooleanOption((option) =>
 			option
-				.setName("rich")
+				.setName("embed")
 				.setDescription(
-					"Pass true to interpret message as JSON. If false, the message will be interpreted as plain text."
+					"Pass true to interpret message as JSON for an embed. If false, the message will be interpreted as plain text."
 				)
 				.setRequired(true)
 		)
@@ -34,12 +35,12 @@ export default {
 	async execute(interaction) {
 		const channel = interaction.options.getChannel("channel");
 		const value = interaction.options.getString("value");
-		const rich = interaction.options.getBoolean("rich");
-		let messageJSON;
+		const isEmbed = interaction.options.getBoolean("embed");
+		let embedValue;
 
-		if (rich) {
+		if (isEmbed) {
 			try {
-				messageJSON = JSON.parse(rich);
+				embedValue = new Embed(value);
 			} catch {
 				return interaction.reply(
 					"The JSON you provided is improperly formatted."
@@ -47,7 +48,7 @@ export default {
 			}
 		}
 
-		await channel.send(messageJSON || value).then(() => {
+		await channel.send(embedValue || value).then(() => {
 			interaction.reply("sent");
 		});
 	},
