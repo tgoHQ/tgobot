@@ -17,7 +17,7 @@ export default {
 		)
 		.addStringOption((option) =>
 			option
-				.setname("value")
+				.setName("value")
 				.setDescription("The message to be sent. Plain text or JSON.")
 				.setRequired(true)
 		)
