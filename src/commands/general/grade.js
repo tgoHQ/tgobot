@@ -31,9 +31,15 @@ export default {
 		}
 
 		const embed = new EmbedBuilder()
-			.setTitle("input")
+			.setTitle(`Climbing Grade: ${input}`)
 			.setColor("137c5a")
-			.addFields({ name: "Grading Scale", value: inputGradeScale.displayName });
+			.addFields(
+				{
+					name: "Grading Scale",
+					value: `${inputGradeScale.displayName} (${inputGradeScale.getGradeBand})`,
+				},
+				{ name: "Difficulty", value: inputGradeScale.getGradeBand(input) }
+			);
 
 		await interaction.reply({ embeds: [embed] });
 	},
