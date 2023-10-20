@@ -51,7 +51,7 @@ export default {
 			.setTitle("Automoderator blocked a link from a new user")
 			.setColor("137c5a")
 			.addFields(
-				{ name: "User", value: member.user },
+				{ name: "User", value: member.user.toString() },
 				{ name: "Message Content", value: message.content }
 			);
 
