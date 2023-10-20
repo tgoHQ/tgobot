@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, TextChannel } from "discord.js";
+import { ChannelType, SlashCommandBuilder, TextChannel } from "discord.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -29,6 +29,7 @@ export default {
 		ticketChannel.threads
 			.create({
 				name: topic,
+				type: ChannelType.PrivateThread,
 			})
 			.then((thread) => {
 				interaction.reply({
