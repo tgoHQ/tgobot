@@ -1,13 +1,15 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import {
 	convertGrade,
+	Ewbank,
 	Font,
 	French,
+	Saxon,
 	VScale,
 	YosemiteDecimal,
 } from "@openbeta/sandbag";
 
-const gradeScales = [French, YosemiteDecimal, VScale, Font];
+const gradeScales = [French, YosemiteDecimal, VScale, Font, Ewbank, Saxon];
 
 export default {
 	data: new SlashCommandBuilder()
@@ -28,7 +30,9 @@ export default {
 					{ name: YosemiteDecimal.displayName, value: YosemiteDecimal.name },
 					{ name: French.displayName, value: French.name },
 					{ name: Font.displayName, value: Font.name },
-					{ name: VScale.displayName, value: VScale.name }
+					{ name: VScale.displayName, value: VScale.name },
+					{ name: Ewbank.displayName, value: Ewbank.name },
+					{ name: Saxon.displayName, value: Saxon.name }
 				)
 		),
 
