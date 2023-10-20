@@ -26,7 +26,9 @@ export default {
 				.setRequired(true)
 				.addChoices(
 					{ name: YosemiteDecimal.displayName, value: YosemiteDecimal.name },
-					{ name: French.displayName, value: French.name }
+					{ name: French.displayName, value: French.name },
+					{ name: Font.displayName, value: Font.name },
+					{ name: VScale.displayName, value: VScale.name }
 				)
 		),
 
@@ -38,15 +40,12 @@ export default {
 		});
 
 		const embed = new EmbedBuilder()
-			.setTitle(`Climbing Grade: ${input}`)
+			.setTitle(`${inputGradeScale.displayName}: ${input}`)
 			.setColor("137c5a")
-			.addFields(
-				{
-					name: "Grading Scale",
-					value: `${inputGradeScale.displayName}`,
-				},
-				{ name: "Difficulty", value: inputGradeScale.getGradeBand(input) }
-			);
+			.addFields({
+				name: "Difficulty",
+				value: inputGradeScale.getGradeBand(input),
+			});
 
 		for (const convertTypeName of inputGradeScale.allowableConversionType) {
 			const convertType = gradeScales.find((e) => {
