@@ -35,7 +35,7 @@ export default {
 		}
 
 		message.reply(
-			`You may not send links until you've been a member for 3 hours or introduced yourself in <#${process.env.INTRODUCTIONS_CHANNEL_ID}>`
+			`${member.user} You may not send links until you've been a member for 3 hours or introduced yourself in <#${process.env.INTRODUCTION_CHANNEL_ID}>`
 		);
 
 		message.delete();
