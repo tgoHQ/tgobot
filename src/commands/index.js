@@ -1,7 +1,6 @@
 import about from "./general/about.js";
 import help from "./general/help.js";
 import vcping from "./general/vcping.js";
-import ticket from "./general/ticket.js";
 
 import ban from "./moderation/ban.js";
 import clean from "./moderation/clean.js";
@@ -17,7 +16,6 @@ export default [
 	about,
 	help,
 	vcping,
-	ticket,
 
 	ban,
 	clean,
