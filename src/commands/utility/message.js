@@ -19,13 +19,7 @@ export default {
 		.addStringOption((option) =>
 			option
 				.setName("value")
-				.setDescription("The message to be sent. Plain text or JSON.")
-				.setRequired(true)
-		)
-		.addBooleanOption((option) =>
-			option
-				.setName("embed")
-				.setDescription("Pass true to interpret message as JSON for an embed.")
+				.setDescription("The message to be sent.")
 				.setRequired(true)
 		)
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
@@ -33,26 +27,9 @@ export default {
 	async execute(interaction) {
 		const channel = interaction.options.getChannel("channel");
 		const value = interaction.options.getString("value");
-		const isEmbed = interaction.options.getBoolean("embed");
-		let embedValue;
 
-		console.log("raw value", value);
-		console.log("is embed", isEmbed);
-
-		if (isEmbed) {
-			try {
-				embedValue = new EmbedBuilder(JSON.parse(value));
-			} catch {
-				return interaction.reply(
-					"The JSON you provided is improperly formatted."
-				);
-			}
-		}
-
-		console.log("embed value", embedValue);
-
-		await channel.send(embedValue || value).then(() => {
-			interaction.reply("sent");
+		await channel.send(value).then(() => {
+			interaction.reply({ content: "Sent!", ephemeral: true });
 		});
 	},
 };
