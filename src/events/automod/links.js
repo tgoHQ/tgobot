@@ -20,10 +20,10 @@ export default {
 
 		//if message does not contain a link, ignore
 		if (!linkRE.test(message.content)) {
-			console.log("message contains no links");
 			return;
 		}
 
+		//fetch the GuildMember
 		const member = await message.guild.members.fetch(message.author);
 
 		//if member is a bot, ignore
@@ -35,16 +35,15 @@ export default {
 				return role.id === process.env.INTRODUCED_ROLE_ID;
 			})
 		) {
-			console.log("user is introduced");
 			return;
 		}
 
-		//if member joined more than 3 hours ago, ignore
+		//if member joined more than 2 hours ago, ignore
 		if (member.joinedTimestamp < Date.now() - 2 * 60 * 60 * 1000) {
-			console.log("user joined over 2 hours ago");
 			return;
 		}
 
+		//try to send DM to author, otherwise send a message in the channel
 		const responseMessage = `${member.user} You may not send links until you've been a member for 2 hours or introduced yourself in <#${process.env.INTRODUCTION_CHANNEL_ID}>`;
 		try {
 			await member.user.send(responseMessage);
@@ -52,8 +51,10 @@ export default {
 			await message.channel.send(responseMessage);
 		}
 
+		//delete the message with the link
 		message.delete();
 
+		//fetch the alerts channel
 		const alertChannel = await client.channels.fetch(
 			process.env.ALERT_CHANNEL_ID
 		);
@@ -66,28 +67,7 @@ export default {
 				{ name: "Message Content", value: message.content }
 			);
 
-		const banForSelfPromo = new ButtonBuilder()
-			.setCustomId("ban self promo")
-			.setLabel("Ban for Self-Promo")
-			.setStyle(ButtonStyle.Danger);
-
-		const warnForSelfPromo = new ButtonBuilder()
-			.setCustomId("warn for self promo")
-			.setLabel("Warn for Self-Promo")
-			.setStyle(ButtonStyle.Secondary);
-
-		const banForScam = new ButtonBuilder()
-			.setCustomId("ban for scam")
-			.setLabel("Ban for Scam")
-			.setStyle(ButtonStyle.Danger);
-
-		const row = new ActionRowBuilder().addComponents(
-			banForSelfPromo,
-			banForScam,
-			warnForSelfPromo
-		);
-
-		alertChannel.send({ embeds: [embed], components: [row] });
+		alertChannel.send({ embeds: [embed] });
 	},
 };
 
