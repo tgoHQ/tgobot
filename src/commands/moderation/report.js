@@ -22,7 +22,8 @@ export default {
 
 		const embed = new EmbedBuilder()
 			.setColor("137c5a")
-			.setTitle(member.user.toString());
+			.setTitle("User Report")
+			.addFields({ name: "Tag", value: member.user.toString() });
 
 		interaction.reply({ embeds: [embed] });
 	},
