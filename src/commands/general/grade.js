@@ -35,8 +35,6 @@ export default {
 			.setColor("137c5a")
 			.addFields({ name: "Grading Scale", value: inputGradeScale.displayName });
 
-		await interaction.reply(
-			`${input}: ${inputGradeScale.displayName}, ${inputGradeScale.allowableConversionType}`
-		);
+		await interaction.reply({ embeds: [embed] });
 	},
 };
