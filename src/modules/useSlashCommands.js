@@ -1,5 +1,5 @@
 import { Collection, Events } from "discord.js";
-import commands from "../commands";
+import commands from "../commands/index.js";
 
 const failReply = {
 	content:

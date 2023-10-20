@@ -1,5 +1,5 @@
 import { REST, Routes } from "discord.js";
-import commands from "../commands";
+import commands from "../commands/index.js";
 
 export default async function registerSlashCommands() {
 	const CLIENT_ID = process.env.CLIENT_ID;
