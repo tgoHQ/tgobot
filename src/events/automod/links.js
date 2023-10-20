@@ -43,7 +43,9 @@ export default {
 
 		message.delete();
 
-		const alertChannel = client.channels.fetch(process.env.ALERT_CHANNEL_ID);
+		const alertChannel = await client.channels.fetch(
+			process.env.ALERT_CHANNEL_ID
+		);
 
 		const embed = new EmbedBuilder()
 			.setTitle("Automoderator blocked a link from a new user")
