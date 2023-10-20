@@ -2,12 +2,12 @@ import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import {
 	convertGrade,
 	French,
-	UIAA,
 	YosemiteDecimal,
 	Ewbank,
+	Saxon,
 } from "@openbeta/sandbag";
 
-const gradeScales = [French, YosemiteDecimal, UIAA, Ewbank];
+const gradeScales = [French, YosemiteDecimal, Ewbank, Saxon];
 
 export default {
 	data: new SlashCommandBuilder()
