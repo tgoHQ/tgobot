@@ -19,6 +19,7 @@ export default {
 				\`-packlist [user]\`: View the pack list of another user or yourself.
 				</climb:1081349272986988555>: Display info about a climbing route from OpenBeta.
 				</crag:1081476008538030140>: Display info about a crag from OpenBeta.
+				</grades:1165000063303565312>: Display info about a climbing grade and convert to other scales.
 			`);
 		await interaction.reply({ embeds: [embed] });
 	},

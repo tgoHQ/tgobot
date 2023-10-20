@@ -27,7 +27,9 @@ const gradeScales = [
 export default {
 	data: new SlashCommandBuilder()
 		.setName("grades")
-		.setDescription("Displays information about a climbing grade.")
+		.setDescription(
+			"Displays info about a climbing grade and converts it to other scales."
+		)
 		.addStringOption((option) =>
 			option
 				.setName("grade")
