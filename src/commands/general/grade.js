@@ -5,11 +5,20 @@ import {
 	Font,
 	French,
 	Saxon,
+	UIAA,
 	VScale,
 	YosemiteDecimal,
 } from "@openbeta/sandbag";
 
-const gradeScales = [French, YosemiteDecimal, VScale, Font, Ewbank, Saxon];
+const gradeScales = [
+	French,
+	YosemiteDecimal,
+	VScale,
+	Font,
+	Ewbank,
+	Saxon,
+	UIAA,
+];
 
 export default {
 	data: new SlashCommandBuilder()
@@ -32,6 +41,7 @@ export default {
 					{ name: Font.displayName, value: Font.name },
 					{ name: VScale.displayName, value: VScale.name },
 					{ name: Ewbank.displayName, value: Ewbank.name },
+					{ name: UIAA.displayName, value: UIAA.name },
 					{ name: Saxon.displayName, value: Saxon.name }
 				)
 		),
