@@ -55,7 +55,7 @@ export default {
 					.setDescription(
 						`Welcome ${author}. Please describe your reason for opening this ticket. Include any relevant info such as screenshots, any third parties involved, etc.`
 					);
-				thread.send({ content: author.mention, embeds: [ticketEmbed] });
+				thread.send({ content: `${author}`, embeds: [ticketEmbed] });
 			});
 	},
 };
