@@ -26,7 +26,7 @@ export default {
 
 		if (!inputGradeScale) {
 			return interaction.reply(
-				"Could not resolve your input to a valid climbing grade."
+				"Could not resolve your input to a known climbing grade."
 			);
 		}
 
@@ -41,7 +41,10 @@ export default {
 					value: `${inputGradeScale.displayName}`,
 				},
 				{ name: "Difficulty", value: inputGradeScale.getGradeBand(input) },
-				{ name: "Conversions", value: inputGradeScale.allowableConversionType }
+				{
+					name: "Conversions",
+					value: inputGradeScale.allowableConversionType.toString(),
+				}
 			);
 
 		await interaction.reply({ embeds: [embed] });
