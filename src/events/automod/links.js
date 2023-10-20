@@ -29,14 +29,12 @@ export default {
 		}
 
 		//if member joined more than 3 hours ago, ignore
-
-		console.log(member.joinedTimestamp, "member joined");
-		console.log(Date.now(), "date.now");
-
 		if (member.joinedTimestamp < Date.now() - 3 * 60 * 60 * 1000) {
 			console.log("user joined over 3 hours ago");
 			return;
 		}
+
+		message.reply({ content: "Link deleted", ephemeral: true });
 	},
 };
 
