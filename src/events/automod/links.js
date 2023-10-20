@@ -68,7 +68,21 @@ export default {
 			.setLabel("Ban for Self-Promo")
 			.setStyle(ButtonStyle.Danger);
 
-		const row = new ActionRowBuilder().addComponents(banForSelfPromo);
+		const warnForSelfPromo = new ButtonBuilder()
+			.setCustomId("warn for self promo")
+			.setLabel("Warn for Self-Promo")
+			.setStyle(ButtonStyle.Secondary);
+
+		const banForScam = new ButtonBuilder()
+			.setCustomId("ban for scam")
+			.setLabel("Ban for Scam")
+			.setStyle(ButtonStyle.Danger);
+
+		const row = new ActionRowBuilder().addComponents(
+			banForSelfPromo,
+			banForScam,
+			warnForSelfPromo
+		);
 
 		alertChannel.send({ embeds: [embed], components: [row] });
 	},
