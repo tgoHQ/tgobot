@@ -1,4 +1,4 @@
-import { Events, Message, Client } from "discord.js";
+import { Events, Message, Client, EmbedBuilder } from "discord.js";
 
 export default {
 	name: Events.MessageCreate,
@@ -18,6 +18,9 @@ export default {
 
 		const member = await message.guild.members.fetch(message.author);
 
+		//if member is a bot, ignore
+		if (member.user.bot) return;
+
 		//if member has Introduced role, ignore
 		if (
 			member.roles.cache.some((role) => {
@@ -29,16 +32,23 @@ export default {
 		}
 
 		//if member joined more than 3 hours ago, ignore
-		if (member.joinedTimestamp < Date.now() - 3 * 60 * 60 * 1000) {
-			console.log("user joined over 3 hours ago");
+		if (member.joinedTimestamp < Date.now() - 2 * 60 * 60 * 1000) {
+			console.log("user joined over 2 hours ago");
 			return;
 		}
 
-		message.reply(
-			`${member.user} You may not send links until you've been a member for 3 hours or introduced yourself in <#${process.env.INTRODUCTION_CHANNEL_ID}>`
+		message.channel.send(
+			`${member.user} You may not send links until you've been a member for 2 hours or introduced yourself in <#${process.env.INTRODUCTION_CHANNEL_ID}>`
 		);
 
 		message.delete();
+
+		const alertChannel = client.channels.fetch(process.env.ALERT_CHANNEL_ID);
+
+		const embed = new EmbedBuilder()
+			.setTitle("Automoderator blocked a link from a new user")
+			.setColor("137c5a")
+			.addFields({ name: "Message Content", value: message.content });
 	},
 };
 
