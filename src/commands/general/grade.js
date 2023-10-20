@@ -47,6 +47,7 @@ export default {
 					{ name: Ewbank.displayName, value: Ewbank.name },
 					{ name: WI.displayName, value: WI.name },
 					{ name: AI.displayName, value: AI.name },
+					{ name: Aid.displayName, value: Aid.name },
 					{ name: Saxon.displayName, value: Saxon.name }
 				)
 		),
