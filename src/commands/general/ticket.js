@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from "discord.js";
+import { SlashCommandBuilder, TextChannel } from "discord.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -19,6 +19,22 @@ export default {
 			process.env.TICKET_CHANNEL_ID
 		);
 
-		console.log(typeof ticketChannel);
+		if (!(ticketChannel instanceof TextChannel)) {
+			console.log(
+				"Ticket channel could not be found, or is not a text channel. Check the value of your TICKET_CHANNEL_ID env variable."
+			);
+			return;
+		}
+
+		ticketChannel.threads
+			.create({
+				name: topic,
+			})
+			.then((thread) => {
+				interaction.reply({
+					content: `Created the thread ${thread}`,
+					ephemeral: true,
+				});
+			});
 	},
 };
