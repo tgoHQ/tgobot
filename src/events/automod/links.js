@@ -18,13 +18,13 @@ export default {
 
 		const member = await message.guild.members.fetch(message.author);
 
-		//if member has verified role, ignore
+		//if member has Introduced role, ignore
 		if (
 			member.roles.cache.some((role) => {
 				return role.id === process.env.INTRODUCED_ROLE_ID;
 			})
 		) {
-			console.log("user is verified");
+			console.log("user is introduced");
 			return;
 		}
 
