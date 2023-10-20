@@ -49,6 +49,8 @@ export default {
 			.setTitle("Automoderator blocked a link from a new user")
 			.setColor("137c5a")
 			.addFields({ name: "Message Content", value: message.content });
+
+		alertChannel.send({ embeds: [embed] });
 	},
 };
 
