@@ -31,8 +31,6 @@ export default {
 		}
 
 		for (const convertTypeName of inputGradeScale.allowableConversionType) {
-			console.log(convertTypeName);
-
 			const convertType = gradeScales.find((e) => {
 				return e.name === convertTypeName;
 			});
