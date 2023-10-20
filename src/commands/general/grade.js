@@ -33,10 +33,8 @@ export default {
 	async execute(interaction) {
 		const input = interaction.options.getString("grade");
 
-		console.log(interaction.options.getString("scale"));
-
 		const inputGradeScale = gradeScales.find((e) => {
-			e.name === interaction.options.getString("scale");
+			return e.name === interaction.options.getString("scale");
 		});
 
 		const embed = new EmbedBuilder()
