@@ -5,9 +5,10 @@ import {
 	YosemiteDecimal,
 	Ewbank,
 	Saxon,
+	UIAA,
 } from "@openbeta/sandbag";
 
-const gradeScales = [French, YosemiteDecimal, Ewbank, Saxon];
+const gradeScales = [French, YosemiteDecimal, Ewbank, Saxon, UIAA];
 
 export default {
 	data: new SlashCommandBuilder()
