@@ -36,6 +36,9 @@ export default {
 		const isEmbed = interaction.options.getBoolean("embed");
 		let embedValue;
 
+		console.log("raw value", value);
+		console.log("is embed", isEmbed);
+
 		if (isEmbed) {
 			try {
 				embedValue = new EmbedBuilder(value);
@@ -45,6 +48,8 @@ export default {
 				);
 			}
 		}
+
+		console.log("embed value", embedValue);
 
 		await channel.send(embedValue || value).then(() => {
 			interaction.reply("sent");
