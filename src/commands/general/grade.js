@@ -9,6 +9,7 @@ import {
 	YosemiteDecimal,
 	WI,
 	AI,
+	Aid,
 } from "@openbeta/sandbag";
 
 const gradeScales = [
@@ -20,12 +21,15 @@ const gradeScales = [
 	Saxon,
 	WI,
 	AI,
+	Aid,
 ];
 
 export default {
 	data: new SlashCommandBuilder()
 		.setName("grades")
-		.setDescription("Displays information about a climbing grade.")
+		.setDescription(
+			"Displays info about a climbing grade and converts it to other scales."
+		)
 		.addStringOption((option) =>
 			option
 				.setName("grade")
@@ -45,6 +49,7 @@ export default {
 					{ name: Ewbank.displayName, value: Ewbank.name },
 					{ name: WI.displayName, value: WI.name },
 					{ name: AI.displayName, value: AI.name },
+					{ name: Aid.displayName, value: Aid.name },
 					{ name: Saxon.displayName, value: Saxon.name }
 				)
 		),
