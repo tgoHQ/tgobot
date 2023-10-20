@@ -21,12 +21,16 @@ export default {
 				lib: YosemiteDecimal,
 				name: GradeScales.YDS,
 			},
+			{
+				lib: French,
+				name: GradeScales.FRENCH,
+			},
 		];
 
 		for (const gradeScale of gradeScales) {
-			if (gradeScale.lib.isType(input)) inputGradeScale = gradeScale.name;
+			if (gradeScale.lib.isType(input)) inputGradeScale = gradeScale;
 		}
 
-		await interaction.reply(`${input}: ${inputGradeScale}`);
+		await interaction.reply(`${input}: ${inputGradeScale.lib.displayName}`);
 	},
 };
