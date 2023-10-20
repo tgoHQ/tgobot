@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
-import { GradeScales } from "@openbeta/sandbag";
+import { GradeScales, YosemiteDecimal } from "@openbeta/sandbag";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -14,6 +14,8 @@ export default {
 
 	async execute(interaction) {
 		const input = interaction.options.getString("grade");
+
+		console.log(YosemiteDecimal.isType(input));
 
 		await interaction.reply(input);
 	},
