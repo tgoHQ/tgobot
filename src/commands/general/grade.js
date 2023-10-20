@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
-import { French, GradeScales, YosemiteDecimal } from "@openbeta/sandbag";
+import { French, YosemiteDecimal } from "@openbeta/sandbag";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -16,23 +16,16 @@ export default {
 		const input = interaction.options.getString("grade");
 		let inputGradeScale;
 
-		const gradeScales = [
-			{
-				lib: YosemiteDecimal,
-				name: GradeScales.YDS,
-			},
-			{
-				lib: French,
-				name: GradeScales.FRENCH,
-			},
-		];
+		const gradeScales = [French, YosemiteDecimal];
 
 		for (const gradeScale of gradeScales) {
-			if (gradeScale.lib.isType(input)) inputGradeScale = gradeScale;
+			if (gradeScale.isType(input)) {
+				inputGradeScale = gradeScale;
+			}
 		}
 
 		await interaction.reply(
-			`${input}: ${inputGradeScale.lib.displayName}, ${inputGradeScale.lib.name}`
+			`${input}: ${inputGradeScale.displayName}, ${inputGradeScale.allowableConversionType}`
 		);
 	},
 };
