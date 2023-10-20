@@ -34,7 +34,7 @@ export default {
 			console.log(convertTypeName);
 
 			const convertType = gradeScales.find((e) => {
-				return (e.name = convertTypeName);
+				return e.name === convertTypeName;
 			});
 
 			if (convertType) {
