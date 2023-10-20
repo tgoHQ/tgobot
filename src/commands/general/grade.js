@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
-import { convertGrade, French, YosemiteDecimal } from "@openbeta/sandbag";
+import { convertGrade, French, UIAA, YosemiteDecimal } from "@openbeta/sandbag";
 
-const gradeScales = [French, YosemiteDecimal];
+const gradeScales = [French, YosemiteDecimal, UIAA];
 
 export default {
 	data: new SlashCommandBuilder()
@@ -48,7 +48,7 @@ export default {
 
 			if (convertType) {
 				embed.addFields({
-					name: convertType.displayName,
+					name: `${convertType.displayName} Conversion`,
 					value: convertGrade(input, inputGradeScale.name, convertType.name),
 				});
 			}
