@@ -26,9 +26,9 @@ export default {
 			)
 			.setFields({
 				name: "Content",
-				value: message.embeds[0]
-					? "Message contained rich embeds and can't be displayed."
-					: message.content,
+				value:
+					message.content ||
+					"Message contained rich embeds and can't be displayed.",
 			});
 
 		logChannel.send({ embeds: [embed] });
