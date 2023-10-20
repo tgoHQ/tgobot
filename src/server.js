@@ -22,7 +22,6 @@ const client = new Client({
 });
 
 import commands from "./commands/index.js";
-console.log(`Pulled ${commands.length} commands from index!`);
 
 import registerSlashCommands from "./modules/registerSlashCommands.js";
 await registerSlashCommands(commands);

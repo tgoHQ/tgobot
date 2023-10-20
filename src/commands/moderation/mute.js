@@ -43,7 +43,7 @@ export default {
 				targetUser,
 				duration,
 			});
-			modlog.post(interaction.client);
+			modlog.init(interaction.client);
 			interaction.reply(modlog.string);
 		});
 	},

@@ -115,33 +115,9 @@ export default class ModLog {
 	 *
 	 * @param {Client} client
 	 */
-	async post(client) {
+	async init(client) {
 		//post log to modlog channel
 		const modLogMessage = await postEmbed(this, client);
-
-		//save log to db
-		const query = `
-		mutation MyMutation($author: String, $reason: String, $modlog_message: String, $target_channel: String, $target_user: String, $duration: Int, $slowmode_interval: Int, $bulk_delete_number: Int, $type: modlog_type) {
-			insert_modlog_one(object: {author: $author, reason: $reason, modlog_message: $modlog_message, target_channel: $target_channel, target_user: $target_user, duration: $duration, slowmode_interval: $slowmode_interval, bulk_delete_number: $bulk_delete_number, type: $type}) {
-			  id
-			}
-		  }
-		  
-		`;
-		const variables = {
-			author: this.author.id,
-			reason: this.reason,
-			modlog_message: modLogMessage?.id,
-			target_user: this.targetUser?.id,
-			target_channel: this.targetChannel?.id,
-			duration: this.duration,
-			slowmode_interval: this.slowmodeInterval,
-			bulk_delete_number: this.bulkDeleteNumber,
-			type: this.type,
-		};
-
-		// save to DB
-		// console.log(await graphql(query, variables.toString()));
 
 		//dm target user if applicable
 		// if ("targetUser" in this) {
@@ -163,12 +139,7 @@ export default class ModLog {
 async function postEmbed(modLog, client) {
 	//posts a log object to a channel, returns the message
 
-	if (!process.env.MODLOG_CHANNEL_ID) {
-		return;
-	}
-
 	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
-	console.log(channel);
 
 	if (!(channel instanceof NewsChannel)) {
 		console.log(

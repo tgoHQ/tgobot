@@ -37,7 +37,7 @@ export default {
 				bulkDeleteNumber,
 				reason,
 			});
-			modlog.post(interaction.client);
+			modlog.init(interaction.client);
 			interaction.reply(modlog.string);
 		});
 	},
