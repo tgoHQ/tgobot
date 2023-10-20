@@ -26,7 +26,7 @@ export default {
 			)
 			.setFields({
 				name: "Content",
-				value: message.embeds
+				value: message.embeds[0]
 					? "Message contained rich embeds and can't be displayed."
 					: message.content,
 			});
