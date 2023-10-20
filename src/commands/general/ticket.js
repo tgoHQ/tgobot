@@ -46,6 +46,8 @@ export default {
 					.setTitle("New Ticket Opened")
 					.setColor("137c5a")
 					.setDescription(`${author} created a new ticket: ${thread}`);
+
+				ticketChannel.send({ embeds: [embed] });
 			});
 	},
 };
