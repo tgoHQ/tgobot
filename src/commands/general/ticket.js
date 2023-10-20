@@ -35,6 +35,7 @@ export default {
 			.create({
 				name: topic,
 				type: ChannelType.PrivateThread,
+				invitable: false,
 			})
 			.then((thread) => {
 				interaction.reply({
@@ -48,6 +49,12 @@ export default {
 					.setDescription(`${author} created a new ticket: ${thread}`);
 
 				ticketChannel.send({ embeds: [embed] });
+
+				const ticketEmbed = new EmbedBuilder()
+					.setTitle("New Thread")
+					.setDescription(
+						`Welcome ${author}. Please describe your reason for opening this ticket. Include any relevant info such as screenshots, any third parties involved, etc.`
+					);
 			});
 	},
 };
