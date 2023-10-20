@@ -37,6 +37,7 @@ export default {
 
 			if (convertType) {
 				console.log(
+					convertType.displayName,
 					convertGrade(input, inputGradeScale.name, convertType.name)
 				);
 			}
@@ -50,11 +51,7 @@ export default {
 					name: "Grading Scale",
 					value: `${inputGradeScale.displayName}`,
 				},
-				{ name: "Difficulty", value: inputGradeScale.getGradeBand(input) },
-				{
-					name: "Conversions",
-					value: inputGradeScale.allowableConversionType[0],
-				}
+				{ name: "Difficulty", value: inputGradeScale.getGradeBand(input) }
 			);
 
 		await interaction.reply({ embeds: [embed] });
