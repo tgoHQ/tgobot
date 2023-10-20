@@ -18,23 +18,23 @@ export default {
 				.setName("grade")
 				.setDescription("The grade to look up.")
 				.setRequired(true)
+		)
+		.addStringOption((option) =>
+			option
+				.setName("scale")
+				.setDescription("The scale this grade is on")
+				.setRequired(true)
+				.addChoices(
+					{ name: YosemiteDecimal.displayName, value: YosemiteDecimal.name },
+					{ name: French.displayName, value: French.name }
+				)
 		),
 
 	async execute(interaction) {
 		const input = interaction.options.getString("grade");
-		let inputGradeScale;
-
-		for (const gradeScale of gradeScales) {
-			if (gradeScale.isType(input)) {
-				inputGradeScale = gradeScale;
-			}
-		}
-
-		if (!inputGradeScale) {
-			return interaction.reply(
-				"Could not resolve your input to a known climbing grade."
-			);
-		}
+		const inputGradeScale = gradeScales.find((e) => {
+			e.name === interaction.options.getString("scale");
+		});
 
 		const embed = new EmbedBuilder()
 			.setTitle(`Climbing Grade: ${input}`)
