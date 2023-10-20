@@ -21,15 +21,12 @@ const client = new Client({
 	},
 });
 
-import commands from "./commands/index.js";
-
 import registerSlashCommands from "./modules/registerSlashCommands.js";
-await registerSlashCommands(commands);
+await registerSlashCommands();
 
 import useSlashCommands from "./modules/useSlashCommands.js";
-await useSlashCommands(client, commands);
+await useSlashCommands(client);
 
-// //load events
 import loadEvents from "./events/index.js";
 loadEvents(client);
 
