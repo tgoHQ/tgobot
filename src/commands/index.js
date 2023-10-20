@@ -1,4 +1,5 @@
 import about from "./general/about.js";
+import grade from "./general/grade.js";
 import help from "./general/help.js";
 import vcping from "./general/vcping.js";
 
@@ -16,6 +17,7 @@ export default [
 	about,
 	help,
 	vcping,
+	grade,
 
 	ban,
 	clean,
