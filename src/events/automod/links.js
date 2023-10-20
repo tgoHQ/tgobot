@@ -46,11 +46,7 @@ export default {
 		}
 
 		const responseMessage = `${member.user} You may not send links until you've been a member for 2 hours or introduced yourself in <#${process.env.INTRODUCTION_CHANNEL_ID}>`;
-		try {
-			member.user.send(responseMessage);
-		} catch {
-			message.channel.send(responseMessage);
-		}
+		member.user.send(responseMessage);
 
 		message.delete();
 
