@@ -30,19 +30,6 @@ export default {
 			);
 		}
 
-		for (const convertTypeName of inputGradeScale.allowableConversionType) {
-			const convertType = gradeScales.find((e) => {
-				return e.name === convertTypeName;
-			});
-
-			if (convertType) {
-				console.log(
-					convertType.displayName,
-					convertGrade(input, inputGradeScale.name, convertType.name)
-				);
-			}
-		}
-
 		const embed = new EmbedBuilder()
 			.setTitle(`Climbing Grade: ${input}`)
 			.setColor("137c5a")
@@ -53,6 +40,19 @@ export default {
 				},
 				{ name: "Difficulty", value: inputGradeScale.getGradeBand(input) }
 			);
+
+		for (const convertTypeName of inputGradeScale.allowableConversionType) {
+			const convertType = gradeScales.find((e) => {
+				return e.name === convertTypeName;
+			});
+
+			if (convertType) {
+				embed.addFields({
+					name: convertType.displayName,
+					value: convertGrade(input, inputGradeScale.name, convertType.name),
+				});
+			}
+		}
 
 		await interaction.reply({ embeds: [embed] });
 	},
