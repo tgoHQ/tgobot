@@ -7,7 +7,16 @@ import messageEdit from "./logging/messageEdit.js";
 import introduction from "./events/introduction.js";
 import ready from "./events/ready.js";
 
-const events = [introduction, memberJoin, messageDelete, messageEdit, ready];
+import links from "./automod/links.js";
+
+const events = [
+	introduction,
+	memberJoin,
+	messageDelete,
+	messageEdit,
+	ready,
+	links,
+];
 
 /**
  * Loads events onto client
