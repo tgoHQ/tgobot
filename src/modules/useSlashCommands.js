@@ -1,4 +1,5 @@
 import { Collection, Events } from "discord.js";
+import commands from "../commands/index.js";
 
 const failReply = {
 	content:
@@ -6,7 +7,7 @@ const failReply = {
 	ephemeral: true,
 };
 
-export default async function useSlashCommands(client, commands) {
+export default async function useSlashCommands(client) {
 	//add commands to client
 	client.commands = new Collection();
 	for (const command of commands) {

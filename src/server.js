@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, TextChannel } from "discord.js";
+import { Client, GatewayIntentBits } from "discord.js";
 
 const client = new Client({
 	intents: [
@@ -21,15 +21,12 @@ const client = new Client({
 	},
 });
 
-import commands from "./commands/index.js";
-
 import registerSlashCommands from "./modules/registerSlashCommands.js";
-await registerSlashCommands(commands);
+await registerSlashCommands();
 
 import useSlashCommands from "./modules/useSlashCommands.js";
-await useSlashCommands(client, commands);
+await useSlashCommands(client);
 
-// //load events
 import loadEvents from "./events/index.js";
 loadEvents(client);
 

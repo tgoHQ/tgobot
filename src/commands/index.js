@@ -16,6 +16,7 @@ export default [
 	about,
 	help,
 	vcping,
+
 	ban,
 	clean,
 	mute,
@@ -23,5 +24,6 @@ export default [
 	unban,
 	unmute,
 	warn,
+
 	message,
 ];

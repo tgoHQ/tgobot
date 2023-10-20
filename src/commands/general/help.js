@@ -17,6 +17,8 @@ export default {
 				</tickets open:839848848003825673>: Open a ticket to talk to the staff.
 				\`-setpacklist {text}\` : Save your pack list(s) for others to see.
 				\`-packlist [user]\`: View the pack list of another user or yourself.
+				</climb:1081349272986988555>: Display info about a climbing route from OpenBeta.
+				</crag:1081476008538030140>: Display info about a crag from OpenBeta.
 			`);
 		await interaction.reply({ embeds: [embed] });
 	},
