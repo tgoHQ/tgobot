@@ -5,9 +5,10 @@ import {
 	Font,
 	French,
 	Saxon,
-	UIAA,
 	VScale,
 	YosemiteDecimal,
+	WI,
+	AI,
 } from "@openbeta/sandbag";
 
 const gradeScales = [
@@ -17,7 +18,8 @@ const gradeScales = [
 	Font,
 	Ewbank,
 	Saxon,
-	UIAA,
+	WI,
+	AI,
 ];
 
 export default {
@@ -41,7 +43,8 @@ export default {
 					{ name: Font.displayName, value: Font.name },
 					{ name: VScale.displayName, value: VScale.name },
 					{ name: Ewbank.displayName, value: Ewbank.name },
-					{ name: UIAA.displayName, value: UIAA.name },
+					{ name: WI.displayName, value: WI.name },
+					{ name: AI.displayName, value: AI.name },
 					{ name: Saxon.displayName, value: Saxon.name }
 				)
 		),
