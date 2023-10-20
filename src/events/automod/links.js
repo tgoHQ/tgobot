@@ -20,9 +20,9 @@ export default {
 
 		//if member has verified role, ignore
 		if (
-			!member.roles.cache.some(
-				(role) => role.id === process.env.INTRODUCED_ROLE_ID
-			)
+			member.roles.cache.some((role) => {
+				return role.id === process.env.INTRODUCED_ROLE_ID;
+			})
 		) {
 			console.log("user is verified");
 			return;
