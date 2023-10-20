@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, TextChannel } from "discord.js";
+import { Client, GatewayIntentBits } from "discord.js";
 
 const client = new Client({
 	intents: [

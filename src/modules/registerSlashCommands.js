@@ -15,6 +15,11 @@ export default async function registerSlashCommands() {
 		commandData.push(command.data.toJSON());
 	}
 
+	rest
+		.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: [] })
+		.then(() => console.log("Successfully deleted all guild commands."))
+		.catch(console.error);
+
 	// The put method is used to fully refresh all commands in the guild with the current set
 	const data = await rest.put(
 		Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
