@@ -1,4 +1,9 @@
-import { ChannelType, SlashCommandBuilder, TextChannel } from "discord.js";
+import {
+	ChannelType,
+	SlashCommandBuilder,
+	TextChannel,
+	EmbedBuilder,
+} from "discord.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -36,6 +41,11 @@ export default {
 					content: `Created the thread ${thread}`,
 					ephemeral: true,
 				});
+
+				const embed = new EmbedBuilder()
+					.setTitle("New Ticket Opened")
+					.setColor("137c5a")
+					.setDescription(`${author} created a new ticket: ${thread}`);
 			});
 	},
 };
