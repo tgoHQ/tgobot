@@ -9,6 +9,7 @@ import {
 	YosemiteDecimal,
 	WI,
 	AI,
+	Aid,
 } from "@openbeta/sandbag";
 
 const gradeScales = [
@@ -20,6 +21,7 @@ const gradeScales = [
 	Saxon,
 	WI,
 	AI,
+	Aid,
 ];
 
 export default {
