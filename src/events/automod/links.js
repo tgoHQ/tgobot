@@ -50,7 +50,10 @@ export default {
 		const embed = new EmbedBuilder()
 			.setTitle("Automoderator blocked a link from a new user")
 			.setColor("137c5a")
-			.addFields({ name: "Message Content", value: message.content });
+			.addFields(
+				{ name: "User", value: member.user },
+				{ name: "Message Content", value: message.content }
+			);
 
 		alertChannel.send({ embeds: [embed] });
 	},
