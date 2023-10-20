@@ -35,9 +35,17 @@ export default {
 	async execute(interaction) {
 		const input = interaction.options.getString("grade");
 
+		//find grade scale from input
 		const inputGradeScale = gradeScales.find((e) => {
 			return e.name === interaction.options.getString("scale");
 		});
+
+		//if the grade does not match the selected scale, reject
+		if (!inputGradeScale.isType(input)) {
+			return interaction.reply(
+				"Your input does not match a valid/known climbing grade."
+			);
+		}
 
 		const embed = new EmbedBuilder()
 			.setTitle(`${inputGradeScale.displayName}: ${input}`)
@@ -47,6 +55,7 @@ export default {
 				value: inputGradeScale.getGradeBand(input),
 			});
 
+		//for each scale we can convert to, convert it and add a field to the embed
 		for (const convertTypeName of inputGradeScale.allowableConversionType) {
 			const convertType = gradeScales.find((e) => {
 				return e.name === convertTypeName;
