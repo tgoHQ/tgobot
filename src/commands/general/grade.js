@@ -30,15 +30,18 @@ export default {
 			);
 		}
 
+		let conversions = [];
+
 		const embed = new EmbedBuilder()
 			.setTitle(`Climbing Grade: ${input}`)
 			.setColor("137c5a")
 			.addFields(
 				{
 					name: "Grading Scale",
-					value: `${inputGradeScale.displayName} (${inputGradeScale.getGradeBand})`,
+					value: `${inputGradeScale.displayName}`,
 				},
-				{ name: "Difficulty", value: inputGradeScale.getGradeBand(input) }
+				{ name: "Difficulty", value: inputGradeScale.getGradeBand(input) },
+				{ name: "Conversions", value: inputGradeScale.allowableConversionType }
 			);
 
 		await interaction.reply({ embeds: [embed] });
