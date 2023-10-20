@@ -30,7 +30,8 @@ export default {
 			);
 		}
 
-		let conversions = [];
+		let conversions = inputGradeScale.allowableConversionType[0];
+		console.log(conversions);
 
 		const embed = new EmbedBuilder()
 			.setTitle(`Climbing Grade: ${input}`)
@@ -43,7 +44,7 @@ export default {
 				{ name: "Difficulty", value: inputGradeScale.getGradeBand(input) },
 				{
 					name: "Conversions",
-					value: inputGradeScale.allowableConversionType.toString(),
+					value: inputGradeScale.allowableConversionType[0],
 				}
 			);
 
