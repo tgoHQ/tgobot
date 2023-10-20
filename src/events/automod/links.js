@@ -8,7 +8,7 @@ export default {
 	 * @param {Message} message
 	 */
 	async execute(client, message) {
-		const linkRE = /https?:\/\/[^.]*\./;
+		const linkRE = /https?:\/\/.{2,}/;
 
 		//if message does not contain a link, ignore
 		if (!linkRE.test(message.content)) {
