@@ -1,4 +1,12 @@
-import { Events, Message, Client, EmbedBuilder } from "discord.js";
+import {
+	Events,
+	Message,
+	Client,
+	EmbedBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+	ActionRowBuilder,
+} from "discord.js";
 
 export default {
 	name: Events.MessageCreate,
@@ -48,14 +56,21 @@ export default {
 		);
 
 		const embed = new EmbedBuilder()
-			.setTitle("Automoderator blocked a link from a new user")
+			.setTitle("Blocked a link from a new user")
 			.setColor("137c5a")
 			.addFields(
 				{ name: "User", value: member.user.toString() },
 				{ name: "Message Content", value: message.content }
 			);
 
-		alertChannel.send({ embeds: [embed] });
+		const banForSelfPromo = new ButtonBuilder()
+			.setCustomId("ban self promo")
+			.setLabel("Ban for Self-Promo")
+			.setStyle(ButtonStyle.Danger);
+
+		const row = new ActionRowBuilder().addComponents(banForSelfPromo);
+
+		alertChannel.send({ embeds: [embed], components: [row] });
 	},
 };
 
