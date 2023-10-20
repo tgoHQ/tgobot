@@ -23,6 +23,12 @@ export default {
 		const embed = new EmbedBuilder()
 			.setColor("137c5a")
 			.setTitle("User Report")
+			.setDescription(
+				`
+				**User:** ${member.user}
+				**Joined server:** <t:${member.joinedTimestamp}:R>
+			`
+			)
 			.addFields({ name: "Tag", value: member.user.toString() });
 
 		interaction.reply({ embeds: [embed] });
