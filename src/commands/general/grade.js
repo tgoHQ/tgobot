@@ -24,6 +24,17 @@ export default {
 			}
 		}
 
+		if (!inputGradeScale) {
+			return interaction.reply(
+				"Could not resolve your input to a valid climbing grade."
+			);
+		}
+
+		const embed = new EmbedBuilder()
+			.setTitle("input")
+			.setColor("137c5a")
+			.addFields({ name: "Grading Scale", value: inputGradeScale.displayName });
+
 		await interaction.reply(
 			`${input}: ${inputGradeScale.displayName}, ${inputGradeScale.allowableConversionType}`
 		);
