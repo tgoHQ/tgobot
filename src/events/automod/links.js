@@ -34,7 +34,11 @@ export default {
 			return;
 		}
 
-		message.reply({ content: "Link deleted", ephemeral: true });
+		message.reply(
+			`You may not send links until you've been a member for 3 hours or introduced yourself in <#${process.env.INTRODUCTIONS_CHANNEL_ID}>`
+		);
+
+		message.delete();
 	},
 };
 
