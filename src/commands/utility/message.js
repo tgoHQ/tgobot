@@ -2,7 +2,7 @@ import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
 	ChannelType,
-	Embed,
+	EmbedBuilder,
 } from "discord.js";
 
 export default {
@@ -38,7 +38,7 @@ export default {
 
 		if (isEmbed) {
 			try {
-				embedValue = new Embed(value);
+				embedValue = new EmbedBuilder(value);
 			} catch {
 				return interaction.reply(
 					"The JSON you provided is improperly formatted."
