@@ -31,6 +31,8 @@ export default {
 			if (gradeScale.lib.isType(input)) inputGradeScale = gradeScale;
 		}
 
-		await interaction.reply(`${input}: ${inputGradeScale.lib.displayName}`);
+		await interaction.reply(
+			`${input}: ${inputGradeScale.lib.displayName}, ${inputGradeScale.lib.name}`
+		);
 	},
 };
