@@ -1,5 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
-import { French, YosemiteDecimal } from "@openbeta/sandbag";
+import { convertGrade, French, YosemiteDecimal } from "@openbeta/sandbag";
+
+const gradeScales = [French, YosemiteDecimal];
 
 export default {
 	data: new SlashCommandBuilder()
@@ -16,8 +18,6 @@ export default {
 		const input = interaction.options.getString("grade");
 		let inputGradeScale;
 
-		const gradeScales = [French, YosemiteDecimal];
-
 		for (const gradeScale of gradeScales) {
 			if (gradeScale.isType(input)) {
 				inputGradeScale = gradeScale;
@@ -30,8 +30,17 @@ export default {
 			);
 		}
 
-		let conversions = inputGradeScale.allowableConversionType[0];
-		console.log(conversions);
+		for (const convertTypeName of inputGradeScale.allowableConversionType) {
+			const convertType = gradeScales.find((e) => {
+				return (e.name = convertTypeName);
+			});
+
+			if (convertType) {
+				console.log(
+					convertGrade(input, inputGradeScale.name, convertType.name)
+				);
+			}
+		}
 
 		const embed = new EmbedBuilder()
 			.setTitle(`Climbing Grade: ${input}`)
