@@ -41,7 +41,7 @@ export default {
 
 		if (isEmbed) {
 			try {
-				embedValue = new EmbedBuilder(value);
+				embedValue = new EmbedBuilder(JSON.parse(value));
 			} catch {
 				return interaction.reply(
 					"The JSON you provided is improperly formatted."
