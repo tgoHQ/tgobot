@@ -25,9 +25,7 @@ export default {
 		.addBooleanOption((option) =>
 			option
 				.setName("embed")
-				.setDescription(
-					"Pass true to interpret message as JSON for an embed. If false, the message will be interpreted as plain text."
-				)
+				.setDescription("Pass true to interpret message as JSON for an embed.")
 				.setRequired(true)
 		)
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
