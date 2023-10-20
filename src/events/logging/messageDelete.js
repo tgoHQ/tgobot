@@ -24,7 +24,12 @@ export default {
 			.setDescription(
 				`Message by ${message.author} deleted in ${message.channel}.`
 			)
-			.setFields({ name: "Content", value: message.content });
+			.setFields({
+				name: "Content",
+				value: message.embeds
+					? "Message contained rich embeds and can't be displayed."
+					: message.content,
+			});
 
 		logChannel.send({ embeds: [embed] });
 	},
