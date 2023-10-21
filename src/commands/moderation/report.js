@@ -20,20 +20,19 @@ export default {
 
 	async execute(interaction) {
 		const member = interaction.options.getMember("user");
-		const targetUser = member.user;
 
 		const embed = new EmbedBuilder().setColor("137c5a").setTitle("User Report")
 			.setDescription(`
 				**User:** ${member.user}
-
-				**Joined server:** ${time(member.joinedAt, TimestampStyles.RelativeTime)}${
-			member.flags.has(1) ? " <:warn:1049224507598061628> Not first join!" : ""
-		}
-				**First join:** ${!member.flags.has(1)}
 				**Account created:** ${time(
 					member.user.createdAt,
 					TimestampStyles.RelativeTime
 				)}
+
+				**Joined server:** ${time(member.joinedAt, TimestampStyles.RelativeTime)}${
+			member.flags.has(1) ? " <:warn:1049224507598061628> Not first join!" : ""
+		}
+				**Onboarding:** ${member.flags.has(2)}
 			`);
 		interaction.reply({ embeds: [embed] });
 	},
