@@ -2,6 +2,8 @@ import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
 	EmbedBuilder,
+	time,
+	TimestampStyles,
 } from "discord.js";
 
 export default {
@@ -26,7 +28,7 @@ export default {
 			.setDescription(
 				`
 				**User:** ${member.user}
-				**Joined server:** <t:${member.joinedTimestamp}:R>
+				**Joined server:** ${time(member.joinedAt, TimestampStyles.RelativeTime)}
 			`
 			)
 			.addFields({ name: "Tag", value: member.user.toString() });
