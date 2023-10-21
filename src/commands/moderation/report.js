@@ -36,7 +36,7 @@ export default {
 				} ${time(member.joinedAt, TimestampStyles.RelativeTime)}
 				${
 					member.flags.has(2)
-						? "User has completed onboarding."
+						? "<:verified:1165088032857276577> User has completed onboarding."
 						: "<:warn:1049224507598061628> User has not completed onboarding."
 				}
 			`);
