@@ -37,14 +37,16 @@ export default {
 		)}.
 
 				${
-					member.flags.has(1)
-						? "Re-joined the server"
-						: "Joined for the first time"
-				} ${time(member.joinedAt, TimestampStyles.RelativeTime)}.
+					member.joinedTimestamp < Date.now() + 120 * 24 * 60 * 60 * 1000
+						? "<:verified:1165088032857276577>"
+						: "<:warn:1049224507598061628>"
+				} ${
+			member.flags.has(1) ? "Re-joined the server" : "Joined the server"
+		} ${time(member.joinedAt, TimestampStyles.RelativeTime)}.
 				${
 					member.flags.has(2)
-						? "<:verified:1165088032857276577> User has completed onboarding."
-						: "<:warn:1049224507598061628> User has not completed onboarding."
+						? "<:verified:1165088032857276577> Has completed onboarding."
+						: "<:warn:1049224507598061628> Has not completed onboarding."
 				}
 			`);
 		interaction.reply({ embeds: [embed] });
