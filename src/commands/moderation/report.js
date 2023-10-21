@@ -26,8 +26,10 @@ export default {
 			.setDescription(`
 				**User:** ${member.user}
 
-				**Joined server:** ${time(member.joinedAt, TimestampStyles.RelativeTime)}
-				**First join:** ${member.flags.has(1)}
+				**Joined server:** ${time(member.joinedAt, TimestampStyles.RelativeTime)}${
+			member.flags.has(1) ? " (Not first join!)" : ""
+		}
+				**First join:** ${!member.flags.has(1)}
 				**Account created:** ${time(
 					member.user.createdAt,
 					TimestampStyles.RelativeTime
