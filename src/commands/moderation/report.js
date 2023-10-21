@@ -21,8 +21,10 @@ export default {
 	async execute(interaction) {
 		const member = interaction.options.getMember("user");
 
-		const embed = new EmbedBuilder().setColor("137c5a").setTitle("User Report")
-			.setDescription(`
+		const embed = new EmbedBuilder()
+			.setColor("137c5a")
+			.setTitle("User Report")
+			.setThumbnail(member.user.displayAvatarURL()).setDescription(`
 				${member.user}
 
 				Account created ${time(member.user.createdAt, TimestampStyles.RelativeTime)}
