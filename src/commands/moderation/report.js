@@ -23,11 +23,9 @@ export default {
 
 		const embed = new EmbedBuilder().setColor("137c5a").setTitle("User Report")
 			.setDescription(`
-				**User:** ${member.user}
-				**Account created:** ${time(
-					member.user.createdAt,
-					TimestampStyles.RelativeTime
-				)}
+				${member.user}
+
+				Account created ${time(member.user.createdAt, TimestampStyles.RelativeTime)}
 
 				**Joined server** ${time(member.joinedAt, TimestampStyles.RelativeTime)}${
 			member.flags.has(1)
