@@ -27,13 +27,20 @@ export default {
 			.setThumbnail(member.user.displayAvatarURL()).setDescription(`
 				${member.user}
 
-				Account created ${time(member.user.createdAt, TimestampStyles.RelativeTime)}
+				${
+					member.user.createdTimestamp < Date.now() + 60 * 24 * 60 * 60 * 1000
+						? "<:verified:1165088032857276577>"
+						: "<:warn:1049224507598061628>"
+				} Account created ${time(
+			member.user.createdAt,
+			TimestampStyles.RelativeTime
+		)}.
 
 				${
 					member.flags.has(1)
 						? "Re-joined the server"
 						: "Joined for the first time"
-				} ${time(member.joinedAt, TimestampStyles.RelativeTime)}
+				} ${time(member.joinedAt, TimestampStyles.RelativeTime)}.
 				${
 					member.flags.has(2)
 						? "<:verified:1165088032857276577> User has completed onboarding."
