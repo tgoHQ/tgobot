@@ -27,15 +27,15 @@ export default {
 
 				Account created ${time(member.user.createdAt, TimestampStyles.RelativeTime)}
 
-				**Joined server** ${time(member.joinedAt, TimestampStyles.RelativeTime)}${
-			member.flags.has(1)
-				? " <:warn:1049224507598061628> Not first join!"
-				: "(first join ever)"
-		}
+				${
+					member.flags.has(1)
+						? "Re-joined the server"
+						: "Joined for the first time"
+				} ${time(member.joinedAt, TimestampStyles.RelativeTime)}
 				${
 					member.flags.has(2)
 						? "User has completed onboarding."
-						: "User has not completed onboarding."
+						: "<:warn:1049224507598061628> User has not completed onboarding."
 				}
 			`);
 		interaction.reply({ embeds: [embed] });
