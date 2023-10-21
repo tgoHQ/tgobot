@@ -27,7 +27,7 @@ export default {
 				**User:** ${member.user}
 
 				**Joined server:** ${time(member.joinedAt, TimestampStyles.RelativeTime)}${
-			member.flags.has(1) ? " (Not first join!)" : ""
+			member.flags.has(1) ? " <:warn:1049224507598061628> Not first join!" : ""
 		}
 				**First join:** ${!member.flags.has(1)}
 				**Account created:** ${time(
