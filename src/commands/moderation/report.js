@@ -29,10 +29,16 @@ export default {
 					TimestampStyles.RelativeTime
 				)}
 
-				**Joined server:** ${time(member.joinedAt, TimestampStyles.RelativeTime)}${
-			member.flags.has(1) ? " <:warn:1049224507598061628> Not first join!" : ""
+				**Joined server** ${time(member.joinedAt, TimestampStyles.RelativeTime)}${
+			member.flags.has(1)
+				? " <:warn:1049224507598061628> Not first join!"
+				: "(first join ever)"
 		}
-				**Onboarding:** ${member.flags.has(2)}
+				${
+					member.flags.has(2)
+						? "User has completed onboarding."
+						: "User has not completed onboarding."
+				}
 			`);
 		interaction.reply({ embeds: [embed] });
 	},
