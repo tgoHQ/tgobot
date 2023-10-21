@@ -28,7 +28,7 @@ export default {
 				${member.user}
 
 				${
-					member.user.createdTimestamp < Date.now() + 60 * 24 * 60 * 60 * 1000
+					member.user.createdTimestamp < Date.now() - 60 * 24 * 60 * 60 * 1000
 						? "<:verified:1165088032857276577>"
 						: "<:warn:1049224507598061628>"
 				} Account created ${time(
@@ -37,7 +37,7 @@ export default {
 		)}.
 
 				${
-					member.joinedTimestamp < Date.now() + 120 * 24 * 60 * 60 * 1000
+					member.joinedTimestamp < Date.now() - 120 * 24 * 60 * 60 * 1000
 						? "<:verified:1165088032857276577>"
 						: "<:warn:1049224507598061628>"
 				} ${
