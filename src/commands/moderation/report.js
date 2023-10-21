@@ -22,17 +22,15 @@ export default {
 		const member = interaction.options.getMember("user");
 		const targetUser = member.user;
 
-		const embed = new EmbedBuilder()
-			.setColor("137c5a")
-			.setTitle("User Report")
-			.setDescription(
-				`
+		const embed = new EmbedBuilder().setColor("137c5a").setTitle("User Report")
+			.setDescription(`
 				**User:** ${member.user}
 				**Joined server:** ${time(member.joinedAt, TimestampStyles.RelativeTime)}
-			`
-			)
-			.addFields({ name: "Tag", value: member.user.toString() });
-
+				**Account created:** ${time(
+					member.user.createdAt,
+					TimestampStyles.RelativeTime
+				)}
+			`);
 		interaction.reply({ embeds: [embed] });
 	},
 };
