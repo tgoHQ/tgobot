@@ -64,7 +64,8 @@ export default {
 			.setColor("137c5a")
 			.addFields(
 				{ name: "User", value: member.user.toString() },
-				{ name: "Message Content", value: message.content }
+				{ name: "Message Content", value: message.content },
+				{ name: "Channel", value: message.channel.toString() }
 			);
 
 		alertChannel.send({ embeds: [embed] });
