@@ -8,7 +8,7 @@ import {
 
 export default {
 	data: new SlashCommandBuilder()
-		.setName("report")
+		.setName("lookup")
 		.setDescription("Displays moderation info about a user.")
 		.addUserOption((option) =>
 			option
@@ -23,7 +23,7 @@ export default {
 
 		const embed = new EmbedBuilder()
 			.setColor("137c5a")
-			.setTitle("User Report")
+			.setTitle("User Lookup")
 			.setThumbnail(member.user.displayAvatarURL()).setDescription(`
 				${member.user}
 

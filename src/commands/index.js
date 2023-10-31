@@ -10,7 +10,7 @@ import slowmode from "./moderation/slowmode.js";
 import unban from "./moderation/unban.js";
 import unmute from "./moderation/unmute.js";
 import warn from "./moderation/warn.js";
-import report from "./moderation/report.js";
+import lookup from "./moderation/lookup.js";
 
 import message from "./utility/message.js";
 
@@ -27,7 +27,7 @@ export default [
 	unban,
 	unmute,
 	warn,
-	report,
+	lookup,
 
 	message,
 ];
