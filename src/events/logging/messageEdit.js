@@ -1,6 +1,6 @@
 //TODO make this work on older messages
 
-import config from "../../config";
+import config from "../../config.js";
 import { Events, EmbedBuilder, TextChannel } from "discord.js";
 
 export default {
@@ -11,7 +11,7 @@ export default {
 		if (oldMessage.content === newMessage.content) return; //if text content of message hasn't changed, return
 
 		const logChannel = newMessage.guild.channels.cache.get(
-			config.LOG_CHANNEL_ID
+			config.CHANNEL_LOG_ID
 		);
 
 		const embed = new EmbedBuilder()

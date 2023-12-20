@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "../../config.js";
 import { Events, EmbedBuilder } from "discord.js";
 import humanizeDuration from "humanize-duration";
 
@@ -8,11 +8,11 @@ export default {
 		if (member.user.bot === true) {
 			await member.guild.members.addRole({
 				user: member.user,
-				role: config.BOT_ROLE_ID,
+				role: config.ROLE_BOT_ID,
 			});
 		}
 
-		const logChannel = member.guild.channels.cache.get(config.LOG_CHANNEL_ID);
+		const logChannel = member.guild.channels.cache.get(config.CHANNEL_LOG_ID);
 
 		const embed = new EmbedBuilder()
 			.setColor("137c5a")

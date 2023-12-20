@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "../../config.js";
 import { SlashCommandBuilder } from "discord.js";
 import OpenAI from "openai";
 

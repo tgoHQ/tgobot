@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "../../config.js";
 import { inlineCode, EmbedBuilder, NewsChannel, Client } from "discord.js";
 import humanizeDuration from "humanize-duration";
 

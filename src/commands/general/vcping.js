@@ -1,4 +1,4 @@
-import config from "../../config";
+import config from "../../config.js";
 import { SlashCommandBuilder, ChannelType } from "discord.js";
 
 export default {

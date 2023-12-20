@@ -5,9 +5,8 @@ export default cleanEnv(process.env, {
 	OPENAI: str(),
 
 	TOKEN: str(),
-	CLIENT_ID: num(),
-
-	GUILD_ID: num(),
+	CLIENT_ID: str(),
+	GUILD_ID: str(),
 
 	ROLE_BOT_ID: num(),
 	ROLE_VCPING_ID: num(),
