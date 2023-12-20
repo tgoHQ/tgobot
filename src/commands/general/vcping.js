@@ -1,3 +1,4 @@
+import config from "../../config";
 import { SlashCommandBuilder, ChannelType } from "discord.js";
 
 export default {
@@ -19,7 +20,7 @@ export default {
 			//if vc ping is not on cooldown
 			if (connected >= 2) {
 				await interaction.reply(
-					`<:call:1050760154418782288> <@&${process.env.VC_PING_ROLE_ID}>, there are ${connected} users connected to ${channel}!`
+					`<:call:1050760154418782288> <@&${config.ROLE_VCPING_ID}>, there are ${connected} users connected to ${channel}!`
 				);
 				interaction.client.vcPingCooldown = true; //enable cooldown
 				setTimeout(() => {

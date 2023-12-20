@@ -2,6 +2,7 @@ import about from "./general/about.js";
 import grade from "./general/grade.js";
 import help from "./general/help.js";
 import vcping from "./general/vcping.js";
+import ask from "./general/ask.js";
 
 import ban from "./moderation/ban.js";
 import clean from "./moderation/clean.js";
@@ -18,6 +19,7 @@ export default [
 	about,
 	help,
 	vcping,
+	ask,
 	grade,
 
 	ban,

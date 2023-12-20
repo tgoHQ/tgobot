@@ -1,13 +1,5 @@
-import {
-	Events,
-	Message,
-	Client,
-	EmbedBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-	ActionRowBuilder,
-} from "discord.js";
-
+import config from "../../config";
+import { Events, Message, Client, EmbedBuilder } from "discord.js";
 export default {
 	name: Events.MessageCreate,
 	/**
@@ -32,7 +24,7 @@ export default {
 		//if member has Introduced role, ignore
 		if (
 			member.roles.cache.some((role) => {
-				return role.id === process.env.INTRODUCED_ROLE_ID;
+				return role.id === config.INTRODUCED_ROLE_ID;
 			})
 		) {
 			return;
@@ -44,7 +36,7 @@ export default {
 		}
 
 		//try to send DM to author, otherwise send a message in the channel
-		const responseMessage = `${member.user} You may not send links until you've been a member for 2 hours or introduced yourself in <#${process.env.INTRODUCTION_CHANNEL_ID}>`;
+		const responseMessage = `${member.user} You may not send links until you've been a member for 2 hours or introduced yourself in <#${config.INTRODUCTION_CHANNEL_ID}>`;
 		try {
 			await member.user.send(responseMessage);
 		} catch (e) {
@@ -55,9 +47,7 @@ export default {
 		message.delete();
 
 		//fetch the alerts channel
-		const alertChannel = await client.channels.fetch(
-			process.env.ALERT_CHANNEL_ID
-		);
+		const alertChannel = await client.channels.fetch(config.ALERT_CHANNEL_ID);
 
 		const embed = new EmbedBuilder()
 			.setTitle("Blocked a link from a new user")

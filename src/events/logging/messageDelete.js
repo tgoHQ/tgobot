@@ -1,15 +1,14 @@
 //TODO make this work on older messages
 
+import config from "../../config";
 import { Events, EmbedBuilder, TextChannel } from "discord.js";
 
 export default {
 	name: Events.MessageDelete,
 	execute(client, message) {
-		if (!message.guild || message.guild.id != process.env.GUILD_ID) return; //if message deleted is not from main guild, return
+		if (!message.guild || message.guild.id != config.GUILD_ID) return; //if message deleted is not from main guild, return
 
-		const logChannel = message.guild.channels.cache.get(
-			process.env.LOG_CHANNEL_ID
-		);
+		const logChannel = message.guild.channels.cache.get(config.LOG_CHANNEL_ID);
 
 		if (!(logChannel instanceof TextChannel)) {
 			throw new Error(

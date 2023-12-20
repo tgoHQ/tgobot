@@ -1,3 +1,4 @@
+import config from "../../config";
 import { inlineCode, EmbedBuilder, NewsChannel, Client } from "discord.js";
 import humanizeDuration from "humanize-duration";
 
@@ -124,7 +125,7 @@ export default class ModLog {
 		// 	try {
 		// 		client.users.send(
 		// 			this.targetUser,
-		// 			this.string + `\nFor appeals: ${process.env.APPEALS_URL}`
+		// 			this.string + `\nFor appeals: ${config.APPEALS_URL}`
 		// 		);
 		// 	} catch (err) {
 		// 		console.log(err);
@@ -139,7 +140,7 @@ export default class ModLog {
 async function postEmbed(modLog, client) {
 	//posts a log object to a channel, returns the message
 
-	const channel = client.channels.cache.get(process.env.MODLOG_CHANNEL_ID);
+	const channel = client.channels.cache.get(config.CHANNEL_MODLOG_ID);
 
 	if (!(channel instanceof NewsChannel)) {
 		console.log(
