@@ -62,6 +62,8 @@ export default {
 			return e.name === interaction.options.getString("scale");
 		});
 
+		if (!inputGradeScale) throw ""; //todo
+
 		//if the grade does not match the selected scale, reject
 		if (!inputGradeScale.isType(input)) {
 			return interaction.reply(
@@ -71,7 +73,7 @@ export default {
 
 		const embed = new EmbedBuilder()
 			.setTitle(`${inputGradeScale.displayName}: ${input}`)
-			.setColor("137c5a")
+			.setColor("#137c5a")
 			.addFields({
 				name: "Difficulty",
 				value: inputGradeScale.getGradeBand(input),

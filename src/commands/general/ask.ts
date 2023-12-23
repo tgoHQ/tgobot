@@ -1,5 +1,5 @@
-import config from "../../config.js";
-import { SlashCommandBuilder } from "discord.js";
+import env from "../../util/env.js";
+import { SlashCommandBuilder, Interaction } from "discord.js";
 import OpenAI from "openai";
 
 export default {
@@ -17,7 +17,7 @@ export default {
 		await interaction.deferReply();
 
 		const openai = new OpenAI({
-			apiKey: config.OPENAI,
+			apiKey: env.OPENAI,
 		});
 
 		const prompt = interaction.options.getString("prompt");
@@ -37,6 +37,5 @@ export default {
 			],
 		});
 		await interaction.editReply(response.choices[0].message.content);
-		interaction.channel.send(`Used ${response.usage.total_tokens} tokens.`);
 	},
 };

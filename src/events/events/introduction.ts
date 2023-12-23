@@ -1,10 +1,10 @@
-import config from "../../config.js";
+import env from "../../util/env.js";
 import { Events } from "discord.js";
 
 export default {
 	name: Events.MessageCreate,
 	execute(client, message) {
-		if (message.channel.id != config.CHANNEL_INTRODUCTIONS_ID) return;
+		if (message.channel.id != env.CHANNEL_INTRODUCTIONS_ID) return;
 		message.react("👋");
 	},
 };

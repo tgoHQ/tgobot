@@ -1,4 +1,4 @@
-import { Client } from "discord.js";
+import client from "../util/client.js";
 
 import memberJoin from "./logging/memberJoin.js";
 import messageDelete from "./logging/messageDelete.js";
@@ -18,11 +18,7 @@ const events = [
 	links,
 ];
 
-/**
- * Loads events onto client
- * @param {Client} client
- */
-export default function load(client) {
+export default function load() {
 	for (const event of events) {
 		if (event.once) {
 			client.once(event.name, (...args) => event.execute(client, ...args));

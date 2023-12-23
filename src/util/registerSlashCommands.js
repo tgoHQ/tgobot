@@ -1,10 +1,10 @@
-import config from "../config.js";
+import env from "./env.js";
 import { REST, Routes } from "discord.js";
 import commands from "../commands/index.js";
 
 export default async function registerSlashCommands() {
 	// Construct and prepare an instance of the REST module
-	const rest = new REST().setToken(config.TOKEN);
+	const rest = new REST().setToken(env.TOKEN);
 
 	//get command data
 	const commandData = [];
@@ -24,7 +24,7 @@ export default async function registerSlashCommands() {
 
 	// The put method is used to fully refresh all commands in the guild with the current set
 	const data = await rest.put(
-		Routes.applicationGuildCommands(config.CLIENT_ID, config.GUILD_ID),
+		Routes.applicationGuildCommands(env.CLIENT_ID, env.GUILD_ID),
 		{ body: commandData }
 	);
 

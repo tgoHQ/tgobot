@@ -22,7 +22,7 @@ export default {
 		const member = interaction.options.getMember("user");
 
 		const embed = new EmbedBuilder()
-			.setColor("137c5a")
+			.setColor("#137c5a")
 			.setTitle("User Lookup")
 			.setThumbnail(member.user.displayAvatarURL()).setDescription(`
 				${member.user}

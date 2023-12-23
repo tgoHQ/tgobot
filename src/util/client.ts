@@ -1,4 +1,4 @@
-import config from "./config.js";
+import env from "./env.js";
 import { Client, GatewayIntentBits } from "discord.js";
 
 const client = new Client({
@@ -22,13 +22,6 @@ const client = new Client({
 	},
 });
 
-import registerSlashCommands from "./modules/registerSlashCommands.js";
-await registerSlashCommands();
+client.login(env.TOKEN);
 
-import useSlashCommands from "./modules/useSlashCommands.js";
-await useSlashCommands(client);
-
-import loadEvents from "./events/index.js";
-loadEvents(client);
-
-client.login(config.TOKEN);
+export default client;

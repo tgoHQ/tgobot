@@ -1,4 +1,4 @@
-import config from "../../config.js";
+import env from "../../util/env.js";
 import { Events, EmbedBuilder } from "discord.js";
 import humanizeDuration from "humanize-duration";
 
@@ -8,14 +8,14 @@ export default {
 		if (member.user.bot === true) {
 			await member.guild.members.addRole({
 				user: member.user,
-				role: config.ROLE_BOT_ID,
+				role: env.ROLE_BOT_ID,
 			});
 		}
 
-		const logChannel = member.guild.channels.cache.get(config.CHANNEL_LOG_ID);
+		const logChannel = member.guild.channels.cache.get(env.CHANNEL_LOG_ID);
 
 		const embed = new EmbedBuilder()
-			.setColor("137c5a")
+			.setColor("#137c5a")
 			.setTitle("User Joined")
 			.setThumbnail(member.user.displayAvatarURL())
 			.setDescription(member.user.toString())
@@ -23,7 +23,7 @@ export default {
 				{ name: "Username", value: member.user.tag },
 				{
 					name: "Account Age",
-					value: humanizeDuration(new Date() - member.user.createdAt, {
+					value: humanizeDuration(Date.now() - member.user.createdAt, {
 						largest: 2,
 						units: ["y", "mo", "d", "h", "m", "s"],
 					}),

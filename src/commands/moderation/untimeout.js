@@ -1,20 +1,19 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
-import ModLog from "../../modules/modlog/modlog.js";
 
 export default {
 	data: new SlashCommandBuilder()
-		.setName("unmute")
-		.setDescription("Unmutes a user.")
+		.setName("untimeout")
+		.setDescription("Untimeouts a user.")
 		.addUserOption((option) =>
 			option
 				.setName("user")
-				.setDescription("The user to unmute")
+				.setDescription("The user to untimeout")
 				.setRequired(true)
 		)
 		.addStringOption((option) =>
 			option
 				.setName("reason")
-				.setDescription("Reason for the unmute")
+				.setDescription("Reason for the untimeout")
 				.setRequired(true)
 		)
 		.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
@@ -27,7 +26,7 @@ export default {
 
 		await member.timeout(null, reason).then(() => {
 			const modlog = new ModLog({
-				type: "Unmute",
+				type: "Untimeout",
 				author,
 				reason,
 				targetUser,
