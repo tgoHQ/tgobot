@@ -1,5 +1,5 @@
 import { EmbedBuilder, User } from "discord.js";
-import postModLogChannel from "./moglogchannel.js/index.js";
+import postModLogChannel from "./moglogchannel.js";
 
 export default async function userModerationLog({
 	user,
