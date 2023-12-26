@@ -28,8 +28,8 @@ export default {
 		const channel = interaction.options.getChannel("channel");
 		const value = interaction.options.getString("value");
 
-		await channel.send(value).then(() => {
-			interaction.reply({ content: "Sent!", ephemeral: true });
+		await channel.send(value).then((message) => {
+			interaction.reply({ content: message.url, ephemeral: true });
 		});
 	},
 };

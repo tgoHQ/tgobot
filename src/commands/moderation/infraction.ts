@@ -2,7 +2,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import {
 	infraction,
 	infractionTypes,
-} from "../../modules/moderation/infractions/infractions.js";
+} from "../../modules/moderation/infractions.js";
 
 let infractionOptions: { name: string; value: string }[] = [];
 for (const key in infractionTypes) {

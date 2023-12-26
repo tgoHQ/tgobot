@@ -1,7 +1,7 @@
 import { User } from "discord.js";
-import userModerationLog from "../userModerationLog.js";
-import timeout from "../actions/timeout.js";
-import ban from "../actions/ban.js";
+import userModerationLog from "./userModerationLog.js";
+import timeout from "./actions/timeout.js";
+import ban from "./actions/ban.js";
 
 export async function infraction({
 	type,

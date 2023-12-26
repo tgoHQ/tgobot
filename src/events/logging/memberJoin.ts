@@ -5,6 +5,7 @@ import humanizeDuration from "humanize-duration";
 export default {
 	name: Events.GuildMemberAdd,
 	async execute(client, member) {
+		//add bot role if new member is a bot
 		if (member.user.bot === true) {
 			await member.guild.members.addRole({
 				user: member.user,
@@ -12,8 +13,8 @@ export default {
 			});
 		}
 
+		//log the join
 		const logChannel = member.guild.channels.cache.get(env.CHANNEL_LOG_ID);
-
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")
 			.setTitle("User Joined")
@@ -29,7 +30,6 @@ export default {
 					}),
 				}
 			);
-
 		logChannel.send({ embeds: [embed] });
 	},
 };
