@@ -1,12 +1,13 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
-import infractionTypes from "../../modules/moderation/infractionTypes.js";
+import {
+	infraction,
+	infractionTypes,
+} from "../../modules/moderation/infractions/infractions.js";
 
-let infractionOptions = [];
-
+let infractionOptions: { name: string; value: string }[] = [];
 for (const key in infractionTypes) {
-	console.log(key);
 	infractionOptions.push({
-		name: infractionTypes[key].pretty,
+		name: infractionTypes[key].string,
 		value: key,
 	});
 }
@@ -20,7 +21,7 @@ const command = new SlashCommandBuilder()
 	.addStringOption((option) =>
 		option
 			.setName("type")
-			.setDescription("a")
+			.setDescription("The type of infraction")
 			.setRequired(true)
 			.addChoices(...infractionOptions)
 	)
@@ -38,9 +39,15 @@ export default {
 
 		const user = interaction.options.getUser("user");
 		const infractionKey = interaction.options.getString("type");
+		const comment = interaction.options.getString("comments");
 
-		infractionTypes[infractionKey].execute(user);
+		const response = await infraction({
+			type: infractionKey,
+			user,
+			author: interaction.user,
+			comment,
+		});
 
-		interaction.reply("test");
+		interaction.reply(response);
 	},
 };

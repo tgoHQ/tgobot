@@ -4,9 +4,10 @@
 	"source": "src/server.ts",
 	"scripts": {
 		"start": "node .",
-		"dev": "parcel build && node dist/module.js",
-		"build": "parcel build"
+		"dev": "tsc && node .",
+		"build": "tsc"
 	},
+	"repository": "https://github.com/kevin8181/tgobot3",
 	"dependencies": {
 		"@openbeta/sandbag": "^0.0.48",
 		"dayjs": "^1.11.6",
@@ -18,7 +19,6 @@
 		"parse-duration": "^1.0.2"
 	},
 	"devDependencies": {
-		"@sapphire/ts-config": "^5.0.0",
 		"@types/node": "^20.10.5",
 		"typescript": "^5.3.3"
 	},

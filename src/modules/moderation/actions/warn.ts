@@ -1,7 +1,7 @@
 import { User } from "discord.js";
 import userModerationLog from "../userModerationLog.js";
 
-export default async function ban({
+export default async function warn({
 	user,
 	reason,
 	author,
@@ -10,7 +10,7 @@ export default async function ban({
 	reason: string;
 	author: User;
 }) {
-	const string = `<:ban:1049256901562609684> Banned ${user}`;
+	const string = `<:warn:1049224507598061628> Warned ${user}`;
 	await userModerationLog({ user, author, string, reason });
 
 	//take action

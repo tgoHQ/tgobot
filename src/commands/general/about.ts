@@ -9,7 +9,7 @@ export default {
 	async execute(interaction) {
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")
-			.setTitle("tgobot3")
+			.setTitle("tgobot")
 			.addFields(
 				{
 					name: "<:djs:1049834255498354689> discord.js",
@@ -23,7 +23,7 @@ export default {
 				},
 				{
 					name: "<:developer:1049293038729576468> Developer",
-					value: "tgobot3 was built by <@247070105916276736>.",
+					value: "tgobot was built by <@247070105916276736>.",
 				},
 				{ name: "Uptime", value: humanizeDuration(interaction.client.uptime) }
 			);

@@ -1,5 +1,5 @@
 import { GuildTextBasedChannel, User } from "discord.js";
-import modToolLog from "../modToolLog.js";
+import modToolLog from "../moderationToolLog.js";
 
 export default async function bulkDelete({
 	channel,

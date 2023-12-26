@@ -27,7 +27,7 @@ export default [
 	slowmode,
 	untimeout,
 	lookup,
-	// infraction,
+	infraction,
 
 	message,
 ];

@@ -2,7 +2,7 @@
 //only for sending messages to log channel. does not need to be stored in DB
 
 import { User, EmbedBuilder } from "discord.js";
-import postModLogChannel from "../moglogchannel.js";
+import postModLogChannel from "./moglogchannel.js";
 
 export default async function modToolLog({
 	string,
