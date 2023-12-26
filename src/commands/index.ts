@@ -2,7 +2,7 @@ import about from "./general/about.js";
 import help from "./general/help.js";
 import vcping from "./general/vcping.js";
 import ask from "./general/ask.js";
-import grade from "./general/grade.js";
+import grades from "./general/grades.js";
 import gearlist from "./general/gearlist.js";
 
 import clean from "./moderation/clean.js";
@@ -19,7 +19,7 @@ export default [
 	help,
 	vcping,
 	ask,
-	grade,
+	grades,
 	gearlist,
 
 	clean,
