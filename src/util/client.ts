@@ -19,6 +19,7 @@ const client = new Client({
 	},
 	allowedMentions: {
 		parse: ["users"],
+		repliedUser: true,
 	},
 });
 
