@@ -2,7 +2,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import {
 	infraction,
 	infractionTypes,
-} from "../../modules/moderation/infractions.js";
+} from "../../modules/moderation/users/infractions.js";
 
 let infractionOptions: { name: string; value: string }[] = [];
 for (const key in infractionTypes) {
@@ -48,6 +48,9 @@ export default {
 			comment,
 		});
 
-		interaction.reply(response);
+		interaction.reply({
+			ephemeral: true,
+			content: `${response.infractionString}\n${response.actionResultsString}`,
+		});
 	},
 };

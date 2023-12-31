@@ -1,5 +1,5 @@
 import { GuildTextBasedChannel, User } from "discord.js";
-import modToolLog from "../moderationToolLog.js";
+import modToolLog from "./moderationToolLog.js";
 import humanizeDuration from "humanize-duration";
 
 export default async function slowmode({

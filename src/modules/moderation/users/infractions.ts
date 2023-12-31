@@ -1,5 +1,4 @@
 import { User } from "discord.js";
-import userModerationLog from "./userModerationLog.js";
 import timeout from "./actions/timeout.js";
 import ban from "./actions/ban.js";
 
@@ -14,25 +13,22 @@ export async function infraction({
 	author: User;
 	comment: string | undefined;
 }) {
-	//look up infraction type
-	//execute (callback)
-	//add to user's moderation record
-	const reason = infractionTypes[type].string + comment;
+	const reason = `${infractionTypes[type].string}${
+		comment ? ". Comment: " + comment : ""
+	}`;
 
-	const resultString = await infractionTypes[type].execute({
+	const infractionString = `Logged infraction \`${infractionTypes[type].string}\` against ${user} with comment \`${comment}\`.`;
+
+	const actionResultsString = await infractionTypes[type].execute({
 		user,
 		author,
 		reason,
 	});
 
-	await userModerationLog({
-		user,
-		author,
-		string: resultString,
-		reason: reason,
-	});
-
-	return `Logged infraction \`${infractionTypes[type].string}\` against ${user} with comment \`${comment}\`.`;
+	return {
+		infractionString,
+		actionResultsString,
+	};
 }
 
 export const infractionTypes: { [key: string]: InfractionType } = {

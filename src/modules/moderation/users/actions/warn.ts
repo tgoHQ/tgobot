@@ -15,7 +15,5 @@ export default async function warn({
 
 	//take action
 
-	//dm user
-
 	return string;
 }

@@ -21,9 +21,9 @@ const events = [
 export default function load() {
 	for (const event of events) {
 		if (event.once) {
-			client.once(event.name, (...args) => event.execute(client, ...args));
+			client.once(event.name, (...args) => event.execute(...args));
 		} else {
-			client.on(event.name, (...args) => event.execute(client, ...args));
+			client.on(event.name, (...args) => event.execute(...args));
 		}
 	}
 	console.log(`Client listening for ${events.length} events.`);

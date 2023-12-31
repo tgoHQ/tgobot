@@ -1,5 +1,5 @@
 import { EmbedBuilder, User } from "discord.js";
-import postModLogChannel from "./moglogchannel.js";
+import postModLogChannel from "../moglogchannel.js";
 
 export default async function userModerationLog({
 	user,
@@ -16,6 +16,7 @@ export default async function userModerationLog({
 	//post to modlog channel
 	//get timestamp
 	//save to database
+	//DM user
 
 	const embed = new EmbedBuilder()
 		.setColor("#137c5a")

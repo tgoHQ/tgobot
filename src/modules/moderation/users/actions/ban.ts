@@ -15,7 +15,5 @@ export default async function ban({
 
 	//take action
 
-	//dm user
-
 	return string;
 }

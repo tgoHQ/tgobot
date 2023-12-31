@@ -16,8 +16,6 @@ export default async function timeout({
 	const string = `<:timeout:1049257820882747432> Timed out ${user} for ${humanizeDuration(
 		duration
 	)}`;
-	//take action
-	//dm user
 
 	await userModerationLog({ user, author, string, reason });
 

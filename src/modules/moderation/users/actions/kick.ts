@@ -15,7 +15,5 @@ export default async function kick({
 
 	//take action
 
-	//dm user
-
 	return string;
 }

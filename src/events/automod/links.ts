@@ -1,19 +1,19 @@
 import env from "../../util/env.js";
-import { Events, Message, Client, EmbedBuilder } from "discord.js";
+import { Events, EmbedBuilder, BaseGuildTextChannel } from "discord.js";
+import type { Event } from "../index.js";
+
 export default {
 	name: Events.MessageCreate,
-	/**
-	 *
-	 * @param {Client} client
-	 * @param {Message} message
-	 */
-	async execute(client, message) {
+
+	async execute(message) {
 		const linkRE = /https?:\/\/.{2,}/;
 
 		//if message does not contain a link, ignore
 		if (!linkRE.test(message.content)) {
 			return;
 		}
+
+		if (message.guild?.id !== env.GUILD_ID) return; //if message not from main guild, return
 
 		//fetch the GuildMember
 		const member = await message.guild.members.fetch(message.author);
@@ -31,7 +31,10 @@ export default {
 		}
 
 		//if member joined more than 2 hours ago, ignore
-		if (member.joinedTimestamp < Date.now() - 2 * 60 * 60 * 1000) {
+		if (
+			member.joinedTimestamp &&
+			member.joinedTimestamp < Date.now() - 2 * 60 * 60 * 1000
+		) {
 			return;
 		}
 
@@ -47,7 +50,14 @@ export default {
 		message.delete();
 
 		//fetch the alerts channel
-		const alertChannel = await client.channels.fetch(env.CHANNEL_ALERT_ID);
+		const alertChannel = await message.guild.channels.fetch(
+			env.CHANNEL_ALERT_ID
+		);
+		if (!(alertChannel instanceof BaseGuildTextChannel)) {
+			throw new Error(
+				"Log channel is not a valid text channel. Check your env variable LOG_CHANNEL_ID."
+			);
+		} //todo
 
 		const embed = new EmbedBuilder()
 			.setTitle("Blocked a link from a new user")
@@ -60,7 +70,7 @@ export default {
 
 		alertChannel.send({ embeds: [embed] });
 	},
-};
+} satisfies Event<Events.MessageCreate>;
 
 //on message send
 
