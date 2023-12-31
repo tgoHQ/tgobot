@@ -1,6 +1,6 @@
 <div align="center">
 
-# `tgobot3`
+# `tgobot`
 
 ### Node.js Discord bot specializing in moderation.
 
@@ -29,32 +29,3 @@
   - No permission setup (all command access based on the user's pre-existing Discord permissions)
   - Designate a bots role to automatically assign when a new bot joins
   - Ping a role when there are X or more people in any voice channel
-
-## Installation and Setup
-
-Create your application on the [Discord Developer Portal](https://discord.com/developers/applications).
-
-Make sure [Node.js](https://nodejs.org/) is installed.
-
-Then, run:
-
-```
-$ git clone https://github.com/kevin8181/tgobot3
-$ cd tgobot3
-$ npm install
-```
-
-Environmental variables:
-
-| Variable          | Value                                   |
-| ----------------- | --------------------------------------- |
-| TOKEN             | your Discord bot's token                |
-| CLIENT_ID         | your Discord application's client ID    |
-| MODLOG_CHANNEL_ID | id of the modlog channel in your server |
-| APPEALS_URL       | url to visit for moderation appeals     |
-
-To launch:
-
-```
-$ node .
-```

@@ -1,0 +1,6 @@
+all actions take params author and reason
+
+all user-based actions take user
+slowmode takes channel and interval
+clean takes other params
+lockdown takes duration

@@ -1,18 +1,26 @@
 {
 	"name": "tgobot",
-	"main": "src/server.js",
-	"type": "module",
+	"main": "dist/server.js",
+	"source": "src/server.ts",
 	"scripts": {
-		"start": "node ."
+		"start": "node .",
+		"dev": "tsc && node .",
+		"build": "tsc"
 	},
+	"repository": "https://github.com/kevin8181/tgobot3",
 	"dependencies": {
 		"@openbeta/sandbag": "^0.0.48",
 		"dayjs": "^1.11.6",
 		"discord.js": "^14.7.1",
+		"dotenv": "^16.3.1",
+		"envalid": "^8.0.0",
 		"humanize-duration": "^3.27.3",
+		"openai": "^4.23.0",
 		"parse-duration": "^1.0.2"
 	},
 	"devDependencies": {
-		"typescript": "^5.1.6"
-	}
+		"@types/node": "^20.10.5",
+		"typescript": "^5.3.3"
+	},
+	"type": "module"
 }
