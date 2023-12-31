@@ -29,7 +29,7 @@ export default {
 			messages: [
 				{
 					role: "system",
-					content: `The user is introducing themself to the community. Respond to their message and welcome them. Tell them that information can be found in <#${env.CHANNEL_INFO_ID}>. Responses are less than 500 characters.`,
+					content: `The user is introducing themself to our community about the outdoors. Respond and welcome them. Responses are less than 500 characters.`,
 				},
 				{
 					role: "user",
