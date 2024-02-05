@@ -1,4 +1,5 @@
-import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
+import { SlashCommandBuilder, EmbedBuilder, User } from "discord.js";
+import { Command } from "..";
 
 export default {
 	data: new SlashCommandBuilder()

@@ -23,6 +23,6 @@ const client = new Client({
 	},
 });
 
-client.login(env.TOKEN);
+await client.login(env.TOKEN);
 
 export default client;
