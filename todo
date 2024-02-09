@@ -1,4 +1,7 @@
+finish adding more snippets
 detect ban, unban, timeout, untimeout, bulk delete, kick made outside of bot
+dm users when actioned
+
 save modlog to database
-gearlist command save to database
+gearlist command
 unit conversion
