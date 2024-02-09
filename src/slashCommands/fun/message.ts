@@ -4,6 +4,7 @@ import {
 	ChannelType,
 	EmbedBuilder,
 } from "discord.js";
+import { Command } from "..";
 
 export default {
 	data: new SlashCommandBuilder()

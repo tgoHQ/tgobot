@@ -7,7 +7,6 @@
 		"dev": "tsc && node .",
 		"build": "tsc"
 	},
-	"repository": "https://github.com/kevin8181/tgobot3",
 	"dependencies": {
 		"@openbeta/sandbag": "^0.0.48",
 		"dayjs": "^1.11.6",

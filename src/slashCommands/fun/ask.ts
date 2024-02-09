@@ -1,6 +1,7 @@
 import env from "../../util/env.js";
 import { SlashCommandBuilder, Interaction } from "discord.js";
 import OpenAI from "openai";
+import { Command } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -28,7 +29,7 @@ export default {
 				{
 					role: "system",
 					content:
-						"Provide information about outdoor recreation gear and techniques. Responses are less than 2000 characters.",
+						"Provide information about outdoor recreation gear and techniques. Responses must be less than 2000 characters.",
 				},
 				{
 					role: "user",

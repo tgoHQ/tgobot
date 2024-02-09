@@ -34,13 +34,14 @@ export default {
 	data: command,
 
 	async execute(interaction) {
-		//look up infraction type
-		//execute infraction
+		interaction.deferReply();
 
+		//get options
 		const user = interaction.options.getUser("user");
 		const infractionKey = interaction.options.getString("type");
 		const comment = interaction.options.getString("comments");
 
+		//execute
 		const response = await infraction({
 			type: infractionKey,
 			user,
@@ -48,8 +49,8 @@ export default {
 			comment,
 		});
 
-		interaction.reply({
-			ephemeral: true,
+		//reply to the command
+		interaction.editReply({
 			content: `${response.infractionString}\n${response.actionResultsString}`,
 		});
 	},

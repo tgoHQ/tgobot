@@ -6,5 +6,3 @@ await useSlashCommands();
 
 import loadEvents from "./events/load.js";
 loadEvents();
-
-import discordObjs from "./util/discordObjs.js";

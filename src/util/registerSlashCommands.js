@@ -1,6 +1,6 @@
 import env from "./env.js";
 import { REST, Routes } from "discord.js";
-import commands from "../commands/index.js";
+import commands from "../slashCommands/index.js";
 
 export default async function registerSlashCommands() {
 	// Construct and prepare an instance of the REST module

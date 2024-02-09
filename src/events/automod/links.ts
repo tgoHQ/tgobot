@@ -72,10 +72,5 @@ export default {
 	},
 } satisfies Event<Events.MessageCreate>;
 
-//on message send
 
-//if message contains link AND user is not Introduced AND user joined less than 3 hours ago
 
-//delete message
-//notify author
-//send message in alerts channel

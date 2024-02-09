@@ -19,9 +19,10 @@ const client = new Client({
 	},
 	allowedMentions: {
 		parse: ["users"],
+		repliedUser: true,
 	},
 });
 
-client.login(env.TOKEN);
+await client.login(env.TOKEN);
 
 export default client;

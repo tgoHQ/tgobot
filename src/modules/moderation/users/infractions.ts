@@ -13,12 +13,14 @@ export async function infraction({
 	author: User;
 	comment: string | undefined;
 }) {
+	//combine infraction string and mod comment to create reason
 	const reason = `${infractionTypes[type].string}${
 		comment ? ". Comment: " + comment : ""
 	}`;
 
 	const infractionString = `Logged infraction \`${infractionTypes[type].string}\` against ${user} with comment \`${comment}\`.`;
 
+	//execute the chosen infraction type module
 	const actionResultsString = await infractionTypes[type].execute({
 		user,
 		author,
@@ -105,6 +107,7 @@ export const infractionTypes: { [key: string]: InfractionType } = {
 		},
 	},
 };
+
 interface InfractionType {
 	string: string;
 	execute({
