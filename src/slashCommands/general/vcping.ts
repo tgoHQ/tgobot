@@ -1,6 +1,5 @@
 import env from "../../util/env.js";
 import { SlashCommandBuilder, ChannelType } from "discord.js";
-import { Command } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()

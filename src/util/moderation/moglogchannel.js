@@ -6,3 +6,4 @@ export default async function postModLogChannel(embed) {
 
 	return channel.send({ embeds: [embed] });
 }
+//todo this whole file

@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 
 import parseDuration from "parse-duration";
-import timeout from "../../modules/moderation/users/actions/timeout.js";
+import timeout from "../../util/moderation/users/actions/timeout.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -16,7 +16,9 @@ export default {
 		.addStringOption((option) =>
 			option
 				.setName("duration")
-				.setDescription("Duration of the timeout")
+				.setDescription(
+					"Duration of the timeout. Accepts units and abbreviations."
+				)
 				.setRequired(true)
 		)
 		.addStringOption((option) =>
