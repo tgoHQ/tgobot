@@ -29,7 +29,7 @@ export default {
 				{
 					role: "system",
 					content:
-						"Provide information about outdoor recreation gear and techniques. Respond with under 2000 characters.",
+						"Provide information about outdoor recreation gear and techniques. You must respond with less than 2000 characters.",
 				},
 				{
 					role: "user",
