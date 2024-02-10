@@ -1,7 +1,22 @@
-finish adding more snippets
+make user mod action modules have separate functions for execute and log
+
 detect ban, unban, timeout, untimeout, bulk delete, kick made outside of bot
 dm users when actioned
 
 save modlog to database
 gearlist command
 unit conversion
+
+delete user messages on ban
+badfaith command with preset types. auto erase user messages when spam/scam type
+
+ticket command
+	opens a private thread with specified name, adds the user
+	don't allow user to add other users?
+	command for adding users to ticket?
+	command to lock ticket? or button?
+
+
+uniform ts-friendly way to load files (events and interaction handlers)
+handle all interactions (slash commands, context commands, buttons, modals, etc)
+ts register slash commands

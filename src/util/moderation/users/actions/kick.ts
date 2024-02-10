@@ -13,7 +13,7 @@ export default async function kick({
 	const string = `<:kick:1073030912230572143> Kicked ${user}`;
 	await userModerationLog({ user, author, string, reason });
 
-	//take action
+	//todo take action
 
 	return string;
 }

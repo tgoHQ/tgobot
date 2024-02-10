@@ -2,7 +2,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import {
 	infraction,
 	infractionTypes,
-} from "../../modules/moderation/users/infractions.js";
+} from "../../util/moderation/users/infractions.js";
 
 let infractionOptions: { name: string; value: string }[] = [];
 for (const key in infractionTypes) {
@@ -16,7 +16,10 @@ const command = new SlashCommandBuilder()
 	.setName("infraction")
 	.setDescription("Record a user infraction.")
 	.addUserOption((option) =>
-		option.setName("user").setDescription("a").setRequired(true)
+		option
+			.setName("user")
+			.setDescription("The user who committed the infraction")
+			.setRequired(true)
 	)
 	.addStringOption((option) =>
 		option

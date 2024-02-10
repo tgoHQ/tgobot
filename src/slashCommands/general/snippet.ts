@@ -39,6 +39,97 @@ const snippets: { name: string; content: string }[] = [
 		content:
 			"https://www.rei.com/learn/expert-advice/family-camping-checklist.html",
 	},
+	{
+		name: "Context",
+		content: `
+			To help us better understand your situation and give you useful advice, please share some more context such as:
+
+			- Are you camping, day-hiking, or doing multi-day backpacking?
+			- How many days/miles will your trip be?
+			- What type of weather are you expecting, incl. temperature range?
+			- What is your budget?
+			- What is your experience level?
+			- Share your gear list.
+		`,
+	},
+	{
+		name: "Ankle Support",
+		content: `
+			https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3943374/
+			> These findings provide preliminary evidence suggesting that wearing high-top shoes can, in certain conditions, induce a delayed pre-activation timing and decreased amplitude of evertor muscle activity, and may therefore have a detrimental effect on establishing and maintaining functional ankle joint stability.
+
+			https://pubmed.ncbi.nlm.nih.gov/8368420/
+			> There was no significant difference among these 3 groups, leading to the conclusion that there is no strong relationship between shoe type and ankle sprains.
+			
+			https://pubmed.ncbi.nlm.nih.gov/11686947/
+			> The protective effect of 'high-top' shoes remains to be established.
+		`,
+	},
+	{
+		name: "Weight",
+		content: `
+			**Worn weight** is the clothing you wear all the time while hiking.
+			\`\`\`
+				Shirt: worn
+				Hiking shoes: worn
+				Trekking poles: worn
+				Rain jacket: not worn
+				Backpack: not worn
+				Stuff in your pockets: not worn
+			\`\`\`
+			**Consumable weight** is stuff you use up over the course of the hike.
+			\`\`\`
+				Water: consumable
+				Food: consumable
+				First aid supplies: not consumable
+			\`\`\`
+			**Base weight** is everything EXCEPT the worn and consumable items.
+
+			**Total pack weight** (or TPW) is the weight of your backpack and everything in it. It's the sum of base weight and consumable weight.
+
+			**From-skin-out weight** is the total weight of everything (base + consumables + worn).
+		`,
+	},
+	{
+		name: "Ultralight Cost",
+		content: `
+			Backpacks
+			\`\`\`
+				Osprey Atmos 65 AG: 4lb 10 oz, $340
+				Granite Gear Crown2 60: 2lb 6 oz, $150
+
+				UL version saves 2lb 4 oz, $190
+			\`\`\`
+			Stove
+			\`\`\`
+				MSR pocket rocket 2: 2.6 oz, $60
+				BRS 3000t: 1 oz, $19
+
+				UL version saves 1.6 oz, $41
+			\`\`\`
+			Water bottles
+			\`\`\`
+				Nalgene 1L: 6.25 oz, $16
+				Smartwater 1L: 1.4 oz, $2
+
+				UL version saves 4.85 oz, $14
+			\`\`\`
+			Shelter footprint
+			\`\`\`
+				Average fabric tent footprint: 6 oz, $40
+				Gossamer Gear polycryo footprint 3.6 oz, $11
+
+				UL version saves 2.4 oz, $29
+			\`\`\`
+			Headlamp
+			\`\`\`
+				Black Diamond spot 400: 2.7 oz, $50
+				Nitecore nu25 UL: 1.6 oz, $37
+
+				UL version saves 1.1 oz, $13
+			\`\`\`
+		`,
+	},
 ];
 
 let commandChoices: { name: string; value: string }[] = [];
@@ -65,7 +156,7 @@ export default {
 			embeds: [
 				new EmbedBuilder()
 					.setTitle(snippet.name)
-					.setDescription(snippet.content)
+					.setDescription(snippet.content.replaceAll("	", ""))
 					.setColor("#137c5a"),
 			],
 		});

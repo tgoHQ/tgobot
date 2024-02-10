@@ -23,8 +23,8 @@ export default {
 
 				</tickets open:839848848003825673>: Open a ticket to talk to the server staff.
 
-				</gearlist:1187494085561430076>: View a user's gear lists.
-				</gearlist set:>: Edit your saved gear lists.
+				\`-gearlist\`: View a user's gear lists.
+				\`-setgearlist\`: Edit your saved gear lists.
 
 				</climb:1081349272986988555>: Display info about a climbing route from OpenBeta.
 				</crag:1081476008538030140>: Display info about a crag from OpenBeta.

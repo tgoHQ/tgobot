@@ -13,11 +13,6 @@ export default async function userModerationLog({
 	reason: string;
 }) {
 	//create embed
-	//post to modlog channel
-	//get timestamp
-	//save to database
-	//DM user
-
 	const embed = new EmbedBuilder()
 		.setColor("#137c5a")
 		.setDescription(string)
@@ -28,6 +23,7 @@ export default async function userModerationLog({
 		.setThumbnail(user.displayAvatarURL())
 		.addFields({ name: "Reason", value: reason });
 
+	//post to modlog channel
 	const message = await postModLogChannel(embed);
 	await message.crosspost();
 }

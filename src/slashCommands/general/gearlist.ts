@@ -1,5 +1,4 @@
 import { SlashCommandBuilder, EmbedBuilder, User } from "discord.js";
-import { Command } from "..";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -15,8 +14,7 @@ export default {
 	async execute(interaction) {
 		const targetUser = interaction.options.getUser("user");
 
-		//look up all saved gear lists for user
-		//format into set of embed fields and add to embed
+		//todo look up gear lists from database and make this command work
 
 		interaction.reply({
 			embeds: [

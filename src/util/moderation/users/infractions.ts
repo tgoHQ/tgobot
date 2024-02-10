@@ -80,7 +80,7 @@ export const infractionTypes: { [key: string]: InfractionType } = {
 				user,
 				reason,
 				author,
-				duration: 6 * 60 * 60 * 1000,
+				duration: 12 * 60 * 60 * 1000,
 			});
 		},
 	},
@@ -102,7 +102,7 @@ export const infractionTypes: { [key: string]: InfractionType } = {
 				user,
 				reason,
 				author,
-				duration: 6 * 60 * 60 * 1000,
+				duration: 12 * 60 * 60 * 1000,
 			});
 		},
 	},

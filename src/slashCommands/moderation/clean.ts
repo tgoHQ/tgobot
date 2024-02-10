@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
-import bulkDelete from "../../modules/moderation/tools/bulkDelete.js";
+import bulkDelete from "../../util/moderation/tools/bulkDelete.js";
 
 export default {
 	data: new SlashCommandBuilder()
