@@ -1,7 +1,7 @@
-import registerSlashCommands from "./util/registerSlashCommands.js";
+import registerSlashCommands from "./lib/registerSlashCommands.js";
 await registerSlashCommands();
 
-import useSlashCommands from "./util/useSlashCommands.js";
+import useSlashCommands from "./lib/useSlashCommands.js";
 await useSlashCommands();
 
 import loadEvents from "./events/load.js";

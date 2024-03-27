@@ -1,4 +1,4 @@
-import env from "../../util/env.js";
+import env from "../../lib/env.js";
 import { Events, EmbedBuilder, BaseGuildTextChannel } from "discord.js";
 import type { Event } from "../index.js";
 
@@ -43,7 +43,7 @@ export default {
 		try {
 			await member.user.send(responseMessage);
 		} catch (e) {
-			await message.channel.send(responseMessage);
+			// await message.channel.send(responseMessage); todo
 		}
 
 		//delete the message with the link
@@ -71,6 +71,3 @@ export default {
 		alertChannel.send({ embeds: [embed] });
 	},
 } satisfies Event<Events.MessageCreate>;
-
-
-

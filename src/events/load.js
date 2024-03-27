@@ -1,4 +1,4 @@
-import client from "../util/client.js";
+import client from "../lib/client.js";
 
 import memberJoin from "./logging/memberJoin.js";
 import messageDelete from "./logging/messageDelete.js";

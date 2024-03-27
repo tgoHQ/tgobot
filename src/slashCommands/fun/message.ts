@@ -26,6 +26,7 @@ export default {
 	async execute(interaction) {
 		const channel = interaction.options.getChannel("channel");
 		const value = interaction.options.getString("value");
+		if (!value) return;
 
 		await channel.send(value).then((message) => {
 			interaction.reply({ content: message.url, ephemeral: true });

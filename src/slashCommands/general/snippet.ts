@@ -1,8 +1,4 @@
-import {
-	EmbedBuilder,
-	SlashCommandBuilder,
-	SlashCommandStringOption,
-} from "discord.js";
+import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 
 const snippets: { name: string; content: string }[] = [
 	{
@@ -13,7 +9,7 @@ const snippets: { name: string; content: string }[] = [
 	{
 		name: "Rule 2",
 		content:
-			"Respect the outdoors. Enjoy nature responsibly and leave no trace.",
+			"Respect the outdoors. Enjoy nature responsibly and follow the [Leave No Trace](https://lnt.org/why/7-principles/) principles.",
 	},
 	{
 		name: "Rule 3",
@@ -38,6 +34,11 @@ const snippets: { name: string; content: string }[] = [
 		name: "Camping Checklist",
 		content:
 			"https://www.rei.com/learn/expert-advice/family-camping-checklist.html",
+	},
+	{
+		name: "Day-Hiking Checklist",
+		content:
+			"https://www.rei.com/learn/expert-advice/day-hiking-checklist.html",
 	},
 	{
 		name: "Context",
@@ -68,20 +69,22 @@ const snippets: { name: string; content: string }[] = [
 	{
 		name: "Weight",
 		content: `
-			**Worn weight** is the clothing you wear all the time while hiking.
+			**Worn weight** is the clothing you wear __all the time__ while hiking.
+			\`\`\`diff
+				+ shirt
+				+ hiking shoes
+				+ trekking poles
+				- rain jacket
+				- backpack
+				- stuff in your pockets
 			\`\`\`
-				Shirt: worn
-				Hiking shoes: worn
-				Trekking poles: worn
-				Rain jacket: not worn
-				Backpack: not worn
-				Stuff in your pockets: not worn
-			\`\`\`
-			**Consumable weight** is stuff you use up over the course of the hike.
-			\`\`\`
-				Water: consumable
-				Food: consumable
-				First aid supplies: not consumable
+			**Consumable weight** is stuff you always use up over the course of the hike.
+			\`\`\`diff
+				+ water
+				+ food
+				+ fuel
+				- fuel can
+				- first aid supplies
 			\`\`\`
 			**Base weight** is everything EXCEPT the worn and consumable items.
 
@@ -130,6 +133,36 @@ const snippets: { name: string; content: string }[] = [
 			\`\`\`
 		`,
 	},
+	{
+		name: "VBL",
+		content:
+			"https://andrewskurka.com/vapor-barrier-liners-theory-application/",
+	},
+	{
+		name: "Layers",
+		content: `
+			There are three basic types of layers:
+
+			1. Base layers
+			These sit directly against the skin to provide wicking, and sometimes warmth.
+
+			2. Insulation layers / midlayers
+			These keep heat in your body. Examples include puffy jackets and fleeces.
+
+			3. Shell layers
+			These are your outermost layers that protect against rain and wind.
+		`,
+	},
+	{
+		name: "Torso Length",
+		content: `
+			Backpacking packs are sized by torso length. Note that this is different from the *capacity* of the pack, i.e. how much gear it can hold, measured in liters.
+
+			To figure out whether a backpack will fit you, you should review the sizing chart and compare it to your torso length.
+
+			See [this REI article](https://www.rei.com/learn/expert-advice/backpacks-adjusting-fit.html) for more information, including instructions for how to measure your own torso length.
+		`,
+	},
 ];
 
 let commandChoices: { name: string; value: string }[] = [];
@@ -152,7 +185,7 @@ export default {
 	async execute(interaction) {
 		const snippet = snippets[interaction.options.getString("snippet")];
 
-		const embed = await interaction.reply({
+		await interaction.reply({
 			embeds: [
 				new EmbedBuilder()
 					.setTitle(snippet.name)

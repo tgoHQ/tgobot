@@ -1,6 +1,6 @@
 //TODO make this work on older messages
 
-import env from "../../util/env.js";
+import env from "../../lib/env.js";
 import { Events, EmbedBuilder, BaseGuildTextChannel } from "discord.js";
 import type { Event } from "../index.js";
 

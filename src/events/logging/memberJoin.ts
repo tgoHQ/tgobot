@@ -1,4 +1,4 @@
-import env from "../../util/env.js";
+import env from "../../lib/env.js";
 import { Events, EmbedBuilder, BaseGuildTextChannel } from "discord.js";
 import type { Event } from "../index.js";
 
@@ -29,7 +29,7 @@ export default {
 			.setThumbnail(member.user.displayAvatarURL())
 			.setDescription(member.user.toString())
 			.addFields(
-				{ name: "Username", value: member.user.tag },
+				{ name: "Username", value: member.user.username },
 				{
 					name: "Account Age",
 					value: humanizeDuration(Date.now() - member.user.createdTimestamp, {
