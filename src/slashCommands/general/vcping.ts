@@ -1,4 +1,4 @@
-import env from "../../util/env.js";
+import env from "../../lib/env.js";
 import { SlashCommandBuilder, ChannelType } from "discord.js";
 
 export default {

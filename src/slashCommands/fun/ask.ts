@@ -1,4 +1,4 @@
-import env from "../../util/env.js";
+import env from "../../lib/env.js";
 import { SlashCommandBuilder, Interaction } from "discord.js";
 import OpenAI from "openai";
 import { Command } from "../index.js";
@@ -22,6 +22,7 @@ export default {
 		});
 
 		const prompt = interaction.options.getString("prompt");
+		if (!prompt) return;
 
 		const response = await openai.chat.completions.create({
 			model: "gpt-3.5-turbo",
@@ -29,7 +30,7 @@ export default {
 				{
 					role: "system",
 					content:
-						"Provide information about outdoor recreation gear and techniques. You must respond with less than 2000 characters.",
+						"Only answer questions about outdoor recreation. Your response must be less than 1500 characters.",
 				},
 				{
 					role: "user",
@@ -37,6 +38,9 @@ export default {
 				},
 			],
 		});
-		await interaction.editReply(response.choices[0].message.content);
+
+		if (response.choices[0].message.content) {
+			await interaction.editReply(response.choices[0].message.content);
+		}
 	},
 };

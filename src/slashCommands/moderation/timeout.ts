@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 
 import parseDuration from "parse-duration";
-import timeout from "../../util/moderation/users/actions/timeout.js";
+import timeout from "../../lib/moderation/users/actions/timeout.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -31,7 +31,7 @@ export default {
 
 	async execute(interaction) {
 		const durationRaw = interaction.options.getString("duration");
-		const duration = parseDuration(durationRaw);
+		const duration = parseDuration(durationRaw) ?? 60 * 60 * 1000; //default 1 hour if input cannot be parsed
 
 		interaction.reply(
 			await timeout({

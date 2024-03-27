@@ -20,3 +20,5 @@ ticket command
 uniform ts-friendly way to load files (events and interaction handlers)
 handle all interactions (slash commands, context commands, buttons, modals, etc)
 ts register slash commands
+
+log deleted messages from clean command

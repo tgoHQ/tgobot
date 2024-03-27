@@ -1,7 +1,7 @@
-import env from "../../../../util/env.js";
-import client from "../../../../util/client.js";
-import { User } from "discord.js";
+import env from "../../../../lib/env.js";
+import client from "../../../client.js";
 import userModerationLog from "../userModerationLog.js";
+import type { User } from "discord.js";
 
 export default async function ban({
 	user,
