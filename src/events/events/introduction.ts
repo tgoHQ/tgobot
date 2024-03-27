@@ -16,7 +16,7 @@ export default {
 			return;
 		}
 
-		// message.channel.sendTyping();
+		message.channel.sendTyping();
 		message.react("👋");
 		message.member?.roles.add(env.ROLE_INTRODUCED_ID);
 

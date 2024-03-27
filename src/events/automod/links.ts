@@ -39,11 +39,11 @@ export default {
 		}
 
 		//try to send DM to author, otherwise send a message in the channel
-		const responseMessage = `${member.user} You may not send links until you've been a member for 2 hours or introduced yourself in <#${env.CHANNEL_INTRODUCTIONS_ID}>`;
+		const responseMessage = `${member.user} You may not send links until you've been a member for 2 hours or introduced yourself in <#${env.CHANNEL_INTRODUCTIONS_ID}>!`;
 		try {
 			await member.user.send(responseMessage);
 		} catch (e) {
-			// await message.channel.send(responseMessage); todo
+			await message.channel.send(responseMessage);
 		}
 
 		//delete the message with the link
