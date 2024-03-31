@@ -9,6 +9,8 @@ import ready from "./events/ready.js";
 
 import links from "./automod/links.js";
 
+import meetups from "./automessage/meetups.js";
+
 const events = [
 	introduction,
 	memberJoin,
@@ -16,6 +18,7 @@ const events = [
 	messageEdit,
 	ready,
 	links,
+	meetups,
 ];
 
 export default function load() {
