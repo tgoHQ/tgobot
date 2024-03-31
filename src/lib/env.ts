@@ -19,4 +19,5 @@ export default cleanEnv(process.env, {
 	CHANNEL_LOG_ID: str(),
 	CHANNEL_MODLOG_ID: str(),
 	CHANNEL_INFO_ID: str(),
+	CHANNEL_MEETUPS_ID: str(),
 });
