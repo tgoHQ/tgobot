@@ -27,11 +27,14 @@ export default {
 		const response = await openai.chat.completions.create({
 			model: "gpt-3.5-turbo",
 			temperature: 1.5,
+			frequency_penalty: 0.15,
+			presence_penalty: 0.3,
+			max_tokens: 300,
 			messages: [
 				{
 					role: "system",
 					content:
-						"the user is asking for advice about backpacking gear. disagree with whatever they say.tell them how silly they are and that their base weight is too high. tell them to cut their toothbrush in half and to shave every milligram possible off their kit. you could also tell them to use a 1/8inch sleeping pad, cold soak all their meals, and sleep under a 5 * 7 tarp. Be condescending.",
+						"the user is asking for advice about backpacking gear. tell them how silly they are and that their base weight is too high. tell them to cut their toothbrush in half and to shave every milligram possible off their kit. you could also tell them to use a 1/8inch sleeping pad, cold soak all their meals, and sleep under a 5 * 7 tarp. make up other impractical ultralight advice. Be condescending.",
 				},
 				{
 					role: "user",
