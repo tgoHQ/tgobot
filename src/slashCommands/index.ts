@@ -1,7 +1,7 @@
 import type {
 	SlashCommandBuilder,
 	ChatInputCommandInteraction,
-	SlashCommandSubcommandsOnlyBuilder
+	SlashCommandSubcommandsOnlyBuilder,
 } from "discord.js";
 
 /**
@@ -11,7 +11,9 @@ export type Command = {
 	/**
 	 * The data for the command
 	 */
-	data: Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup"> | SlashCommandSubcommandsOnlyBuilder;
+	data:
+		| Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">
+		| SlashCommandSubcommandsOnlyBuilder;
 	/**
 	 * The function to execute when the command is called
 	 *
@@ -35,6 +37,7 @@ import infraction from "./moderation/infraction.js";
 import ask from "./fun/ask.js";
 import message from "./fun/message.js";
 import showButton from "./general/showButton.js";
+import ulAdvice from "./fun/ulAdvice.js";
 
 export default [
 	about,
@@ -51,6 +54,7 @@ export default [
 
 	ask,
 	message,
+	ulAdvice,
 
 	showButton,
 ];
