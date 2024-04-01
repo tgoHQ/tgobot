@@ -8,7 +8,9 @@ export default {
 	async execute(interaction) {
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")
-			.setTitle("TGO Command Help").setDescription(`
+			.setTitle("TGO Command Help")
+			.setDescription(
+				`
 				</help:1164780041104793631>: Shows this message!
 
 				<id:customize>: See the available roles and choose yours.
@@ -29,7 +31,8 @@ export default {
 				</climb:1081349272986988555>: Display info about a climbing route from OpenBeta.
 				</crag:1081476008538030140>: Display info about a crag from OpenBeta.
 				</grades:1165000063303565312>: Display info about a climbing grade and convert to other scales.
-			`);
+			`.replaceAll("	", "")
+			);
 		await interaction.reply({ embeds: [embed] });
 	},
 } satisfies Command;

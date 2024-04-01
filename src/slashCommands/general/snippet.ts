@@ -1,4 +1,5 @@
 import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { Command } from "..";
 
 const snippets: { name: string; content: string }[] = [
 	{
@@ -183,7 +184,7 @@ export default {
 		),
 
 	async execute(interaction) {
-		const snippet = snippets[interaction.options.getString("snippet")];
+		const snippet = snippets[interaction.options.getString("snippet", true)];
 
 		await interaction.reply({
 			embeds: [
@@ -194,4 +195,4 @@ export default {
 			],
 		});
 	},
-};
+} satisfies Command;

@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import parseDuration from "parse-duration";
 import slowmode from "../../lib/moderation/tools/slowmode.js";
+import { Command } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -23,14 +24,14 @@ export default {
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
 	async execute(interaction) {
-		const intervalRaw = interaction.options.getString("interval");
+		const intervalRaw = interaction.options.getString("interval", true);
 		const interval = parseDuration(intervalRaw) ?? 60 * 60 * 1000; //default 1 hour if input cannot be parsed
 
 		//use slowmode module for all execution
 		interaction.reply(
 			await slowmode({
 				channel: interaction.channel,
-				reason: interaction.options.getString("reason"),
+				reason: interaction.options.getString("reason", true),
 				author: interaction.user,
 				interval,
 			})

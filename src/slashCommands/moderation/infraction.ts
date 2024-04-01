@@ -3,6 +3,7 @@ import {
 	infraction,
 	infractionTypes,
 } from "../../lib/moderation/users/infractions.js";
+import { Command } from "../index.js";
 
 let infractionOptions: { name: string; value: string }[] = [];
 for (const key in infractionTypes) {
@@ -40,8 +41,8 @@ export default {
 		interaction.deferReply();
 
 		//get options
-		const user = interaction.options.getUser("user");
-		const infractionKey = interaction.options.getString("type");
+		const user = interaction.options.getUser("user", true);
+		const infractionKey = interaction.options.getString("type", true);
 		const comment = interaction.options.getString("comments");
 
 		//execute
@@ -57,4 +58,4 @@ export default {
 			content: `${response.infractionString}\n${response.actionResultsString}`,
 		});
 	},
-};
+} satisfies Command;

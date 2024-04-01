@@ -2,6 +2,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 
 import parseDuration from "parse-duration";
 import timeout from "../../lib/moderation/users/actions/timeout.js";
+import { Command } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -30,16 +31,16 @@ export default {
 		.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
 
 	async execute(interaction) {
-		const durationRaw = interaction.options.getString("duration");
+		const durationRaw = interaction.options.getString("duration", true);
 		const duration = parseDuration(durationRaw) ?? 60 * 60 * 1000; //default 1 hour if input cannot be parsed
 
 		interaction.reply(
 			await timeout({
-				user: interaction.options.getUser("user"),
-				reason: interaction.options.getString("reason"),
+				user: interaction.options.getUser("user", true),
+				reason: interaction.options.getString("reason", true),
 				author: interaction.user,
 				duration,
 			})
 		);
 	},
-};
+} satisfies Command;

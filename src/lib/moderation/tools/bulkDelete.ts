@@ -1,4 +1,4 @@
-import { TextChannel, User } from "discord.js";
+import { GuildTextBasedChannel, User } from "discord.js";
 import modToolLog from "./moderationToolLog.js";
 
 export default async function bulkDelete({
@@ -7,7 +7,7 @@ export default async function bulkDelete({
 	author,
 	number,
 }: {
-	channel: TextChannel;
+	channel: GuildTextBasedChannel;
 	reason: string;
 	author: User;
 	number: number;

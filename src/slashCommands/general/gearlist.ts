@@ -1,4 +1,5 @@
-import { SlashCommandBuilder, EmbedBuilder, User } from "discord.js";
+import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
+import { Command } from "..";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -12,7 +13,7 @@ export default {
 		),
 
 	async execute(interaction) {
-		const targetUser = interaction.options.getUser("user");
+		const targetUser = interaction.options.getUser("user", true);
 
 		//todo look up gear lists from database and make this command work
 
@@ -25,4 +26,4 @@ export default {
 			],
 		});
 	},
-};
+} satisfies Command;

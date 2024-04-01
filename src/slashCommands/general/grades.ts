@@ -11,6 +11,7 @@ import {
 	AI,
 	Aid,
 } from "@openbeta/sandbag";
+import { Command } from "..";
 
 const gradeScales = [
 	French,
@@ -55,7 +56,7 @@ export default {
 		),
 
 	async execute(interaction) {
-		const input = interaction.options.getString("grade");
+		const input = interaction.options.getString("grade", true);
 
 		//find grade scale from input
 		const inputGradeScale = gradeScales.find((e) => {
@@ -66,9 +67,10 @@ export default {
 
 		//if the grade does not match the selected scale, reject
 		if (!inputGradeScale.isType(input)) {
-			return interaction.reply(
+			await interaction.reply(
 				"Your input does not match a valid/known climbing grade."
 			);
+			return;
 		}
 
 		const embed = new EmbedBuilder()
@@ -95,4 +97,4 @@ export default {
 
 		await interaction.reply({ embeds: [embed] });
 	},
-};
+} satisfies Command;

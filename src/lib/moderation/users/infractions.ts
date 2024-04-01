@@ -11,7 +11,7 @@ export async function infraction({
 	type;
 	user: User;
 	author: User;
-	comment: string | undefined;
+	comment: string | null;
 }) {
 	//combine infraction string and mod comment to create reason
 	const reason = `${infractionTypes[type].string}${
