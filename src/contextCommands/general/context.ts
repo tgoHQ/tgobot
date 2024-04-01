@@ -21,7 +21,7 @@ export default {
 			messages: [
 				{
 					role: "system",
-					content: `the user is being vague and is likely a beginner. respond with a JSON object only. include one key "text" which is a short paragraph welcoming them and asking if they will answer some clarifying questions. then an array "questions" of strings containing the clarifying questions so we can help them, such as budget, type of activity, gear list, type of weather/temperature, mileage/length of trip. use "we" instead of "I".`,
+					content: `the user is being vague and is likely a beginner. respond with a JSON object only. include one key "text" which is a short paragraph saying hello and asking if they will answer some clarifying questions. then an array "questions" of strings containing the clarifying questions so we can help them, such as budget, type of activity, gear list, type of weather/temperature, mileage/length of trip. use "we" instead of "I".`,
 				},
 				{
 					role: "user",
