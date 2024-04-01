@@ -40,7 +40,9 @@ export default {
 		});
 
 		if (response.choices[0].message.content) {
-			await interaction.editReply(response.choices[0].message.content);
+			await interaction.editReply(
+				`**Question**: ${prompt}\n\n**Advice**:\n${response.choices[0].message.content}`
+			);
 		}
 	},
 } satisfies Command;
