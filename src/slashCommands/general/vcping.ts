@@ -1,5 +1,6 @@
 import env from "../../lib/env.js";
 import { SlashCommandBuilder, ChannelType } from "discord.js";
+import { Command } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -14,7 +15,7 @@ export default {
 		),
 
 	async execute(interaction) {
-		const channel = interaction.options.getChannel("channel");
+		const channel = interaction.options.getChannel("channel", true);
 		const connected = channel.members.toJSON().length;
 		if (!interaction.client.vcPingCooldown) {
 			//if vc ping is not on cooldown

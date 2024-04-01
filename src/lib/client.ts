@@ -1,5 +1,7 @@
 import env from "./env.js";
 import { Client, GatewayIntentBits } from "discord.js";
+import { Collection } from "discord.js";
+import { Command } from "../slashCommands/index.js";
 
 const client = new Client({
 	intents: [
@@ -25,4 +27,8 @@ const client = new Client({
 
 await client.login(env.TOKEN);
 
-export default client;
+interface ExtendedClient extends Client {
+	commands?: Collection<string, Command>;
+}
+
+export default client as ExtendedClient;

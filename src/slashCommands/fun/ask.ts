@@ -1,5 +1,5 @@
 import env from "../../lib/env.js";
-import { SlashCommandBuilder, Interaction } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
 import OpenAI from "openai";
 import { Command } from "../index.js";
 
@@ -30,7 +30,7 @@ export default {
 				{
 					role: "system",
 					content:
-						"Only answer questions about outdoor recreation. Your response must be less than 1500 characters.",
+						"Answer questions about outdoor recreation. Your response must be less than 1500 characters.",
 				},
 				{
 					role: "user",
@@ -43,4 +43,4 @@ export default {
 			await interaction.editReply(response.choices[0].message.content);
 		}
 	},
-};
+} satisfies Command;
