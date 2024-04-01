@@ -26,7 +26,7 @@ export default {
 
 		const response = await openai.chat.completions.create({
 			model: "gpt-3.5-turbo",
-			temperature: 1.35,
+			temperature: 1.27,
 			frequency_penalty: 0.1,
 			presence_penalty: 0.1,
 			max_tokens: 300,
