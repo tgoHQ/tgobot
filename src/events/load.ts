@@ -1,17 +1,18 @@
 import client from "../lib/client.js";
+import type { Event } from "./index.js";
 
 import memberJoin from "./logging/memberJoin.js";
 import messageDelete from "./logging/messageDelete.js";
 import messageEdit from "./logging/messageEdit.js";
 
-import introduction from "./events/introduction.js";
+import introduction from "./automessage/introduction.js";
 import ready from "./events/ready.js";
 
 import links from "./automod/links.js";
 
 import meetups from "./automessage/meetups.js";
 
-const events = [
+const events: Event[] = [
 	introduction,
 	memberJoin,
 	messageDelete,

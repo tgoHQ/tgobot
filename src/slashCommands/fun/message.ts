@@ -3,7 +3,7 @@ import {
 	PermissionFlagsBits,
 	ChannelType,
 } from "discord.js";
-import { Command } from "..";
+import { SlashCommand } from "..";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -36,4 +36,4 @@ export default {
 			interaction.reply({ content: message.url, ephemeral: true });
 		});
 	},
-} satisfies Command;
+} satisfies SlashCommand;

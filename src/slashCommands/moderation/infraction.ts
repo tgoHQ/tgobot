@@ -3,7 +3,7 @@ import {
 	infraction,
 	infractionTypes,
 } from "../../lib/moderation/users/infractions.js";
-import { Command } from "../index.js";
+import { SlashCommand } from "../index.js";
 
 let infractionOptions: { name: string; value: string }[] = [];
 for (const key in infractionTypes) {
@@ -58,4 +58,4 @@ export default {
 			content: `${response.infractionString}\n${response.actionResultsString}`,
 		});
 	},
-} satisfies Command;
+} satisfies SlashCommand;

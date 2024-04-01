@@ -1,7 +1,7 @@
 import env from "../../lib/env.js";
 import { SlashCommandBuilder } from "discord.js";
 import OpenAI from "openai";
-import { Command } from "../index.js";
+import { SlashCommand } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -43,4 +43,4 @@ export default {
 			await interaction.editReply(response.choices[0].message.content);
 		}
 	},
-} satisfies Command;
+} satisfies SlashCommand;

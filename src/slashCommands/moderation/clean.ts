@@ -1,6 +1,10 @@
-import { SlashCommandBuilder, PermissionFlagsBits, GuildTextBasedChannel } from "discord.js";
+import {
+	SlashCommandBuilder,
+	PermissionFlagsBits,
+	GuildTextBasedChannel,
+} from "discord.js";
 import bulkDelete from "../../lib/moderation/tools/bulkDelete.js";
-import { Command } from "../index.js";
+import { SlashCommand } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -23,8 +27,6 @@ export default {
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
 	async execute(interaction) {
-
-
 		interaction.reply(
 			await bulkDelete({
 				channel: interaction.channel!,

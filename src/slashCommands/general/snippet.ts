@@ -1,7 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
-import { Command } from "..";
+import { SlashCommand } from "..";
 
-const snippets: { name: string; content: string }[] = [
+const snippets = [
 	{
 		name: "Rule 1",
 		content:
@@ -164,7 +164,7 @@ const snippets: { name: string; content: string }[] = [
 			See [this REI article](https://www.rei.com/learn/expert-advice/backpacks-adjusting-fit.html) for more information, including instructions for how to measure your own torso length.
 		`,
 	},
-];
+] satisfies { name: string; content: string }[];
 
 let commandChoices: { name: string; value: string }[] = [];
 snippets.forEach((snippet, index) => {
@@ -184,7 +184,7 @@ export default {
 		),
 
 	async execute(interaction) {
-		const snippet = snippets[interaction.options.getString("snippet", true)];
+		const snippet: { name: string; content: string } = snippets[interaction.options.getString("snippet", true)];
 
 		await interaction.reply({
 			embeds: [
@@ -195,4 +195,4 @@ export default {
 			],
 		});
 	},
-} satisfies Command;
+} satisfies SlashCommand;

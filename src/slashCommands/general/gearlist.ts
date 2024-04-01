@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
-import { Command } from "..";
+import { SlashCommand } from "..";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -26,4 +26,4 @@ export default {
 			],
 		});
 	},
-} satisfies Command;
+} satisfies SlashCommand;

@@ -7,7 +7,7 @@ import type {
 /**
  * Defines the structure of a command
  */
-export type Command = {
+export type SlashCommand = {
 	/**
 	 * The data for the command
 	 */

@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import parseDuration from "parse-duration";
 import slowmode from "../../lib/moderation/tools/slowmode.js";
-import { Command } from "../index.js";
+import { SlashCommand } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()

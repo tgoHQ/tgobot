@@ -2,6 +2,11 @@ import { Collection, Events } from "discord.js";
 import slashCommands from "../slashCommands/index.js";
 import contextCommands from "../contextCommands/index.js";
 import client from "./client.js";
+import { SlashCommand } from "../slashCommands/index.js";
+import {
+	UserContextCommand,
+	MessageContextCommand,
+} from "../contextCommands/index.js";
 
 const failReply = {
 	content:
@@ -9,41 +14,41 @@ const failReply = {
 	ephemeral: true,
 };
 
-export default async function useSlashCommands() {
+export default async function useApplicationCommands() {
 	//add commands to client
 
-	const commands = [...slashCommands, ...contextCommands];
-
-	const commandsCollection = new Collection();
-	for (const command of commands) {
-		commandsCollection.set(command.data.name, command);
+	const commands: Collection<
+		string,
+		SlashCommand | UserContextCommand | MessageContextCommand
+	> = new Collection();
+	for (const command of [...slashCommands, ...contextCommands]) {
+		commands.set(command.data.name, command);
 	}
-	client.commands = commandsCollection;
-
 
 	//listen for commands being run
 	client.on(Events.InteractionCreate, async (interaction) => {
-		if (
-			!(interaction.isChatInputCommand() || interaction.isContextMenuCommand())
-		)
-			return;
+		if (!interaction.isCommand()) return;
 
-		const command = client.commands.get(interaction.commandName);
+		const command = commands.get(interaction.commandName);
 
 		if (!command) {
 			console.error(
 				`No command matching ${interaction.commandName} was found.`
 			);
-			return await interaction.reply(failReply);
+			await interaction.reply(failReply);
+			return;
 		}
 
 		try {
+			//todo
+			//@ts-ignore
 			await command.execute(interaction);
 		} catch (error) {
 			console.error(`Error executing ${interaction.commandName}`, error);
 
 			if (interaction.replied || interaction.deferred) {
-				return await interaction.followUp(failReply);
+				await interaction.followUp(failReply);
+				return;
 			}
 
 			await interaction.reply(failReply);
