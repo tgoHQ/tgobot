@@ -1,15 +1,30 @@
-import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import {
+	SlashCommandBuilder,
+	PermissionFlagsBits,
+	APIApplicationCommandOptionChoice,
+} from "discord.js";
+import {
+	InfractionType,
 	infraction,
-	infractionTypes,
+	infractionHandlers,
 } from "../../lib/moderation/users/infractions.js";
-import { Command } from "../index.js";
+import { SlashCommand } from "../index.js";
 
-let infractionOptions: { name: string; value: string }[] = [];
-for (const key in infractionTypes) {
+//define the list of infractions to be used in the command. generate the string options.
+const infractionTypesInCommand = [
+	InfractionType.badFaith,
+	InfractionType.controversial,
+	InfractionType.lnt,
+	InfractionType.nsfw,
+	InfractionType.personalAttacks,
+	InfractionType.shitpost,
+	InfractionType.slursBigotry,
+];
+let infractionOptions: APIApplicationCommandOptionChoice<string>[] = [];
+for (const key of infractionTypesInCommand) {
 	infractionOptions.push({
-		name: infractionTypes[key].string,
-		value: key,
+		name: infractionHandlers[key].string,
+		value: key.toString(),
 	});
 }
 
@@ -42,7 +57,7 @@ export default {
 
 		//get options
 		const user = interaction.options.getUser("user", true);
-		const infractionKey = interaction.options.getString("type", true);
+		const infractionKey = parseInt(interaction.options.getString("type", true));
 		const comment = interaction.options.getString("comments");
 
 		//execute
@@ -58,4 +73,4 @@ export default {
 			content: `${response.infractionString}\n${response.actionResultsString}`,
 		});
 	},
-} satisfies Command;
+} satisfies SlashCommand;

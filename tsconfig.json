@@ -5,7 +5,7 @@
 		"module": "ESNext" /* Specify what module code is generated. */,
 		"moduleResolution": "Node" /* Specify how TypeScript looks up a file from a given module specifier. */,
 
-		"allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
+		"allowJs": false /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
 
 		"outDir": "./dist" /* Specify an output folder for all emitted files. */,
 
@@ -13,8 +13,8 @@
 		"forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
 
 		"strict": true /* Enable all strict type-checking options. */,
-		"noImplicitAny": false /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
-
-		"skipLibCheck": true /* Skip type checking all .d.ts files. */
+		"noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
+		"noUnusedParameters": true /* Raise an error when a function parameter isn't read. */,
+		"noUnusedLocals": true /* Raise an error when a local variable isn't read. */
 	}
 }

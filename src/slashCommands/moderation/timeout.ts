@@ -2,7 +2,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 
 import parseDuration from "parse-duration";
 import timeout from "../../lib/moderation/users/actions/timeout.js";
-import { Command } from "../index.js";
+import { SlashCommand } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -43,4 +43,4 @@ export default {
 			})
 		);
 	},
-} satisfies Command;
+} satisfies SlashCommand;

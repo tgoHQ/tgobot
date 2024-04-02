@@ -1,7 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
-import { Command } from "..";
+import { SlashCommand } from "..";
 
-const snippets: { name: string; content: string }[] = [
+const snippets = [
 	{
 		name: "Rule 1",
 		content:
@@ -164,7 +164,23 @@ const snippets: { name: string; content: string }[] = [
 			See [this REI article](https://www.rei.com/learn/expert-advice/backpacks-adjusting-fit.html) for more information, including instructions for how to measure your own torso length.
 		`,
 	},
-];
+	{
+		name: "Leave No Trace",
+		content: `
+			Leave No Trace is a set of guidelines for how to minimize damage to the environment while spending time outdoors.
+			
+			It's comprised of [7 principles](https://lnt.org/why/7-principles/):
+
+			- Plan ahead and prepare
+			- Travel and camp on durable surfaces
+			- Dispose of waste properly
+			- Leave what you find
+			- Minimize campfire impacts
+			- Respect wildlife
+			- Be considerate of others
+		`,
+	},
+] satisfies { name: string; content: string }[];
 
 let commandChoices: { name: string; value: string }[] = [];
 snippets.forEach((snippet, index) => {
@@ -181,10 +197,16 @@ export default {
 				.setDescription("The name of the snippet to run")
 				.setRequired(true)
 				.addChoices(...commandChoices)
+		)
+		.addBooleanOption((option) =>
+			option
+				.setName("hide")
+				.setDescription("Make the bot's response visible only to you")
 		),
 
 	async execute(interaction) {
-		const snippet = snippets[interaction.options.getString("snippet", true)];
+		const snippet: { name: string; content: string } =
+			snippets[parseInt(interaction.options.getString("snippet", true))];
 
 		await interaction.reply({
 			embeds: [
@@ -193,6 +215,7 @@ export default {
 					.setDescription(snippet.content.replaceAll("	", ""))
 					.setColor("#137c5a"),
 			],
+			ephemeral: !!interaction.options.getBoolean("hide", false),
 		});
 	},
-} satisfies Command;
+} satisfies SlashCommand;

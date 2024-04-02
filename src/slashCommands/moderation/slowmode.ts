@@ -1,12 +1,30 @@
-import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
+import {
+	SlashCommandBuilder,
+	PermissionFlagsBits,
+	ChannelType,
+} from "discord.js";
 import parseDuration from "parse-duration";
 import slowmode from "../../lib/moderation/tools/slowmode.js";
-import { Command } from "../index.js";
+import { SlashCommand } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()
 		.setName("slowmode")
-		.setDescription("Sets slowmode on the current channel.")
+		.setDescription("Sets slowmode on a channel.")
+		.addChannelOption((option) =>
+			option
+				.setName("channel")
+				.setDescription("Channel to set slowmode on")
+				.setRequired(true)
+				.addChannelTypes(
+					ChannelType.GuildText,
+					ChannelType.GuildAnnouncement,
+					ChannelType.GuildStageVoice,
+					ChannelType.AnnouncementThread,
+					ChannelType.PublicThread,
+					ChannelType.GuildVoice
+				)
+		)
 		.addStringOption((option) =>
 			option
 				.setName("interval")
@@ -30,11 +48,18 @@ export default {
 		//use slowmode module for all execution
 		interaction.reply(
 			await slowmode({
-				channel: interaction.channel,
+				channel: interaction.options.getChannel("channel", true, [
+					ChannelType.GuildText,
+					ChannelType.GuildAnnouncement,
+					ChannelType.GuildStageVoice,
+					ChannelType.AnnouncementThread,
+					ChannelType.PublicThread,
+					ChannelType.GuildVoice,
+				]),
 				reason: interaction.options.getString("reason", true),
 				author: interaction.user,
 				interval,
 			})
 		);
 	},
-};
+} satisfies SlashCommand;

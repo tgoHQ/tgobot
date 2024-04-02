@@ -3,7 +3,7 @@ import {
 	PermissionFlagsBits,
 	ChannelType,
 } from "discord.js";
-import { Command } from "..";
+import { SlashCommand } from "..";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -25,9 +25,10 @@ export default {
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
 	async execute(interaction) {
-		const channel = interaction.options.getChannel("channel", true);
-
-		if (!("send" in channel)) return; //todo do this the right way
+		const channel = interaction.options.getChannel("channel", true, [
+			ChannelType.GuildAnnouncement,
+			ChannelType.GuildText,
+		]);
 
 		const value = interaction.options.getString("value");
 		if (!value) return;
@@ -36,4 +37,4 @@ export default {
 			interaction.reply({ content: message.url, ephemeral: true });
 		});
 	},
-} satisfies Command;
+} satisfies SlashCommand;

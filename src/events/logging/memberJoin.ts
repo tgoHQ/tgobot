@@ -1,8 +1,8 @@
-import env from "../../lib/env.js";
-import { Events, EmbedBuilder, BaseGuildTextChannel } from "discord.js";
+import { Events, EmbedBuilder } from "discord.js";
 import type { Event } from "../index.js";
 
 import humanizeDuration from "humanize-duration";
+import { CHANNEL_LOG, ROLE_BOT } from "../../lib/loadDiscordObjects.js";
 
 export default {
 	name: Events.GuildMemberAdd,
@@ -11,17 +11,9 @@ export default {
 		if (member.user.bot === true) {
 			await member.guild.members.addRole({
 				user: member.user,
-				role: env.ROLE_BOT_ID,
+				role: ROLE_BOT,
 			});
 		}
-
-		//log the join
-		const logChannel = member.guild.channels.cache.get(env.CHANNEL_LOG_ID);
-		if (!(logChannel instanceof BaseGuildTextChannel)) {
-			throw new Error(
-				"Log channel is not a valid text channel. Check your env variable LOG_CHANNEL_ID."
-			);
-		} //todo
 
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")
@@ -38,6 +30,6 @@ export default {
 					}),
 				}
 			);
-		logChannel.send({ embeds: [embed] });
+		CHANNEL_LOG.send({ embeds: [embed] });
 	},
 } satisfies Event<Events.GuildMemberAdd>;

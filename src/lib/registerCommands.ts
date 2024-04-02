@@ -1,5 +1,9 @@
 import env from "./env.js";
-import { REST, Routes } from "discord.js";
+import {
+	REST,
+	RESTPatchAPIApplicationCommandJSONBody,
+	Routes,
+} from "discord.js";
 import commands from "../slashCommands/index.js";
 import contextCommands from "../contextCommands/index.js";
 
@@ -8,7 +12,7 @@ export default async function registerCommands() {
 	const rest = new REST().setToken(env.TOKEN);
 
 	//get command data
-	const commandData = [];
+	const commandData: RESTPatchAPIApplicationCommandJSONBody[] = [];
 	for (const command of commands) {
 		commandData.push(command.data.toJSON());
 	}
@@ -29,10 +33,9 @@ export default async function registerCommands() {
 	// 	.catch(console.error);
 
 	// The put method is used to fully refresh all commands in the guild with the current set
-	const data = await rest.put(
-		Routes.applicationGuildCommands(env.CLIENT_ID, env.GUILD_ID),
-		{ body: commandData }
-	);
+	await rest.put(Routes.applicationGuildCommands(env.CLIENT_ID, env.GUILD_ID), {
+		body: commandData,
+	});
 
-	console.log(`Registered ${data.length} application commands.`);
+	console.log(`Registered application commands.`);
 }

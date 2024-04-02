@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
-import { Command } from "..";
+import { SlashCommand } from "..";
 export default {
 	data: new SlashCommandBuilder()
 		.setName("help")
@@ -35,4 +35,4 @@ export default {
 			);
 		await interaction.reply({ embeds: [embed] });
 	},
-} satisfies Command;
+} satisfies SlashCommand;

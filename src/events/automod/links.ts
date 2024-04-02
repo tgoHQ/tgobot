@@ -1,6 +1,18 @@
 import env from "../../lib/env.js";
-import { Events, EmbedBuilder, BaseGuildTextChannel } from "discord.js";
+import {
+	Events,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+	MessageActionRowComponentBuilder,
+} from "discord.js";
 import type { Event } from "../index.js";
+import {
+	CHANNEL_ALERT,
+	CHANNEL_INTRODUCTIONS,
+	ROLE_INTRODUCED,
+} from "../../lib/loadDiscordObjects.js";
 
 export default {
 	name: Events.MessageCreate,
@@ -24,7 +36,7 @@ export default {
 		//if member has Introduced role, ignore
 		if (
 			member.roles.cache.some((role) => {
-				return role.id === env.ROLE_INTRODUCED_ID;
+				return role === ROLE_INTRODUCED;
 			})
 		) {
 			return;
@@ -39,7 +51,7 @@ export default {
 		}
 
 		//try to send DM to author, otherwise send a message in the channel
-		const responseMessage = `${member.user} You may not send links until you've been a member for 2 hours or introduced yourself in <#${env.CHANNEL_INTRODUCTIONS_ID}>!`;
+		const responseMessage = `${member.user} You may not send links until you've been a member for 2 hours or introduced yourself in ${CHANNEL_INTRODUCTIONS}!`;
 		try {
 			await member.user.send(responseMessage);
 		} catch (e) {
@@ -48,16 +60,6 @@ export default {
 
 		//delete the message with the link
 		message.delete();
-
-		//fetch the alerts channel
-		const alertChannel = await message.guild.channels.fetch(
-			env.CHANNEL_ALERT_ID
-		);
-		if (!(alertChannel instanceof BaseGuildTextChannel)) {
-			throw new Error(
-				"Log channel is not a valid text channel. Check your env variable LOG_CHANNEL_ID."
-			);
-		} //todo
 
 		const embed = new EmbedBuilder()
 			.setTitle("Blocked a link from a new user")
@@ -68,6 +70,14 @@ export default {
 				{ name: "Channel", value: message.channel.toString() }
 			);
 
-		alertChannel.send({ embeds: [embed] });
+		const row =
+			new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
+				new ButtonBuilder()
+					.setLabel("Red button")
+					.setStyle(ButtonStyle.Danger)
+					.setCustomId("ban")
+			);
+
+		CHANNEL_ALERT.send({ embeds: [embed], components: [row] });
 	},
 } satisfies Event<Events.MessageCreate>;

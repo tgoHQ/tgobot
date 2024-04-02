@@ -1,12 +1,12 @@
-import env from "../../lib/env.js";
 import { Events, EmbedBuilder } from "discord.js";
 import type { Event } from "../index.js";
+import { CHANNEL_MEETUPS } from "../../lib/loadDiscordObjects.js";
 
 export default {
 	name: Events.ThreadCreate,
 
-	async execute(thread, newlyCreated) {
-		if (thread.parent?.id !== env.CHANNEL_MEETUPS_ID) return; //if message not from meetups channel, return
+	async execute(thread) {
+		if (thread.parent !== CHANNEL_MEETUPS) return; //if message not from meetups channel, return
 
 		const member = await thread.fetchOwner();
 		if (!member) return;

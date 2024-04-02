@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import humanizeDuration from "humanize-duration";
-import { Command } from "..";
+import { SlashCommand } from "..";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -30,4 +30,4 @@ export default {
 			);
 		await interaction.reply({ embeds: [embed] });
 	},
-} satisfies Command;
+} satisfies SlashCommand;

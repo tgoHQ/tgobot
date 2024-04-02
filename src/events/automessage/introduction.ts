@@ -2,12 +2,12 @@ import env from "../../lib/env.js";
 import { Events } from "discord.js";
 import type { Event } from "../index.js";
 import OpenAI from "openai";
+import { CHANNEL_INTRODUCTIONS, ROLE_INTRODUCED } from "../../lib/loadDiscordObjects.js";
 
 export default {
 	name: Events.MessageCreate,
 	async execute(message) {
-		if (!message.channel || message.channel.id !== env.CHANNEL_INTRODUCTIONS_ID)
-			return;
+		if (message.channel !== CHANNEL_INTRODUCTIONS) return;
 
 		if (message.author.bot) return;
 
@@ -18,7 +18,7 @@ export default {
 
 		message.channel.sendTyping();
 		message.react("👋");
-		message.member?.roles.add(env.ROLE_INTRODUCED_ID);
+		message.member?.roles.add(ROLE_INTRODUCED);
 
 		const openai = new OpenAI({
 			apiKey: env.OPENAI,

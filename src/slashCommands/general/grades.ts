@@ -11,7 +11,7 @@ import {
 	AI,
 	Aid,
 } from "@openbeta/sandbag";
-import { Command } from "..";
+import { SlashCommand } from "..";
 
 const gradeScales = [
 	French,
@@ -97,4 +97,4 @@ export default {
 
 		await interaction.reply({ embeds: [embed] });
 	},
-} satisfies Command;
+} satisfies SlashCommand;

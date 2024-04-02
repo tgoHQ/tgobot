@@ -1,5 +1,5 @@
 import { EmbedBuilder, User } from "discord.js";
-import postModLogChannel from "../moglogchannel.js";
+import { CHANNEL_MODLOG } from "../../loadDiscordObjects.js";
 
 export default async function userModerationLog({
 	user,
@@ -23,7 +23,6 @@ export default async function userModerationLog({
 		.setThumbnail(user.displayAvatarURL())
 		.addFields({ name: "Reason", value: reason });
 
-	//post to modlog channel
-	const message = await postModLogChannel(embed);
-	await message.crosspost();
+	//post to modlog channel and return message
+	return await (await CHANNEL_MODLOG.send({ embeds: [embed] })).crosspost();
 }

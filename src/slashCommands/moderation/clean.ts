@@ -1,16 +1,34 @@
-import { SlashCommandBuilder, PermissionFlagsBits, GuildTextBasedChannel } from "discord.js";
+import {
+	SlashCommandBuilder,
+	PermissionFlagsBits,
+	ChannelType,
+} from "discord.js";
 import bulkDelete from "../../lib/moderation/tools/bulkDelete.js";
-import { Command } from "../index.js";
+import { SlashCommand } from "../index.js";
 
 export default {
 	data: new SlashCommandBuilder()
 		.setName("clean")
 		.setDescription("Deletes messages in bulk")
+		.addChannelOption((option) =>
+			option
+				.setName("channel")
+				.setDescription("Channel to clean")
+				.setRequired(true)
+				.addChannelTypes(
+					ChannelType.GuildText,
+					ChannelType.GuildAnnouncement,
+					ChannelType.GuildStageVoice,
+					ChannelType.AnnouncementThread,
+					ChannelType.PublicThread,
+					ChannelType.GuildVoice
+				)
+		)
 		.addIntegerOption((option) =>
 			option
 				.setName("number")
 				.setDescription(
-					"The number of recent messages to delete in this channel. Maximum of 100."
+					"The number of recent messages to delete in the channel. Maximum of 100."
 				)
 				.setRequired(true)
 		)
@@ -23,15 +41,20 @@ export default {
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
 	async execute(interaction) {
-
-
 		interaction.reply(
 			await bulkDelete({
-				channel: interaction.channel!,
+				channel: interaction.options.getChannel("channel", true, [
+					ChannelType.GuildText,
+					ChannelType.GuildAnnouncement,
+					ChannelType.GuildStageVoice,
+					ChannelType.AnnouncementThread,
+					ChannelType.PublicThread,
+					ChannelType.GuildVoice,
+				]),
 				reason: interaction.options.getString("reason", true),
 				author: interaction.user,
 				number: interaction.options.getInteger("number", true),
 			})
 		);
 	},
-};
+} satisfies SlashCommand;
