@@ -1,5 +1,4 @@
-import env from "../../lib/env.js";
-import { Events, EmbedBuilder, BaseGuildTextChannel } from "discord.js";
+import { Events, EmbedBuilder } from "discord.js";
 import type { Event } from "../index.js";
 
 import humanizeDuration from "humanize-duration";

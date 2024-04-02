@@ -2,8 +2,6 @@ import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
 	ChannelType,
-	BaseGuildTextChannel,
-	TextChannel,
 } from "discord.js";
 import { SlashCommand } from "..";
 

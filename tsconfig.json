@@ -13,6 +13,8 @@
 		"forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
 
 		"strict": true /* Enable all strict type-checking options. */,
-		"noImplicitAny": false /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+		"noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
+		"noUnusedParameters": true /* Raise an error when a function parameter isn't read. */,
+		"noUnusedLocals": true /* Raise an error when a local variable isn't read. */
 	}
 }

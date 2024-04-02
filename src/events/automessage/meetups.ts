@@ -1,4 +1,3 @@
-import env from "../../lib/env.js";
 import { Events, EmbedBuilder } from "discord.js";
 import type { Event } from "../index.js";
 import { CHANNEL_MEETUPS } from "../../lib/loadDiscordObjects.js";

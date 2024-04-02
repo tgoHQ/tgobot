@@ -206,7 +206,7 @@ export default {
 
 	async execute(interaction) {
 		const snippet: { name: string; content: string } =
-			snippets[interaction.options.getString("snippet", true)];
+			snippets[parseInt(interaction.options.getString("snippet", true))];
 
 		await interaction.reply({
 			embeds: [

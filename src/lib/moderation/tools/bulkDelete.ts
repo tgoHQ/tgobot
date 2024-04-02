@@ -13,6 +13,7 @@ export default async function bulkDelete({
 	number: number;
 }) {
 	const messages = await channel.bulkDelete(number);
+
 	const string = `<:delete:1049226132622409749> Bulk deleted ${messages.size} messages in ${channel}`;
 
 	await modToolLog({

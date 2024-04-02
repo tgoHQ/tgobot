@@ -1,9 +1,7 @@
 import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
-	GuildTextBasedChannel,
 	ChannelType,
-	BaseGuildTextChannel,
 } from "discord.js";
 import bulkDelete from "../../lib/moderation/tools/bulkDelete.js";
 import { SlashCommand } from "../index.js";

@@ -2,8 +2,6 @@ import env from "../../lib/env.js";
 import {
 	Events,
 	EmbedBuilder,
-	BaseGuildTextChannel,
-	ActionRow,
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,

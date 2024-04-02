@@ -11,6 +11,7 @@ import ready from "./events/ready.js";
 import links from "./automod/links.js";
 
 import meetups from "./automessage/meetups.js";
+import bulkDelete from "./logging/bulkDelete.js";
 
 const events: Event[] = [
 	introduction,
@@ -20,6 +21,7 @@ const events: Event[] = [
 	ready,
 	links,
 	meetups,
+	bulkDelete,
 ];
 
 export default function load() {

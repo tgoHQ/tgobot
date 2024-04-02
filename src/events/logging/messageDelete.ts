@@ -1,6 +1,6 @@
 //TODO make this work on older messages
 
-import { Events, EmbedBuilder, BaseGuildTextChannel } from "discord.js";
+import { Events, EmbedBuilder } from "discord.js";
 import type { Event } from "../index.js";
 import { CHANNEL_LOG, GUILD } from "../../lib/loadDiscordObjects.js";
 
