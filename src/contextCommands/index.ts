@@ -16,11 +16,14 @@ type ContextCommand = {
 };
 
 export interface MessageContextCommand extends ContextCommand {
-	execute(interaction: MessageContextMenuCommandInteraction): Promise<void> | void;
+	execute(
+		interaction: MessageContextMenuCommandInteraction
+	): Promise<void> | void;
 }
 export interface UserContextCommand extends ContextCommand {
 	execute(interaction: UserContextMenuCommandInteraction): Promise<void> | void;
 }
 
-import test from "./general/context.js";
-export default [test];
+import context from "./general/context.js";
+import gearlist from "./general/gearlist.js";
+export default [context, gearlist];

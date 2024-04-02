@@ -4,6 +4,7 @@ import {
 	ButtonBuilder,
 	ButtonStyle,
 	Interaction,
+	MessageActionRowComponentBuilder,
 } from "discord.js";
 import { SlashCommand } from "..";
 export default {
@@ -12,14 +13,15 @@ export default {
 		.setDescription("Lists commands you can use"),
 
 	async execute(interaction) {
-		const row = new ActionRowBuilder().addComponents(
-			new ButtonBuilder({
-				label: "Press button to die instantly",
-				style: ButtonStyle.Danger,
-				customId: "button",
-				emoji: "💀",
-			})
-		);
+		const row =
+			new ActionRowBuilder<MessageActionRowComponentBuilder>().addComponents(
+				new ButtonBuilder({
+					label: "Press button to die instantly",
+					style: ButtonStyle.Danger,
+					customId: "button",
+					emoji: "💀",
+				})
+			);
 
 		const message = await interaction.reply({ components: [row] });
 
@@ -34,4 +36,4 @@ export default {
 			console.log("no click");
 		}
 	},
-};
+} satisfies SlashCommand;

@@ -1,6 +1,8 @@
-import env from "../../lib/env.js";
 import { SlashCommandBuilder, ChannelType } from "discord.js";
 import { SlashCommand } from "../index.js";
+import { ROLE_VCPING } from "../../lib/loadDiscordObjects.js";
+
+let vcPingCooldown: boolean = false;
 
 export default {
 	data: new SlashCommandBuilder()
@@ -15,29 +17,32 @@ export default {
 		),
 
 	async execute(interaction) {
-		const channel = interaction.options.getChannel("channel", true);
+		const channel = interaction.options.getChannel("channel", true, [
+			ChannelType.GuildVoice,
+		]);
 		const connected = channel.members.toJSON().length;
-		if (!interaction.client.vcPingCooldown) {
-			//if vc ping is not on cooldown
-			if (connected >= 2) {
-				await interaction.reply(
-					`<:call:1050760154418782288> <@&${env.ROLE_VCPING_ID}>, there are ${connected} users connected to ${channel}!`
-				);
-				interaction.client.vcPingCooldown = true; //enable cooldown
-				setTimeout(() => {
-					//disable cooldown later
-					interaction.client.vcPingCooldown = false;
-				}, 1000 * 60 * 60 * 6);
-			} else {
-				await interaction.reply(
-					`<:no:1050760960668868670> There are ${connected} users connected to ${channel}. There must be at least 2 for a VC ping to be sent.`
-				);
-			}
-		} else {
-			//command is still on cooldown
+
+		if (vcPingCooldown) {
 			await interaction.reply(
 				`<:no:1050760960668868670> This command is on a cooldown. The bot will only ping once every 6 hours.`
 			);
+			return;
 		}
+
+		if (connected < 3) {
+			await interaction.reply(
+				`<:no:1050760960668868670> There are ${connected} users connected to ${channel}. There must be at least 3 for a VC ping to be sent.`
+			);
+			return;
+		}
+
+		vcPingCooldown = true;
+		setTimeout(() => {
+			vcPingCooldown = false;
+		}, 1000 * 60 * 60 * 6);
+
+		await interaction.reply(
+			`<:call:1050760154418782288> ${ROLE_VCPING}, there are ${connected} users connected to ${channel}!`
+		);
 	},
-};
+} satisfies SlashCommand;

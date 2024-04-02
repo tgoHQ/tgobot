@@ -57,4 +57,4 @@ export default [
 	ulAdvice,
 
 	showButton,
-];
+] satisfies SlashCommand[];

@@ -2,7 +2,7 @@
 //only for sending messages to log channel. does not need to be stored in DB
 
 import { User, EmbedBuilder } from "discord.js";
-import postModLogChannel from "../moglogchannel.js";
+import { CHANNEL_MODLOG } from "../../loadDiscordObjects.js";
 
 export default async function modToolLog({
 	string,
@@ -22,6 +22,5 @@ export default async function modToolLog({
 		.setDescription(string)
 		.addFields({ name: "Reason", value: reason });
 
-	//todo import channel from somewhere already validated and use channel.send right here
-	postModLogChannel(embed);
+	return await CHANNEL_MODLOG.send({ embeds: [embed] });
 }

@@ -2,6 +2,8 @@ import {
 	SlashCommandBuilder,
 	PermissionFlagsBits,
 	ChannelType,
+	BaseGuildTextChannel,
+	TextChannel,
 } from "discord.js";
 import { SlashCommand } from "..";
 
@@ -25,9 +27,10 @@ export default {
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 
 	async execute(interaction) {
-		const channel = interaction.options.getChannel("channel", true);
-
-		if (!("send" in channel)) return; //todo do this the right way
+		const channel = interaction.options.getChannel("channel", true, [
+			ChannelType.GuildAnnouncement,
+			ChannelType.GuildText,
+		]);
 
 		const value = interaction.options.getString("value");
 		if (!value) return;
