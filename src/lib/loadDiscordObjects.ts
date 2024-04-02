@@ -15,7 +15,6 @@ export const ROLE_VCPING = await fetchRole(env.ROLE_VCPING_ID);
 export const ROLE_INTRODUCED = await fetchRole(env.ROLE_INTRODUCED_ID);
 
 // CHANNELS //
-
 async function fetchChannel<T extends ChannelType>(
 	id: string,
 	type: T
@@ -25,7 +24,6 @@ async function fetchChannel<T extends ChannelType>(
 	if (channel.type !== type) throw new Error("Channel is not of type " + type);
 	return channel as Channel & { type: T };
 }
-
 export const CHANNEL_INTRODUCTIONS = await fetchChannel(
 	env.CHANNEL_INTRODUCTIONS_ID,
 	ChannelType.GuildText
