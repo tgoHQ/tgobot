@@ -1,6 +1,3 @@
-//fetch each of the objects (channel, guild, user, roles, etc)
-//export them all in a single object
-
 import env from "./env.js";
 import client from "./client.js";
 import { Channel, ChannelType } from "discord.js";
