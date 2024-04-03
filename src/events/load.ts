@@ -8,8 +8,6 @@ import messageEdit from "./logging/messageEdit.js";
 import introduction from "./automessage/introduction.js";
 import ready from "./events/ready.js";
 
-import links from "./automod/links.js";
-
 import meetups from "./automessage/meetups.js";
 import bulkDelete from "./logging/bulkDelete.js";
 
@@ -19,7 +17,6 @@ const events: Event[] = [
 	messageDelete,
 	messageEdit,
 	ready,
-	links,
 	meetups,
 	bulkDelete,
 ];

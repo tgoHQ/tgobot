@@ -1,11 +1,23 @@
-make user mod action modules have separate functions for execute and log
+// PROBLEMS //
+prevent mods from actioning themselves
 
+
+// TODO //
+make user mod action modules have separate functions for execute and log, for logging external actions
 detect ban, unban, timeout, untimeout, bulk delete, kick made outside of bot
 dm users when actioned
 
-save modlog to database
+// IDEAS //
+
+modlog records
+	save modlog to database
+
 gearlist command
-unit conversion
+	save gearlists to database
+	add new gearlists using modals
+	command to detect gear list links and prompt to save them
+	context command to pull up user's gear lists
+
 
 delete user messages on ban
 badfaith command with preset types. auto erase user messages when spam/scam type
@@ -18,6 +30,6 @@ ticket command
 
 
 uniform ts-friendly way to load files (events and interaction handlers)
-handle all interactions (slash commands, context commands, buttons, modals, etc)
+typesafe handlers for all interactions (slash commands, context commands, buttons, modals, etc)
 
 log deleted messages from clean command

@@ -43,6 +43,7 @@ export default {
 		const questionsStr = [
 			responseObj.text,
 			...responseObj.questions.map((q) => `- ${q}`),
+			`\nRequested by ${interaction.user}.`,
 		].join("\n");
 
 		await message.reply(questionsStr);
