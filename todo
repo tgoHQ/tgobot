@@ -30,6 +30,6 @@ ticket command
 
 
 uniform ts-friendly way to load files (events and interaction handlers)
-typesafe handlers for all interactions (slash commands, context commands, buttons, modals, etc)
+typesafe handlers for all interactions (slash commands, context commands, buttons, modals, etc) check out message / component / interaction collectors
 
 log deleted messages from clean command

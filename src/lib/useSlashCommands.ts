@@ -7,10 +7,9 @@ import {
 	UserContextCommand,
 	MessageContextCommand,
 } from "../contextCommands/index.js";
-
+import { Emoji } from "./emoji.js";
 const failReply = {
-	content:
-		"<:error:1049228381486583819> There was an error while executing this command!",
+	content: `${Emoji.Error} There was an error while executing this command!`,
 	ephemeral: true,
 };
 

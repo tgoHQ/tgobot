@@ -1,5 +1,6 @@
 import { User } from "discord.js";
 import userModerationLog from "../userModerationLog.js";
+import { Emoji } from "../../../emoji.js";
 
 export default async function warn({
 	user,
@@ -10,10 +11,10 @@ export default async function warn({
 	reason: string;
 	author: User;
 }) {
-	const string = `<:warn:1049224507598061628> Warned ${user}`;
+	const string = `${Emoji.Warn} Warned ${user}`;
 	await userModerationLog({ user, author, string, reason });
 
-	//take action
+	//todo take action
 
 	return string;
 }

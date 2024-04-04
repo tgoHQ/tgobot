@@ -24,13 +24,10 @@ async function fetchChannel<T extends ChannelType>(
 	if (channel.type !== type) throw new Error("Channel is not of type " + type);
 	return channel as Channel & { type: T };
 }
-export const CHANNEL_INTRODUCTIONS = await fetchChannel(
+export const CHANNEL_INTRODUCTIONS = await fetchChannel<ChannelType.GuildText>(
 	env.CHANNEL_INTRODUCTIONS_ID,
 	ChannelType.GuildText
 );
-if (CHANNEL_INTRODUCTIONS.type !== ChannelType.GuildText) {
-	throw new Error("Channel is not of type " + ChannelType.GuildText);
-}
 export const CHANNEL_ALERT = await fetchChannel(
 	env.CHANNEL_ALERT_ID,
 	ChannelType.GuildText
