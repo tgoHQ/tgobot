@@ -14,7 +14,7 @@ export default {
 			.setDescription(
 				`
 				</help:1164780041104793631>: Shows this message!
-				</snippet:> Pull up commonly used resources or the answer to an FAQ.
+				</snippet:1205576907517599815> Pull up commonly used resources or the answer to an FAQ.
 
 				<id:customize>: See the available roles and choose yours.
 
