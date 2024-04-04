@@ -14,4 +14,5 @@ export enum Emoji {
 	Kick = "<:kick:1073030912230572143>",
 	Timeout = "<:timeout:1049257820882747432>",
 	IconsDiscord = "<:iconsDiscord:1225231369156952125>",
+	SlashCommand = "<:command:1049290128306217020>",
 }
