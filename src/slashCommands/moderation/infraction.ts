@@ -9,7 +9,6 @@ import {
 	infractionHandlers,
 } from "../../lib/moderation/users/infractions.js";
 import { SlashCommand } from "../index.js";
-import { Emoji } from "../../lib/emoji.js";
 
 //define the list of infractions to be used in the command. generate the string options.
 const infractionTypesInCommand = [
@@ -69,7 +68,7 @@ export default {
 
 		//reply to the command
 		interaction.reply({
-			content: `${Emoji.True} ${response.infractionString}\n${response.actionResultsString}`,
+			content: `${response.infractionString}\n${response.actionResultsString}`,
 		});
 	},
 } satisfies SlashCommand;

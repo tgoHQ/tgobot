@@ -27,3 +27,5 @@ export default {
 		});
 	},
 } satisfies Event<Events.GuildAuditLogEntryCreate>;
+
+//todo make this work

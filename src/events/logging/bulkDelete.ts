@@ -7,7 +7,7 @@ import { CHANNEL_LOG, GUILD } from "../../lib/loadDiscordObjects.js";
 export default {
 	name: Events.MessageBulkDelete,
 	execute(messages, channel) {
-		if (channel.guild !== GUILD) return; //if message deleted is not from main guild, return
+		if (channel.guild !== GUILD) return; //if not from main guild, return
 
 		const deletedMessageStrings = messages.map((message) => {
 			return `[${message.createdAt.toUTCString()}] ${
