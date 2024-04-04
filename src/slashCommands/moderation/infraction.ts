@@ -9,6 +9,7 @@ import {
 	infractionHandlers,
 } from "../../lib/moderation/users/infractions.js";
 import { SlashCommand } from "../index.js";
+import { Emoji } from "../../lib/emoji.js";
 
 //define the list of infractions to be used in the command. generate the string options.
 const infractionTypesInCommand = [
@@ -53,8 +54,6 @@ export default {
 	data: command,
 
 	async execute(interaction) {
-		interaction.deferReply();
-
 		//get options
 		const user = interaction.options.getUser("user", true);
 		const infractionKey = parseInt(interaction.options.getString("type", true));
@@ -69,8 +68,8 @@ export default {
 		});
 
 		//reply to the command
-		interaction.editReply({
-			content: `${response.infractionString}\n${response.actionResultsString}`,
+		interaction.reply({
+			content: `${Emoji.True} ${response.infractionString}\n${response.actionResultsString}`,
 		});
 	},
 } satisfies SlashCommand;

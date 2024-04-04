@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import humanizeDuration from "humanize-duration";
 import { SlashCommand } from "..";
+import { Emoji } from "../../lib/emoji.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -13,17 +14,17 @@ export default {
 			.setTitle("tgobot")
 			.addFields(
 				{
-					name: "<:djs:1049834255498354689> discord.js",
+					name: `${Emoji.DiscordJS} discord.js`,
 					value:
 						"Built with the [discord.js](https://discord.js.org/) library.",
 				},
 				{
-					name: "<:shine:1049289235548614697> Icons",
+					name: `${Emoji.IconsDiscord} Icons`,
 					value:
 						"The icons used by this bot are provided by [iconsdiscord](https://discord.com/invite/aPvvhefmt3).",
 				},
 				{
-					name: "<:developer:1049293038729576468> Developer",
+					name: `${Emoji.Developer} Developer`,
 					value: "tgobot was built by <@247070105916276736>.",
 				},
 				{ name: "Uptime", value: humanizeDuration(interaction.client.uptime) }

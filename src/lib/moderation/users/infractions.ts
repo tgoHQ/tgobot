@@ -1,6 +1,7 @@
 import { User } from "discord.js";
 import timeout from "./actions/timeout.js";
 import ban from "./actions/ban.js";
+import { Emoji } from "../../emoji.js";
 
 export enum InfractionType {
 	badFaith = 0,
@@ -23,6 +24,13 @@ export async function infraction({
 	author: User;
 	comment: string | null;
 }) {
+	if (user === author) {
+		return {
+			infractionString: `${Emoji.False} You can't give yourself an infraction!`,
+			actionResultsString: "",
+		};
+	}
+
 	//combine infraction string and mod comment to create reason
 	const reason = `${infractionHandlers[type].string}${
 		comment ? ". Comment: " + comment : ""
@@ -49,7 +57,7 @@ export const infractionHandlers: {
 	[InfractionType.badFaith]: {
 		string: "Bad-Faith User",
 		execute: async ({ user, author, reason }) => {
-			return await ban({ user, reason, author });
+			return await ban({ user, reason, author, execute: true });
 		},
 	},
 	[InfractionType.nsfw]: {
@@ -119,7 +127,6 @@ export const infractionHandlers: {
 		},
 	},
 };
-
 
 interface InfractionHandler {
 	/** The human-readable name of the infraction type */

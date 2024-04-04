@@ -1,5 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import { SlashCommand } from "..";
+import { Emoji } from "../../lib/emoji.js";
+
 export default {
 	data: new SlashCommandBuilder()
 		.setName("help")
@@ -8,10 +10,11 @@ export default {
 	async execute(interaction) {
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")
-			.setTitle("TGO Command Help")
+			.setTitle(`${Emoji.SlashCommand} TGO Command Help`)
 			.setDescription(
 				`
 				</help:1164780041104793631>: Shows this message!
+				</snippet:1205576907517599815> Pull up commonly used resources or the answer to an FAQ.
 
 				<id:customize>: See the available roles and choose yours.
 

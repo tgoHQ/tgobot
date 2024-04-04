@@ -1,24 +1,21 @@
-import env from "../../../../lib/env.js";
-import client from "../../../client.js";
 import userModerationLog from "../userModerationLog.js";
 import type { User } from "discord.js";
+import { GUILD } from "../../../loadDiscordObjects.js";
 
 export default async function ban({
 	user,
 	reason,
 	author,
+	execute,
 }: {
 	user: User;
 	reason: string;
 	author: User;
+	execute: boolean;
 }) {
-	const string = `<:ban:1049256901562609684> Banned ${user}`;
+	if (execute) await GUILD.bans.create(user, { reason });
+
+	const string = `Banned ${user}`;
 	await userModerationLog({ user, author, string, reason });
-
-	const guild = await client.guilds.fetch(env.GUILD_ID);
-	await guild.bans.create(user, {
-		reason: reason,
-	});
-
 	return string;
 }

@@ -1,6 +1,7 @@
 import { GuildTextBasedChannel, User } from "discord.js";
 import modToolLog from "./moderationToolLog.js";
 import humanizeDuration from "humanize-duration";
+import { Emoji } from "../../emoji.js";
 
 export default async function slowmode({
 	channel,
@@ -15,7 +16,7 @@ export default async function slowmode({
 }) {
 	channel.setRateLimitPerUser(interval, reason);
 
-	const string = `<:slowmode:1049227157156671508> Set slowmode to ${humanizeDuration(
+	const string = `${Emoji.Slowmode} Set slowmode to ${humanizeDuration(
 		interval * 1000
 	)} in ${channel}`;
 	//multiply by 1000 to get ms, then humanize into string

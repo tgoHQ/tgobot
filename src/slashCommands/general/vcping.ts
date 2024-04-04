@@ -1,6 +1,11 @@
 import { SlashCommandBuilder, ChannelType } from "discord.js";
 import { SlashCommand } from "../index.js";
 import { ROLE_VCPING } from "../../lib/loadDiscordObjects.js";
+import { Emoji } from "../../lib/emoji.js";
+import humanizeDuration from "humanize-duration";
+
+const MIN_CONNECTED_USERS = 3;
+const COOLDOWN = 6 * 60 * 60 * 1000;
 
 let vcPingCooldown: boolean = false;
 
@@ -24,14 +29,18 @@ export default {
 
 		if (vcPingCooldown) {
 			await interaction.reply(
-				`<:no:1050760960668868670> This command is on a cooldown. The bot will only ping once every 6 hours.`
+				`${
+					Emoji.False
+				} This command is on a cooldown. The bot will only ping once every ${humanizeDuration(
+					COOLDOWN
+				)}.`
 			);
 			return;
 		}
 
-		if (connected < 3) {
+		if (connected < MIN_CONNECTED_USERS) {
 			await interaction.reply(
-				`<:no:1050760960668868670> There are ${connected} users connected to ${channel}. There must be at least 3 for a VC ping to be sent.`
+				`${Emoji.False} There are ${connected} people in ${channel}. There must be at least ${MIN_CONNECTED_USERS} to send a VC ping.`
 			);
 			return;
 		}
@@ -42,7 +51,7 @@ export default {
 		}, 1000 * 60 * 60 * 6);
 
 		await interaction.reply(
-			`<:call:1050760154418782288> ${ROLE_VCPING}, there are ${connected} users connected to ${channel}!`
+			`${Emoji.Call} ${ROLE_VCPING}, there are ${connected} people in ${channel}!`
 		);
 	},
 } satisfies SlashCommand;

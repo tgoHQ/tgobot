@@ -22,5 +22,5 @@ export default async function modToolLog({
 		.setDescription(string)
 		.addFields({ name: "Reason", value: reason });
 
-	return await CHANNEL_MODLOG.send({ embeds: [embed] });
+	return await (await CHANNEL_MODLOG.send({ embeds: [embed] })).crosspost();
 }

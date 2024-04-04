@@ -3,6 +3,7 @@ import env from "../../../env.js";
 import client from "../../../client.js";
 import userModerationLog from "../userModerationLog.js";
 import humanizeDuration from "humanize-duration";
+import { Emoji } from "../../../emoji.js";
 
 export default async function timeout({
 	user,
@@ -15,7 +16,7 @@ export default async function timeout({
 	author: User;
 	duration: number; //duration in ms
 }) {
-	const string = `<:timeout:1049257820882747432> Timed out ${user} for ${humanizeDuration(
+	const string = `${Emoji.Timeout} Timed out ${user} for ${humanizeDuration(
 		duration
 	)}`;
 

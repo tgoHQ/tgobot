@@ -202,11 +202,20 @@ export default {
 			option
 				.setName("hide")
 				.setDescription("Make the bot's response visible only to you")
+				.setRequired(false)
+		)
+		.addUserOption((option) =>
+			option
+				.setName("user")
+				.setDescription("Ping this user in the bot's response")
+				.setRequired(false)
 		),
 
 	async execute(interaction) {
 		const snippet: { name: string; content: string } =
 			snippets[parseInt(interaction.options.getString("snippet", true))];
+
+		const taggedUser = interaction.options.getUser("user", false);
 
 		await interaction.reply({
 			embeds: [
@@ -216,6 +225,7 @@ export default {
 					.setColor("#137c5a"),
 			],
 			ephemeral: !!interaction.options.getBoolean("hide", false),
+			content: `${taggedUser ?? ""}`, // if no tagged user, it will be an empty string
 		});
 	},
 } satisfies SlashCommand;

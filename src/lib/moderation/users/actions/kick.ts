@@ -2,6 +2,7 @@ import { User } from "discord.js";
 import userModerationLog from "../userModerationLog.js";
 import client from "../../../client.js";
 import env from "../../../env.js";
+import { Emoji } from "../../../emoji.js";
 
 export default async function kick({
 	user,
@@ -12,7 +13,7 @@ export default async function kick({
 	reason: string;
 	author: User;
 }) {
-	const string = `<:kick:1073030912230572143> Kicked ${user}`;
+	const string = `${Emoji.Kick} Kicked ${user}`;
 	await userModerationLog({ user, author, string, reason });
 
 	const guild = await client.guilds.fetch(env.GUILD_ID);
