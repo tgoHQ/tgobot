@@ -2,6 +2,7 @@ import client from "../lib/client.js";
 import type { Event } from "./index.js";
 
 import memberJoin from "./logging/memberJoin.js";
+import memberRemove from "./logging/memberRemove.js";
 import messageDelete from "./logging/messageDelete.js";
 import messageEdit from "./logging/messageEdit.js";
 
@@ -15,6 +16,7 @@ import ban from "./logging/ban.js";
 const events: Event[] = [
 	introduction,
 	memberJoin,
+	memberRemove,
 	messageDelete,
 	messageEdit,
 	ready,
