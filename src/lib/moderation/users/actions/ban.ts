@@ -9,7 +9,7 @@ export default async function ban({
 	execute,
 }: {
 	user: User;
-	reason: string;
+	reason?: string;
 	author: User;
 	execute: boolean;
 }) {

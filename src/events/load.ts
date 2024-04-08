@@ -10,6 +10,7 @@ import ready from "./events/ready.js";
 
 import meetups from "./automessage/meetups.js";
 import bulkDelete from "./logging/bulkDelete.js";
+import ban from "./logging/ban.js";
 
 const events: Event[] = [
 	introduction,
@@ -19,6 +20,7 @@ const events: Event[] = [
 	ready,
 	meetups,
 	bulkDelete,
+	ban,
 ];
 
 export default function load() {

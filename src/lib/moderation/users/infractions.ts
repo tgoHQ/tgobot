@@ -36,7 +36,7 @@ export async function infraction({
 		comment ? ". Comment: " + comment : ""
 	}`;
 
-	const infractionString = `Logged infraction \`${infractionHandlers[type].string}\` against ${user} with comment \`${comment}\`.`;
+	const infractionString = `${Emoji.True} Logged infraction \`${infractionHandlers[type].string}\` against ${user} with comment \`${comment}\`.`;
 
 	//execute the chosen infraction type module
 	const actionResultsString = await infractionHandlers[type].execute({

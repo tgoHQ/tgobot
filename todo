@@ -1,6 +1,6 @@
 // TODO //
 make user mod action modules have separate functions for execute and log, for logging external actions
-detect ban, unban, timeout, untimeout, bulk delete, kick made outside of bot
+detect unban, timeout, untimeout, bulk delete, kick made outside of bot
 dm users when actioned
 
 // IDEAS //
