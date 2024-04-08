@@ -8,7 +8,7 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"@openbeta/sandbag": "^0.0.48",
+		"@openbeta/sandbag": "^0.0.51",
 		"@types/humanize-duration": "^3.27.4",
 		"dayjs": "^1.11.6",
 		"discord.js": "^14.7.1",
