@@ -10,7 +10,7 @@ export default async function userModerationLog({
 	user: User;
 	author: User;
 	string: string;
-	reason: string;
+	reason?: string;
 }) {
 	//create embed
 	const embed = new EmbedBuilder()
@@ -21,7 +21,7 @@ export default async function userModerationLog({
 			iconURL: author.displayAvatarURL(),
 		})
 		.setThumbnail(user.displayAvatarURL())
-		.addFields({ name: "Reason", value: reason });
+		.addFields({ name: "Reason", value: reason ?? "No reason provided." });
 
 	//post to modlog channel and return message
 	return await (await CHANNEL_MODLOG.send({ embeds: [embed] })).crosspost();
