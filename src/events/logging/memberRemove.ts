@@ -7,7 +7,7 @@ export default {
 	name: Events.GuildMemberRemove,
 	async execute(member) {
 		const embed = new EmbedBuilder()
-			.setColor("#137c5a")
+			.setColor("#000000")
 			.setTitle("User Left")
 			.setThumbnail(member.user.displayAvatarURL())
 			.setDescription(member.user.toString())
