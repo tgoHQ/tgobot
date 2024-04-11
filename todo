@@ -9,9 +9,13 @@ modlog records
 	save modlog to database
 
 gearlist command
-	save gearlists to database
+	save gearlists to database /gearlist save
 	add new gearlists using modals
-	command to detect gear list links and prompt to save them
+	/gearlist show
+	/gearlist edit
+	/gearlist delete
+
+	event to detect gear list links and prompt to save them
 	context command to pull up user's gear lists
 
 

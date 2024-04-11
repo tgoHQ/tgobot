@@ -26,4 +26,5 @@ export interface UserContextCommand extends ContextCommand {
 
 import context from "./general/context.js";
 import gearlist from "./general/gearlist.js";
-export default [context, gearlist];
+
+export default [context, gearlist] satisfies ContextCommand[];

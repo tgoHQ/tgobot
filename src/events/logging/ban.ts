@@ -18,10 +18,13 @@ export default {
 		if (!auditLog.targetId) return;
 		const target = await client.users.fetch(auditLog.targetId);
 
-		//get author. if no author use bot
-		const author = await client.users.fetch(
-			auditLog.executorId ?? client.user!.id
-		);
+		if (!auditLog.executorId) return;
+
+		//get author
+		const author = await client.users.fetch(auditLog.executorId);
+
+		//if author is bot, ignore
+		if (author === client.user) return;
 
 		await ban({
 			user: target,
