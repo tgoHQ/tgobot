@@ -1,6 +1,7 @@
 import userModerationLog from "../userModerationLog.js";
 import type { User } from "discord.js";
 import { GUILD } from "../../../loadDiscordObjects.js";
+import { Emoji } from "../../../emoji.js";
 
 export default async function ban({
 	user,
@@ -15,7 +16,7 @@ export default async function ban({
 }) {
 	if (execute) await GUILD.bans.create(user, { reason });
 
-	const string = `Banned ${user}`;
+	const string = `${Emoji.Ban} Banned ${user}`;
 	await userModerationLog({ user, author, string, reason });
 	return string;
 }
