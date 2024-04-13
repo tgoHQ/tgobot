@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import humanizeDuration from "humanize-duration";
 import { SlashCommand } from "..";
-import { Emoji } from "../../lib/emoji.js";
+import { Emoji } from "../../lib/util/emoji.js";
 
 export default {
 	data: new SlashCommandBuilder()

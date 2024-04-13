@@ -3,7 +3,7 @@ import {
 	PermissionFlagsBits,
 	ChannelType,
 } from "discord.js";
-import bulkDelete from "../../lib/moderation/tools/bulkDelete.js";
+import bulkDelete from "../../lib/moderation/actions/tools/bulkDelete.js";
 import { SlashCommand } from "../index.js";
 
 export default {

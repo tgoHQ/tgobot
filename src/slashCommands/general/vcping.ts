@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, ChannelType } from "discord.js";
 import { SlashCommand } from "../index.js";
-import { ROLE_VCPING } from "../../lib/loadDiscordObjects.js";
-import { Emoji } from "../../lib/emoji.js";
+import { ROLE_VCPING } from "../../lib/discord/loadDiscordObjects.js";
+import { Emoji } from "../../lib/util/emoji.js";
 import humanizeDuration from "humanize-duration";
 
 const MIN_CONNECTED_USERS = 3;

@@ -7,6 +7,8 @@ dm users when actioned
 
 modlog records
 	save modlog to database
+	type definition for modlog entry
+	record types that are not posted in modlog channel (moderation notes)
 
 gearlist command
 	save gearlists to database /gearlist save
@@ -33,3 +35,7 @@ uniform ts-friendly way to load files (events and interaction handlers)
 typesafe handlers for all interactions (slash commands, context commands, buttons, modals, etc) check out message / component / interaction collectors
 
 log deleted messages from clean command
+
+when a mod does native ban/timeout/kick on a user, ping them and get them to submit a reason through a modal. update the reason in the log
+
+connect modlog in db to message in modlog channel. callback to automatically edit the message in modlog when the log is edited

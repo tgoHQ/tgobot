@@ -7,7 +7,7 @@ import {
 	InfractionType,
 	infraction,
 	infractionHandlers,
-} from "../../lib/moderation/users/infractions.js";
+} from "../../lib/moderation/infractions.js";
 import { SlashCommand } from "../index.js";
 
 //define the list of infractions to be used in the command. generate the string options.

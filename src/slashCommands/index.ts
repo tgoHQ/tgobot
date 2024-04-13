@@ -38,6 +38,7 @@ import ask from "./fun/ask.js";
 import message from "./fun/message.js";
 import showButton from "./general/showButton.js";
 import ulAdvice from "./fun/ulAdvice.js";
+import addgearlist from "./general/addgearlist.js";
 
 export default [
 	about,
@@ -57,4 +58,5 @@ export default [
 	ulAdvice,
 
 	showButton,
+	addgearlist,
 ] satisfies SlashCommand[];

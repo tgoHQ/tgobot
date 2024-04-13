@@ -1,7 +1,7 @@
-import userModerationLog from "../userModerationLog.js";
+import userModerationLog from "../../userModerationLog.js";
 import type { User } from "discord.js";
-import { GUILD } from "../../../loadDiscordObjects.js";
-import { Emoji } from "../../../emoji.js";
+import { GUILD } from "../../../discord/loadDiscordObjects.js";
+import { Emoji } from "../../../util/emoji.js";
 
 export default async function ban({
 	user,

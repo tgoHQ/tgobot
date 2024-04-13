@@ -1,4 +1,4 @@
-import env from "./env.js";
+import env from "../util/env.js";
 import client from "./client.js";
 import { Channel, ChannelType } from "discord.js";
 

@@ -1,13 +1,13 @@
 import { Collection, Events } from "discord.js";
-import slashCommands from "../slashCommands/index.js";
-import contextCommands from "../contextCommands/index.js";
+import slashCommands from "../../slashCommands/index.js";
+import contextCommands from "../../contextCommands/index.js";
 import client from "./client.js";
-import { SlashCommand } from "../slashCommands/index.js";
+import { SlashCommand } from "../../slashCommands/index.js";
 import {
 	UserContextCommand,
 	MessageContextCommand,
-} from "../contextCommands/index.js";
-import { Emoji } from "./emoji.js";
+} from "../../contextCommands/index.js";
+import { Emoji } from "../util/emoji.js";
 const failReply = {
 	content: `${Emoji.Error} There was an error while executing this command!`,
 	ephemeral: true,

@@ -1,9 +1,9 @@
 //TODO make this work on older messages
 
-import env from "../../lib/env.js";
+import env from "../../lib/util/env.js";
 import { Events, EmbedBuilder } from "discord.js";
 import type { Event } from "../index.js";
-import { CHANNEL_LOG } from "../../lib/loadDiscordObjects.js";
+import { CHANNEL_LOG } from "../../lib/discord/loadDiscordObjects.js";
 
 export default {
 	name: Events.MessageUpdate,

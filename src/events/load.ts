@@ -1,4 +1,4 @@
-import client from "../lib/client.js";
+import client from "../lib/discord/client.js";
 import type { Event } from "./index.js";
 
 import memberJoin from "./logging/memberJoin.js";
@@ -12,6 +12,7 @@ import ready from "./events/ready.js";
 import meetups from "./automessage/meetups.js";
 import bulkDelete from "./logging/bulkDelete.js";
 import ban from "./logging/ban.js";
+import gearListLink from "./automessage/gearListLink.js";
 
 const events: Event[] = [
 	introduction,
@@ -23,6 +24,7 @@ const events: Event[] = [
 	meetups,
 	bulkDelete,
 	ban,
+	gearListLink,
 ];
 
 export default function load() {

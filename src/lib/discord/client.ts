@@ -1,4 +1,4 @@
-import env from "./env.js";
+import env from "../util/env.js";
 import { Client, GatewayIntentBits } from "discord.js";
 
 const client = new Client({

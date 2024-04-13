@@ -1,9 +1,10 @@
 import { User } from "discord.js";
-import env from "../../../env.js";
-import client from "../../../client.js";
-import userModerationLog from "../userModerationLog.js";
+import env from "../../../util/env.js";
+import client from "../../../discord/client.js";
+import { Emoji } from "../../../util/emoji.js";
+
+import userModerationLog from "../../userModerationLog.js";
 import humanizeDuration from "humanize-duration";
-import { Emoji } from "../../../emoji.js";
 
 export default async function timeout({
 	user,

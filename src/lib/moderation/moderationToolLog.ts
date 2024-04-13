@@ -2,7 +2,7 @@
 //only for sending messages to log channel. does not need to be stored in DB
 
 import { User, EmbedBuilder } from "discord.js";
-import { CHANNEL_MODLOG } from "../../loadDiscordObjects.js";
+import { CHANNEL_MODLOG } from "../discord/loadDiscordObjects.js";
 
 export default async function modToolLog({
 	string,

@@ -1,7 +1,7 @@
-import registerCommands from "./lib/registerCommands.js";
+import registerCommands from "./lib/discord/registerCommands.js";
 await registerCommands();
 
-import useApplicationCommands from "./lib/useSlashCommands.js";
+import useApplicationCommands from "./lib/discord/useSlashCommands.js";
 await useApplicationCommands();
 
 import loadEvents from "./events/load.js";

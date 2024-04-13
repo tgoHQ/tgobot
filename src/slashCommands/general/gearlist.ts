@@ -1,5 +1,6 @@
-import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
 import { SlashCommand } from "..";
+import gearlistEmbed from "../../lib/util/gearlistEmbed.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -13,17 +14,8 @@ export default {
 		),
 
 	async execute(interaction) {
-		const targetUser = interaction.options.getUser("user", true);
-
-		//todo look up gear lists from database and make this command work
-
 		interaction.reply({
-			embeds: [
-				new EmbedBuilder()
-					.setColor("#137c5a")
-					.setTitle(`${targetUser.displayName}'s Gear Lists`)
-					.setThumbnail(targetUser.displayAvatarURL()),
-			],
+			embeds: [await gearlistEmbed(interaction.options.getUser("user", true))],
 		});
 	},
 } satisfies SlashCommand;

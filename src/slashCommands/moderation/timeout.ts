@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 
 import parseDuration from "parse-duration";
-import timeout from "../../lib/moderation/users/actions/timeout.js";
+import timeout from "../../lib/moderation/actions/users/timeout.js";
 import { SlashCommand } from "../index.js";
 
 export default {

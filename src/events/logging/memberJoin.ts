@@ -2,7 +2,7 @@ import { Events, EmbedBuilder } from "discord.js";
 import type { Event } from "../index.js";
 
 import humanizeDuration from "humanize-duration";
-import { CHANNEL_LOG, ROLE_BOT } from "../../lib/loadDiscordObjects.js";
+import { CHANNEL_LOG, ROLE_BOT } from "../../lib/discord/loadDiscordObjects.js";
 
 export default {
 	name: Events.GuildMemberAdd,

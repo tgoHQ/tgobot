@@ -1,8 +1,8 @@
 import { User } from "discord.js";
-import userModerationLog from "../userModerationLog.js";
-import client from "../../../client.js";
-import env from "../../../env.js";
-import { Emoji } from "../../../emoji.js";
+import userModerationLog from "../../userModerationLog.js";
+import client from "../../../discord/client.js";
+import env from "../../../util/env.js";
+import { Emoji } from "../../../util/emoji.js";
 
 export default async function kick({
 	user,

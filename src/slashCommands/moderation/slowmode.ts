@@ -4,7 +4,7 @@ import {
 	ChannelType,
 } from "discord.js";
 import parseDuration from "parse-duration";
-import slowmode from "../../lib/moderation/tools/slowmode.js";
+import slowmode from "../../lib/moderation/actions/tools/slowmode.js";
 import { SlashCommand } from "../index.js";
 
 export default {

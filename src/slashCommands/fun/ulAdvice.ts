@@ -1,4 +1,4 @@
-import env from "../../lib/env.js";
+import env from "../../lib/util/env.js";
 import { SlashCommandBuilder } from "discord.js";
 import OpenAI from "openai";
 import { SlashCommand } from "../index.js";

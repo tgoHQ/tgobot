@@ -1,8 +1,11 @@
-import env from "../../lib/env.js";
+import env from "../../lib/util/env.js";
 import { Events } from "discord.js";
 import type { Event } from "../index.js";
 import OpenAI from "openai";
-import { CHANNEL_INTRODUCTIONS, ROLE_INTRODUCED } from "../../lib/loadDiscordObjects.js";
+import {
+	CHANNEL_INTRODUCTIONS,
+	ROLE_INTRODUCED,
+} from "../../lib/discord/loadDiscordObjects.js";
 
 export default {
 	name: Events.MessageCreate,

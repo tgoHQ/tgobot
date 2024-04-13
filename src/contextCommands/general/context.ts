@@ -1,7 +1,7 @@
 import { ApplicationCommandType, ContextMenuCommandBuilder } from "discord.js";
 import { MessageContextCommand } from "..";
 import OpenAI from "openai";
-import env from "../../lib/env.js";
+import env from "../../lib/util/env.js";
 
 export default {
 	data: new ContextMenuCommandBuilder()

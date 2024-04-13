@@ -1,11 +1,11 @@
-import env from "./env.js";
+import env from "../util/env.js";
 import {
 	REST,
 	RESTPatchAPIApplicationCommandJSONBody,
 	Routes,
 } from "discord.js";
-import commands from "../slashCommands/index.js";
-import contextCommands from "../contextCommands/index.js";
+import commands from "../../slashCommands/index.js";
+import contextCommands from "../../contextCommands/index.js";
 
 export default async function registerCommands() {
 	// Construct and prepare an instance of the REST module

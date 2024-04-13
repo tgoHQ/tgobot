@@ -1,12 +1,19 @@
-import env from "../../lib/env.js";
+import env from "../../lib/util/env.js";
 import {
 	Events,
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
 	MessageActionRowComponentBuilder,
+	ModalBuilder,
+	TextInputBuilder,
+	ModalActionRowComponentBuilder,
+	TextInputStyle,
+	ComponentType,
 } from "discord.js";
 import type { Event } from "../index.js";
+import db from "../../db/drizzle.js";
+import { gearLists } from "../../db/schema.js";
 
 export default {
 	name: Events.MessageCreate,
@@ -29,28 +36,89 @@ export default {
 
 		//check if link is lighterpack
 		const lighterpackRE = /\bhttps?:\/\/lighterpack.com\/r\/[a-zA-Z0-9]{6}\b/;
-		if (!lighterpackRE.test(message.content)) {
+		const exec = lighterpackRE.exec(message.content);
+		if (!exec) return;
+
+		//if this link is already saved to a user, ignore
+		if (
+			await db.query.gearLists.findFirst({
+				where: (gearLists, { eq }) => eq(gearLists.url, exec[0]),
+			})
+		) {
 			return;
 		}
 
-		//TODO if this link is already saved to a user, ignore
-
-		const row =
+		const buttonRow =
 			new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
 				new ButtonBuilder()
-					.setLabel("Save to profile")
+					.setLabel("Save")
 					.setStyle(ButtonStyle.Primary)
-					.setCustomId("save"),
-				new ButtonBuilder()
-					.setLabel("Ignore")
-					.setStyle(ButtonStyle.Secondary)
-					.setCustomId("ignore")
+					.setCustomId("save")
 			);
 
-		await message.reply({
-			content: "Would you like to save this gear list to your profile?",
-			components: [row],
+		const response = await message.reply({
+			content: `Would you like to save this gear list to your profile?`,
+			components: [buttonRow],
 		});
+
+		const modal = new ModalBuilder()
+			.setTitle("Save Gear List")
+			.setCustomId("saveGearListModal")
+			.addComponents(
+				new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
+					new TextInputBuilder()
+						.setCustomId("listTitle")
+						.setLabel("List Name")
+						.setRequired(true)
+						.setStyle(TextInputStyle.Short)
+				),
+				new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
+					new TextInputBuilder()
+						.setCustomId("listUrl")
+						.setLabel("List URL")
+						.setRequired(true)
+						.setStyle(TextInputStyle.Short)
+						.setValue(exec[0])
+				)
+			);
+
+		try {
+			const buttonInteraction =
+				await response.awaitMessageComponent<ComponentType.Button>({
+					filter: (i) => i.user === member.user,
+					time: 5 * 60 * 60 * 1000,
+				});
+
+			await buttonInteraction.showModal(modal);
+
+			const modalInteraction = await buttonInteraction.awaitModalSubmit({
+				time: 5 * 60 * 60 * 1000,
+			});
+			await modalInteraction.deferUpdate();
+
+			const url = modalInteraction.fields.getTextInputValue("listUrl");
+			const title = modalInteraction.fields.getTextInputValue("listTitle");
+
+			const row = (
+				await db
+					.insert(gearLists)
+					.values({
+						name: title,
+						url,
+						discordUserId: member.user.id,
+					})
+					.returning()
+			)[0];
+
+			await buttonInteraction.editReply({
+				content: `Saved as \`${row.name}\`!`,
+				components: [],
+			});
+		} catch {
+			throw new Error(
+				"something weird happened with the gearlistlink listener"
+			);
+		}
 	},
 } satisfies Event<Events.MessageCreate>;
 

@@ -1,6 +1,6 @@
 import { User } from "discord.js";
-import userModerationLog from "../userModerationLog.js";
-import { Emoji } from "../../../emoji.js";
+import userModerationLog from "../../userModerationLog.js";
+import { Emoji } from "../../../util/emoji.js";
 
 export default async function warn({
 	user,

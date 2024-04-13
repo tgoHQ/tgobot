@@ -1,7 +1,7 @@
 import { User } from "discord.js";
-import timeout from "./actions/timeout.js";
-import ban from "./actions/ban.js";
-import { Emoji } from "../../emoji.js";
+import timeout from "./actions/users/timeout.js";
+import ban from "./actions/users/ban.js";
+import { Emoji } from "../util/emoji.js";
 
 export enum InfractionType {
 	badFaith = 0,
