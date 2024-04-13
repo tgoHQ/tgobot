@@ -35,5 +35,5 @@ export default function load() {
 			client.on(event.name, (...args) => event.execute(...args));
 		}
 	}
-	console.log(`Client listening for ${events.length} events.`);
+	console.log(`Loaded ${events.length} event handlers.`);
 }
