@@ -4,19 +4,26 @@ import { GUILD } from "../../lib/discord/loadDiscordObjects.js";
 import { Emoji } from "../../lib/util/emoji.js";
 
 export default async function ban({
-	user,
+	targetUser,
 	reason,
 	author,
 	execute,
 }: {
-	user: User;
+	targetUser: User;
 	reason?: string;
 	author: User;
 	execute: boolean;
 }) {
-	if (execute) await GUILD.bans.create(user, { reason });
+	//dm the user
+	await targetUser
+		.send(`You have been banned from ${GUILD.name} for ${reason}`)
+		.catch();
 
-	const string = `${Emoji.Ban} Banned ${user}`;
-	await userModerationLog({ user, author, string, reason });
+	if (execute) await GUILD.bans.create(targetUser, { reason });
+
+	const string = `${Emoji.Ban} Banned ${targetUser}`;
+	await userModerationLog({ user: targetUser, author, string, reason });
 	return string;
 }
+
+import { GuildAuditLogsEntry } from "discord.js";

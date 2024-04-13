@@ -4,21 +4,22 @@ import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../lib/util/emoji.js";
 
 export default async function slowmode({
-	channel,
+	targetChannel,
 	reason,
 	author,
 	interval,
 }: {
-	channel: GuildTextBasedChannel;
+	targetChannel: GuildTextBasedChannel;
 	reason: string;
 	author: User;
-	interval: number; //slowmode interval in ms;
+	/** Slowmode interval in milliseconds */
+	interval: number;
 }) {
-	channel.setRateLimitPerUser(interval / 1000, reason);
+	targetChannel.setRateLimitPerUser(interval / 1000, reason);
 
 	const string = `${Emoji.Slowmode} Set slowmode to ${humanizeDuration(
 		interval
-	)} in ${channel}`;
+	)} in ${targetChannel}`;
 	//multiply by 1000 to get ms, then humanize into string
 
 	await modToolLog({

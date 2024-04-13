@@ -59,14 +59,14 @@ export const infractionHandlers: {
 	[InfractionType.BadFaith]: {
 		string: "Bad-Faith User",
 		execute: async ({ user, author, reason }) => {
-			return await ban({ user, reason, author, execute: true });
+			return await ban({ targetUser: user, reason, author, execute: true });
 		},
 	},
 	[InfractionType.Nsfw]: {
 		string: "NSFW Content",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
-				user,
+				targetUser: user,
 				reason,
 				author,
 				duration: getDuration.days(4),
@@ -77,7 +77,7 @@ export const infractionHandlers: {
 		string: "Personal Attacks",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
-				user,
+				targetUser: user,
 				reason,
 				author,
 				duration: getDuration.days(3),
@@ -88,7 +88,7 @@ export const infractionHandlers: {
 		string: "Bigotry/Slurs",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
-				user,
+				targetUser: user,
 				reason,
 				author,
 				duration: getDuration.days(4),
@@ -99,7 +99,7 @@ export const infractionHandlers: {
 		string: "Anti-LNT Practices",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
-				user,
+				targetUser: user,
 				reason,
 				author,
 				duration: getDuration.hours(12),
@@ -110,7 +110,7 @@ export const infractionHandlers: {
 		string: "Trolling/Shitposting",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
-				user,
+				targetUser: user,
 				reason,
 				author,
 				duration: getDuration.hours(12),
@@ -121,7 +121,7 @@ export const infractionHandlers: {
 		string: "Political/Controversial Topics",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
-				user,
+				targetUser: user,
 				reason,
 				author,
 				duration: getDuration.hours(12),
@@ -132,7 +132,7 @@ export const infractionHandlers: {
 		string: "Spammer/Scammer",
 		execute: async ({ user, author, reason }) => {
 			return await ban({
-				user,
+				targetUser: user,
 				reason,
 				author,
 				execute: true,

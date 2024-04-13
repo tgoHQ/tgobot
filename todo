@@ -39,3 +39,7 @@ log deleted messages from clean command
 when a mod does native ban/timeout/kick on a user, ping them and get them to submit a reason through a modal. update the reason in the log
 
 connect modlog in db to message in modlog channel. callback to automatically edit the message in modlog when the log is edited
+
+permission checks for moderation actions
+
+combine tickets with reports and cases

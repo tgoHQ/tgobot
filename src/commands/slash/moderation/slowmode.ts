@@ -6,7 +6,7 @@ import {
 import parseDuration from "parse-duration";
 import slowmode from "../../../actions/tools/slowmode.js";
 import { SlashCommand } from "../index.js";
-import duration from "../../../lib/util/getDuration.js";
+import getDuration from "../../../lib/util/getDuration.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -44,12 +44,12 @@ export default {
 
 	async execute(interaction) {
 		const intervalRaw = interaction.options.getString("interval", true);
-		const interval = parseDuration(intervalRaw) ?? duration.hours(1); //default 1 hour if input cannot be parsed
+		const interval = parseDuration(intervalRaw) ?? getDuration.hours(1); //default 1 hour if input cannot be parsed
 
 		//use slowmode module for all execution
 		interaction.reply(
 			await slowmode({
-				channel: interaction.options.getChannel("channel", true, [
+				targetChannel: interaction.options.getChannel("channel", true, [
 					ChannelType.GuildText,
 					ChannelType.GuildAnnouncement,
 					ChannelType.GuildStageVoice,

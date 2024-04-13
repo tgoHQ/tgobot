@@ -39,7 +39,7 @@ export default {
 
 		interaction.reply(
 			await timeout({
-				user: interaction.options.getUser("user", true),
+				targetUser: interaction.options.getUser("user", true),
 				reason: interaction.options.getString("reason", true),
 				author: interaction.user,
 				duration: duration,

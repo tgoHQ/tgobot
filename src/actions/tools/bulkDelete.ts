@@ -3,19 +3,19 @@ import modToolLog from "../../lib/moderation/moderationToolLog.js";
 import { Emoji } from "../../lib/util/emoji.js";
 
 export default async function bulkDelete({
-	channel,
+	targetChannel,
 	reason,
 	author,
 	number,
 }: {
-	channel: GuildTextBasedChannel;
+	targetChannel: GuildTextBasedChannel;
 	reason: string;
 	author: User;
 	number: number;
 }) {
-	const messages = await channel.bulkDelete(number);
+	const messages = await targetChannel.bulkDelete(number);
 
-	const string = `${Emoji.Delete} Bulk deleted ${messages.size} messages in ${channel}`;
+	const string = `${Emoji.Delete} Bulk deleted ${messages.size} messages in ${targetChannel}`;
 
 	await modToolLog({
 		string,

@@ -43,7 +43,7 @@ export default {
 	async execute(interaction) {
 		interaction.reply(
 			await bulkDelete({
-				channel: interaction.options.getChannel("channel", true, [
+				targetChannel: interaction.options.getChannel("channel", true, [
 					ChannelType.GuildText,
 					ChannelType.GuildAnnouncement,
 					ChannelType.GuildStageVoice,

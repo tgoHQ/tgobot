@@ -5,19 +5,20 @@ import env from "../../lib/util/env.js";
 import { Emoji } from "../../lib/util/emoji.js";
 
 export default async function kick({
-	user,
+	targetUser,
 	reason,
 	author,
 }: {
-	user: User;
+	targetUser: User;
 	reason: string;
 	author: User;
 }) {
-	const string = `${Emoji.Kick} Kicked ${user}`;
-	await userModerationLog({ user, author, string, reason });
+	//dm the user
+	const string = `${Emoji.Kick} Kicked ${targetUser}`;
+	await userModerationLog({ user: targetUser, author, string, reason });
 
 	const guild = await client.guilds.fetch(env.GUILD_ID);
-	guild.members.kick(user);
+	guild.members.kick(targetUser);
 
 	return string;
 }

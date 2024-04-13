@@ -7,24 +7,26 @@ import userModerationLog from "../../lib/moderation/userModerationLog.js";
 import humanizeDuration from "humanize-duration";
 
 export default async function timeout({
-	user,
+	targetUser,
 	reason,
 	author,
 	duration,
 }: {
-	user: User;
+	targetUser: User;
 	reason: string;
 	author: User;
 	duration: number; //duration in ms
 }) {
-	const string = `${Emoji.Timeout} Timed out ${user} for ${humanizeDuration(
-		duration
-	)}`;
+	//dm the user
 
-	await userModerationLog({ user, author, string, reason });
+	const string = `${
+		Emoji.Timeout
+	} Timed out ${targetUser} for ${humanizeDuration(duration)}`;
+
+	await userModerationLog({ user: targetUser, author, string, reason });
 
 	const guild = await client.guilds.fetch(env.GUILD_ID);
-	const member = await guild.members.fetch(user);
+	const member = await guild.members.fetch(targetUser);
 	await member.timeout(duration, reason);
 
 	return string;
