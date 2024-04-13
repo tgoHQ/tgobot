@@ -31,6 +31,8 @@ export default {
 		.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers),
 
 	async execute(interaction) {
+		//todo if user is not a member of the server
+
 		const durationRaw = interaction.options.getString("duration", true);
 		const duration = parseDuration(durationRaw) ?? 60 * 60 * 1000; //default 1 hour if input cannot be parsed
 

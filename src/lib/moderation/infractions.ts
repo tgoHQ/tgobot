@@ -4,13 +4,14 @@ import ban from "../../actions/users/ban.js";
 import { Emoji } from "../util/emoji.js";
 
 export enum InfractionType {
-	badFaith = 0,
-	nsfw = 1,
-	personalAttacks = 2,
-	slursBigotry = 3,
-	lnt = 4,
-	shitpost = 5,
-	controversial = 6,
+	BadFaith,
+	Nsfw,
+	PersonalAttacks,
+	BigotrySlurs,
+	Lnt,
+	TrollingShitposting,
+	PoliticalControversial,
+	SpammerScammer,
 }
 
 export async function infraction({
@@ -54,13 +55,13 @@ export async function infraction({
 export const infractionHandlers: {
 	[K in InfractionType]: InfractionHandler;
 } = {
-	[InfractionType.badFaith]: {
+	[InfractionType.BadFaith]: {
 		string: "Bad-Faith User",
 		execute: async ({ user, author, reason }) => {
 			return await ban({ user, reason, author, execute: true });
 		},
 	},
-	[InfractionType.nsfw]: {
+	[InfractionType.Nsfw]: {
 		string: "NSFW Content",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
@@ -71,7 +72,7 @@ export const infractionHandlers: {
 			});
 		},
 	},
-	[InfractionType.personalAttacks]: {
+	[InfractionType.PersonalAttacks]: {
 		string: "Personal Attacks",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
@@ -82,8 +83,8 @@ export const infractionHandlers: {
 			});
 		},
 	},
-	[InfractionType.slursBigotry]: {
-		string: "Slurs and/or Bigotry",
+	[InfractionType.BigotrySlurs]: {
+		string: "Bigotry/Slurs",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
 				user,
@@ -93,7 +94,7 @@ export const infractionHandlers: {
 			});
 		},
 	},
-	[InfractionType.lnt]: {
+	[InfractionType.Lnt]: {
 		string: "Anti-LNT Practices",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
@@ -104,8 +105,8 @@ export const infractionHandlers: {
 			});
 		},
 	},
-	[InfractionType.shitpost]: {
-		string: "Shitposting, Trolling, and/or Spamming",
+	[InfractionType.TrollingShitposting]: {
+		string: "Trolling/Shitposting",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
 				user,
@@ -115,14 +116,25 @@ export const infractionHandlers: {
 			});
 		},
 	},
-	[InfractionType.controversial]: {
-		string: "Politics and/or Controversial Topics",
+	[InfractionType.PoliticalControversial]: {
+		string: "Political/Controversial Topics",
 		execute: async ({ user, author, reason }) => {
 			return await timeout({
 				user,
 				reason,
 				author,
 				duration: 12 * 60 * 60 * 1000,
+			});
+		},
+	},
+	[InfractionType.SpammerScammer]: {
+		string: "Spammer/Scammer",
+		execute: async ({ user, author, reason }) => {
+			return await ban({
+				user,
+				reason,
+				author,
+				execute: true,
 			});
 		},
 	},

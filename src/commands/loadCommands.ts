@@ -8,43 +8,37 @@ const failReply = {
 	ephemeral: true,
 };
 
-export default async function useApplicationCommands() {
-	//add commands to client
+const commandsCollection = new Collection();
+for (const command of commands) {
+	commandsCollection.set(command.data.name, command);
+}
 
-	const commandsCollection = new Collection();
-	for (const command of commands) {
-		commandsCollection.set(command.data.name, command);
+//listen for commands being run
+client.on(Events.InteractionCreate, async (interaction) => {
+	if (!interaction.isCommand()) return;
+
+	const command = commandsCollection.get(interaction.commandName);
+
+	if (!command) {
+		console.error(`No command matching ${interaction.commandName} was found.`);
+		await interaction.reply(failReply);
+		return;
 	}
 
-	//listen for commands being run
-	client.on(Events.InteractionCreate, async (interaction) => {
-		if (!interaction.isCommand()) return;
+	try {
+		//todo
+		//@ts-ignore
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(`Error executing ${interaction.commandName}`, error);
 
-		const command = commandsCollection.get(interaction.commandName);
-
-		if (!command) {
-			console.error(
-				`No command matching ${interaction.commandName} was found.`
-			);
-			await interaction.reply(failReply);
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp(failReply);
 			return;
 		}
 
-		try {
-			//todo
-			//@ts-ignore
-			await command.execute(interaction);
-		} catch (error) {
-			console.error(`Error executing ${interaction.commandName}`, error);
+		await interaction.reply(failReply);
+	}
+});
 
-			if (interaction.replied || interaction.deferred) {
-				await interaction.followUp(failReply);
-				return;
-			}
-
-			await interaction.reply(failReply);
-		}
-	});
-
-	console.log(`Loaded ${commands.length} commands.`);
-}
+console.log(`Loaded ${commands.length} commands.`);

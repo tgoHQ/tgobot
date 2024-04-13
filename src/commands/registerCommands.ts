@@ -6,8 +6,7 @@ export default async function registerCommands() {
 	// Construct and prepare an instance of the REST module
 	const rest = new REST().setToken(env.TOKEN);
 
-	const commandData = commands.map((command) => command.data.toJSON());
-
+	// // Delete all commands from main guild
 	// rest
 	// 	.put(Routes.applicationGuildCommands(env.CLIENT_ID, env.GUILD_ID), {
 	// 		body: [],
@@ -15,13 +14,15 @@ export default async function registerCommands() {
 	// 	.then(() => console.log("Successfully deleted all guild commands."))
 	// 	.catch(console.error);
 
+	// // Delete all global commands
 	// rest
 	// 	.put(Routes.applicationCommands(env.CLIENT_ID), { body: [] })
 	// 	.then(() => console.log("Successfully deleted all application commands."))
 	// 	.catch(console.error);
 
+	// Register application commands for main guild
 	await rest.put(Routes.applicationGuildCommands(env.CLIENT_ID, env.GUILD_ID), {
-		body: commandData,
+		body: commands.map((command) => command.data.toJSON()),
 	});
 
 	console.log(`Registered application commands.`);

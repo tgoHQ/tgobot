@@ -1,8 +1,5 @@
 import registerCommands from "./commands/registerCommands.js";
 await registerCommands();
 
-import useApplicationCommands from "./commands/loadCommands.js";
-await useApplicationCommands();
-
-import loadEvents from "./events/load.js";
-loadEvents();
+import "./commands/loadCommands.js"; //load commands
+import "./events/index.js"; //load events

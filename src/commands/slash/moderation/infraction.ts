@@ -12,13 +12,14 @@ import { SlashCommand } from "../index.js";
 
 //define the list of infractions to be used in the command. generate the string options.
 const infractionTypesInCommand = [
-	InfractionType.badFaith,
-	InfractionType.controversial,
-	InfractionType.lnt,
-	InfractionType.nsfw,
-	InfractionType.personalAttacks,
-	InfractionType.shitpost,
-	InfractionType.slursBigotry,
+	InfractionType.BadFaith,
+	InfractionType.PoliticalControversial,
+	InfractionType.Lnt,
+	InfractionType.Nsfw,
+	InfractionType.PersonalAttacks,
+	InfractionType.TrollingShitposting,
+	InfractionType.BigotrySlurs,
+	InfractionType.SpammerScammer,
 ];
 let infractionOptions: APIApplicationCommandOptionChoice<string>[] = [];
 for (const key of infractionTypesInCommand) {
