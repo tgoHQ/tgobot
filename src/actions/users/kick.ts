@@ -13,7 +13,7 @@ export default async function kick({
 	reason: string;
 	author: User;
 }) {
-	//dm the user
+	//todo dm the user
 	const string = `${Emoji.Kick} Kicked ${targetUser}`;
 	await userModLogEmbed({ targetUser: targetUser, author, string, reason });
 

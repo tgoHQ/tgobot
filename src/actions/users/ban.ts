@@ -14,10 +14,7 @@ export default async function ban({
 	author: User;
 	execute: boolean;
 }) {
-	//dm the user
-	await targetUser
-		.send(`You have been banned from ${GUILD.name} for ${reason}`)
-		.catch();
+	//todo dm the user
 
 	if (execute) await GUILD.bans.create(targetUser, { reason });
 
