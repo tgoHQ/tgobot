@@ -3,6 +3,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import parseDuration from "parse-duration";
 import timeout from "../../../actions/users/timeout.js";
 import { SlashCommand } from "../index.js";
+import getDuration from "../../../lib/util/getDuration.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -34,14 +35,14 @@ export default {
 		//todo if user is not a member of the server
 
 		const durationRaw = interaction.options.getString("duration", true);
-		const duration = parseDuration(durationRaw) ?? 60 * 60 * 1000; //default 1 hour if input cannot be parsed
+		const duration = parseDuration(durationRaw) ?? getDuration.hours(1); //default 1 hour if input cannot be parsed
 
 		interaction.reply(
 			await timeout({
 				user: interaction.options.getUser("user", true),
 				reason: interaction.options.getString("reason", true),
 				author: interaction.user,
-				duration,
+				duration: duration,
 			})
 		);
 	},

@@ -2,6 +2,7 @@
 	"name": "tgobot",
 	"main": "dist/bot.js",
 	"source": "src/bot.ts",
+	"repository": "https://github.com/kevin8181/tgobot3",
 	"scripts": {
 		"start": "node .",
 		"dev": "tsc && node .",
@@ -9,10 +10,7 @@
 	},
 	"dependencies": {
 		"@openbeta/sandbag": "^0.0.48",
-		"@types/humanize-duration": "^3.27.4",
-		"dayjs": "^1.11.6",
 		"discord.js": "^14.7.1",
-		"dotenv": "^16.3.1",
 		"drizzle-kit": "^0.20.14",
 		"drizzle-orm": "^0.30.8",
 		"envalid": "^8.0.0",
@@ -22,7 +20,9 @@
 		"postgres": "^3.4.4"
 	},
 	"devDependencies": {
+		"@types/humanize-duration": "^3.27.4",
 		"@types/node": "^20.10.5",
+		"dotenv": "^16.4.5",
 		"typescript": "^5.3.3"
 	},
 	"type": "module"

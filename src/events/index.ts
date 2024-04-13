@@ -35,15 +35,12 @@ import introduction from "./automessage/introduction.js";
 import gearListLink from "./automessage/gearListLink.js";
 import meetups from "./automessage/meetups.js";
 
-import ready from "./events/ready.js";
-
 const events: Event[] = [
 	introduction,
 	memberJoin,
 	memberRemove,
 	messageDelete,
 	messageEdit,
-	ready,
 	meetups,
 	bulkDelete,
 	ban,
@@ -57,4 +54,3 @@ for (const event of events) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-console.log(`Loaded ${events.length} event handlers.`);

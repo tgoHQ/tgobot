@@ -24,5 +24,4 @@ const client = new Client({
 });
 
 await client.login(env.TOKEN);
-
 export default client;

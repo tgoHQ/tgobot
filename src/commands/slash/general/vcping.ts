@@ -3,9 +3,10 @@ import { SlashCommand } from "../index.js";
 import { ROLE_VCPING } from "../../../lib/discord/loadDiscordObjects.js";
 import { Emoji } from "../../../lib/util/emoji.js";
 import humanizeDuration from "humanize-duration";
+import duration from "../../../lib/util/getDuration.js";
 
 const MIN_CONNECTED_USERS = 3;
-const COOLDOWN = 6 * 60 * 60 * 1000;
+const COOLDOWN = duration.hours(6);
 
 let vcPingCooldown: boolean = false;
 
@@ -48,7 +49,7 @@ export default {
 		vcPingCooldown = true;
 		setTimeout(() => {
 			vcPingCooldown = false;
-		}, 1000 * 60 * 60 * 6);
+		}, COOLDOWN);
 
 		await interaction.reply(
 			`${Emoji.Call} ${ROLE_VCPING}, there are ${connected} people in ${channel}!`

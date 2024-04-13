@@ -12,12 +12,12 @@ export default async function slowmode({
 	channel: GuildTextBasedChannel;
 	reason: string;
 	author: User;
-	interval: number; //slowmode interval in seconds;
+	interval: number; //slowmode interval in ms;
 }) {
-	channel.setRateLimitPerUser(interval, reason);
+	channel.setRateLimitPerUser(interval / 1000, reason);
 
 	const string = `${Emoji.Slowmode} Set slowmode to ${humanizeDuration(
-		interval * 1000
+		interval
 	)} in ${channel}`;
 	//multiply by 1000 to get ms, then humanize into string
 

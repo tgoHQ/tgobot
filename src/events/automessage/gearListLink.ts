@@ -14,6 +14,7 @@ import {
 import type { Event } from "../index.js";
 import db from "../../lib/db/drizzle.js";
 import { gearLists } from "../../lib/db/schema.js";
+import getDuration from "../../lib/util/getDuration.js";
 
 export default {
 	name: Events.MessageCreate,
@@ -86,13 +87,13 @@ export default {
 			const buttonInteraction =
 				await response.awaitMessageComponent<ComponentType.Button>({
 					filter: (i) => i.user === member.user,
-					time: 5 * 60 * 60 * 1000,
+					time: getDuration.hours(12),
 				});
 
 			await buttonInteraction.showModal(modal);
 
 			const modalInteraction = await buttonInteraction.awaitModalSubmit({
-				time: 5 * 60 * 60 * 1000,
+				time: getDuration.hours(12),
 			});
 			await modalInteraction.deferUpdate();
 

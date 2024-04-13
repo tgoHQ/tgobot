@@ -40,5 +40,3 @@ client.on(Events.InteractionCreate, async (interaction) => {
 		await interaction.reply(failReply);
 	}
 });
-
-console.log(`Loaded ${commands.length} commands.`);

@@ -2,6 +2,7 @@ import { User } from "discord.js";
 import timeout from "../../actions/users/timeout.js";
 import ban from "../../actions/users/ban.js";
 import { Emoji } from "../util/emoji.js";
+import getDuration from "../util/getDuration.js";
 
 export enum InfractionType {
 	BadFaith,
@@ -68,7 +69,7 @@ export const infractionHandlers: {
 				user,
 				reason,
 				author,
-				duration: 4 * 24 * 60 * 60 * 1000,
+				duration: getDuration.days(4),
 			});
 		},
 	},
@@ -79,7 +80,7 @@ export const infractionHandlers: {
 				user,
 				reason,
 				author,
-				duration: 3 * 24 * 60 * 60 * 1000,
+				duration: getDuration.days(3),
 			});
 		},
 	},
@@ -90,7 +91,7 @@ export const infractionHandlers: {
 				user,
 				reason,
 				author,
-				duration: 4 * 24 * 60 * 60 * 1000,
+				duration: getDuration.days(4),
 			});
 		},
 	},
@@ -101,7 +102,7 @@ export const infractionHandlers: {
 				user,
 				reason,
 				author,
-				duration: 12 * 60 * 60 * 1000,
+				duration: getDuration.hours(12),
 			});
 		},
 	},
@@ -112,7 +113,7 @@ export const infractionHandlers: {
 				user,
 				reason,
 				author,
-				duration: 12 * 60 * 60 * 1000,
+				duration: getDuration.hours(12),
 			});
 		},
 	},
@@ -123,7 +124,7 @@ export const infractionHandlers: {
 				user,
 				reason,
 				author,
-				duration: 12 * 60 * 60 * 1000,
+				duration: getDuration.hours(12),
 			});
 		},
 	},

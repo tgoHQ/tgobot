@@ -24,6 +24,4 @@ export default async function registerCommands() {
 	await rest.put(Routes.applicationGuildCommands(env.CLIENT_ID, env.GUILD_ID), {
 		body: commands.map((command) => command.data.toJSON()),
 	});
-
-	console.log(`Registered application commands.`);
 }
