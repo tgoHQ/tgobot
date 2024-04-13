@@ -1,4 +1,4 @@
-import "./commands/loadCommands.js"; //load commands
+import "./commands/handleCommands.js"; //load commands
 import "./events/index.js"; //load events
 
 import registerCommands from "./commands/registerCommands.js";

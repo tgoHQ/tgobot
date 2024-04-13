@@ -8,17 +8,9 @@ import type {
  * Defines the structure of a command
  */
 export type SlashCommand = {
-	/**
-	 * The data for the command
-	 */
 	data:
 		| Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">
 		| SlashCommandSubcommandsOnlyBuilder;
-	/**
-	 * The function to execute when the command is called
-	 *
-	 * @param interaction - The interaction of the command
-	 */
 	execute(interaction: ChatInputCommandInteraction): Promise<void> | void;
 };
 

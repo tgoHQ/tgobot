@@ -1,5 +1,8 @@
 import { Collection, Events } from "discord.js";
-import commands from "./index.js";
+
+import slashCommands from "./slash/index.js";
+import contextCommands from "./context/index.js";
+
 import client from "../lib/discord/client.js";
 import { Emoji } from "../lib/util/emoji.js";
 
@@ -9,7 +12,7 @@ const failReply = {
 };
 
 const commandsCollection = new Collection();
-for (const command of commands) {
+for (const command of [...slashCommands, ...contextCommands]) {
 	commandsCollection.set(command.data.name, command);
 }
 

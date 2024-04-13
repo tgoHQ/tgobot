@@ -4,17 +4,11 @@ import {
 	MessageContextMenuCommandInteraction,
 	UserContextMenuCommandInteraction,
 } from "discord.js";
-/**
- * Defines the structure of an event.
- */
-type ContextCommand = {
-	/**
-	 * The function to execute when the command is run.
-	 */
-	execute(interaction: ContextMenuCommandInteraction): Promise<void> | void;
-	data: ContextMenuCommandBuilder;
-};
 
+type ContextCommand = {
+	data: ContextMenuCommandBuilder;
+	execute(interaction: ContextMenuCommandInteraction): Promise<void> | void;
+};
 export interface MessageContextCommand extends ContextCommand {
 	execute(
 		interaction: MessageContextMenuCommandInteraction
@@ -26,5 +20,4 @@ export interface UserContextCommand extends ContextCommand {
 
 import context from "./general/context.js";
 import gearlist from "./general/gearlist.js";
-
 export default [context, gearlist] satisfies ContextCommand[];

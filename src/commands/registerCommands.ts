@@ -1,6 +1,8 @@
 import env from "../lib/util/env.js";
 import { REST, Routes } from "discord.js";
-import commands from "./index.js";
+
+import slashCommands from "./slash/index.js";
+import contextCommands from "./context/index.js";
 
 export default async function registerCommands() {
 	// Construct and prepare an instance of the REST module
@@ -22,6 +24,8 @@ export default async function registerCommands() {
 
 	// Register application commands for main guild
 	await rest.put(Routes.applicationGuildCommands(env.CLIENT_ID, env.GUILD_ID), {
-		body: commands.map((command) => command.data.toJSON()),
+		body: [...slashCommands, ...contextCommands].map((command) =>
+			command.data.toJSON()
+		),
 	});
 }
