@@ -25,5 +25,3 @@ export default async function ban({
 	await userModerationLog({ user: targetUser, author, string, reason });
 	return string;
 }
-
-import { GuildAuditLogsEntry } from "discord.js";

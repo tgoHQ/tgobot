@@ -6,7 +6,6 @@ import slowmode from "./tools/slowmode";
 import ban from "./users/ban";
 import kick from "./users/kick";
 import timeout from "./users/timeout";
-import warn from "./users/warn";
 
 export const actions = [
 	bulkDelete,
@@ -14,5 +13,4 @@ export const actions = [
 	ban,
 	kick,
 	timeout,
-	warn,
 ] satisfies ModActionModule[];
