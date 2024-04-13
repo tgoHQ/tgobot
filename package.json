@@ -1,7 +1,7 @@
 {
 	"name": "tgobot",
-	"main": "dist/server.js",
-	"source": "src/server.ts",
+	"main": "dist/bot.js",
+	"source": "src/bot.ts",
 	"scripts": {
 		"start": "node .",
 		"dev": "tsc && node .",

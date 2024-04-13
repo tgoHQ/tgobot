@@ -12,8 +12,8 @@ import {
 	ComponentType,
 } from "discord.js";
 import type { Event } from "../index.js";
-import db from "../../db/drizzle.js";
-import { gearLists } from "../../db/schema.js";
+import db from "../../lib/db/drizzle.js";
+import { gearLists } from "../../lib/db/schema.js";
 
 export default {
 	name: Events.MessageCreate,

@@ -2,7 +2,7 @@ import { Events } from "discord.js";
 import type { Event } from "../index.js";
 import { AuditLogEvent } from "discord.js";
 import client from "../../lib/discord/client.js";
-import ban from "../../lib/moderation/actions/users/ban.js";
+import ban from "../../actions/users/ban.js";
 import { GUILD } from "../../lib/discord/loadDiscordObjects.js";
 
 export default {
