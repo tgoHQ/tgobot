@@ -1,6 +1,6 @@
 import { Events, EmbedBuilder } from "discord.js";
 import type { Event } from "../index.js";
-import { CHANNEL_MEETUPS } from "../../lib/loadDiscordObjects.js";
+import { CHANNEL_MEETUPS } from "../../lib/discord/loadDiscordObjects.js";
 
 export default {
 	name: Events.ThreadCreate,
@@ -31,6 +31,6 @@ export default {
 			`.replaceAll("	", "")
 			);
 
-		thread.send({ embeds: [embed], content: member.user?.toString() });
+		thread.send({ embeds: [embed], content: member.user!.toString() });
 	},
 } satisfies Event<Events.ThreadCreate>;
