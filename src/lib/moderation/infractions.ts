@@ -53,9 +53,7 @@ export async function infraction({
 	};
 }
 
-export const infractionHandlers: {
-	[K in InfractionType]: InfractionHandler;
-} = {
+export const infractionHandlers = {
 	[InfractionType.BadFaith]: {
 		string: "Bad-Faith User",
 		execute: async ({ user, author, reason }) => {
@@ -139,18 +137,18 @@ export const infractionHandlers: {
 			});
 		},
 	},
+} satisfies {
+	[K in InfractionType]: {
+		/** The human-readable name of the infraction type */
+		string: string;
+		execute({
+			user,
+			author,
+			reason,
+		}: {
+			user: User;
+			author: User;
+			reason: string;
+		}): Promise<string>;
+	};
 };
-
-interface InfractionHandler {
-	/** The human-readable name of the infraction type */
-	string: string;
-	execute({
-		user,
-		author,
-		reason,
-	}: {
-		user: User;
-		author: User;
-		reason: string;
-	}): Promise<string>;
-}

@@ -3,7 +3,7 @@ import env from "../../lib/util/env.js";
 import client from "../../lib/discord/client.js";
 import { Emoji } from "../../lib/util/emoji.js";
 
-import userModerationLog from "../../lib/moderation/userModerationLog.js";
+import userModLogEmbed from "../../lib/moderation/modlogUserEmbed.js";
 import humanizeDuration from "humanize-duration";
 
 export default async function timeout({
@@ -23,7 +23,7 @@ export default async function timeout({
 		Emoji.Timeout
 	} Timed out ${targetUser} for ${humanizeDuration(duration)}`;
 
-	await userModerationLog({ user: targetUser, author, string, reason });
+	await userModLogEmbed({ targetUser: targetUser, author, string, reason });
 
 	const guild = await client.guilds.fetch(env.GUILD_ID);
 	const member = await guild.members.fetch(targetUser);

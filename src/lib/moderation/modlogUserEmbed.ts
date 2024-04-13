@@ -1,18 +1,17 @@
 import { EmbedBuilder, User } from "discord.js";
 import { CHANNEL_MODLOG } from "../discord/loadDiscordObjects.js";
 
-export default async function userModerationLog({
-	user,
+export default async function ({
+	targetUser,
 	author,
 	string,
 	reason,
 }: {
-	user: User;
+	targetUser: User;
 	author: User;
 	string: string;
 	reason?: string;
 }) {
-	//create embed
 	const embed = new EmbedBuilder()
 		.setColor("#137c5a")
 		.setDescription(string)
@@ -20,9 +19,8 @@ export default async function userModerationLog({
 			name: author.username,
 			iconURL: author.displayAvatarURL(),
 		})
-		.setThumbnail(user.displayAvatarURL())
-		.addFields({ name: "Reason", value: reason ?? "No reason provided." });
+		.addFields({ name: "Reason", value: reason ?? "No reason provided." })
+		.setThumbnail(targetUser.displayAvatarURL());
 
-	//post to modlog channel and return message
 	return await (await CHANNEL_MODLOG.send({ embeds: [embed] })).crosspost();
 }
