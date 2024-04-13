@@ -25,7 +25,7 @@ export default {
 				},
 				{
 					name: `${Emoji.Developer} Developer`,
-					value: "tgobot was built by <@247070105916276736>.",
+					value: "`tgobot` was built by <@247070105916276736>.",
 				},
 				{ name: "Uptime", value: humanizeDuration(interaction.client.uptime) }
 			);
