@@ -8,17 +8,20 @@ export default async function kick({
 	targetUser,
 	reason,
 	author,
+	execute,
 }: {
 	targetUser: User;
-	reason: string;
+	reason?: string;
 	author: User;
+	execute: boolean;
 }) {
 	//todo dm the user
 	const string = `${Emoji.Kick} Kicked ${targetUser}`;
 	await userModLogEmbed({ targetUser: targetUser, author, string, reason });
 
 	const guild = await client.guilds.fetch(env.GUILD_ID);
-	guild.members.kick(targetUser);
+
+	if (execute) await guild.members.kick(targetUser);
 
 	return string;
 }

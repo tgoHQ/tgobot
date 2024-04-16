@@ -43,3 +43,12 @@ connect modlog in db to message in modlog channel. callback to automatically edi
 permission checks for moderation actions
 
 combine tickets with reports and cases
+
+action and logger for unban
+
+log bulk emoji removals for all of one emoji or all message emojis
+
+array of announcement channel IDs to auto publish
+
+detect when someone boosts and send a message in town hall + send them a message about perks
+https://discord.com/channels/222078108977594368/824411059443204127/1229448637143060532

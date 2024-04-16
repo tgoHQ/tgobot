@@ -29,6 +29,7 @@ import messageDelete from "./logging/messageDelete.js";
 import messageEdit from "./logging/messageEdit.js";
 import ban from "./logging/ban.js";
 import bulkDelete from "./logging/bulkDelete.js";
+import kick from "./logging/kick.js";
 
 import introduction from "./automessage/introduction.js";
 
@@ -45,6 +46,7 @@ const events: Event[] = [
 	bulkDelete,
 	ban,
 	gearListLink,
+	kick,
 ];
 
 for (const event of events) {
