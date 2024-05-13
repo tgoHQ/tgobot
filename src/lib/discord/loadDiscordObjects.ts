@@ -20,8 +20,9 @@ async function fetchChannel<T extends ChannelType>(
 	type: T
 ): Promise<Channel & { type: T }> {
 	const channel = await client.channels.fetch(id);
-	if (!channel) throw new Error("Channel not found");
-	if (channel.type !== type) throw new Error("Channel is not of type " + type);
+	if (!channel) throw new Error(`Channel ${id} not found`);
+	if (channel.type !== type)
+		throw new Error(`Channel ${id} is not of type ${type}`);
 	return channel as Channel & { type: T };
 }
 export const CHANNEL_INTRODUCTIONS = await fetchChannel<ChannelType.GuildText>(
@@ -50,5 +51,9 @@ export const CHANNEL_MEETUPS = await fetchChannel(
 );
 export const CHANNEL_PHOTOS = await fetchChannel(
 	env.CHANNEL_PHOTOS_ID,
+	ChannelType.GuildForum
+);
+export const CHANNEL_TRIP_REPORTS = await fetchChannel(
+	env.CHANNEL_TRIP_REPORTS_ID,
 	ChannelType.GuildForum
 );
