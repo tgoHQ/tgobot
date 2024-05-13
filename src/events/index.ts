@@ -35,6 +35,7 @@ import introduction from "./automessage/introduction.js";
 
 import gearListLink from "./automessage/gearListLink.js";
 import meetups from "./automessage/meetups.js";
+import photos from "./automessage/photos.js";
 
 const events: Event[] = [
 	introduction,
@@ -47,6 +48,7 @@ const events: Event[] = [
 	ban,
 	gearListLink,
 	kick,
+	photos
 ];
 
 for (const event of events) {
