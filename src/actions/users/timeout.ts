@@ -17,7 +17,7 @@ export default async function timeout({
 	author: User;
 	duration: number; //duration in ms
 }) {
-	//dm the user
+	//todo dm the user
 
 	const string = `${
 		Emoji.Timeout
