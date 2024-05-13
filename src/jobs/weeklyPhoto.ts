@@ -6,7 +6,11 @@ import { CHANNEL_PHOTOS } from "../lib/discord/loadDiscordObjects";
 export default {
 	name: "#photos post of the week",
 	async execute() {
-		CHANNEL_PHOTOS.messages.fetch({});
+		const posts = await CHANNEL_PHOTOS.messages.fetch({
+			limit: 100,
+		});
+
+		console.log(`fetched ${posts.size} posts`);
 		//get all posts from past week
 		//find the bean count for each post
 		//find the post with the most bean count
@@ -15,7 +19,8 @@ export default {
 		//add tag to winner
 		//send a message in winner channel
 	},
-	schedule() {
+	schedule(): number {
 		//run every sunday at noon
+		return 1;
 	},
-} //todo satisfies Job;
+}; //todo satisfies Job;
