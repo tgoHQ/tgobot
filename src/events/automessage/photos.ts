@@ -4,6 +4,7 @@ import {
 	CHANNEL_PHOTOS,
 	CHANNEL_TRIP_REPORTS,
 } from "../../lib/discord/loadDiscordObjects.js";
+import getDuration from "../../lib/util/getDuration.js";
 
 export default {
 	name: Events.ThreadCreate,
@@ -11,9 +12,23 @@ export default {
 	async execute(thread) {
 		if (thread.parent !== CHANNEL_PHOTOS) return; //if message not from photos channel, return
 
+		await sleep(3000); //not sure why, but it crashes without this
 		const post = await thread.fetchStarterMessage();
 
 		await post?.react("🫘");
+
+		if (post?.attachments.size === 0) {
+			await post.reply(`
+				Your post must contain at least one photo! This post has been locked and will be deleted in 10 minutes. Please create a new post with your photos attached.
+			`);
+			await thread.setLocked(true);
+
+			//delete the post in 10 minutes
+			setTimeout(() => {
+				thread.delete();
+			}, getDuration.minutes(10));
+			return;
+		}
 
 		post?.reply(
 			`Thanks for posting in the photos channel! Here are a few guidelines to to remember:
@@ -26,3 +41,6 @@ export default {
 		);
 	},
 } satisfies Event<Events.ThreadCreate>;
+
+const sleep = (delay: number) =>
+	new Promise((resolve) => setTimeout(resolve, delay));

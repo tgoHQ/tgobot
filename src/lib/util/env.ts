@@ -21,7 +21,8 @@ export default cleanEnv(process.env, {
 	CHANNEL_INFO_ID: str(),
 	CHANNEL_MEETUPS_ID: str(),
 	CHANNEL_PHOTOS_ID: str(),
-	CHANNEL_TRIP_REPORTS_ID: str(),
+	CHANNEL_TRIP_REPORTS_ID: str(), 
+	TAG_PHOTO_OF_THE_WEEK_ID: str(),
 
 	DB_URL: str(),
 });
