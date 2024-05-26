@@ -58,8 +58,8 @@ export const CHANNEL_TRIP_REPORTS = await fetchChannel(
 	ChannelType.GuildForum
 );
 
-const tag = CHANNEL_PHOTOS.availableTags.find(
-	(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID
-);
-if (!tag) throw new Error("Photo of the week tag not found");
-export const TAG_PHOTO_OF_THE_WEEK = tag.id;
+// const tag = CHANNEL_PHOTOS.availableTags.find(
+// 	(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID
+// );
+// if (!tag) throw new Error("Photo of the week tag not found");
+// export const TAG_PHOTO_OF_THE_WEEK = tag.id;
