@@ -12,6 +12,7 @@ export default {
 	async execute(thread) {
 		if (thread.parent !== CHANNEL_PHOTOS) return; //if message not from photos channel, return
 
+		await sleep(3000); //not sure why, but it crashes without this
 		const post = await thread.fetchStarterMessage();
 
 		await post?.react("🫘");
@@ -40,3 +41,6 @@ export default {
 		);
 	},
 } satisfies Event<Events.ThreadCreate>;
+
+const sleep = (delay: number) =>
+	new Promise((resolve) => setTimeout(resolve, delay));
