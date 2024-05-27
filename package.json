@@ -14,7 +14,7 @@
 		"drizzle-kit": "^0.20.14",
 		"drizzle-orm": "^0.30.8",
 		"envalid": "^8.0.0",
-		"humanize-duration": "^3.27.3",
+		"humanize-duration": "^3.32.1",
 		"openai": "^4.23.0",
 		"parse-duration": "^1.0.2",
 		"postgres": "^3.4.4"
