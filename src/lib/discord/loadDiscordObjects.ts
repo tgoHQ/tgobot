@@ -53,6 +53,10 @@ export const CHANNEL_PHOTOS = await fetchChannel(
 	env.CHANNEL_PHOTOS_ID,
 	ChannelType.GuildForum
 );
+export const CHANNEL_NATURE = await fetchChannel(
+	env.CHANNEL_NATURE_ID,
+	ChannelType.GuildText
+);
 export const CHANNEL_TRIP_REPORTS = await fetchChannel(
 	env.CHANNEL_TRIP_REPORTS_ID,
 	ChannelType.GuildForum
