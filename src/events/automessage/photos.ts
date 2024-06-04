@@ -12,7 +12,7 @@ export default {
 	async execute(thread) {
 		if (thread.parent !== CHANNEL_PHOTOS) return; //if message not from photos channel, return
 
-		await sleep(3000); //not sure why, but it crashes without this
+		await sleep(getDuration.seconds(6)); //bot crashes if it tries before the images are done uploading
 		const post = await thread.fetchStarterMessage();
 
 		await post?.react("🫘");
