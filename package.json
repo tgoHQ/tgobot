@@ -11,7 +11,7 @@
 	"dependencies": {
 		"@openbeta/sandbag": "^0.0.51",
 		"discord.js": "^14.7.1",
-		"drizzle-kit": "^0.20.14",
+		"drizzle-kit": "^0.22.6",
 		"drizzle-orm": "^0.30.8",
 		"envalid": "^8.0.0",
 		"humanize-duration": "^3.27.3",
