@@ -1,6 +1,6 @@
 import { User } from "discord.js";
-import timeout from "../../actions/users/timeout.js";
-import ban from "../../actions/users/ban.js";
+import timeout from "./actions/users/timeout.js";
+import ban from "./actions/users/ban.js";
 import { Emoji } from "../util/emoji.js";
 import getDuration from "../util/getDuration.js";
 

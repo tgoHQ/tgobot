@@ -19,5 +19,7 @@ export default async function ({
 		})
 		.addFields({ name: "Reason", value: reason ?? "No reason provided." });
 
-	return await (await CHANNEL_MODLOG.send({ embeds: [embed] })).crosspost();
+	return await (
+		await (await CHANNEL_MODLOG()).send({ embeds: [embed] })
+	).crosspost();
 }
