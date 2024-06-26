@@ -42,5 +42,7 @@ export class LighterpackAutoMessageListener extends Listener {
 			files: [new AttachmentBuilder(screenshotBuffer)],
 			allowedMentions: {},
 		});
+
+		await browser.close();
 	}
 }
