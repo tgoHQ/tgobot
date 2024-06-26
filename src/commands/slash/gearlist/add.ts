@@ -1,11 +1,11 @@
-import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
-import { SlashCommand } from "../index.js";
+import { EmbedBuilder, SlashCommandSubcommandBuilder } from "discord.js";
+import { SlashCommandSubcommand } from "../index.js";
 import db from "../../../lib/db/drizzle.js";
 import { gearLists } from "../../../lib/db/schema.js";
 
 export default {
-	data: new SlashCommandBuilder()
-		.setName("addgearlist")
+	data: new SlashCommandSubcommandBuilder()
+		.setName("add")
 		.setDescription("Save a new gear list")
 		.addStringOption((option) =>
 			option
@@ -48,4 +48,4 @@ export default {
 			],
 		});
 	},
-} satisfies SlashCommand;
+} satisfies SlashCommandSubcommand;

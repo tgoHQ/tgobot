@@ -1,10 +1,10 @@
-import { SlashCommandBuilder } from "discord.js";
-import { SlashCommand } from "../index.js";
+import { SlashCommandSubcommandBuilder } from "discord.js";
+import { SlashCommandSubcommand } from "../index.js";
 import gearlistEmbed from "../../../lib/util/gearlistEmbed.js";
 
 export default {
-	data: new SlashCommandBuilder()
-		.setName("gearlist")
+	data: new SlashCommandSubcommandBuilder()
+		.setName("show")
 		.setDescription("Check a user's saved gear lists")
 		.addUserOption((option) =>
 			option
@@ -18,4 +18,4 @@ export default {
 			embeds: [await gearlistEmbed(interaction.options.getUser("user", true))],
 		});
 	},
-} satisfies SlashCommand;
+} satisfies SlashCommandSubcommand;

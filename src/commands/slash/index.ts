@@ -2,6 +2,8 @@ import type {
 	SlashCommandBuilder,
 	ChatInputCommandInteraction,
 	SlashCommandSubcommandsOnlyBuilder,
+	SlashCommandSubcommandBuilder,
+	AutocompleteInteraction,
 } from "discord.js";
 
 /**
@@ -13,12 +15,17 @@ export type SlashCommand = {
 		| SlashCommandSubcommandsOnlyBuilder;
 	execute(interaction: ChatInputCommandInteraction): Promise<void> | void;
 };
+export type SlashCommandSubcommand = {
+	data: SlashCommandSubcommandBuilder;
+	execute(interaction: ChatInputCommandInteraction): Promise<void> | void;
+	autocomplete?(interaction: AutocompleteInteraction): Promise<void>;
+};
 
 import about from "./general/about.js";
 import help from "./general/help.js";
 import vcping from "./general/vcping.js";
 import grades from "./general/grades.js";
-import gearlist from "./general/gearlist.js";
+import gearlist from "./gearlist/index.js";
 import snippet from "./general/snippet.js";
 
 import clean from "./moderation/clean.js";
@@ -29,7 +36,6 @@ import infraction from "./moderation/infraction.js";
 import ask from "./fun/ask.js";
 import message from "./fun/message.js";
 import ulAdvice from "./fun/ulAdvice.js";
-import addgearlist from "./general/addgearlist.js";
 
 export default [
 	about,
@@ -47,6 +53,4 @@ export default [
 	ask,
 	message,
 	ulAdvice,
-
-	addgearlist,
 ] satisfies SlashCommand[];

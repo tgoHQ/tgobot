@@ -18,28 +18,46 @@ for (const command of [...slashCommands, ...contextCommands]) {
 
 //listen for commands being run
 client.on(Events.InteractionCreate, async (interaction) => {
-	if (!interaction.isCommand()) return;
+	if (interaction.isChatInputCommand() || interaction.isContextMenuCommand()) {
+		const command = commandsCollection.get(interaction.commandName);
 
-	const command = commandsCollection.get(interaction.commandName);
-
-	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		await interaction.reply(failReply);
-		return;
-	}
-
-	try {
-		//todo
-		//@ts-ignore
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(`Error executing ${interaction.commandName}`, error);
-
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp(failReply);
+		if (!command) {
+			console.error(
+				`No command matching ${interaction.commandName} was found.`
+			);
+			await interaction.reply(failReply);
 			return;
 		}
 
-		await interaction.reply(failReply);
+		try {
+			//todo
+			//@ts-expect-error
+			await command.execute(interaction);
+		} catch (error) {
+			console.error(`Error executing ${interaction.commandName}`, error);
+
+			if (interaction.replied || interaction.deferred) {
+				await interaction.followUp(failReply);
+				return;
+			}
+
+			await interaction.reply(failReply);
+		}
+	} else if (interaction.isAutocomplete()) {
+		const command = commandsCollection.get(interaction.commandName);
+		console.log(command);
+		if (!command) {
+			console.error(
+				`No autocomplete command matching ${interaction.commandName} was found.`
+			);
+		}
+
+		try {
+			//todo
+			//@ts-expect-error
+			await command.autocomplete(interaction);
+		} catch (error) {
+			console.error(error);
+		}
 	}
 });
