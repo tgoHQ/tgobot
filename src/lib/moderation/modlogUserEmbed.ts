@@ -22,5 +22,5 @@ export default async function ({
 		.addFields({ name: "Reason", value: reason ?? "No reason provided." })
 		.setThumbnail(targetUser.displayAvatarURL());
 
-	return await (await CHANNEL_MODLOG.send({ embeds: [embed] })).crosspost();
+	return await (await (await CHANNEL_MODLOG()).send({ embeds: [embed] })).crosspost();
 }

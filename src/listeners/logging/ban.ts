@@ -1,10 +1,11 @@
-import { Listener, Events } from "@sapphire/framework";
+import { Events, Listener } from "@sapphire/framework";
+
 import { AuditLogEvent, Guild, GuildAuditLogsEntry } from "discord.js";
 import { container } from "@sapphire/framework";
+import ban from "../../lib/moderation/actions/users/ban.js";
 import { GUILD } from "../../lib/discord/loadDiscordObjects.js";
-import kick from "../../lib/moderation/actions/users/kick.js";
 
-export class KickListener extends Listener {
+export class BanListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
 		options: Listener.Options
@@ -16,11 +17,11 @@ export class KickListener extends Listener {
 	}
 
 	public async run(auditLog: GuildAuditLogsEntry, guild: Guild) {
-		//if this isn't a kick, ignore
-		if (auditLog.action !== AuditLogEvent.MemberKick) return;
+		//if this isn't a ban, ignore
+		if (auditLog.action !== AuditLogEvent.MemberBanAdd) return;
 
 		//if not from main guild, ignore
-		if (guild !== GUILD) return;
+		if (guild !== await GUILD()) return;
 
 		//get target
 		if (!auditLog.targetId) return;
@@ -34,7 +35,7 @@ export class KickListener extends Listener {
 		//if author is bot, ignore
 		if (author === container.client.user) return;
 
-		await kick({
+		await ban({
 			targetUser: target,
 			reason: auditLog.reason ?? undefined,
 			author,

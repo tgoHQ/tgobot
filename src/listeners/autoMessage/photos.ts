@@ -22,7 +22,7 @@ export class ReadyListener extends Listener {
 	}
 
 	public async run(thread: ThreadChannel) {
-		if (thread.parent !== CHANNEL_PHOTOS) return; //if message not from photos channel, return
+		if (thread.parent !== await CHANNEL_PHOTOS()) return; //if message not from photos channel, return
 
 		await sleep(getDuration.seconds(6)); //bot crashes if it tries before the images are done uploading
 		const post = await thread.fetchStarterMessage();

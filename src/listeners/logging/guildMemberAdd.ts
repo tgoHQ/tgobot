@@ -10,7 +10,7 @@ export class GuildMemberRemoveListener extends Listener {
 		if (member.user.bot === true) {
 			await member.guild.members.addRole({
 				user: member.user,
-				role: ROLE_BOT,
+				role: await ROLE_BOT(),
 			});
 		}
 
@@ -29,6 +29,6 @@ export class GuildMemberRemoveListener extends Listener {
 					}),
 				}
 			);
-		CHANNEL_LOG.send({ embeds: [embed] });
+		(await CHANNEL_LOG()).send({ embeds: [embed] });
 	}
 }

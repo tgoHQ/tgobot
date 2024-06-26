@@ -18,7 +18,7 @@ export class NatureAutoMessageListener extends Listener {
 	}
 
 	public async run(message: Message) {
-		if (message.channel !== CHANNEL_NATURE) return; //if message not from photos channel, return
+		if (message.channel !== await CHANNEL_NATURE()) return; //if message not from photos channel, return
 
 		if (message?.attachments.size >= 3) {
 			await message.reply(`

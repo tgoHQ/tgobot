@@ -1,25 +1,22 @@
-console.log("hi");
-
 import env from "../util/env.js";
 import { container } from "@sapphire/framework";
-import { Channel, ChannelType } from "discord.js";
+import { Channel, ChannelType, Role } from "discord.js";
 
-const sleep = (delay: number) =>
-	new Promise((resolve) => setTimeout(resolve, delay));
-
-await sleep(5 * 1000);
-
-export const GUILD = await container.client.guilds.fetch(env.GUILD_ID);
+export const GUILD = async () =>
+	await container.client.guilds.fetch(env.GUILD_ID);
 
 // ROLES //
 async function fetchRole(id: string) {
-	const role = await GUILD.roles.fetch(id);
-	if (!role) throw new Error("Role not found");
-	return role;
+	const role = (await GUILD()).roles.fetch(id);
+	if (role === null) {
+		throw new Error("Role not found");
+	}
+	return role as Promise<Role>;
 }
-export const ROLE_BOT = await fetchRole(env.ROLE_BOT_ID);
-export const ROLE_VCPING = await fetchRole(env.ROLE_VCPING_ID);
-export const ROLE_INTRODUCED = await fetchRole(env.ROLE_INTRODUCED_ID);
+export const ROLE_BOT = async () => await fetchRole(env.ROLE_BOT_ID);
+export const ROLE_VCPING = async () => await fetchRole(env.ROLE_VCPING_ID);
+export const ROLE_INTRODUCED = async () =>
+	await fetchRole(env.ROLE_INTRODUCED_ID);
 
 // CHANNELS //
 async function fetchChannel<T extends ChannelType>(
@@ -32,42 +29,28 @@ async function fetchChannel<T extends ChannelType>(
 		throw new Error(`Channel ${id} is not of type ${type}`);
 	return channel as Channel & { type: T };
 }
-export const CHANNEL_INTRODUCTIONS = await fetchChannel<ChannelType.GuildText>(
-	env.CHANNEL_INTRODUCTIONS_ID,
-	ChannelType.GuildText
-);
-export const CHANNEL_ALERT = await fetchChannel(
-	env.CHANNEL_ALERT_ID,
-	ChannelType.GuildText
-);
-export const CHANNEL_LOG = await fetchChannel(
-	env.CHANNEL_LOG_ID,
-	ChannelType.GuildText
-);
-export const CHANNEL_MODLOG = await fetchChannel(
-	env.CHANNEL_MODLOG_ID,
-	ChannelType.GuildAnnouncement
-);
-export const CHANNEL_INFO = await fetchChannel(
-	env.CHANNEL_INFO_ID,
-	ChannelType.GuildText
-);
-export const CHANNEL_MEETUPS = await fetchChannel(
-	env.CHANNEL_MEETUPS_ID,
-	ChannelType.GuildForum
-);
-export const CHANNEL_PHOTOS = await fetchChannel(
-	env.CHANNEL_PHOTOS_ID,
-	ChannelType.GuildForum
-);
-export const CHANNEL_NATURE = await fetchChannel(
-	env.CHANNEL_NATURE_ID,
-	ChannelType.GuildText
-);
-export const CHANNEL_TRIP_REPORTS = await fetchChannel(
-	env.CHANNEL_TRIP_REPORTS_ID,
-	ChannelType.GuildForum
-);
+
+export const CHANNEL_INTRODUCTIONS = async () =>
+	await fetchChannel<ChannelType.GuildText>(
+		env.CHANNEL_INTRODUCTIONS_ID,
+		ChannelType.GuildText
+	);
+export const CHANNEL_ALERT = async () =>
+	await fetchChannel(env.CHANNEL_ALERT_ID, ChannelType.GuildText);
+export const CHANNEL_LOG = async () =>
+	await fetchChannel(env.CHANNEL_LOG_ID, ChannelType.GuildText);
+export const CHANNEL_MODLOG = async () =>
+	await fetchChannel(env.CHANNEL_MODLOG_ID, ChannelType.GuildAnnouncement);
+export const CHANNEL_INFO = async () =>
+	await fetchChannel(env.CHANNEL_INFO_ID, ChannelType.GuildText);
+export const CHANNEL_MEETUPS = async () =>
+	await fetchChannel(env.CHANNEL_MEETUPS_ID, ChannelType.GuildForum);
+export const CHANNEL_PHOTOS = async () =>
+	await fetchChannel(env.CHANNEL_PHOTOS_ID, ChannelType.GuildForum);
+export const CHANNEL_NATURE = async () =>
+	await fetchChannel(env.CHANNEL_NATURE_ID, ChannelType.GuildText);
+export const CHANNEL_TRIP_REPORTS = async () =>
+	await fetchChannel(env.CHANNEL_TRIP_REPORTS_ID, ChannelType.GuildForum);
 
 // const tag = CHANNEL_PHOTOS.availableTags.find(
 // 	(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID

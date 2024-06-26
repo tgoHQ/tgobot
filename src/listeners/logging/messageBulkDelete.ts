@@ -10,8 +10,8 @@ import {
 import { CHANNEL_LOG, GUILD } from "../../lib/discord/loadDiscordObjects.js";
 
 export class ReadyListener extends Listener {
-	public run(messages: Collection<Snowflake, Message>, channel: GuildChannel) {
-		if (channel.guild !== GUILD) return; //if not from main guild, return
+	public async run(messages: Collection<Snowflake, Message>, channel: GuildChannel) {
+		if (channel.guild !== await GUILD()) return; //if not from main guild, return
 
 		const deletedMessageStrings = messages.map((message) => {
 			return `[${message.createdAt.toUTCString()}] ${
@@ -25,7 +25,7 @@ export class ReadyListener extends Listener {
 
 		const buffer = Buffer.from(oneString);
 
-		CHANNEL_LOG.send({
+		(await CHANNEL_LOG()).send({
 			embeds: [
 				new EmbedBuilder()
 					.setColor("#ff3131")

@@ -16,7 +16,7 @@ export default async function ban({
 }) {
 	//todo dm the user
 
-	if (execute) await GUILD.bans.create(targetUser, { reason });
+	if (execute) await (await GUILD()).bans.create(targetUser, { reason });
 
 	const string = `${Emoji.Ban} Banned ${targetUser}`;
 	await userModLogEmbed({ targetUser: targetUser, author, string, reason });

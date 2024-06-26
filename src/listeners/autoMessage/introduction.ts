@@ -19,7 +19,7 @@ export class IntroductionsAutoMessageListener extends Listener {
 	}
 
 	public async run(message: Message) {
-		if (message.channel !== CHANNEL_INTRODUCTIONS) return;
+		if (message.channel !== await CHANNEL_INTRODUCTIONS()) return;
 
 		if (message.author.bot) return;
 
@@ -30,7 +30,7 @@ export class IntroductionsAutoMessageListener extends Listener {
 
 		message.channel.sendTyping();
 		message.react("👋");
-		message.member?.roles.add(ROLE_INTRODUCED);
+		message.member?.roles.add(await ROLE_INTRODUCED());
 
 		const openai = new OpenAI({
 			apiKey: env.OPENAI,

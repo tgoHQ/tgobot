@@ -5,7 +5,7 @@ import { Message, EmbedBuilder } from "discord.js";
 import { CHANNEL_LOG } from "../../lib/discord/loadDiscordObjects.js";
 
 export class MessageUpdateListener extends Listener {
-	public run(oldMessage: Message, newMessage: Message) {
+	public async run(oldMessage: Message, newMessage: Message) {
 		if (newMessage.guild?.id != env.GUILD_ID) return; //if message edited is not from main guild, return
 
 		if (oldMessage.content === newMessage.content) return; //if text content of message hasn't changed, return
@@ -23,7 +23,7 @@ export class MessageUpdateListener extends Listener {
 				{ name: "After", value: newMessage.content }
 			);
 
-		CHANNEL_LOG.send({ embeds: [embed] });
+		(await CHANNEL_LOG()).send({ embeds: [embed] });
 	}
 }
 
