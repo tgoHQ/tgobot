@@ -1,8 +1,28 @@
-import "./commands/handleCommands.js"; //load commands
-import "./events/index.js"; //load events
+import { SapphireClient } from "@sapphire/framework";
+import { GatewayIntentBits } from "discord.js";
+import env from "./lib/util/env.js";
 
-import registerCommands from "./commands/registerCommands.js";
-await registerCommands();
+const client = new SapphireClient({
+	intents: [
+		GatewayIntentBits.GuildModeration,
+		GatewayIntentBits.GuildMembers,
+		GatewayIntentBits.GuildVoiceStates,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+	],
+	presence: {
+		activities: [
+			{
+				name: "outside",
+			},
+		],
+	},
+	allowedMentions: {
+		parse: ["users"],
+		repliedUser: true,
+	},
+	loadMessageCommandListeners: true,
+});
 
-import client from "./lib/discord/client.js";
-console.log(`${client.user!.displayName} ready!`);
+await client.login(env.TOKEN);

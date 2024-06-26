@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@openbeta/sandbag": "^0.0.51",
+		"@sapphire/framework": "^5.2.1",
 		"discord.js": "^14.7.1",
 		"drizzle-kit": "^0.20.14",
 		"drizzle-orm": "^0.30.8",

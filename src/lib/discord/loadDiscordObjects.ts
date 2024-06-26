@@ -1,8 +1,15 @@
+console.log("hi");
+
 import env from "../util/env.js";
-import client from "./client.js";
+import { container } from "@sapphire/framework";
 import { Channel, ChannelType } from "discord.js";
 
-export const GUILD = await client.guilds.fetch(env.GUILD_ID);
+const sleep = (delay: number) =>
+	new Promise((resolve) => setTimeout(resolve, delay));
+
+await sleep(5 * 1000);
+
+export const GUILD = await container.client.guilds.fetch(env.GUILD_ID);
 
 // ROLES //
 async function fetchRole(id: string) {
@@ -19,7 +26,7 @@ async function fetchChannel<T extends ChannelType>(
 	id: string,
 	type: T
 ): Promise<Channel & { type: T }> {
-	const channel = await client.channels.fetch(id);
+	const channel = await container.client.channels.fetch(id);
 	if (!channel) throw new Error(`Channel ${id} not found`);
 	if (channel.type !== type)
 		throw new Error(`Channel ${id} is not of type ${type}`);
