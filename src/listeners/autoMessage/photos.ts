@@ -22,7 +22,7 @@ export class ReadyListener extends Listener {
 	}
 
 	public async run(thread: ThreadChannel) {
-		if (thread.parent !== await CHANNEL_PHOTOS()) return; //if message not from photos channel, return
+		if (thread.parent !== (await CHANNEL_PHOTOS())) return; //if message not from photos channel, return
 
 		await sleep(getDuration.seconds(6)); //bot crashes if it tries before the images are done uploading
 		const post = await thread.fetchStarterMessage();
@@ -44,7 +44,7 @@ export class ReadyListener extends Listener {
 
 		post?.reply(
 			`Thanks for posting in the photos channel! Here are a few guidelines to to remember:
-				- If your post is all photos from one camping/hiking/backpacking/etc trip, please post this in ${CHANNEL_TRIP_REPORTS} instead.
+				- If your post is all photos from one camping/hiking/backpacking/etc trip, please post this in ${await CHANNEL_TRIP_REPORTS()} instead.
 				- If you have more photos to post later, please create a new forum post for them.
 				- This thread is only for discussion of the photos above. For general conversation, please use the relevant channels.
 
