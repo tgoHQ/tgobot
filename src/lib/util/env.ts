@@ -23,6 +23,7 @@ export default cleanEnv(process.env, {
 	CHANNEL_PHOTOS_ID: str(),
 	CHANNEL_TRIP_REPORTS_ID: str(),
 	CHANNEL_NATURE_ID: str(),
+	CHANNEL_TOWN_HALL_ID: str(),
 
 	DB_URL: str(),
 });

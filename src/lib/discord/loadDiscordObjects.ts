@@ -51,6 +51,8 @@ export const CHANNEL_NATURE = async () =>
 	await fetchChannel(env.CHANNEL_NATURE_ID, ChannelType.GuildText);
 export const CHANNEL_TRIP_REPORTS = async () =>
 	await fetchChannel(env.CHANNEL_TRIP_REPORTS_ID, ChannelType.GuildForum);
+export const CHANNEL_TOWN_HALL = async () =>
+	await fetchChannel(env.CHANNEL_TOWN_HALL_ID, ChannelType.GuildAnnouncement);
 
 // const tag = CHANNEL_PHOTOS.availableTags.find(
 // 	(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID
