@@ -31,6 +31,7 @@ export class ReadyListener extends Listener {
 						)
 						.setColor("#ff8950"),
 				],
+				content: newMember.toString(),
 			});
 
 			await message.crosspost();
