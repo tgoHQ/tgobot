@@ -40,7 +40,7 @@ when a mod does native ban/timeout/kick on a user, ping them and get them to sub
 
 connect modlog in db to message in modlog channel. callback to automatically edit the message in modlog when the log is edited
 
-permission checks for moderation actions
+permission checks for moderation actions (acting on a higher-ranked user?)
 
 combine tickets with reports and cases
 
