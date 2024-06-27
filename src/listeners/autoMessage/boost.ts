@@ -23,7 +23,12 @@ export class ReadyListener extends Listener {
 					new EmbedBuilder()
 						.setTitle("<:boost:1256023381690814536> New Server Boost")
 						.setThumbnail(newMember.displayAvatarURL())
-						.setDescription(`${newMember} just boosted the server!`)
+						.setDescription(
+							`
+							${newMember} just boosted the server!
+							Boosters get special perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and access to the </ask:1191037845574529086> AI command!
+						`.replaceAll("	", "")
+						)
 						.setColor("#ff8950"),
 				],
 			});

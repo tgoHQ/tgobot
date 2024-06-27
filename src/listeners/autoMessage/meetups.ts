@@ -14,7 +14,7 @@ export class MeetupsAutoMessageListener extends Listener {
 	}
 
 	public async run(thread: ThreadChannel) {
-		if (thread.parent !== await CHANNEL_MEETUPS()) return; //if message not from meetups channel, return
+		if (thread.parent !== (await CHANNEL_MEETUPS())) return; //if message not from meetups channel, return
 
 		const member = await thread.fetchOwner();
 		if (!member) return;
