@@ -1,4 +1,4 @@
-import { User } from "discord.js";
+import { User, inlineCode } from "discord.js";
 import timeout from "./actions/users/timeout.js";
 import ban from "./actions/users/ban.js";
 import { Emoji } from "../util/emoji.js";
@@ -36,9 +36,11 @@ export async function infraction({
 	//combine infraction string and mod comment to create reason
 	const reason = `${infractionHandlers[type].string}${
 		comment ? ". Comment: " + comment : ""
-	}`;
+	}.`;
 
-	const infractionString = `${Emoji.True} Logged infraction \`${infractionHandlers[type].string}\` against ${user} with comment \`${comment}\`.`;
+	const infractionString = `${Emoji.True} Logged infraction ${inlineCode(
+		infractionHandlers[type].string
+	)} against ${user}${comment ? " with comment " + inlineCode(comment) : ""}.`;
 
 	//execute the chosen infraction type module
 	const actionResultsString = await infractionHandlers[type].execute({
