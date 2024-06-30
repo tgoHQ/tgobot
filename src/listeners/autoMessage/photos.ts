@@ -43,12 +43,15 @@ export class ReadyListener extends Listener {
 		}
 
 		post?.reply(
-			`Thanks for posting in the photos channel! Here are a few guidelines to to remember:
-				- If your post is all photos from one camping/hiking/backpacking/etc trip, please post this in ${await CHANNEL_TRIP_REPORTS()} instead.
-				- If you have more photos to post later, please create a new forum post for them.
-				- This thread is only for discussion of the photos above. For general conversation, please use the relevant channels.
+			`Thanks for posting! Here are a few guidelines to remember.
 
-			People can react to your post with 🫘 to upvote it! Each week, the post with the most beans is named "Photo of the Week" and get pinned.
+			**For OP**:
+				- If this post is a writeup of your camping/hiking/backpacking/etc trip, please post it in ${await CHANNEL_TRIP_REPORTS()} instead.
+				- If you have more unrelated photos to share later, create a separate post for them.
+				
+			**For everyone**:
+				- This thread is for discussion of the photos shared above, not for general chatting.
+				- React to this post with 🫘 to upvote it! Each week, the post with the most beans is crowned "Photo of the Week".
 			`.replaceAll("	", "")
 		);
 	}
