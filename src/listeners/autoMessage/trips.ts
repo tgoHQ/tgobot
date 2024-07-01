@@ -1,6 +1,8 @@
 import { Events, Listener } from "@sapphire/framework";
 import { EmbedBuilder, ThreadChannel } from "discord.js";
 import { CHANNEL_TRIP_REPORTS } from "../../lib/discord/loadDiscordObjects.js";
+import { sleep } from "@sapphire/utilities";
+import getDuration from "../../lib/util/getDuration.js";
 
 export class MeetupsAutoMessageListener extends Listener {
 	public constructor(
@@ -42,5 +44,9 @@ export class MeetupsAutoMessageListener extends Listener {
 			);
 
 		thread.send({ embeds: [embed], content: member.user!.toString() });
+
+		await sleep(getDuration.seconds(6)); //bot crashes if it tries before the images are done uploading
+		const post = await thread.fetchStarterMessage();
+		await post?.react("🫘");
 	}
 }
