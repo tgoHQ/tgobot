@@ -10,20 +10,17 @@ export class UlAdviceCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("uladvice")
-					.setDescription("Get ultralight backpacking advice.")
-					.addStringOption((option) =>
-						option
-							.setName("prompt")
-							.setDescription("The question you want to ask")
-							.setRequired(true)
-					);
-			},
-			{ idHints: ["1255566384335949864"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("uladvice")
+				.setDescription("Get ultralight backpacking advice.")
+				.addStringOption((option) =>
+					option
+						.setName("prompt")
+						.setDescription("The question you want to ask")
+						.setRequired(true)
+				);
+		});
 	}
 
 	public override async chatInputRun(

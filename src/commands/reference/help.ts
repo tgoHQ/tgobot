@@ -10,12 +10,9 @@ export class HelpCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder.setName("help").setDescription("List commands you can use");
-			},
-			{ idHints: ["1255566466955083827"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder.setName("help").setDescription("List commands you can use");
+		});
 	}
 
 	public override async chatInputRun(

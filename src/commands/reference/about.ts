@@ -11,14 +11,11 @@ export class AboutCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("about")
-					.setDescription("Displays information about this bot.");
-			},
-			{ idHints: ["1255566385887707157"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("about")
+				.setDescription("Displays information about this bot.");
+		});
 	}
 
 	public override async chatInputRun(

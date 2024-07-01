@@ -23,3 +23,5 @@ export default async function ({
 		await (await CHANNEL_MODLOG()).send({ embeds: [embed] })
 	).crosspost();
 }
+
+//todo make one file/function that handles all posting to the modlog channel. share logic between infractions and modtools

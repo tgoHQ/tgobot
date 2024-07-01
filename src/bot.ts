@@ -1,6 +1,20 @@
-import { SapphireClient } from "@sapphire/framework";
-import { GatewayIntentBits } from "discord.js";
+import {
+	ApplicationCommandRegistries,
+	RegisterBehavior,
+	SapphireClient,
+} from "@sapphire/framework";
+import { ActivityType, GatewayIntentBits } from "discord.js";
 import env from "./lib/util/env.js";
+
+//delete all existing commands and repopulate each time the bot starts
+//https://sapphirejs.dev/docs/Guide/commands/application-commands/application-command-registry/advanced/setting-global-behavior-when-not-identical
+ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(
+	RegisterBehavior.BulkOverwrite
+);
+
+//only register commands in the home guild
+//https://sapphirejs.dev/docs/Guide/commands/application-commands/application-command-registry/globally-configuring-guildids
+ApplicationCommandRegistries.setDefaultGuildIds([env.GUILD_ID]);
 
 const client = new SapphireClient({
 	intents: [
@@ -15,6 +29,7 @@ const client = new SapphireClient({
 		activities: [
 			{
 				name: "outside",
+				type: ActivityType.Playing,
 			},
 		],
 	},

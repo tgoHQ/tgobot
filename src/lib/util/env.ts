@@ -3,12 +3,11 @@ dotenv.config();
 
 import { cleanEnv, str } from "envalid";
 
-export default cleanEnv(process.env, {
-	OPENAI: str(),
-
+const env = cleanEnv(process.env, {
 	TOKEN: str(),
-	CLIENT_ID: str(),
 	GUILD_ID: str(),
+	DB_URL: str(),
+	OPENAI: str(),
 
 	ROLE_BOT_ID: str(),
 	ROLE_VCPING_ID: str(),
@@ -24,6 +23,17 @@ export default cleanEnv(process.env, {
 	CHANNEL_TRIP_REPORTS_ID: str(),
 	CHANNEL_NATURE_ID: str(),
 	CHANNEL_TOWN_HALL_ID: str(),
-
-	DB_URL: str(),
 });
+export default env;
+
+//todo attach env to container for easy import
+
+// container.env = env;
+
+// declare module "@sapphire/pieces" {
+// 	interface Container {
+// 		env: typeof env;
+// 	}
+// }
+// container.env;
+// https://sapphirejs.dev/docs/Guide/additional-information/using-and-extending-container/

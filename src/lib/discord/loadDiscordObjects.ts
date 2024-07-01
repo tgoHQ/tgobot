@@ -59,3 +59,6 @@ export const CHANNEL_TOWN_HALL = async () =>
 // );
 // if (!tag) throw new Error("Photo of the week tag not found");
 // export const TAG_PHOTO_OF_THE_WEEK = tag.id;
+
+//todo attach this to container for clean import
+//make it an object instead of individual exports/imports

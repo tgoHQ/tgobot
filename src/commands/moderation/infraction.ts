@@ -36,33 +36,30 @@ export class InfractionCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("infraction")
-					.setDescription("Record a user infraction.")
-					.addUserOption((option) =>
-						option
-							.setName("user")
-							.setDescription("The user who committed the infraction")
-							.setRequired(true)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("type")
-							.setDescription("The type of infraction")
-							.setRequired(true)
-							.addChoices(...infractionOptions)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("comments")
-							.setDescription("Any additional comment to log")
-					)
-					.setDefaultMemberPermissions(PermissionFlagsBits.BanMembers);
-			},
-			{ idHints: ["1255557374434082907"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("infraction")
+				.setDescription("Record a user infraction.")
+				.addUserOption((option) =>
+					option
+						.setName("user")
+						.setDescription("The user who committed the infraction")
+						.setRequired(true)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("type")
+						.setDescription("The type of infraction")
+						.setRequired(true)
+						.addChoices(...infractionOptions)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("comments")
+						.setDescription("Any additional comment to log")
+				)
+				.setDefaultMemberPermissions(PermissionFlagsBits.BanMembers);
+		});
 	}
 
 	public override async chatInputRun(

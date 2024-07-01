@@ -23,19 +23,17 @@ export class MeetupsAutoMessageListener extends Listener {
 			.setTitle("Meetups Channel")
 			.setColor("#137c5a")
 			.setDescription(
-				`
-				Welcome to the Meetups channel! Please review the guidelines below.
+				`Thanks for posting! Please review the guidelines below.
 
-				**It is your own responsibility to vet anyone you choose to meet up with and follow safe practices.** Ask your partners' permission before posting any photos of them on the server.
+				**Always remember to be safe and vet anyone you choose to meet up with!**
 
 				You should include the following in your post:
 				
-				- The location of the trip, or your general location and the distance you're willing to travel
-				- The activity or trip you would like to do
+				- Location of the trip, or your general area and travel radius
+				- The type of activity or trip
 				- Your experience level
-				- Date range
+				- A date or range of dates
 				- Apply the appropriate tags for region and activity type
-				- Any other relevant details
 			`.replaceAll("	", "")
 			);
 

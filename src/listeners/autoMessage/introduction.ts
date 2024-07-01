@@ -19,7 +19,7 @@ export class IntroductionsAutoMessageListener extends Listener {
 	}
 
 	public async run(message: Message) {
-		if (message.channel !== await CHANNEL_INTRODUCTIONS()) return;
+		if (message.channel !== (await CHANNEL_INTRODUCTIONS())) return;
 
 		if (message.author.bot) return;
 

@@ -12,43 +12,40 @@ export class SlowmodeCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("slowmode")
-					.setDescription("Sets slowmode on a channel.")
-					.addChannelOption((option) =>
-						option
-							.setName("channel")
-							.setDescription("Channel to set slowmode on")
-							.setRequired(true)
-							.addChannelTypes(
-								ChannelType.GuildText,
-								ChannelType.GuildAnnouncement,
-								ChannelType.GuildStageVoice,
-								ChannelType.AnnouncementThread,
-								ChannelType.PublicThread,
-								ChannelType.GuildVoice
-							)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("interval")
-							.setDescription(
-								"Slowmode interval. Accepts units and abbreviations. Set to 0 to disable slowmode."
-							)
-							.setRequired(true)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("reason")
-							.setDescription("Reason for the slowmode")
-							.setRequired(true)
-					)
-					.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
-			},
-			{ idHints: ["1255554729983873065"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("slowmode")
+				.setDescription("Sets slowmode on a channel.")
+				.addChannelOption((option) =>
+					option
+						.setName("channel")
+						.setDescription("Channel to set slowmode on")
+						.setRequired(true)
+						.addChannelTypes(
+							ChannelType.GuildText,
+							ChannelType.GuildAnnouncement,
+							ChannelType.GuildStageVoice,
+							ChannelType.AnnouncementThread,
+							ChannelType.PublicThread,
+							ChannelType.GuildVoice
+						)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("interval")
+						.setDescription(
+							"Slowmode interval. Accepts units and abbreviations. Set to 0 to disable slowmode."
+						)
+						.setRequired(true)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("reason")
+						.setDescription("Reason for the slowmode")
+						.setRequired(true)
+				)
+				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
+		});
 	}
 
 	public override async chatInputRun(

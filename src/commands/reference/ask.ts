@@ -10,20 +10,17 @@ export class AskCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("ask")
-					.setDescription("Ask Steve Climber a question.")
-					.addStringOption((option) =>
-						option
-							.setName("prompt")
-							.setDescription("The question you want to ask")
-							.setRequired(true)
-					);
-			},
-			{ idHints: ["1255566464656609352"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("ask")
+				.setDescription("Ask Steve Climber a question.")
+				.addStringOption((option) =>
+					option
+						.setName("prompt")
+						.setDescription("The question you want to ask")
+						.setRequired(true)
+				);
+		});
 	}
 
 	public override async chatInputRun(
