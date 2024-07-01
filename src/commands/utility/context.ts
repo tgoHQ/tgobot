@@ -11,14 +11,11 @@ export class ContextCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerContextMenuCommand(
-			(builder) => {
-				builder
-					.setName("Ask for context")
-					.setType(ApplicationCommandType.Message);
-			},
-			{ idHints: ["1255566374525210647"] }
-		);
+		registry.registerContextMenuCommand((builder) => {
+			builder
+				.setName("Ask for context")
+				.setType(ApplicationCommandType.Message);
+		});
 	}
 
 	public override async contextMenuRun(

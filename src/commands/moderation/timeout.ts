@@ -12,35 +12,32 @@ export class TimeoutCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("timeout")
-					.setDescription("Timeouts a user.")
-					.addUserOption((option) =>
-						option
-							.setName("user")
-							.setDescription("The user to timeout")
-							.setRequired(true)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("duration")
-							.setDescription(
-								"Duration of the timeout. Accepts units and abbreviations."
-							)
-							.setRequired(true)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("reason")
-							.setDescription("Reason for the timeout")
-							.setRequired(true)
-					)
-					.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers);
-			},
-			{ idHints: ["1255555816497352755"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("timeout")
+				.setDescription("Timeouts a user.")
+				.addUserOption((option) =>
+					option
+						.setName("user")
+						.setDescription("The user to timeout")
+						.setRequired(true)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("duration")
+						.setDescription(
+							"Duration of the timeout. Accepts units and abbreviations."
+						)
+						.setRequired(true)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("reason")
+						.setDescription("Reason for the timeout")
+						.setRequired(true)
+				)
+				.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers);
+		});
 	}
 
 	public override async chatInputRun(

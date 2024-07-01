@@ -53,7 +53,6 @@ https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-scheduled
 https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-utilities-store/
 https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-hmr/
 
-learn how command registration scope works. get commands to stop double-registering. only register commands in home guild, set by env?
 learn how user-installed bots work and look into making tgobot user installable
 	currency, unit, language translation?
 	gpt features?
@@ -64,3 +63,5 @@ permission checks for moderation actions (acting on a higher-ranked user?)
 combine tickets with reports and cases
 
 array of announcement channel IDs to auto publish
+
+stop hardcoding slash command ids- figure out how to fetch from the command registry by command name or by referencing the command's exported class

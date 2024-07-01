@@ -195,33 +195,30 @@ export class SnippetCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("snippet")
-					.setDescription("Access snippets stored by the bot.")
-					.addStringOption((option) =>
-						option
-							.setName("snippet")
-							.setDescription("The name of the snippet to run")
-							.setRequired(true)
-							.addChoices(...commandChoices)
-					)
-					.addBooleanOption((option) =>
-						option
-							.setName("hide")
-							.setDescription("Make the bot's response visible only to you")
-							.setRequired(false)
-					)
-					.addUserOption((option) =>
-						option
-							.setName("user")
-							.setDescription("Ping this user in the bot's response")
-							.setRequired(false)
-					);
-			},
-			{ idHints: ["1255566462920298568"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("snippet")
+				.setDescription("Access snippets stored by the bot.")
+				.addStringOption((option) =>
+					option
+						.setName("snippet")
+						.setDescription("The name of the snippet to run")
+						.setRequired(true)
+						.addChoices(...commandChoices)
+				)
+				.addBooleanOption((option) =>
+					option
+						.setName("hide")
+						.setDescription("Make the bot's response visible only to you")
+						.setRequired(false)
+				)
+				.addUserOption((option) =>
+					option
+						.setName("user")
+						.setDescription("Ping this user in the bot's response")
+						.setRequired(false)
+				);
+		});
 	}
 
 	public override async chatInputRun(

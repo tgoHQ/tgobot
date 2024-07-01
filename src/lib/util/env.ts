@@ -1,4 +1,3 @@
-import { container } from "@sapphire/framework";
 import dotenv from "dotenv";
 dotenv.config();
 

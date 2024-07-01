@@ -32,42 +32,39 @@ export class GradesCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("grades")
-					.setDescription(
-						"Displays info about a climbing grade and converts it to other scales."
-					)
-					.addStringOption((option) =>
-						option
-							.setName("grade")
-							.setDescription("The grade to look up.")
-							.setRequired(true)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("scale")
-							.setDescription("The scale this grade is on")
-							.setRequired(true)
-							.addChoices(
-								{
-									name: YosemiteDecimal.displayName,
-									value: YosemiteDecimal.name,
-								},
-								{ name: French.displayName, value: French.name },
-								{ name: Font.displayName, value: Font.name },
-								{ name: VScale.displayName, value: VScale.name },
-								{ name: Ewbank.displayName, value: Ewbank.name },
-								{ name: WI.displayName, value: WI.name },
-								{ name: AI.displayName, value: AI.name },
-								{ name: Aid.displayName, value: Aid.name },
-								{ name: Saxon.displayName, value: Saxon.name }
-							)
-					);
-			},
-			{ idHints: ["1255566460990914734"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("grades")
+				.setDescription(
+					"Displays info about a climbing grade and converts it to other scales."
+				)
+				.addStringOption((option) =>
+					option
+						.setName("grade")
+						.setDescription("The grade to look up.")
+						.setRequired(true)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("scale")
+						.setDescription("The scale this grade is on")
+						.setRequired(true)
+						.addChoices(
+							{
+								name: YosemiteDecimal.displayName,
+								value: YosemiteDecimal.name,
+							},
+							{ name: French.displayName, value: French.name },
+							{ name: Font.displayName, value: Font.name },
+							{ name: VScale.displayName, value: VScale.name },
+							{ name: Ewbank.displayName, value: Ewbank.name },
+							{ name: WI.displayName, value: WI.name },
+							{ name: AI.displayName, value: AI.name },
+							{ name: Aid.displayName, value: Aid.name },
+							{ name: Saxon.displayName, value: Saxon.name }
+						)
+				);
+		});
 	}
 
 	public override async chatInputRun(

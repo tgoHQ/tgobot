@@ -9,31 +9,28 @@ export class MessageCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("message")
-					.setDescription("Sends a message as the bot.")
-					.addChannelOption((option) =>
-						option
-							.setName("channel")
-							.setDescription("Channel to send the message in.")
-							.setRequired(true)
-							.addChannelTypes(
-								ChannelType.GuildAnnouncement,
-								ChannelType.GuildText
-							)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("value")
-							.setDescription("The message to be sent.")
-							.setRequired(true)
-					)
-					.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild);
-			},
-			{ idHints: ["1255566382557565050"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("message")
+				.setDescription("Sends a message as the bot.")
+				.addChannelOption((option) =>
+					option
+						.setName("channel")
+						.setDescription("Channel to send the message in.")
+						.setRequired(true)
+						.addChannelTypes(
+							ChannelType.GuildAnnouncement,
+							ChannelType.GuildText
+						)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("value")
+						.setDescription("The message to be sent.")
+						.setRequired(true)
+				)
+				.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild);
+		});
 	}
 
 	public override async chatInputRun(

@@ -10,43 +10,40 @@ export class CleanCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("clean")
-					.setDescription("Delete messages in bulk")
-					.addChannelOption((option) =>
-						option
-							.setName("channel")
-							.setDescription("Channel to clean")
-							.setRequired(true)
-							.addChannelTypes(
-								ChannelType.GuildText,
-								ChannelType.GuildAnnouncement,
-								ChannelType.GuildStageVoice,
-								ChannelType.AnnouncementThread,
-								ChannelType.PublicThread,
-								ChannelType.GuildVoice
-							)
-					)
-					.addIntegerOption((option) =>
-						option
-							.setName("number")
-							.setDescription(
-								"The number of recent messages to delete in the channel. Maximum of 100."
-							)
-							.setRequired(true)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("reason")
-							.setDescription("Reason for the clean")
-							.setRequired(true)
-					)
-					.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
-			},
-			{ idHints: ["1255552510710517865"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("clean")
+				.setDescription("Delete messages in bulk")
+				.addChannelOption((option) =>
+					option
+						.setName("channel")
+						.setDescription("Channel to clean")
+						.setRequired(true)
+						.addChannelTypes(
+							ChannelType.GuildText,
+							ChannelType.GuildAnnouncement,
+							ChannelType.GuildStageVoice,
+							ChannelType.AnnouncementThread,
+							ChannelType.PublicThread,
+							ChannelType.GuildVoice
+						)
+				)
+				.addIntegerOption((option) =>
+					option
+						.setName("number")
+						.setDescription(
+							"The number of recent messages to delete in the channel. Maximum of 100."
+						)
+						.setRequired(true)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("reason")
+						.setDescription("Reason for the clean")
+						.setRequired(true)
+				)
+				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
+		});
 	}
 
 	public override async chatInputRun(

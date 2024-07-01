@@ -18,21 +18,18 @@ export class VcPingCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("vcping")
-					.setDescription("Notifies people that a vc is happening.")
-					.addChannelOption((option) =>
-						option
-							.setName("channel")
-							.setDescription("Channel where the VC is happening.")
-							.setRequired(true)
-							.addChannelTypes(ChannelType.GuildVoice)
-					);
-			},
-			{ idHints: ["1255566375913525319"] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("vcping")
+				.setDescription("Notifies people that a vc is happening.")
+				.addChannelOption((option) =>
+					option
+						.setName("channel")
+						.setDescription("Channel where the VC is happening.")
+						.setRequired(true)
+						.addChannelTypes(ChannelType.GuildVoice)
+				);
+		});
 	}
 
 	public override async chatInputRun(

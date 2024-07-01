@@ -12,35 +12,32 @@ export class LockdownCommand extends Command {
 		});
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder
-					.setName("lockdown")
-					.setDescription("Lock down the server in the event of a raid")
-					.addBooleanOption((option) =>
-						option
-							.setName("dms")
-							.setDescription("Whether to disable DMs between users")
-							.setRequired(true)
-					)
-					.addBooleanOption((option) =>
-						option
-							.setName("invites")
-							.setDescription("Whether to disable the server's invite links")
-							.setRequired(true)
-					)
-					.addStringOption((option) =>
-						option
-							.setName("duration")
-							.setDescription(
-								"Duration of the lockdown. Accepts units and abbreviations."
-							)
-							.setRequired(true)
-					)
-					.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
-			},
-			{ idHints: [] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder
+				.setName("lockdown")
+				.setDescription("Lock down the server in the event of a raid")
+				.addBooleanOption((option) =>
+					option
+						.setName("dms")
+						.setDescription("Whether to disable DMs between users")
+						.setRequired(true)
+				)
+				.addBooleanOption((option) =>
+					option
+						.setName("invites")
+						.setDescription("Whether to disable the server's invite links")
+						.setRequired(true)
+				)
+				.addStringOption((option) =>
+					option
+						.setName("duration")
+						.setDescription(
+							"Duration of the lockdown. Accepts units and abbreviations."
+						)
+						.setRequired(true)
+				)
+				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
+		});
 	}
 
 	public override async chatInputRun(
