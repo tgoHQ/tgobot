@@ -6,9 +6,7 @@ import {
 } from "../../lib/discord/loadDiscordObjects.js";
 import getDuration from "../../lib/util/getDuration.js";
 import { ThreadChannel } from "discord.js";
-
-const sleep = (delay: number) =>
-	new Promise((resolve) => setTimeout(resolve, delay));
+import { sleep } from "@sapphire/utilities";
 
 export class ReadyListener extends Listener {
 	public constructor(

@@ -1,54 +1,66 @@
-// TODO //
-make user mod action modules have separate functions for execute and log, for logging external actions
-detect unban, timeout, untimeout, bulk delete, kick made outside of bot
-dm users when actioned
+loggers
+	make user mod action modules have separate functions for execute and log, for logging external actions
+	detect unban, timeout, untimeout, bulk delete, kick made outside of bot
+	log bulk emoji removals for all of one emoji or all message emojis
+	figure out how to specifically log when messages are deleted by someone other than the author
 
-// IDEAS //
+infractions
+	system to dm users when actioned
 
-modlog records
-	save modlog to database
-	type definition for modlog entry
-	record types that are not posted in modlog channel (moderation notes)
+	modlog records
+		save modlog to database
+		type definition for modlog entry
+		record types that are not posted in modlog channel (moderation notes)
+		connect modlog in db to message in modlog channel. callback to automatically edit the message in modlog when the log is edited
 
-gearlist command
-	save gearlists to database /gearlist save
-	add new gearlists using modals
-	/gearlist show
-	/gearlist edit
-	/gearlist delete
+	way to delete user messages on ban
+	badfaith command with preset types.
+	auto erase user messages when spam/scam type infraction?
 
-	event to detect gear list links and prompt to save them
-	context command to pull up user's gear lists
+	when a mod does native ban/timeout/kick on a user, ping them and get them to submit a reason through a modal. update the reason in the log
 
+utility
+	gearlist command
+		save gearlists to database /gearlist save
+		add new gearlists using modals
+		/gearlist show
+		/gearlist edit
+		/gearlist delete
 
-delete user messages on ban
-badfaith command with preset types. auto erase user messages when spam/scam type
+		event to detect gear list links and prompt to save them
+		context command to pull up user's gear lists
 
-ticket command
-	opens a private thread with specified name, adds the user
-	don't allow user to add other users?
-	command for adding users to ticket?
-	command to lock ticket? or button?
+	log deleted messages from clean command, log user ids whose messages were deleted, for searchability
 
+	ticket command
+		opens a private thread with specified name, adds the user
+		don't allow user to add other users?
+		command for adding users to ticket?
+		command to lock ticket? or button?
+		searchable logging. send a log message when tickets opened/closed/users added, with IDs for searchability
 
-uniform ts-friendly way to load files (events and interaction handlers)
-typesafe handlers for all interactions (slash commands, context commands, buttons, modals, etc) check out message / component / interaction collectors
+	photo of the week automation
 
-log deleted messages from clean command
+learn how to use interaction handlers/collectors for buttons, modals, selects, etc
+look into sapphire framework cron jobs and time/date/duration utilities
+sapphire preconditions and cooldowns (cooldown for vcping command)
+look into using tgobot to manage server events
+sapphire api plugin
+sapphire CLI
+sapphire logger
+subcommands and autocompletes
+https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-scheduled-tasks/
+https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-utilities-store/
+https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-hmr/
 
-when a mod does native ban/timeout/kick on a user, ping them and get them to submit a reason through a modal. update the reason in the log
-
-connect modlog in db to message in modlog channel. callback to automatically edit the message in modlog when the log is edited
+learn how command registration scope works. get commands to stop double-registering. only register commands in home guild, set by env?
+learn how user-installed bots work and look into making tgobot user installable
+	currency, unit, language translation?
+	gpt features?
+	wolfram alpha / math solver?
+	use packlist and snippets globally
 
 permission checks for moderation actions (acting on a higher-ranked user?)
-
 combine tickets with reports and cases
 
-action and logger for unban
-
-log bulk emoji removals for all of one emoji or all message emojis
-
 array of announcement channel IDs to auto publish
-
-detect when someone boosts and send a message in town hall + send them a message about perks
-https://discord.com/channels/222078108977594368/824411059443204127/1229448637143060532

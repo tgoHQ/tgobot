@@ -1,5 +1,5 @@
 import { SapphireClient } from "@sapphire/framework";
-import { GatewayIntentBits } from "discord.js";
+import { ActivityType, GatewayIntentBits } from "discord.js";
 import env from "./lib/util/env.js";
 
 const client = new SapphireClient({
@@ -15,6 +15,7 @@ const client = new SapphireClient({
 		activities: [
 			{
 				name: "outside",
+				type: ActivityType.Playing,
 			},
 		],
 	},

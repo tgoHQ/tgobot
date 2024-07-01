@@ -2,18 +2,10 @@ import { Listener } from "@sapphire/framework";
 
 import { EmbedBuilder, GuildMember } from "discord.js";
 import humanizeDuration from "humanize-duration";
-import { CHANNEL_LOG, ROLE_BOT } from "../../lib/discord/loadDiscordObjects.js";
+import { CHANNEL_LOG } from "../../lib/discord/loadDiscordObjects.js";
 
-export class GuildMemberRemoveListener extends Listener {
+export class GuildMemberAddListener extends Listener {
 	public async run(member: GuildMember) {
-		//add bot role if new member is a bot
-		if (member.user.bot === true) {
-			await member.guild.members.addRole({
-				user: member.user,
-				role: await ROLE_BOT(),
-			});
-		}
-
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")
 			.setTitle("User Joined")
