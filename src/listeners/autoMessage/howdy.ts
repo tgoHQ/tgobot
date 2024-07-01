@@ -15,6 +15,6 @@ export class HowdyListener extends Listener {
 	public async run(message: Message) {
 		if (message.author.bot) return;
 
-		message.react("🤠");
+		if (message.content.toLowerCase().match(/howdy/)) message.react("🤠");
 	}
 }
