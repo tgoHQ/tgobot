@@ -4,7 +4,7 @@ import { EmbedBuilder, GuildMember } from "discord.js";
 import humanizeDuration from "humanize-duration";
 import { CHANNEL_LOG } from "../../lib/discord/loadDiscordObjects.js";
 
-export class GuildMemberAddListener extends Listener {
+export class MemberLeaveListener extends Listener {
 	public async run(member: GuildMember) {
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")

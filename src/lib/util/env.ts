@@ -23,6 +23,14 @@ const env = cleanEnv(process.env, {
 	CHANNEL_TRIP_REPORTS_ID: str(),
 	CHANNEL_NATURE_ID: str(),
 	CHANNEL_TOWN_HALL_ID: str(),
+
+	CHANNEL_CLIMBING_ID: str(),
+	CHANNEL_BIKING_ID: str(),
+	CHANNEL_ALPINE_ID: str(),
+	CHANNEL_CAMPING_HIKING_ID: str(),
+	CHANNEL_ON_THE_WATER_ID: str(),
+	CHANNEL_WINTER_SPORTS_ID: str(),
+
 });
 export default env;
 

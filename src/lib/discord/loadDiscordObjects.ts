@@ -54,6 +54,18 @@ export const CHANNEL_TRIP_REPORTS = async () =>
 export const CHANNEL_TOWN_HALL = async () =>
 	await fetchChannel(env.CHANNEL_TOWN_HALL_ID, ChannelType.GuildAnnouncement);
 
+export const CHANNEL_CAMPING_HIKING = async () =>
+	await fetchChannel(env.CHANNEL_CAMPING_HIKING_ID, ChannelType.GuildText);
+export const CHANNEL_ON_THE_WATER = async () =>
+	await fetchChannel(env.CHANNEL_ON_THE_WATER_ID, ChannelType.GuildText);
+export const CHANNEL_WINTER_SPORTS = async () =>
+	await fetchChannel(env.CHANNEL_WINTER_SPORTS_ID, ChannelType.GuildText);
+export const CHANNEL_CLIMBING = async () =>
+	await fetchChannel(env.CHANNEL_CLIMBING_ID, ChannelType.GuildText);
+export const CHANNEL_BIKING = async () =>
+	await fetchChannel(env.CHANNEL_BIKING_ID, ChannelType.GuildText);
+export const CHANNEL_ALPINE = async () =>
+	await fetchChannel(env.CHANNEL_ALPINE_ID, ChannelType.GuildText);
 // const tag = CHANNEL_PHOTOS.availableTags.find(
 // 	(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID
 // );

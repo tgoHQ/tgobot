@@ -18,8 +18,9 @@
 
 // 	public async run(auditLog: GuildAuditLogsEntry, guild: Guild) {
 // 		//if this isn't a timeout, ignore
-// 		//todo
-// 		if (auditLog.action !== AuditLogEvent.a) return;
+
+// 		//todo find out how to detect a timeout
+// 		if (auditLog.action !== AuditLogEvent.) return;
 
 // 		//if not from main guild, ignore
 // 		if (guild !== await GUILD()) return;

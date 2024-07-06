@@ -4,6 +4,7 @@ import {
 	SapphireClient,
 } from "@sapphire/framework";
 import { ActivityType, GatewayIntentBits } from "discord.js";
+
 import env from "./lib/util/env.js";
 
 //delete all existing commands and repopulate each time the bot starts
@@ -27,6 +28,7 @@ const client = new SapphireClient({
 	],
 	presence: {
 		activities: [
+			//todo figure out how to set custom status with no activity type
 			{
 				name: "outside",
 				type: ActivityType.Playing,
@@ -37,7 +39,6 @@ const client = new SapphireClient({
 		parse: ["users"],
 		repliedUser: true,
 	},
-	loadMessageCommandListeners: true,
 });
 
 await client.login(env.TOKEN);

@@ -29,23 +29,23 @@ export class ReadyListener extends Listener {
 
 		if (post?.attachments.size === 0) {
 			await post.reply(`
-				Your post must contain at least one photo! This post has been locked and will be deleted in 10 minutes. Please create a new post with your photos attached.
+				Your post must contain at least one photo! This post has been locked and will be deleted in 5 minutes. Please create a new post with your photos attached.
 			`);
 			await thread.setLocked(true);
 
-			//delete the post in 10 minutes
+			//delete the post in 5 minutes
 			setTimeout(() => {
 				thread.delete();
-			}, getDuration.minutes(10));
+			}, getDuration.minutes(5));
 			return;
 		}
 
 		post?.reply(
 			`Thanks for posting! Here are a few guidelines to remember.
 
-			**For OP**:
-				- If this post is a writeup of your camping/hiking/backpacking/etc trip, please post it in ${await CHANNEL_TRIP_REPORTS()} instead.
+			**For the poster**:
 				- If you have more unrelated photos to share later, create a separate post for them.
+				- If this post is a writeup of your camping/hiking/backpacking/etc trip, please use ${await CHANNEL_TRIP_REPORTS()} instead.
 				
 			**For everyone**:
 				- This thread is for discussion of the photos shared above, not for general chatting.
