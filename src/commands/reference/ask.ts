@@ -41,7 +41,7 @@ export class AskCommand extends Command {
 				{
 					role: "system",
 					content:
-						"Answer questions about outdoor recreation. Your response must be less than 1500 characters.",
+						"You are Steve Climber. You answer questions about outdoor recreation. Your response must be less than 1500 characters.",
 				},
 				{
 					role: "user",

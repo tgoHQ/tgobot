@@ -26,7 +26,7 @@ export class ReadyListener extends Listener {
 						.setDescription(
 							`
 							${newMember} just boosted the server!
-							Boosters get special perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and access to the </ask:1191037845574529086> AI command!
+							Boosters get perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and access to the </ask:1191037845574529086> AI command!
 						`.replaceAll("	", "")
 						)
 						.setColor("#ff8950"),
