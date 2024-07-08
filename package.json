@@ -25,7 +25,7 @@
 		"@types/humanize-duration": "^3.27.4",
 		"@types/node": "^20.12.12",
 		"dotenv": "^16.4.5",
-		"typescript": "^5.3.3"
+		"typescript": "^5.5.3"
 	},
 	"type": "module"
 }
