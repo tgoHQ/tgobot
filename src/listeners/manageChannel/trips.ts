@@ -2,7 +2,6 @@ import { Events, Listener } from "@sapphire/framework";
 import { EmbedBuilder, ThreadChannel } from "discord.js";
 import { CHANNEL_TRIP_REPORTS } from "../../lib/discord/loadDiscordObjects.js";
 import { sleep } from "@sapphire/utilities";
-import getDuration from "../../lib/util/getDuration.js";
 
 export class MeetupsAutoMessageListener extends Listener {
 	public constructor(
@@ -21,31 +20,35 @@ export class MeetupsAutoMessageListener extends Listener {
 		const member = await thread.fetchOwner();
 		if (!member) return;
 
-		const embed = new EmbedBuilder()
-			.setTitle("Trips Channel")
-			.setColor("#137c5a")
-			.setDescription(
-				`Use this thread to post your trip report or send updates while on the trail!
+		await sleep(6000);
 
-				A trip report can contain things such as:
+		thread.send({
+			embeds: [
+				new EmbedBuilder()
+					.setTitle("Trips Channel")
+					.setColor("#137c5a")
+					.setDescription(
+						`Use this thread to post your trip report or send updates while on the trail!
 
-				- Where did you go?
-				- What happened while you were there?
-				- What went well/poorly?
-				- Lessons you learned on your trip
-				- Photos, videos, or maps
-				- A list of the gear you brought
-				- The food/meals you had
+						A trip report can contain things such as:
 
-				Once you've written your report, add one or more tags to describe the type of activity.
+						- Where did you go?
+						- What happened while you were there?
+						- What went well/poorly?
+						- Lessons you learned on your trip
+						- Photos, videos, or maps
+						- A list of the gear you brought
+						- The food/meals you had
 
-				For more info, see here: https://www.reddit.com/r/Ultralight/comments/hmiwh0/meta_how_to_write_a_trip_report/
+						Once you've written your report, add one or more tags to describe the type of activity.
+
+						For more info, see here: https://www.reddit.com/r/Ultralight/comments/hmiwh0/meta_how_to_write_a_trip_report/
 			`.replaceAll("	", "")
-			);
+					),
+			],
+			content: member.user!.toString(),
+		});
 
-		thread.send({ embeds: [embed], content: member.user!.toString() });
-
-		await sleep(getDuration.seconds(6)); //bot crashes if it tries before the images are done uploading
 		const post = await thread.fetchStarterMessage();
 		await post?.react("🫘");
 	}
