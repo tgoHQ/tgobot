@@ -1,5 +1,5 @@
 import { User } from "discord.js";
-import userModLogEmbed from "../../modlogUserEmbed.js";
+import { modUserLogEmbed } from "../../modLog.js";
 import { container } from "@sapphire/framework";
 import env from "../../../util/env.js";
 import { Emoji } from "../../../util/emoji.js";
@@ -17,7 +17,7 @@ export default async function kick({
 }) {
 	//todo dm the user
 	const string = `${Emoji.Kick} Kicked ${targetUser}`;
-	await userModLogEmbed({ targetUser: targetUser, author, string, reason });
+	await modUserLogEmbed(targetUser, string, author, reason);
 
 	const guild = await container.client.guilds.fetch(env.GUILD_ID);
 

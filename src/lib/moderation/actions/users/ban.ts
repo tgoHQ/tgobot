@@ -1,4 +1,4 @@
-import userModLogEmbed from "../../modlogUserEmbed.js";
+import { modUserLogEmbed } from "../../modLog.js";
 import type { User } from "discord.js";
 import { GUILD } from "../../../discord/loadDiscordObjects.js";
 import { Emoji } from "../../../util/emoji.js";
@@ -19,6 +19,6 @@ export default async function ban({
 	if (execute) await (await GUILD()).bans.create(targetUser, { reason });
 
 	const string = `${Emoji.Ban} Banned ${targetUser}`;
-	await userModLogEmbed({ targetUser: targetUser, author, string, reason });
+	await modUserLogEmbed(targetUser, string, author, reason);
 	return string;
 }

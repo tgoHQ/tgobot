@@ -7,11 +7,11 @@ loggers
 infractions
 	system to dm users when actioned
 
-	modlog records
-		save modlog to database
-		type definition for modlog entry
+	infraction records
+		save infractions to database
+		type definition for entry
 		record types that are not posted in modlog channel (moderation notes)
-		connect modlog in db to message in modlog channel. callback to automatically edit the message in modlog when the log is edited
+		connect row in db to message in modlog channel. callback to automatically edit the message in modlog when the log is edited
 
 	way to delete user messages on ban
 	badfaith command with preset types.
@@ -62,6 +62,13 @@ learn how user-installed bots work and look into making tgobot user installable
 permission checks for moderation actions (acting on a higher-ranked user?)
 combine tickets with reports and cases
 
-array of announcement channel IDs to auto publish
+stop hardcoding slash command ids in response message content- figure out how to fetch from the command registry by command name or by referencing the command's exported class
 
-stop hardcoding slash command ids- figure out how to fetch from the command registry by command name or by referencing the command's exported class
+beans
+	detect thanks with tag or reply
+		get message
+		regex check for thank you, ty, thanks, etc
+		check for tagged user or replied to user
+		add bean to user
+		send a message indicating what happened
+	giveBean slash command

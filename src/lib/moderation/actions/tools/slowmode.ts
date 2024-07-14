@@ -1,5 +1,5 @@
 import { GuildTextBasedChannel, User } from "discord.js";
-import modlogToolEmbed from "../../modlogToolEmbed.js";
+import { modToolLogEmbed } from "../../modLog.js";
 import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../../util/emoji.js";
 
@@ -22,11 +22,7 @@ export default async function slowmode({
 	)} in ${targetChannel}`;
 	//multiply by 1000 to get ms, then humanize into string
 
-	await modlogToolEmbed({
-		string,
-		author,
-		reason,
-	});
+	await modToolLogEmbed(string, author, reason);
 
 	return string;
 }

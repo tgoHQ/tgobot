@@ -3,7 +3,7 @@ import env from "../../../util/env.js";
 import { container } from "@sapphire/framework";
 import { Emoji } from "../../../util/emoji.js";
 
-import userModLogEmbed from "../../modlogUserEmbed.js";
+import { modUserLogEmbed } from "../../modLog.js";
 import humanizeDuration from "humanize-duration";
 
 export default async function timeout({
@@ -23,7 +23,7 @@ export default async function timeout({
 		Emoji.Timeout
 	} Timed out ${targetUser} for ${humanizeDuration(duration)}`;
 
-	await userModLogEmbed({ targetUser: targetUser, author, string, reason });
+	await modUserLogEmbed(targetUser, string, author, reason);
 
 	const guild = await container.client.guilds.fetch(env.GUILD_ID);
 	const member = await guild.members.fetch(targetUser);
