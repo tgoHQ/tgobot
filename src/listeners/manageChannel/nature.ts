@@ -22,7 +22,7 @@ export class NatureAutoMessageListener extends Listener {
 
 		if (message?.attachments.size >= 3) {
 			await message.reply(`
-				Thanks for posting! This channel is intended mainly for text discussion about nature. Please use ${CHANNEL_PHOTOS()} instead for posting nature photography.
+				Thanks for posting! This channel is intended mainly for text discussion about nature. Please use ${await CHANNEL_PHOTOS()} instead for posting nature photography.
 			`);
 		}
 	}
