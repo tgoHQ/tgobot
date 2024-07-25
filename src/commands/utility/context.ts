@@ -32,10 +32,27 @@ export class ContextCommand extends Command {
 
 			const response = await openai.chat.completions.create({
 				model: "gpt-4o-mini",
+				response_format: { type: "json_object" },
 				messages: [
 					{
 						role: "system",
-						content: `the user is being vague and is likely a beginner. respond with a JSON object only. include one key "text" which is a short paragraph saying hello and asking if they will answer some clarifying questions. then an array "questions" of strings containing the clarifying questions so we can help them, such as budget, type of activity, gear list, type of weather/temperature, mileage/length of trip. use "we" instead of "I".`,
+						content: `
+							the user is being vague and is likely a beginner to outdoor recreation.
+
+							generate a sentence asking them to answer some clarifying questions so we can help them better.
+
+							generate a list of clarifying questions to ask them. this could include their budget, the type of activity (backpacking, camping, hiking, everyday use, etc.), the type of climate or location, the mileage or length of their trips. Only ask relevant questions that will help us give advice related to their message.
+							Ask other questions not specified here if relevant. E.g., ask them questions specific to the type of gear or topic they're wondering about.
+							If it's about backpacks, ask for their full "gear list".
+							The maximum is 7 questions. The questions must be concise.
+							
+							format your response in JSON, like this:
+
+							{
+								"sentence": string,
+								"questions": string[]
+							}
+						`.replaceAll("	", ""),
 					},
 					{
 						role: "user",
@@ -49,17 +66,17 @@ export class ContextCommand extends Command {
 				return;
 			}
 
-			const responseObj: { text: string; questions: string[] } =
+			const responseObj: { sentence: string; questions: string[] } =
 				await JSON.parse(response.choices[0].message.content);
 
 			//create a string with each question bulleted on a new line
 			const questionsStr = [
-				responseObj.text,
+				responseObj.sentence,
 				...responseObj.questions.map((q) => `- ${q}`),
 				`\nRequested by ${interaction.user}.`,
 			].join("\n");
 
-			await message.reply(questionsStr);
+			await message.reply({ content: questionsStr, allowedMentions: {} });
 
 			interaction.editReply({
 				content: "Command successful.",
