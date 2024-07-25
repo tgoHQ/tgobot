@@ -36,11 +36,11 @@ export class UlAdviceCommand extends Command {
 		if (!prompt) return;
 
 		const response = await openai.chat.completions.create({
-			model: "gpt-3.5-turbo",
-			temperature: 1.27,
+			model: "gpt-4o-mini",
+			temperature: 1.2,
 			frequency_penalty: 0.1,
 			presence_penalty: 0.1,
-			max_tokens: 300,
+			max_tokens: 500,
 			messages: [
 				{
 					role: "system",

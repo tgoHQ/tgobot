@@ -1,6 +1,7 @@
 import { Events, Listener } from "@sapphire/framework";
 import { EmbedBuilder, ThreadChannel } from "discord.js";
 import { CHANNEL_MEETUPS } from "../../lib/discord/loadDiscordObjects.js";
+import { sleep } from "@sapphire/utilities";
 
 export class MeetupsAutoMessageListener extends Listener {
 	public constructor(
@@ -18,6 +19,8 @@ export class MeetupsAutoMessageListener extends Listener {
 
 		const member = await thread.fetchOwner();
 		if (!member) return;
+
+		await sleep(6000);
 
 		const embed = new EmbedBuilder()
 			.setTitle("Meetups Channel")

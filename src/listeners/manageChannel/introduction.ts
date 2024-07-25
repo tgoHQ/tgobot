@@ -51,7 +51,7 @@ export class IntroductionsAutoMessageListener extends Listener {
 		thread.sendTyping();
 
 		const response = await openai.chat.completions.create({
-			model: "gpt-4o-2024-05-13",
+			model: "gpt-4o-mini",
 			temperature: 1.4,
 			messages: [
 				{
