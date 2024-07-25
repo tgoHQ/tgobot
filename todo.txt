@@ -72,3 +72,5 @@ beans
 		add bean to user
 		send a message indicating what happened
 	giveBean slash command
+
+	refactor discord object loader for better dx
