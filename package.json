@@ -12,7 +12,7 @@
 		"@openbeta/sandbag": "^0.0.51",
 		"@sapphire/framework": "^5.2.1",
 		"discord.js": "^14.7.1",
-		"drizzle-kit": "^0.20.14",
+		"drizzle-kit": "^0.23.1",
 		"drizzle-orm": "^0.30.8",
 		"envalid": "^8.0.0",
 		"humanize-duration": "^3.27.3",
