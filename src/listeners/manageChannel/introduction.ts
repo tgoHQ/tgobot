@@ -4,7 +4,8 @@ import OpenAI from "openai";
 import {
 	CHANNEL_ALPINE,
 	CHANNEL_BIKING,
-	CHANNEL_CAMPING_HIKING,
+	CHANNEL_HIKING,
+	CHANNEL_CAMPING,
 	CHANNEL_CLIMBING,
 	CHANNEL_INTRODUCTIONS,
 	CHANNEL_NATURE,
@@ -62,7 +63,8 @@ export class IntroductionsAutoMessageListener extends Listener {
 
 						You can direct them to the appropriate channels for their interests. We have:
 
-						${await CHANNEL_CAMPING_HIKING()} (camping, hiking, and backpacking)
+						${await CHANNEL_HIKING()} (hiking, backpacking, ultralight, thru-hiking)
+						${await CHANNEL_CAMPING()} (frontcountry camping, car camping, boondocking, van life)
 						${await CHANNEL_PHOTOS()} (sharing photos of the outdoors)
 						${await CHANNEL_TRIP_REPORTS()} (trip reports)
 						${await CHANNEL_ALPINE()} (mountaineering and alpine hiking)
