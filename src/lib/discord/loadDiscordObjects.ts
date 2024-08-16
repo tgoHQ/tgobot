@@ -54,8 +54,10 @@ export const CHANNEL_TRIP_REPORTS = async () =>
 export const CHANNEL_TOWN_HALL = async () =>
 	await fetchChannel(env.CHANNEL_TOWN_HALL_ID, ChannelType.GuildAnnouncement);
 
-export const CHANNEL_CAMPING_HIKING = async () =>
-	await fetchChannel(env.CHANNEL_CAMPING_HIKING_ID, ChannelType.GuildText);
+export const CHANNEL_CAMPING = async () =>
+	await fetchChannel(env.CHANNEL_CAMPING_ID, ChannelType.GuildText);
+export const CHANNEL_HIKING = async () =>
+	await fetchChannel(env.CHANNEL_HIKING_ID, ChannelType.GuildText);
 export const CHANNEL_ON_THE_WATER = async () =>
 	await fetchChannel(env.CHANNEL_ON_THE_WATER_ID, ChannelType.GuildText);
 export const CHANNEL_WINTER_SPORTS = async () =>
