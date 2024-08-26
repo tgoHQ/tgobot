@@ -43,19 +43,6 @@ const snippets = [
 			"https://www.rei.com/learn/expert-advice/day-hiking-checklist.html",
 	},
 	{
-		name: "Context",
-		content: `
-			To help us better understand your situation and give you useful advice, please share some more context such as:
-
-			- Are you camping, day-hiking, or doing multi-day backpacking?
-			- How many days/miles will your trip be?
-			- What type of weather are you expecting, incl. temperature range?
-			- What is your budget?
-			- What is your experience level?
-			- Share your gear list.
-		`,
-	},
-	{
 		name: "Ankle Support",
 		content: `
 			https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3943374/
@@ -178,8 +165,7 @@ const snippets = [
 			- Leave what you find
 			- Minimize campfire impacts
 			- Respect wildlife
-			- Be considerate of others
-		`,
+			- Be considerate of others`,
 	},
 ] satisfies { name: string; content: string }[];
 

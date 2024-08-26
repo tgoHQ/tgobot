@@ -59,7 +59,13 @@ export const infractionHandlers = {
 	[InfractionType.BadFaith]: {
 		string: "Bad-Faith User",
 		execute: async ({ user, author, reason }) => {
-			return await ban({ targetUser: user, reason, author, execute: true });
+			return await ban({
+				targetUser: user,
+				reason,
+				author,
+				execute: true,
+				deleteMessages: false,
+			});
 		},
 	},
 	[InfractionType.Nsfw]: {
@@ -136,6 +142,7 @@ export const infractionHandlers = {
 				reason,
 				author,
 				execute: true,
+				deleteMessages: true,
 			});
 		},
 	},

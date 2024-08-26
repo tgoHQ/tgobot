@@ -12,6 +12,7 @@ import {
 
 //define the list of infractions to be used in the command. generate the string options.
 const infractionTypesInCommand = [
+	InfractionType.SpammerScammer,
 	InfractionType.BadFaith,
 	InfractionType.PoliticalControversial,
 	InfractionType.Lnt,
@@ -19,7 +20,6 @@ const infractionTypesInCommand = [
 	InfractionType.PersonalAttacks,
 	InfractionType.TrollingShitposting,
 	InfractionType.BigotrySlurs,
-	InfractionType.SpammerScammer,
 ];
 let infractionOptions: APIApplicationCommandOptionChoice<string>[] = [];
 for (const key of infractionTypesInCommand) {
