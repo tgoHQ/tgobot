@@ -21,7 +21,7 @@ export class BanListener extends Listener {
 		if (auditLog.action !== AuditLogEvent.MemberBanAdd) return;
 
 		//if not from main guild, ignore
-		if (guild !== await GUILD()) return;
+		if (guild !== (await GUILD())) return;
 
 		//get target
 		if (!auditLog.targetId) return;
@@ -40,6 +40,7 @@ export class BanListener extends Listener {
 			reason: auditLog.reason ?? undefined,
 			author,
 			execute: false,
+			deleteMessages: false,
 		});
 	}
 }
