@@ -1,6 +1,7 @@
 import { Command } from "@sapphire/framework";
+import env from "../../lib/util/env.js";
 
-export class WarpCommand extends Command {
+export class GuideCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
@@ -9,8 +10,8 @@ export class WarpCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder
-				.setName("warp")
-				.setDescription("Search the TGO Guide for information.")
+				.setName("guide")
+				.setDescription("Find an article from the guide.")
 				.addStringOption((option) =>
 					option
 						.setName("query")
@@ -24,11 +25,15 @@ export class WarpCommand extends Command {
 		interaction: Command.ChatInputCommandInteraction
 	) {
 		await interaction.deferReply();
+		const query = interaction.options.getString("query", true);
+		const url = env.GUIDE_SEARCH_URL + "?q=" + encodeURIComponent(query);
 
-		interaction.editReply(
-			`https://thegreatoutdoors.guide/warp?q=${encodeURIComponent(
-				interaction.options.getString("query", true)
-			)}`
-		);
+		const results = await (await fetch(url)).json();
+
+		if (results.length === 0) {
+			interaction.editReply("No results found");
+		} else {
+			interaction.editReply(results[0].url);
+		}
 	}
 }

@@ -1,12 +1,13 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { cleanEnv, str } from "envalid";
+import { cleanEnv, str, url } from "envalid";
 
 const env = cleanEnv(process.env, {
 	TOKEN: str(),
 	GUILD_ID: str(),
 	DB_URL: str(),
+	GUIDE_SEARCH_URL: url(),
 	OPENAI: str(),
 
 	ROLE_BOT_ID: str(),
