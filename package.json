@@ -2,7 +2,7 @@
 	"name": "tgobot",
 	"main": "dist/bot.js",
 	"source": "src/bot.ts",
-	"repository": "https://github.com/kevin8181/tgobot",
+	"repository": "https://github.com/tgoHQ/tgobot",
 	"scripts": {
 		"start": "node .",
 		"dev": "tsc && node .",
