@@ -17,6 +17,18 @@ export class GuideCommand extends Command {
 						.setDescription("Your search query")
 						.setAutocomplete(true)
 						.setRequired(true)
+				)
+				.addUserOption((option) =>
+					option
+						.setName("user")
+						.setDescription("Ping this user in the bot's response")
+						.setRequired(false)
+				)
+				.addBooleanOption((option) =>
+					option
+						.setName("hidden")
+						.setDescription("Make the bot's response visible only to you")
+						.setRequired(false)
 				);
 		});
 	}
@@ -24,6 +36,12 @@ export class GuideCommand extends Command {
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction
 	) {
-		interaction.reply(interaction.options.getString("query", true));
+		const taggedUser = interaction.options.getUser("user", false);
+		interaction.reply({
+			content: `${interaction.options.getString("query", true)}\n${
+				taggedUser ?? ""
+			}`,
+			ephemeral: !!interaction.options.getBoolean("hidden", false),
+		});
 	}
 }

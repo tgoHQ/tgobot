@@ -192,16 +192,17 @@ export class SnippetCommand extends Command {
 						.setRequired(true)
 						.addChoices(...commandChoices)
 				)
-				.addBooleanOption((option) =>
-					option
-						.setName("hide")
-						.setDescription("Make the bot's response visible only to you")
-						.setRequired(false)
-				)
+
 				.addUserOption((option) =>
 					option
 						.setName("user")
 						.setDescription("Ping this user in the bot's response")
+						.setRequired(false)
+				)
+				.addBooleanOption((option) =>
+					option
+						.setName("hidden")
+						.setDescription("Make the bot's response visible only to you")
 						.setRequired(false)
 				);
 		});
@@ -222,7 +223,7 @@ export class SnippetCommand extends Command {
 					.setDescription(snippet.content.replaceAll("	", ""))
 					.setColor("#137c5a"),
 			],
-			ephemeral: !!interaction.options.getBoolean("hide", false),
+			ephemeral: !!interaction.options.getBoolean("hidden", false),
 			content: `${taggedUser ?? ""}`, // if no tagged user, it will be an empty string
 		});
 	}
