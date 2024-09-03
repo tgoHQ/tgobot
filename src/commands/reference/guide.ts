@@ -1,5 +1,4 @@
 import { Command } from "@sapphire/framework";
-import env from "../../lib/util/env.js";
 
 export class GuideCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -16,6 +15,7 @@ export class GuideCommand extends Command {
 					option
 						.setName("query")
 						.setDescription("Your search query")
+						.setAutocomplete(true)
 						.setRequired(true)
 				);
 		});
@@ -24,16 +24,6 @@ export class GuideCommand extends Command {
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction
 	) {
-		await interaction.deferReply();
-		const query = interaction.options.getString("query", true);
-		const url = env.GUIDE_SEARCH_URL + "?q=" + encodeURIComponent(query);
-
-		const results = await (await fetch(url)).json();
-
-		if (results.length === 0) {
-			interaction.editReply("No results found");
-		} else {
-			interaction.editReply(results[0].url);
-		}
+		interaction.reply(interaction.options.getString("query", true));
 	}
 }
