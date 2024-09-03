@@ -33,14 +33,20 @@ export class GuideAutocompleteHandler extends InteractionHandler {
 		// Ensure that the option name is one that can be autocompleted, or return none if not.
 		switch (focusedOption.name) {
 			case "query": {
-				// Search your API or similar. This is example code!
-
 				const response = await fetch(
 					env.GUIDE_SEARCH_URL +
 						"?q=" +
 						encodeURIComponent(focusedOption.value as string)
 				);
 				const results = await response.json();
+
+				if (results.length === 0)
+					return this.some([
+						{
+							name: "🏠 The Great Outdoors Guide",
+							value: "https://thegreatoutdoors.guide/",
+						},
+					]);
 
 				// Map the search results to the structure required for Autocomplete
 				return this.some(
