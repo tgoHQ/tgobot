@@ -1,6 +1,7 @@
 import { Events, Listener } from "@sapphire/framework";
 import { EmbedBuilder, GuildMember } from "discord.js";
-import { CHANNEL_TOWN_HALL } from "../../lib/discord/loadDiscordObjects.js";
+import { CHANNEL_TOWN_HALL, CHANNEL_ALERT } from "../../lib/discord/loadDiscordObjects.js";
+
 
 export class ReadyListener extends Listener {
 	public constructor(
@@ -36,6 +37,24 @@ export class ReadyListener extends Listener {
 
 			await message.crosspost();
 			await message.react("🔥");
+		}
+
+		//if old member was boosting, and new member is not boosting
+		if (oldMember.premiumSince && !newMember.premiumSince) {
+			(await CHANNEL_ALERT()).send({
+				embeds: [
+					new EmbedBuilder()
+						.setTitle("<:boost:1256023381690814536> Server Boost Ended")
+						.setThumbnail(newMember.displayAvatarURL())
+						.setDescription(
+							`
+							${newMember} just stopped boosting the server!
+						`.replaceAll("	", "")
+						)
+						.setColor("#ff8950"),
+				],
+				content: newMember.toString(),
+			});
 		}
 	}
 }
