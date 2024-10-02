@@ -31,8 +31,6 @@ export class LighterpackAutoMessageListener extends Listener {
 		);
 		if (!link) return;
 
-		message.channel.sendTyping();
-
 		const browser = await puppeteer.launch({
 			executablePath: "/usr/bin/google-chrome",
 			args: ["--no-sandbox", "--disable-setuid-sandbox"],
