@@ -18,6 +18,14 @@ const experts = [
 		qualifications: "AMGA-certified single-pitch mountain guide",
 		skills: "climbing, backpacking",
 	},
+	{
+		userId: "206285700486791168",
+		achievements:
+			"Images published in largest Underground Electronic music news outlet",
+		qualifications: "Professional photographer",
+		skills:
+			"Photography, landscape photography, low-light photography, no flash high motion photography, nature photography, astrophotography, Adobe Lightroom, offroading, dispersed camping, car camping, map reading, Gaia GPS, public lands maps reading",
+	},
 ] satisfies {
 	userId: string;
 	achievements: string;
@@ -66,9 +74,9 @@ export class FindExpertCommand extends Command {
 					role: "system",
 					content: `Below the dashes is a list of experts in various disciplines of outdoor recreation. For each person, there are 3 strings containing comma-separated tags.
 						
-						"achievements" is notable accomplisments or trips this person has done. "qualifications" is a list of their certifications and professional/volunteer experience. "skills" is the list of skills and areas of interest this person has.
+						"achievements" are notable accomplisments this person has. "qualifications" are certifications or professional/volunteer experience. "skills" is the list of skills and areas of interest this person has.
 
-						The user's prompt will be a question, topic, or subject area. You are to select the person who is best qualified to answer this question.
+						The user's prompt will be a question or topic. You are to select the most relevant expert who can give an authoritative answer to the user's question.
 
 						Your response must be json structured as follows:
 
@@ -77,7 +85,7 @@ export class FindExpertCommand extends Command {
 							description: string
 						}
 
-						userId must be the expert's userId. description must be a single sentence describing the expert's background, as it relates to the user's prompt.
+						userId must be the expert's userId. description must be a single sentence describing the expert, with only information relevant to the user's prompt.
 
 						here is the list of experts:
 						---
