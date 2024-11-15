@@ -7,8 +7,7 @@
 
 import { Events, Listener } from "@sapphire/framework";
 
-import { AttachmentBuilder, EmbedBuilder, Message } from "discord.js";
-import puppeteer from "puppeteer";
+import { Message } from "discord.js";
 
 export class LighterpackAutoMessageListener extends Listener {
 	public constructor(
@@ -30,32 +29,5 @@ export class LighterpackAutoMessageListener extends Listener {
 			message.content
 		);
 		if (!link) return;
-
-		const browser = await puppeteer.launch({
-			executablePath: "/usr/bin/google-chrome",
-			args: ["--no-sandbox", "--disable-setuid-sandbox"],
-		});
-		const page = await browser.newPage();
-		await page.goto(link[0]);
-
-		const summaryDiv = await page.waitForSelector(".lpListSummary");
-		const screenshotBuffer = await summaryDiv!.screenshot();
-
-		const titleElement = await page.waitForSelector(".lpListName"); // select the element
-		const title = await titleElement!.evaluate((el) => el.textContent); // grab the textContent from the element, by evaluating this function in the browser context
-
-		await message.reply({
-			files: [new AttachmentBuilder(screenshotBuffer, { name: "preview.jpg" })],
-			allowedMentions: {},
-			embeds: [
-				new EmbedBuilder()
-					.setTitle(title)
-					.setURL(link[0])
-					.setColor("#137c5a")
-					.setImage("attachment://preview.jpg"),
-			],
-		});
-
-		await browser.close();
 	}
 }

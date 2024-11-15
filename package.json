@@ -19,8 +19,7 @@
 		"humanize-duration": "^3.27.3",
 		"openai": "^4.23.0",
 		"parse-duration": "^1.0.2",
-		"postgres": "^3.4.4",
-		"puppeteer": "^22.12.1"
+		"postgres": "^3.4.4"
 	},
 	"devDependencies": {
 		"@types/humanize-duration": "^3.27.4",
