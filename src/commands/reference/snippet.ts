@@ -167,6 +167,10 @@ const snippets = [
 			- Respect wildlife
 			- Be considerate of others`,
 	},
+	{
+		name: "Don't ask to ask",
+		content: `https://dontasktoask.com/`,
+	},
 ] satisfies { name: string; content: string }[];
 
 let commandChoices: { name: string; value: string }[] = [];
