@@ -8,7 +8,7 @@ const experts = [
 		userId: "247070105916276736",
 		achievements:
 			"Thru-Hiked Appalachian Trail NOBO (2022), Eagle Scout, Thru-Hiked New England Trail SOBO (2023),",
-		qualifications: "Scouts BSA Scoutmaster",
+		qualifications: "Scoutmaster",
 		skills:
 			"Backpacking, Ultralight, Camping, Scouting, Long-Distance Hiking, Thru-Hiking, Scouting",
 	},
@@ -85,7 +85,7 @@ export class FindExpertCommand extends Command {
 							description: string
 						}
 
-						userId must be the expert's userId. description must be a single sentence describing the expert, with only information relevant to the user's prompt.
+						userId must be the expert's userId. description must be a single sentence describing the expert, with only information relevant to the user's prompt. do not include any irrelevant information.
 
 						here is the list of experts:
 						---
