@@ -17,20 +17,12 @@ export class MoveCommand extends Command {
 						.setName("channel")
 						.setDescription("Channel to move to")
 						.setRequired(true)
-						.addChannelTypes(
-							ChannelType.GuildText,
-							ChannelType.GuildStageVoice,
-							ChannelType.AnnouncementThread,
-							ChannelType.PublicThread,
-							ChannelType.GuildVoice
-						)
+						.addChannelTypes(ChannelType.GuildText, ChannelType.GuildVoice)
 				)
 				.addStringOption((option) =>
 					option
 						.setName("topic")
-						.setDescription(
-							"The topic of the conversation being moved."
-						)
+						.setDescription("The topic of the conversation being moved.")
 						.setRequired(true)
 				)
 				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
@@ -40,25 +32,27 @@ export class MoveCommand extends Command {
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction
 	) {
-
 		const interactionResponse = await interaction.deferReply();
 
-		const responseURL = (await interactionResponse.fetch()).url
+		const responseURL = (await interactionResponse.fetch()).url;
 
 		const newChannel = interaction.options.getChannel("channel", true, [
 			ChannelType.GuildText,
-			ChannelType.GuildAnnouncement,
-			ChannelType.GuildStageVoice,
-			ChannelType.AnnouncementThread,
-			ChannelType.PublicThread,
 			ChannelType.GuildVoice,
 		]);
 
-		const newChannelMessage = await newChannel.send(`The conversation about \`${interaction.options.getString("topic", true)}\` has been moved here from ${responseURL}.`);
-
+		const newChannelMessage = await newChannel.send(
+			`The conversation about \`${interaction.options.getString(
+				"topic",
+				true
+			)}\` has been moved here from ${responseURL}.`
+		);
 
 		interaction.editReply(
-			`The conversation about \`${interaction.options.getString("topic", true)}\` has been moved to ${newChannelMessage.url}.`
+			`The conversation about \`${interaction.options.getString(
+				"topic",
+				true
+			)}\` has been moved to ${newChannelMessage.url}.`
 		);
 	}
 }
