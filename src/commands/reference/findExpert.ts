@@ -26,6 +26,15 @@ const experts = [
 		skills:
 			"Photography, landscape photography, low-light photography, no flash high motion photography, nature photography, astrophotography, Adobe Lightroom, offroading, dispersed camping, car camping, map reading, Gaia GPS, public lands maps reading",
 	},
+	{
+		userId: "687431572886126666",
+		achievements:
+			"qualified for and competed in Iditarod Trail Invitational 350mile ski race,  section hiked 50% of the Appalachian Trail, thru-hiked the Long Trail",
+		qualifications:
+			"NOLS First Aid, Iditarod Trail Invitational Training Camp ",
+		skills:
+			"All season hiking and backpacking with dogs, section hiking, winter distance trekking, skijoring, Nordic skiing, downhill skiing",
+	},
 ] satisfies {
 	userId: string;
 	achievements: string;
