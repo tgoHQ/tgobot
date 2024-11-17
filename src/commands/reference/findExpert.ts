@@ -30,10 +30,18 @@ const experts = [
 		userId: "687431572886126666",
 		achievements:
 			"qualified for and competed in Iditarod Trail Invitational 350mile ski race,  section hiked 50% of the Appalachian Trail, thru-hiked the Long Trail",
-		qualifications:
-			"NOLS First Aid, Iditarod Trail Invitational Training Camp ",
+		qualifications: "NOLS First Aid, Iditarod Trail Invitational Training Camp",
 		skills:
 			"All season hiking and backpacking with dogs, section hiking, winter distance trekking, skijoring, Nordic skiing, downhill skiing",
+	},
+	{
+		userId: "114017862582009863",
+		achievements:
+			"Completed the New Hampshire 4000fters, Single Day Presidential Traverse, Single Day Pemi Loop",
+		qualifications:
+			"Appalachian Mountain Club kayaking trip leader, White Mountains trail adopter, Appalachian Mountain Club Winter Leadership training",
+		skills:
+			"Hiking, Winter Hiking, Bushwhacking, Map and Compass Navigation, Kayaking, Whitewater Kayaking, Trail Work",
 	},
 ] satisfies {
 	userId: string;
