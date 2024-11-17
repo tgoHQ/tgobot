@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
 
-import { ApplicationCommandType } from "discord.js";
+import { ApplicationCommandType, ContextMenuCommandType } from "discord.js";
 import OpenAI from "openai";
 import env from "../../lib/util/env.js";
 
@@ -14,7 +14,8 @@ export class ContextCommand extends Command {
 		registry.registerContextMenuCommand((builder) => {
 			builder
 				.setName("Ask for context")
-				.setType(ApplicationCommandType.Message);
+				//todo what is this stupid bullshit and why is it necessary all of a sudden?
+				.setType(ApplicationCommandType.Message as ContextMenuCommandType );
 		});
 	}
 

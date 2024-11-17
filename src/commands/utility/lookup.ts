@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
 
-import { ApplicationCommandType } from "discord.js";
+import { ApplicationCommandType, ContextMenuCommandType } from "discord.js";
 
 export class LookupCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -10,7 +10,11 @@ export class LookupCommand extends Command {
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerContextMenuCommand((builder) => {
-			builder.setName("Look this up").setType(ApplicationCommandType.Message);
+			builder
+				.setName("Look this up")
+
+				//todo what is this stupid bullshit and why is it necessary all of a sudden?
+				.setType(ApplicationCommandType.Message as ContextMenuCommandType);
 		});
 	}
 
