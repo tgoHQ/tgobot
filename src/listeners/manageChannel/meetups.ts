@@ -30,12 +30,12 @@ export class MeetupsAutoMessageListener extends Listener {
 
 				**Always remember to be safe and vet anyone you choose to meet up with!**
 
-				You should include the following in your post:
+				Your post should include:
 				
-				- Location of the trip, or your general area and travel radius
-				- The type of activity or trip
+				- Destination of the trip, or your general location and travel radius
+				- The type of activity
 				- Your experience level
-				- A date or range of dates
+				- A date or date range
 				- Apply the appropriate tags for region and activity type
 			`.replaceAll("	", "")
 			);

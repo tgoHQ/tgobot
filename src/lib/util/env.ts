@@ -23,7 +23,7 @@ const env = cleanEnv(process.env, {
 	CHANNEL_PHOTOS_ID: str(),
 	CHANNEL_TRIP_REPORTS_ID: str(),
 	CHANNEL_TOWN_HALL_ID: str(),
-	
+
 	CHANNEL_NATURE_ID: str(),
 	CHANNEL_CLIMBING_ID: str(),
 	CHANNEL_BIKING_ID: str(),
@@ -33,6 +33,7 @@ const env = cleanEnv(process.env, {
 	CHANNEL_ON_THE_WATER_ID: str(),
 	CHANNEL_WINTER_SPORTS_ID: str(),
 
+	TAG_PHOTO_OF_THE_WEEK_ID: str(),
 });
 export default env;
 

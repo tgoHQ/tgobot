@@ -200,7 +200,7 @@ export class FindExpertCommand extends Command {
 
 						instructions for experts json response:
 						id must be the expert's id. description must be a single sentence describing the expert, with only information relevant to the user's prompt. do not include any irrelevant information.
-						you may return up to 3 experts, but only if multiple are relevant. put them in order from most to least relevant. DO NOT INCLUDE EXTRA PEOPLE WHO ARE LESS RELEVANT. ONLY SELECT EXPERTS IF THEY ARE HIGHLY RELEVANT AND HAVE A BACKGROUND SPECIFICALLY RELATED TO THE QUESTION.
+						you may return up to 3 experts, but only if multiple are highly relevant. put them in order from most to least relevant. DO NOT INCLUDE EXTRA PEOPLE WHO ARE LESS RELEVANT. ONLY SELECT EXPERTS IF THEY ARE HIGHLY RELEVANT AND HAVE A BACKGROUND SPECIFICALLY, EXPLICITLY RELATED TO THE QUESTION.
 						you may also return an empty array if nobody is qualified to answer the user's question.
 
 						here is the list of experts:
@@ -217,6 +217,7 @@ export class FindExpertCommand extends Command {
 
 		if (response.choices[0].message.parsed) {
 			const selectedExperts = response.choices[0].message.parsed.experts;
+			console.log(response.usage?.prompt_tokens, response.usage?.completion_tokens);
 
 			const expertStrings = selectedExperts.map((expert) => {
 				return `<@${expert.id}>: ${expert.description}`;
