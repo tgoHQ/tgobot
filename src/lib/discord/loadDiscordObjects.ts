@@ -68,11 +68,16 @@ export const CHANNEL_BIKING = async () =>
 	await fetchChannel(env.CHANNEL_BIKING_ID, ChannelType.GuildText);
 export const CHANNEL_ALPINE = async () =>
 	await fetchChannel(env.CHANNEL_ALPINE_ID, ChannelType.GuildText);
-// const tag = CHANNEL_PHOTOS.availableTags.find(
-// 	(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID
-// );
-// if (!tag) throw new Error("Photo of the week tag not found");
-// export const TAG_PHOTO_OF_THE_WEEK = tag.id;
+
+export const TAG_PHOTO_OF_THE_WEEK = async () => {
+	const tag = (await CHANNEL_PHOTOS()).availableTags.find(
+		(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID
+	);
+
+	if (!tag) throw new Error("Photo of the week tag not found");
+
+	return tag;
+};
 
 //todo attach this to container for clean import
 //make it an object instead of individual exports/imports
