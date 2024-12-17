@@ -32,7 +32,7 @@ export async function photoOfTheWeek() {
 		thisWeekThreads.push(thread);
 	});
 
-	console.log(`Found ${thisWeekThreads.length} threads from the last 7 days`);
+	console.log(`Found ${thisWeekThreads.length} threads from the last 7 days: ${thisWeekThreads.map((thread) => thread.name)}`);
 
 	//find the number of beans on each one
 	const beansPerThread = await Promise.all(
@@ -41,11 +41,17 @@ export async function photoOfTheWeek() {
 
 			if (!post) return 0;
 
-			const reaction = post.reactions.resolve("🫘");
+			const reaction = await post.reactions.resolve("🫘")?.fetch();
 
 			return reaction?.count ?? 0;
 		})
 	);
+
+	for (let i = 0; i < thisWeekThreads.length; i++) {
+		console.log(
+			`Thread ${thisWeekThreads[i].name} has ${beansPerThread[i]} beans on it`
+		);
+	}
 
 	//find the thread with the most beans
 	const winnerThread =
