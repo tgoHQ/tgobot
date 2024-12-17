@@ -24,6 +24,10 @@ export class SteveAiMessageListener extends Listener {
 	}
 
 	public async run(message: Message) {
+		// check if the message tags steve
+		const steveTag = message.mentions.users.has(message.client.user?.id);
+		if (!steveTag) return;
+
 		// ignore messages from bots
 		if (message?.member?.user.bot) return;
 
@@ -36,16 +40,11 @@ export class SteveAiMessageListener extends Listener {
 		);
 
 		if (!allowedToUse) {
-			await message.reply("You don't have access to use this command! You can boost the server to gain access.");
+			await message.reply(
+				"You don't have access to use this command! You can boost the server to gain access."
+			);
 			return;
-		};
-
-		// check if the message tags steve
-		const steveTag = message.mentions.users.has(message.client.user?.id);
-
-		if (!steveTag) return;
-
-		console.log("Steve tag detected");
+		}
 
 		let context: OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming["messages"] =
 			[];
