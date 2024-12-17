@@ -39,32 +39,29 @@ export class SteveAiMessageListener extends Listener {
 
 		// check up the reply chain for context
 		while (true) {
+			const messageIsFromBot =
+				currentMessage.author.id === message.client.user?.id;
+
+			context.push({
+				role: messageIsFromBot ? "assistant" : "user",
+				content: currentMessage.content,
+				name: `${currentMessage.author.username
+					.replaceAll(".", "-")
+					.replaceAll(" ", "-")}`,
+			});
+
 			const replyInfo = currentMessage.reference;
 			if (!replyInfo?.messageId) break;
 
-			//use the client to fetch the reply message from id
 			const replyChannel = currentMessage.client.channels.cache.get(
 				replyInfo.channelId
 			) as TextChannel | undefined;
 			if (!replyChannel) break;
-			const replyMessage = await replyChannel.messages.fetch(
-				replyInfo.messageId
-			);
-
-			const messageIsFromBot =
-				replyMessage.author.id === message.client.user?.id;
-
-			context.push({
-				role: messageIsFromBot ? "assistant" : "user",
-				content: replyMessage.content,
-				name: `${
-					replyMessage.author.username.replaceAll(".", "-").replaceAll(" ", "-")
-				}`,
-			});
-			currentMessage = replyMessage;
+			//current message is now the reply
+			currentMessage = await replyChannel.messages.fetch(replyInfo.messageId);
 		}
 
-		const completion = await steveAi(context);
+		const completion = await steveAi(context.reverse());
 
 		await message.reply(completion);
 	}
