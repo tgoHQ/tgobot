@@ -10,6 +10,7 @@ import { Events, Listener } from "@sapphire/framework";
 import { Message, TextChannel } from "discord.js";
 import { type OpenAI } from "openai";
 import { steveAi } from "../../lib/steveAi.js";
+import env from "../../lib/util/env";
 
 export class SteveAiMessageListener extends Listener {
 	public constructor(
@@ -25,6 +26,19 @@ export class SteveAiMessageListener extends Listener {
 	public async run(message: Message) {
 		// ignore messages from bots
 		if (message?.member?.user.bot) return;
+
+		//ignore if they don't have access
+		const allowedToUse = message.member?.roles.cache.some(
+			(role) =>
+				role.id === env.ROLE_MODERATOR_ID ||
+				role.id === env.ROLE_EXPERT_ID ||
+				role.id === env.ROLE_BOOSTER_ID
+		);
+
+		if (!allowedToUse) {
+			await message.reply("You don't have access to use this command! You can boost the server to gain access.");
+			return;
+		};
 
 		// check if the message tags steve
 		const steveTag = message.mentions.users.has(message.client.user?.id);
