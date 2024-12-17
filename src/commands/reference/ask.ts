@@ -1,7 +1,5 @@
 import { Command } from "@sapphire/framework";
-
-import env from "../../lib/util/env.js";
-import OpenAI from "openai";
+import { steveAi } from "../../lib/steveAi.js";
 
 export class AskCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -28,30 +26,17 @@ export class AskCommand extends Command {
 	) {
 		await interaction.deferReply();
 
-		const openai = new OpenAI({
-			apiKey: env.OPENAI,
-		});
-
 		const prompt = interaction.options.getString("prompt");
 		if (!prompt) return;
 
-		const response = await openai.chat.completions.create({
-			model: "gpt-4o-mini",
-			messages: [
-				{
-					role: "system",
-					content:
-						"You are 'Steve Climber'. You are an expert on all things outdoor recreation. You answer questions primarily about camping, hiking, and backpacking on Discord. Answer as succinctly and in as few words as possible (generally 3 lines or less). Feel free to use minimal formatting and partial sentences.",
-				},
-				{
-					role: "user",
-					content: prompt,
-				},
-			],
-		});
+		const completion = await steveAi([
+			{
+				role: "user",
+				content: prompt,
+				name: interaction.user.username.replaceAll(".", "-"),
+			},
+		]);
 
-		if (response.choices[0].message.content) {
-			await interaction.editReply(response.choices[0].message.content);
-		}
+		await interaction.editReply(completion);
 	}
 }
