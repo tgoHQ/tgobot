@@ -60,18 +60,24 @@ const snippets = [
 		content: `
 			**Worn weight** is the clothing you wear __all the time__ while hiking.
 			\`\`\`diff
+				# Worn
 				+ shirt
 				+ hiking shoes
 				+ trekking poles
+
+				# Not Worn
 				- rain jacket
 				- backpack
 				- stuff in your pockets
 			\`\`\`
 			**Consumable weight** is stuff you always use up over the course of the hike.
 			\`\`\`diff
+				# Consumable
 				+ water
 				+ food
 				+ fuel
+
+				# Not Consumable
 				- fuel can
 				- first aid supplies
 			\`\`\`
