@@ -8,7 +8,7 @@ import getDuration from "../lib/util/getDuration.js";
 import { type AnyThreadChannel, EmbedBuilder } from "discord.js";
 
 //run every Monday at 5pm
-cron.schedule("0 17 * * 2", photoOfTheWeek);
+cron.schedule("0 22 * * 1", photoOfTheWeek);
 
 export async function photoOfTheWeek() {
 	const PHOTOS = await CHANNEL_PHOTOS();
