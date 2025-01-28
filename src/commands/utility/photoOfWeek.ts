@@ -23,7 +23,7 @@ export class PhotoOfWeekCommand extends Command {
 		await photoOfTheWeek();
 
 		interaction.reply({
-			content: "Photo of the week has been awarded!",
+			content: "Photo of the week has been awarded! time is" + new Date(),
 			ephemeral: true,
 		});
 	}
