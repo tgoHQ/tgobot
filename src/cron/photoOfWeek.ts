@@ -7,7 +7,6 @@ import {
 import getDuration from "../lib/util/getDuration.js";
 import { type AnyThreadChannel, EmbedBuilder } from "discord.js";
 
-
 //run every Monday at 5pm
 cron.schedule("0 17 * * 2", photoOfTheWeek);
 
@@ -32,18 +31,27 @@ export async function photoOfTheWeek() {
 		thisWeekThreads.push(thread);
 	});
 
-	console.log(`Found ${thisWeekThreads.length} threads from the last 7 days: ${thisWeekThreads.map((thread) => thread.name)}`);
+	console.log(
+		`Found ${
+			thisWeekThreads.length
+		} threads from the last 7 days: ${thisWeekThreads.map(
+			(thread) => thread.name
+		)}`
+	);
 
 	//find the number of beans on each one
 	const beansPerThread = await Promise.all(
 		thisWeekThreads.map(async (thread) => {
-			const post = await thread.fetchStarterMessage({ cache: false });
+			const post = await thread.fetchStarterMessage({ cache: false, force: true });
 
 			if (!post) return 0;
 
-			const reaction = await post.reactions.resolve("🫘")?.fetch();
+			const reaction = post.reactions.resolve("🫘");
+			if (!reaction) return 0;
 
-			return reaction?.count ?? 0;
+			await reaction.fetch();
+
+			return reaction.count;
 		})
 	);
 
@@ -58,7 +66,9 @@ export async function photoOfTheWeek() {
 		thisWeekThreads[beansPerThread.indexOf(Math.max(...beansPerThread))];
 
 	//send a message to that thread
-	await winnerThread.send(`This post has been awarded "Photo of the Week". Congrats to <@${winnerThread.ownerId}>!`);
+	await winnerThread.send(
+		`This post has been awarded "Photo of the Week". Congrats to <@${winnerThread.ownerId}>!`
+	);
 
 	//give the thread the "photo of the week" tag
 	const existingTags = winnerThread.appliedTags;
