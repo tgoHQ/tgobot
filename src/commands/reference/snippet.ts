@@ -25,7 +25,7 @@ const snippets = [
 	},
 	{
 		name: "Rule 5",
-		content: "Political or highly controversial topics are not allowed.",
+		content: "5. Political topics, and topics that are controversial in a way not strictly related to outdoor recreation, are not allowed.",
 	},
 	{
 		name: "Backpacking Checklist",
