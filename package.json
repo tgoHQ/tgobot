@@ -6,6 +6,7 @@
 	"scripts": {
 		"start": "node .",
 		"dev": "tsc && node .",
+		"check": "tsc --noEmit",
 		"build": "tsc"
 	},
 	"dependencies": {
