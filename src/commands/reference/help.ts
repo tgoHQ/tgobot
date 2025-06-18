@@ -4,25 +4,25 @@ import { EmbedBuilder } from "discord.js";
 import { Emoji } from "../../lib/util/emoji.js";
 
 export class HelpCommand extends Command {
-  public constructor(context: Command.LoaderContext, options: Command.Options) {
-    super(context, {
-      ...options,
-    });
-  }
-  public override registerApplicationCommands(registry: Command.Registry) {
-    registry.registerChatInputCommand((builder) => {
-      builder.setName("help").setDescription("List commands you can use");
-    });
-  }
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
+		super(context, {
+			...options,
+		});
+	}
+	public override registerApplicationCommands(registry: Command.Registry) {
+		registry.registerChatInputCommand((builder) => {
+			builder.setName("help").setDescription("List commands you can use");
+		});
+	}
 
-  public override async chatInputRun(
-    interaction: Command.ChatInputCommandInteraction,
-  ) {
-    const embed = new EmbedBuilder()
-      .setColor("#137c5a")
-      .setTitle(`${Emoji.SlashCommand} TGO Command Help`)
-      .setDescription(
-        `
+	public override async chatInputRun(
+		interaction: Command.ChatInputCommandInteraction,
+	) {
+		const embed = new EmbedBuilder()
+			.setColor("#137c5a")
+			.setTitle(`${Emoji.SlashCommand} TGO Command Help`)
+			.setDescription(
+				`
 				</snippet:1205576907517599815> Pull up commonly used links or the answer to an FAQ.
 
 				<id:customize>: See the available roles and choose yours.
@@ -41,7 +41,7 @@ export class HelpCommand extends Command {
 				</crag:1081476008538030140>: Display info about a crag from OpenBeta.
 				</grades:1165000063303565312>: Display info about a climbing grade and convert to other scales.
 			`.replaceAll("	", ""),
-      );
-    await interaction.reply({ embeds: [embed] });
-  }
+			);
+		await interaction.reply({ embeds: [embed] });
+	}
 }

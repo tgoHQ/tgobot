@@ -6,8 +6,8 @@ import { GUILD } from "../lib/discord/loadDiscordObjects.js";
 cron.schedule("0 0,12 * * *", disableGuildDms);
 
 async function disableGuildDms() {
-  const guild = await GUILD();
-  guild.setIncidentActions({
-    dmsDisabledUntil: new Date(Date.now() + getDuration.hours(12)),
-  });
+	const guild = await GUILD();
+	guild.setIncidentActions({
+		dmsDisabledUntil: new Date(Date.now() + getDuration.hours(12)),
+	});
 }

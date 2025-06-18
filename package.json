@@ -1,38 +1,38 @@
 {
-  "name": "tgobot",
-  "main": "dist/bot.js",
-  "source": "src/bot.ts",
-  "repository": "https://github.com/tgoHQ/tgobot",
-  "scripts": {
-    "start": "node .",
-    "dev": "tsc && node .",
-    "check": "tsc --noEmit",
-    "build": "tsc",
-    "format": "prettier --write ."
-  },
-  "dependencies": {
-    "@openbeta/sandbag": "^0.0.51",
-    "@sapphire/framework": "^5.3.6",
-    "@sapphire/utilities": "^3.18.2",
-    "@types/node-cron": "^3.0.11",
-    "discord.js": "^14.20.0",
-    "drizzle-kit": "^0.20.18",
-    "drizzle-orm": "^0.30.10",
-    "envalid": "^8.0.0",
-    "glob": "^11.0.3",
-    "humanize-duration": "^3.33.0",
-    "node-cron": "^3.0.3",
-    "openai": "^4.104.0",
-    "parse-duration": "^1.1.2",
-    "postgres": "^3.4.7",
-    "zod": "^3.25.67"
-  },
-  "devDependencies": {
-    "@types/humanize-duration": "^3.27.4",
-    "@types/node": "^20.19.1",
-    "dotenv": "^16.5.0",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.3"
-  },
-  "type": "module"
+	"name": "tgobot",
+	"main": "dist/bot.js",
+	"source": "src/bot.ts",
+	"repository": "https://github.com/tgoHQ/tgobot",
+	"scripts": {
+		"start": "node .",
+		"dev": "tsc && node .",
+		"check": "tsc --noEmit",
+		"build": "tsc",
+		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"@openbeta/sandbag": "^0.0.51",
+		"@sapphire/framework": "^5.3.6",
+		"@sapphire/utilities": "^3.18.2",
+		"@types/node-cron": "^3.0.11",
+		"discord.js": "^14.20.0",
+		"drizzle-kit": "^0.20.18",
+		"drizzle-orm": "^0.30.10",
+		"envalid": "^8.0.0",
+		"glob": "^11.0.3",
+		"humanize-duration": "^3.33.0",
+		"node-cron": "^3.0.3",
+		"openai": "^4.104.0",
+		"parse-duration": "^1.1.2",
+		"postgres": "^3.4.7",
+		"zod": "^3.25.67"
+	},
+	"devDependencies": {
+		"@types/humanize-duration": "^3.27.4",
+		"@types/node": "^20.19.1",
+		"dotenv": "^16.5.0",
+		"prettier": "^3.5.3",
+		"typescript": "^5.8.3"
+	},
+	"type": "module"
 }

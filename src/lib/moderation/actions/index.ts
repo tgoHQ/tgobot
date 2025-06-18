@@ -8,9 +8,9 @@ import kick from "./users/kick";
 import timeout from "./users/timeout";
 
 export const actions = [
-  bulkDelete,
-  slowmode,
-  ban,
-  kick,
-  timeout,
+	bulkDelete,
+	slowmode,
+	ban,
+	kick,
+	timeout,
 ] satisfies ModActionModule[];
