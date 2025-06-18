@@ -8,7 +8,7 @@ import env from "../lib/util/env.js";
 export class GuideAutocompleteHandler extends InteractionHandler {
 	public constructor(
 		ctx: InteractionHandler.LoaderContext,
-		options: InteractionHandler.Options
+		options: InteractionHandler.Options,
 	) {
 		super(ctx, {
 			...options,
@@ -18,7 +18,7 @@ export class GuideAutocompleteHandler extends InteractionHandler {
 
 	public override async run(
 		interaction: AutocompleteInteraction,
-		result: InteractionHandler.ParseResult<this>
+		result: InteractionHandler.ParseResult<this>,
 	) {
 		return interaction.respond(result);
 	}
@@ -36,7 +36,7 @@ export class GuideAutocompleteHandler extends InteractionHandler {
 				const response = await fetch(
 					env.GUIDE_SEARCH_URL +
 						"?q=" +
-						encodeURIComponent(focusedOption.value as string)
+						encodeURIComponent(focusedOption.value as string),
 				);
 				const results = await response.json();
 
@@ -53,10 +53,10 @@ export class GuideAutocompleteHandler extends InteractionHandler {
 					results.map((match: any) => ({
 						name: `🔗 ${match.meta.title} - ${match.raw_url.substr(
 							1,
-							match.raw_url.length - 2
+							match.raw_url.length - 2,
 						)}`,
 						value: match.url,
-					}))
+					})),
 				);
 			}
 			default:

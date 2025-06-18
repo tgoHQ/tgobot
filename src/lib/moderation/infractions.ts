@@ -39,7 +39,7 @@ export async function infraction({
 	}.`;
 
 	const infractionString = `${Emoji.True} Logged infraction ${inlineCode(
-		infractionHandlers[type].string
+		infractionHandlers[type].string,
 	)} against ${user}${comment ? " with comment " + inlineCode(comment) : ""}.`;
 
 	//execute the chosen infraction type module

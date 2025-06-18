@@ -16,15 +16,14 @@ export class HelpCommand extends Command {
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")
 			.setTitle(`${Emoji.SlashCommand} TGO Command Help`)
 			.setDescription(
 				`
-				</help:1164780041104793631>: Shows this message!
-				</snippet:1205576907517599815> Pull up commonly used resources or the answer to an FAQ.
+				</snippet:1205576907517599815> Pull up commonly used links or the answer to an FAQ.
 
 				<id:customize>: See the available roles and choose yours.
 
@@ -38,13 +37,10 @@ export class HelpCommand extends Command {
 
 				</tickets open:839848848003825673>: Open a ticket to talk to the server staff.
 
-				\`-gearlist\`: View a user's gear lists.
-				\`-setgearlist\`: Edit your saved gear lists.
-
 				</climb:1081349272986988555>: Display info about a climbing route from OpenBeta.
 				</crag:1081476008538030140>: Display info about a crag from OpenBeta.
 				</grades:1165000063303565312>: Display info about a climbing grade and convert to other scales.
-			`.replaceAll("	", "")
+			`.replaceAll("	", ""),
 			);
 		await interaction.reply({ embeds: [embed] });
 	}

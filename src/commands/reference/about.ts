@@ -19,7 +19,7 @@ export class AboutCommand extends Command {
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		const embed = new EmbedBuilder()
 			.setColor("#137c5a")
@@ -39,7 +39,7 @@ export class AboutCommand extends Command {
 					name: `${Emoji.Developer} Developer`,
 					value: "`tgobot` was built by <@247070105916276736>.",
 				},
-				{ name: "Uptime", value: humanizeDuration(interaction.client.uptime) }
+				{ name: "Uptime", value: humanizeDuration(interaction.client.uptime) },
 			);
 		await interaction.reply({ embeds: [embed] });
 	}

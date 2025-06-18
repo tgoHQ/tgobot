@@ -9,7 +9,7 @@ import { CHANNEL_MODLOG } from "../../lib/discord/loadDiscordObjects.js";
 export class AutoPublishListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
-		options: Listener.Options
+		options: Listener.Options,
 	) {
 		super(context, {
 			...options,

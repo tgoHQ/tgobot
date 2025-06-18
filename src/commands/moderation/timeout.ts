@@ -20,28 +20,28 @@ export class TimeoutCommand extends Command {
 					option
 						.setName("user")
 						.setDescription("The user to timeout")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.addStringOption((option) =>
 					option
 						.setName("duration")
 						.setDescription(
-							"Duration of the timeout. Accepts units and abbreviations."
+							"Duration of the timeout. Accepts units and abbreviations.",
 						)
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.addStringOption((option) =>
 					option
 						.setName("reason")
 						.setDescription("Reason for the timeout")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		//todo if user is not a member of the server
 
@@ -54,7 +54,7 @@ export class TimeoutCommand extends Command {
 				reason: interaction.options.getString("reason", true),
 				author: interaction.user,
 				duration: duration,
-			})
+			}),
 		);
 	}
 }

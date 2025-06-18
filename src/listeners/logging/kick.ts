@@ -7,7 +7,7 @@ import kick from "../../lib/moderation/actions/users/kick.js";
 export class KickListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
-		options: Listener.Options
+		options: Listener.Options,
 	) {
 		super(context, {
 			...options,
@@ -20,7 +20,7 @@ export class KickListener extends Listener {
 		if (auditLog.action !== AuditLogEvent.MemberKick) return;
 
 		//if not from main guild, ignore
-		if (guild !== await GUILD()) return;
+		if (guild !== (await GUILD())) return;
 
 		//get target
 		if (!auditLog.targetId) return;

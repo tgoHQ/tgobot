@@ -15,12 +15,12 @@ export class ContextCommand extends Command {
 			builder
 				.setName("Ask for context")
 				//todo what is this stupid bullshit and why is it necessary all of a sudden?
-				.setType(ApplicationCommandType.Message as ContextMenuCommandType );
+				.setType(ApplicationCommandType.Message as ContextMenuCommandType);
 		});
 	}
 
 	public override async contextMenuRun(
-		interaction: Command.ContextMenuCommandInteraction
+		interaction: Command.ContextMenuCommandInteraction,
 	) {
 		if (interaction.isMessageContextMenuCommand()) {
 			const message = interaction.targetMessage;

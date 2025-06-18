@@ -25,29 +25,29 @@ export class CleanCommand extends Command {
 							ChannelType.GuildStageVoice,
 							ChannelType.AnnouncementThread,
 							ChannelType.PublicThread,
-							ChannelType.GuildVoice
-						)
+							ChannelType.GuildVoice,
+						),
 				)
 				.addIntegerOption((option) =>
 					option
 						.setName("number")
 						.setDescription(
-							"The number of recent messages to delete in the channel. Maximum of 100."
+							"The number of recent messages to delete in the channel. Maximum of 100.",
 						)
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.addStringOption((option) =>
 					option
 						.setName("reason")
 						.setDescription("Reason for the clean")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		interaction.reply(
 			await bulkDelete({
@@ -62,7 +62,7 @@ export class CleanCommand extends Command {
 				reason: interaction.options.getString("reason", true),
 				author: interaction.user,
 				number: interaction.options.getInteger("number", true),
-			})
+			}),
 		);
 	}
 }

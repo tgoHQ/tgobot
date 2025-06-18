@@ -167,15 +167,15 @@ export class FindExpertCommand extends Command {
 					option
 						.setName("subject")
 						.setDescription(
-							"The question or topic you're seeking an expert for"
+							"The question or topic you're seeking an expert for",
 						)
-						.setRequired(true)
+						.setRequired(true),
 				);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		await interaction.deferReply();
 
@@ -186,7 +186,7 @@ export class FindExpertCommand extends Command {
 		const prompt = interaction.options.getString("subject", true);
 
 		const response = await openai.beta.chat.completions.parse({
-			model: "gpt-4o-mini",
+			model: "o4-mini-2025-04-16",
 			response_format: zodResponseFormat(responseSchema, "selected_experts"),
 
 			messages: [
@@ -217,14 +217,17 @@ export class FindExpertCommand extends Command {
 
 		if (response.choices[0].message.parsed) {
 			const selectedExperts = response.choices[0].message.parsed.experts;
-			console.log(response.usage?.prompt_tokens, response.usage?.completion_tokens);
+			console.log(
+				response.usage?.prompt_tokens,
+				response.usage?.completion_tokens,
+			);
 
 			const expertStrings = selectedExperts.map((expert) => {
 				return `<@${expert.id}>: ${expert.description}`;
 			});
 
 			const text = expertStrings.join("\n");
-			await interaction.editReply({content: text, allowedMentions: {}});
+			await interaction.editReply({ content: text, allowedMentions: {} });
 		}
 	}
 }

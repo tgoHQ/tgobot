@@ -6,7 +6,7 @@ import { sleep } from "@sapphire/utilities";
 export class MeetupsAutoMessageListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
-		options: Listener.Options
+		options: Listener.Options,
 	) {
 		super(context, {
 			...options,
@@ -37,7 +37,7 @@ export class MeetupsAutoMessageListener extends Listener {
 				- Your experience level
 				- A date or date range
 				- Apply the appropriate tags for region and activity type
-			`.replaceAll("	", "")
+			`.replaceAll("	", ""),
 			);
 
 		thread.send({ embeds: [embed], content: member.user!.toString() });

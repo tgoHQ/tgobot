@@ -19,7 +19,7 @@ export class MemberLeaveListener extends Listener {
 						largest: 2,
 						units: ["y", "mo", "d", "h", "m", "s"],
 					}),
-				}
+				},
 			);
 		(await CHANNEL_LOG()).send({ embeds: [embed] });
 	}

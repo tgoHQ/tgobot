@@ -18,7 +18,7 @@ export default async function slowmode({
 	targetChannel.setRateLimitPerUser(interval / 1000, reason);
 
 	const string = `${Emoji.Slowmode} Set slowmode to ${humanizeDuration(
-		interval
+		interval,
 	)} in ${targetChannel}`;
 	//multiply by 1000 to get ms, then humanize into string
 

@@ -25,7 +25,8 @@ const snippets = [
 	},
 	{
 		name: "Rule 5",
-		content: "5. Political topics, and topics that are controversial in a way not strictly related to outdoor recreation, are not allowed.",
+		content:
+			"5. Political topics, and topics that are controversial in a way not strictly related to outdoor recreation, are not allowed.",
 	},
 	{
 		name: "Backpacking Checklist",
@@ -200,26 +201,26 @@ export class SnippetCommand extends Command {
 						.setName("snippet")
 						.setDescription("The name of the snippet to run")
 						.setRequired(true)
-						.addChoices(...commandChoices)
+						.addChoices(...commandChoices),
 				)
 
 				.addUserOption((option) =>
 					option
 						.setName("user")
 						.setDescription("Ping this user in the bot's response")
-						.setRequired(false)
+						.setRequired(false),
 				)
 				.addBooleanOption((option) =>
 					option
 						.setName("hidden")
 						.setDescription("Make the bot's response visible only to you")
-						.setRequired(false)
+						.setRequired(false),
 				);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		const snippet: { name: string; content: string } =
 			snippets[parseInt(interaction.options.getString("snippet", true))];

@@ -8,7 +8,7 @@ import { GUILD } from "../../lib/discord/loadDiscordObjects.js";
 export class BanListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
-		options: Listener.Options
+		options: Listener.Options,
 	) {
 		super(context, {
 			...options,

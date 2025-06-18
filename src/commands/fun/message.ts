@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
 
-import { PermissionFlagsBits, ChannelType } from "discord.js";
+import { PermissionFlagsBits } from "discord.js";
 
 export class MessageCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -13,39 +13,30 @@ export class MessageCommand extends Command {
 			builder
 				.setName("message")
 				.setDescription("Sends a message as the bot.")
-				.addChannelOption((option) =>
-					option
-						.setName("channel")
-						.setDescription("Channel to send the message in.")
-						.setRequired(true)
-						.addChannelTypes(
-							ChannelType.GuildAnnouncement,
-							ChannelType.GuildText
-						)
-				)
 				.addStringOption((option) =>
 					option
-						.setName("value")
+						.setName("content")
 						.setDescription("The message to be sent.")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
-		const channel = interaction.options.getChannel("channel", true, [
-			ChannelType.GuildAnnouncement,
-			ChannelType.GuildText,
-		]);
+		if (!interaction.channel?.isSendable()) {
+			return interaction.reply({
+				content: "Cannot send message.",
+				ephemeral: true,
+			});
+		}
 
-		const value = interaction.options.getString("value");
-		if (!value) return;
+		const content = interaction.options.getString("content", true);
 
-		await channel.send(value).then((message) => {
-			interaction.reply({ content: message.url, ephemeral: true });
-		});
+		const message = await interaction.channel.send(content);
+
+		return await interaction.reply({ content: message.url, ephemeral: true });
 	}
 }

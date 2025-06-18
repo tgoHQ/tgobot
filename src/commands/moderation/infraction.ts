@@ -44,26 +44,26 @@ export class InfractionCommand extends Command {
 					option
 						.setName("user")
 						.setDescription("The user who committed the infraction")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.addStringOption((option) =>
 					option
 						.setName("type")
 						.setDescription("The type of infraction")
 						.setRequired(true)
-						.addChoices(...infractionOptions)
+						.addChoices(...infractionOptions),
 				)
 				.addStringOption((option) =>
 					option
 						.setName("comments")
-						.setDescription("Any additional comment to log")
+						.setDescription("Any additional comment to log"),
 				)
 				.setDefaultMemberPermissions(PermissionFlagsBits.BanMembers);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		//get options
 		const user = interaction.options.getUser("user", true);

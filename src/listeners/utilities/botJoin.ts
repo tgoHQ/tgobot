@@ -6,7 +6,7 @@ import { ROLE_BOT } from "../../lib/discord/loadDiscordObjects.js";
 export class BotJoinListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
-		options: Listener.Options
+		options: Listener.Options,
 	) {
 		super(context, {
 			...options,

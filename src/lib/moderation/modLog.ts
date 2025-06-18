@@ -5,7 +5,7 @@ export async function modUserLogEmbed(
 	targetUser: User,
 	string: string,
 	author: User,
-	reason?: string
+	reason?: string,
 ) {
 	const embed = new EmbedBuilder()
 		.setColor("#137c5a")
@@ -15,14 +15,17 @@ export async function modUserLogEmbed(
 			iconURL: author.displayAvatarURL(),
 		})
 		.addFields({ name: "Reason", value: reason ?? "No reason provided." })
-		.setThumbnail(targetUser.displayAvatarURL());
+		.setThumbnail(targetUser.displayAvatarURL())
+		.setFooter({
+			text: `${targetUser.displayName} - ${targetUser.username} - ${targetUser.id}`,
+		});
 
 	return modLogPost(embed);
 }
 export async function modToolLogEmbed(
 	string: string,
 	author: User,
-	reason?: string
+	reason?: string,
 ) {
 	const embed = new EmbedBuilder()
 		.setColor("#137c5a")

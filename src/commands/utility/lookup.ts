@@ -19,15 +19,15 @@ export class LookupCommand extends Command {
 	}
 
 	public override async contextMenuRun(
-		interaction: Command.ContextMenuCommandInteraction
+		interaction: Command.ContextMenuCommandInteraction,
 	) {
 		if (interaction.isMessageContextMenuCommand()) {
 			const message = interaction.targetMessage;
 
 			const responseMessage = await message.reply(
 				`https://www.startpage.com/sp/search?query=${encodeURIComponent(
-					message.content
-				)}`
+					message.content,
+				)}`,
 			);
 
 			await responseMessage.suppressEmbeds(true);

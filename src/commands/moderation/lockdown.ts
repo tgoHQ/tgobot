@@ -20,28 +20,28 @@ export class LockdownCommand extends Command {
 					option
 						.setName("dms")
 						.setDescription("Whether to disable DMs between users")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.addBooleanOption((option) =>
 					option
 						.setName("invites")
 						.setDescription("Whether to disable the server's invite links")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.addStringOption((option) =>
 					option
 						.setName("duration")
 						.setDescription(
-							"Duration of the lockdown. Accepts units and abbreviations."
+							"Duration of the lockdown. Accepts units and abbreviations.",
 						)
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		const pauseDms = interaction.options.getBoolean("dms", true);
 		const pauseInvites = interaction.options.getBoolean("invites", true);
@@ -58,7 +58,7 @@ export class LockdownCommand extends Command {
 					dms_disabled_until: pauseDms ? timeout : null,
 					invites_disabled_until: pauseInvites ? timeout : null,
 				},
-			}
+			},
 		);
 
 		interaction.reply(
@@ -66,7 +66,7 @@ export class LockdownCommand extends Command {
 				pauseDms ? "disabled for " + humanizeDuration(duration) : "enabled"
 			}. Invites are ${
 				pauseInvites ? "disabled for " + humanizeDuration(duration) : "enabled"
-			}.`
+			}.`,
 		);
 	}
 }

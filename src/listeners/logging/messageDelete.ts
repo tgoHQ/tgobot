@@ -12,13 +12,19 @@ export class MessageDeleteListener extends Listener {
 			.setTitle("Message Deleted")
 			.setURL(message.url)
 			.setDescription(
-				`Message by ${message.author} deleted in ${message.channel}.`
+				`Message by ${message.author} deleted in ${message.channel}.`,
 			)
-			.setFields({
-				name: "Content",
-				value:
-					message.content || "Message did not contain text (embed or media).",
-			});
+			.setFields(
+				{
+					name: "Content",
+					value:
+						message.content || "Message did not contain text (embed or media).",
+				},
+				{
+					name: "Timestamp",
+					value: `Posted ${`<t:${message.createdTimestamp}:F>.`}`,
+				},
+			);
 
 		(await CHANNEL_LOG()).send({ embeds: [embed] });
 	}

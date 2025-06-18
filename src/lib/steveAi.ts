@@ -4,13 +4,13 @@ import { type OpenAI as OpenAIType } from "openai";
 import { container } from "@sapphire/framework";
 
 export async function steveAi(
-	context: OpenAIType.Chat.Completions.ChatCompletionCreateParamsNonStreaming["messages"]
+	context: OpenAIType.Chat.Completions.ChatCompletionCreateParamsNonStreaming["messages"],
 ) {
 	const openai = new OpenAI({
 		apiKey: env.OPENAI,
 	});
 
-	console.log(context)
+	console.log(context);
 
 	const response = await openai.chat.completions.create({
 		model: "gpt-4o-mini",

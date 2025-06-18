@@ -1,12 +1,14 @@
 import { Events, Listener } from "@sapphire/framework";
 import { EmbedBuilder, GuildMember } from "discord.js";
-import { CHANNEL_TOWN_HALL, CHANNEL_ALERT } from "../../lib/discord/loadDiscordObjects.js";
-
+import {
+	CHANNEL_TOWN_HALL,
+	CHANNEL_ALERT,
+} from "../../lib/discord/loadDiscordObjects.js";
 
 export class ReadyListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
-		options: Listener.Options
+		options: Listener.Options,
 	) {
 		super(context, {
 			...options,
@@ -28,7 +30,7 @@ export class ReadyListener extends Listener {
 							`
 							${newMember} just boosted the server!
 							Boosters get perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and access to the </ask:1191037845574529086> AI command!
-						`.replaceAll("	", "")
+						`.replaceAll("	", ""),
 						)
 						.setColor("#ff8950"),
 				],
@@ -49,7 +51,7 @@ export class ReadyListener extends Listener {
 						.setDescription(
 							`
 							${newMember} just stopped boosting the server!
-						`.replaceAll("	", "")
+						`.replaceAll("	", ""),
 						)
 						.setColor("#ff8950"),
 				],

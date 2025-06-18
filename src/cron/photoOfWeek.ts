@@ -5,7 +5,8 @@ import {
 	TAG_PHOTO_OF_THE_WEEK,
 } from "../lib/discord/loadDiscordObjects.js";
 import getDuration from "../lib/util/getDuration.js";
-import { type AnyThreadChannel, EmbedBuilder } from "discord.js";
+
+import type { AnyThreadChannel } from "discord.js";
 
 //run every Monday at 5pm
 cron.schedule("0 22 * * 1", photoOfTheWeek);
@@ -35,14 +36,17 @@ export async function photoOfTheWeek() {
 		`Found ${
 			thisWeekThreads.length
 		} threads from the last 7 days: ${thisWeekThreads.map(
-			(thread) => thread.name
-		)}`
+			(thread) => thread.name,
+		)}`,
 	);
 
 	//find the number of beans on each one
 	const beansPerThread = await Promise.all(
 		thisWeekThreads.map(async (thread) => {
-			const post = await thread.fetchStarterMessage({ cache: false, force: true });
+			const post = await thread.fetchStarterMessage({
+				cache: false,
+				force: true,
+			});
 
 			if (!post) return 0;
 
@@ -52,12 +56,12 @@ export async function photoOfTheWeek() {
 			await reaction.fetch();
 
 			return reaction.count;
-		})
+		}),
 	);
 
 	for (let i = 0; i < thisWeekThreads.length; i++) {
 		console.log(
-			`Thread ${thisWeekThreads[i].name} has ${beansPerThread[i]} beans on it`
+			`Thread ${thisWeekThreads[i].name} has ${beansPerThread[i]} beans on it`,
 		);
 	}
 
@@ -67,7 +71,7 @@ export async function photoOfTheWeek() {
 
 	//send a message to that thread
 	await winnerThread.send(
-		`This post has been awarded "Photo of the Week". Congrats to <@${winnerThread.ownerId}>!`
+		`This post has been awarded "Photo of the Week". Congrats to <@${winnerThread.ownerId}>!`,
 	);
 
 	//give the thread the "photo of the week" tag
@@ -78,13 +82,6 @@ export async function photoOfTheWeek() {
 
 	//post in town-hall channel
 	TOWN_HALL.send({
-		embeds: [
-			new EmbedBuilder()
-				.setTitle("Photo of the Week")
-				.setDescription(
-					`Congrats to <@${winnerThread.ownerId}> for winning Photo of the Week with their post ${winnerThread.url}!`
-				)
-				.setColor("#137c5a"),
-		],
+		content: `### Photo of the Week\n\nCongrats to <@${winnerThread.ownerId}> for winning Photo of the Week with their post ${winnerThread.url}!`,
 	});
 }

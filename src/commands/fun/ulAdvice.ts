@@ -18,13 +18,13 @@ export class UlAdviceCommand extends Command {
 					option
 						.setName("prompt")
 						.setDescription("The question you want to ask")
-						.setRequired(true)
+						.setRequired(true),
 				);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		await interaction.deferReply();
 
@@ -56,7 +56,7 @@ export class UlAdviceCommand extends Command {
 
 		if (response.choices[0].message.content) {
 			await interaction.editReply(
-				`**Question**: ${prompt}\n\n**Advice**:\n${response.choices[0].message.content}`
+				`**Question**: ${prompt}\n\n**Advice**:\n${response.choices[0].message.content}`,
 			);
 		}
 	}

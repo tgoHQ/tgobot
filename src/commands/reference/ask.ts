@@ -16,13 +16,13 @@ export class AskCommand extends Command {
 					option
 						.setName("prompt")
 						.setDescription("The question you want to ask")
-						.setRequired(true)
+						.setRequired(true),
 				);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		await interaction.deferReply();
 

@@ -18,7 +18,7 @@ export class PhotoOfWeekCommand extends Command {
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		await photoOfTheWeek();
 

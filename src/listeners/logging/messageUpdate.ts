@@ -16,15 +16,13 @@ export class MessageUpdateListener extends Listener {
 			.setTitle("Message Edited")
 			.setURL(newMessage.url)
 			.setDescription(
-				`Message edited by ${newMessage.author} in ${newMessage.channel}.`
+				`Message edited by ${newMessage.author} in ${newMessage.channel}.`,
 			)
 			.setFields(
 				{ name: "Before", value: oldMessage.content },
-				{ name: "After", value: newMessage.content }
+				{ name: "After", value: newMessage.content },
 			);
 
 		(await CHANNEL_LOG()).send({ embeds: [embed] });
 	}
 }
-
-//TODO make this work on older messages

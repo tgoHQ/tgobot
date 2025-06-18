@@ -27,13 +27,13 @@ export class VcPingCommand extends Command {
 						.setName("channel")
 						.setDescription("Channel where the VC is happening.")
 						.setRequired(true)
-						.addChannelTypes(ChannelType.GuildVoice)
+						.addChannelTypes(ChannelType.GuildVoice),
 				);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		const channel = interaction.options.getChannel("channel", true, [
 			ChannelType.GuildVoice,
@@ -45,15 +45,15 @@ export class VcPingCommand extends Command {
 				`${
 					Emoji.False
 				} This command is on a cooldown. The bot will only ping once every ${humanizeDuration(
-					COOLDOWN
-				)}.`
+					COOLDOWN,
+				)}.`,
 			);
 			return;
 		}
 
 		if (connected < MIN_CONNECTED_USERS) {
 			await interaction.reply(
-				`${Emoji.False} There are ${connected} people in ${channel}. There must be at least ${MIN_CONNECTED_USERS} to send a VC ping.`
+				`${Emoji.False} There are ${connected} people in ${channel}. There must be at least ${MIN_CONNECTED_USERS} to send a VC ping.`,
 			);
 			return;
 		}
@@ -64,7 +64,7 @@ export class VcPingCommand extends Command {
 		}, COOLDOWN);
 
 		await interaction.reply(
-			`${Emoji.Call} ${ROLE_VCPING}, there are ${connected} people in ${channel}!`
+			`${Emoji.Call} ${ROLE_VCPING}, there are ${connected} people in ${channel}!`,
 		);
 	}
 }

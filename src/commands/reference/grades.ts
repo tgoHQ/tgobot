@@ -36,13 +36,13 @@ export class GradesCommand extends Command {
 			builder
 				.setName("grades")
 				.setDescription(
-					"Displays info about a climbing grade and converts it to other scales."
+					"Displays info about a climbing grade and converts it to other scales.",
 				)
 				.addStringOption((option) =>
 					option
 						.setName("grade")
 						.setDescription("The grade to look up.")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.addStringOption((option) =>
 					option
@@ -61,14 +61,14 @@ export class GradesCommand extends Command {
 							{ name: WI.displayName, value: WI.name },
 							{ name: AI.displayName, value: AI.name },
 							{ name: Aid.displayName, value: Aid.name },
-							{ name: Saxon.displayName, value: Saxon.name }
-						)
+							{ name: Saxon.displayName, value: Saxon.name },
+						),
 				);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		const input = interaction.options.getString("grade", true);
 
@@ -82,7 +82,7 @@ export class GradesCommand extends Command {
 		//if the grade does not match the selected scale, reject
 		if (!inputGradeScale.isType(input)) {
 			await interaction.reply(
-				"Your input does not match a valid/known climbing grade."
+				"Your input does not match a valid/known climbing grade.",
 			);
 			return;
 		}

@@ -20,7 +20,7 @@ import { Message } from "discord.js";
 export class IntroductionsAutoMessageListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
-		options: Listener.Options
+		options: Listener.Options,
 	) {
 		super(context, {
 			...options,

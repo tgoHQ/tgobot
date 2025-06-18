@@ -21,7 +21,7 @@ export const ROLE_INTRODUCED = async () =>
 // CHANNELS //
 async function fetchChannel<T extends ChannelType>(
 	id: string,
-	type: T
+	type: T,
 ): Promise<Channel & { type: T }> {
 	const channel = await container.client.channels.fetch(id);
 	if (!channel) throw new Error(`Channel ${id} not found`);
@@ -33,7 +33,7 @@ async function fetchChannel<T extends ChannelType>(
 export const CHANNEL_INTRODUCTIONS = async () =>
 	await fetchChannel<ChannelType.GuildText>(
 		env.CHANNEL_INTRODUCTIONS_ID,
-		ChannelType.GuildText
+		ChannelType.GuildText,
 	);
 export const CHANNEL_ALERT = async () =>
 	await fetchChannel(env.CHANNEL_ALERT_ID, ChannelType.GuildText);
@@ -71,7 +71,7 @@ export const CHANNEL_ALPINE = async () =>
 
 export const TAG_PHOTO_OF_THE_WEEK = async () => {
 	const tag = (await CHANNEL_PHOTOS()).availableTags.find(
-		(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID
+		(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID,
 	);
 
 	if (!tag) throw new Error("Photo of the week tag not found");

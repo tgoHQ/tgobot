@@ -15,7 +15,7 @@ import env from "../../lib/util/env.js";
 export class SteveAiMessageListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
-		options: Listener.Options
+		options: Listener.Options,
 	) {
 		super(context, {
 			...options,
@@ -36,12 +36,12 @@ export class SteveAiMessageListener extends Listener {
 			(role) =>
 				role.id === env.ROLE_MODERATOR_ID ||
 				role.id === env.ROLE_EXPERT_ID ||
-				role.id === env.ROLE_BOOSTER_ID
+				role.id === env.ROLE_BOOSTER_ID,
 		);
 
 		if (!allowedToUse) {
 			await message.reply(
-				"You don't have access to use this command! You can boost the server to gain access."
+				"You don't have access to use this command! You can boost the server to gain access.",
 			);
 			return;
 		}
@@ -67,7 +67,7 @@ export class SteveAiMessageListener extends Listener {
 			if (!replyInfo?.messageId) break;
 
 			const replyChannel = currentMessage.client.channels.cache.get(
-				replyInfo.channelId
+				replyInfo.channelId,
 			) as TextChannel | undefined;
 			if (!replyChannel) break;
 			//current message is now the reply

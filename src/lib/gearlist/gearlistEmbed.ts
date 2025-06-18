@@ -1,5 +1,5 @@
 import { EmbedBuilder, User } from "discord.js";
-import db from "../db/drizzle.js";
+import db from "../../db/drizzle.js";
 
 export default async function (user: User) {
 	const rows = await db.query.gearLists.findMany({

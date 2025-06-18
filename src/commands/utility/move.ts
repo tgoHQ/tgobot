@@ -17,20 +17,20 @@ export class MoveCommand extends Command {
 						.setName("channel")
 						.setDescription("Channel to move to")
 						.setRequired(true)
-						.addChannelTypes(ChannelType.GuildText, ChannelType.GuildVoice)
+						.addChannelTypes(ChannelType.GuildText, ChannelType.GuildVoice),
 				)
 				.addStringOption((option) =>
 					option
 						.setName("topic")
 						.setDescription("The topic of the conversation being moved.")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		const interactionResponse = await interaction.deferReply();
 
@@ -44,15 +44,15 @@ export class MoveCommand extends Command {
 		const newChannelMessage = await newChannel.send(
 			`The conversation about \`${interaction.options.getString(
 				"topic",
-				true
-			)}\` has been moved here from ${responseURL}.`
+				true,
+			)}\` has been moved here from ${responseURL}.`,
 		);
 
 		interaction.editReply(
 			`The conversation about \`${interaction.options.getString(
 				"topic",
-				true
-			)}\` has been moved to ${newChannelMessage.url}.`
+				true,
+			)}\` has been moved to ${newChannelMessage.url}.`,
 		);
 	}
 }

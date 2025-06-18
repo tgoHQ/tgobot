@@ -12,7 +12,7 @@ import { Message } from "discord.js";
 export class LighterpackAutoMessageListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
-		options: Listener.Options
+		options: Listener.Options,
 	) {
 		super(context, {
 			...options,
@@ -26,7 +26,7 @@ export class LighterpackAutoMessageListener extends Listener {
 
 		//check if link is lighterpack
 		const link = /\bhttps?:\/\/lighterpack.com\/r\/[a-zA-Z0-9]{6}\b/.exec(
-			message.content
+			message.content,
 		);
 		if (!link) return;
 	}

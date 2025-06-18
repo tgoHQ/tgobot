@@ -27,29 +27,29 @@ export class SlowmodeCommand extends Command {
 							ChannelType.GuildStageVoice,
 							ChannelType.AnnouncementThread,
 							ChannelType.PublicThread,
-							ChannelType.GuildVoice
-						)
+							ChannelType.GuildVoice,
+						),
 				)
 				.addStringOption((option) =>
 					option
 						.setName("interval")
 						.setDescription(
-							"Slowmode interval. Accepts units and abbreviations. Set to 0 to disable slowmode."
+							"Slowmode interval. Accepts units and abbreviations. Set to 0 to disable slowmode.",
 						)
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.addStringOption((option) =>
 					option
 						.setName("reason")
 						.setDescription("Reason for the slowmode")
-						.setRequired(true)
+						.setRequired(true),
 				)
 				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
 		});
 	}
 
 	public override async chatInputRun(
-		interaction: Command.ChatInputCommandInteraction
+		interaction: Command.ChatInputCommandInteraction,
 	) {
 		const intervalRaw = interaction.options.getString("interval", true);
 		const interval = parseDuration(intervalRaw) ?? getDuration.hours(1); //default 1 hour if input cannot be parsed
@@ -68,7 +68,7 @@ export class SlowmodeCommand extends Command {
 				reason: interaction.options.getString("reason", true),
 				author: interaction.user,
 				interval,
-			})
+			}),
 		);
 	}
 }
