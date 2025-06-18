@@ -44,8 +44,6 @@ utility
 		command to lock ticket? or button?
 		searchable logging. send a log message when tickets opened/closed/users added, with IDs for searchability
 
-	photo of the week automation
-
 learn how to use interaction handlers/collectors for buttons, modals, selects, etc
 look into sapphire framework cron jobs and time/date/duration utilities
 sapphire preconditions and cooldowns (cooldown for vcping command)
@@ -57,8 +55,6 @@ subcommands and autocompletes
 https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-scheduled-tasks/
 https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-utilities-store/
 https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-hmr/
-
-
 
 
 

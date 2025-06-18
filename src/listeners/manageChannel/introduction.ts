@@ -2,62 +2,62 @@ import { Events, Listener } from "@sapphire/framework";
 import env from "../../lib/util/env.js";
 import OpenAI from "openai";
 import {
-	CHANNEL_ALPINE,
-	CHANNEL_BIKING,
-	CHANNEL_HIKING,
-	CHANNEL_CAMPING,
-	CHANNEL_CLIMBING,
-	CHANNEL_INTRODUCTIONS,
-	CHANNEL_NATURE,
-	CHANNEL_ON_THE_WATER,
-	CHANNEL_PHOTOS,
-	CHANNEL_TRIP_REPORTS,
-	CHANNEL_WINTER_SPORTS,
-	ROLE_INTRODUCED,
+  CHANNEL_ALPINE,
+  CHANNEL_BIKING,
+  CHANNEL_HIKING,
+  CHANNEL_CAMPING,
+  CHANNEL_CLIMBING,
+  CHANNEL_INTRODUCTIONS,
+  CHANNEL_NATURE,
+  CHANNEL_ON_THE_WATER,
+  CHANNEL_PHOTOS,
+  CHANNEL_TRIP_REPORTS,
+  CHANNEL_WINTER_SPORTS,
+  ROLE_INTRODUCED,
 } from "../../lib/discord/loadDiscordObjects.js";
 import { Message } from "discord.js";
 
 export class IntroductionsAutoMessageListener extends Listener {
-	public constructor(
-		context: Listener.LoaderContext,
-		options: Listener.Options
-	) {
-		super(context, {
-			...options,
-			event: Events.MessageCreate,
-		});
-	}
+  public constructor(
+    context: Listener.LoaderContext,
+    options: Listener.Options,
+  ) {
+    super(context, {
+      ...options,
+      event: Events.MessageCreate,
+    });
+  }
 
-	public async run(message: Message) {
-		if (message.channel !== (await CHANNEL_INTRODUCTIONS())) return;
+  public async run(message: Message) {
+    if (message.channel !== (await CHANNEL_INTRODUCTIONS())) return;
 
-		if (message.author.bot) return;
+    if (message.author.bot) return;
 
-		if (message.content.length < 10) {
-			message.delete();
-			return;
-		}
+    if (message.content.length < 10) {
+      message.delete();
+      return;
+    }
 
-		message.react("👋");
-		message.member?.roles.add(await ROLE_INTRODUCED());
+    message.react("👋");
+    message.member?.roles.add(await ROLE_INTRODUCED());
 
-		const openai = new OpenAI({
-			apiKey: env.OPENAI,
-		});
+    const openai = new OpenAI({
+      apiKey: env.OPENAI,
+    });
 
-		const thread = await message.startThread({
-			name: message.author.displayName,
-		});
+    const thread = await message.startThread({
+      name: message.author.displayName,
+    });
 
-		thread.sendTyping();
+    thread.sendTyping();
 
-		const response = await openai.chat.completions.create({
-			model: "gpt-4o-mini",
-			temperature: 1.4,
-			messages: [
-				{
-					role: "system",
-					content: `
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      temperature: 1.4,
+      messages: [
+        {
+          role: "system",
+          content: `
 						A user is introducing theirself to our Discord community about the outdoors.
 						Respond with a short paragraph welcoming them. Personalize the response based on what they said in their introduction.
 
@@ -76,14 +76,14 @@ export class IntroductionsAutoMessageListener extends Listener {
 
 						Do not list out the channels unless they are relevant to the user. Mention the channels using the tags provided.
 					`,
-				},
-				{
-					role: "user",
-					content: message.content,
-				},
-			],
-		});
+        },
+        {
+          role: "user",
+          content: message.content,
+        },
+      ],
+    });
 
-		thread.send(response.choices[0].message.content!);
-	}
+    thread.send(response.choices[0].message.content!);
+  }
 }
