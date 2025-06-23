@@ -23,7 +23,7 @@
 		"humanize-duration": "^3.33.0",
 		"node-cron": "^3.0.3",
 		"openai": "^4.104.0",
-		"parse-duration": "^1.1.2",
+		"parse-duration": "^2.1.4",
 		"postgres": "^3.4.7",
 		"zod": "^3.25.67"
 	},
