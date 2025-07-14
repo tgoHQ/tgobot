@@ -21,7 +21,7 @@
 		"envalid": "^8.0.0",
 		"glob": "^11.0.3",
 		"humanize-duration": "^3.33.0",
-		"node-cron": "^3.0.3",
+		"node-cron": "^4.2.1",
 		"openai": "^4.104.0",
 		"parse-duration": "^1.1.2",
 		"postgres": "^3.4.7",
