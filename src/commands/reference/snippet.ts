@@ -178,6 +178,10 @@ const snippets = [
 		name: "Don't ask to ask",
 		content: `https://dontasktoask.com/`,
 	},
+	{
+		name: "Whipsnake",
+		content: "https://www.youtube.com/watch?v=ZAtzN_ScKXY",
+	},
 ] satisfies { name: string; content: string }[];
 
 let commandChoices: { name: string; value: string }[] = [];

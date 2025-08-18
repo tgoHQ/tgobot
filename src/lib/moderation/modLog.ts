@@ -11,7 +11,7 @@ export async function modUserLogEmbed(
 		.setColor("#137c5a")
 		.setDescription(string)
 		.setAuthor({
-			name: author.username,
+			name: author.displayName,
 			iconURL: author.displayAvatarURL(),
 		})
 		.addFields({ name: "Reason", value: reason ?? "No reason provided." })
@@ -31,7 +31,7 @@ export async function modToolLogEmbed(
 		.setColor("#137c5a")
 		.setDescription(string)
 		.setAuthor({
-			name: author.username,
+			name: author.displayName,
 			iconURL: author.displayAvatarURL(),
 		})
 		.addFields({ name: "Reason", value: reason ?? "No reason provided." });
