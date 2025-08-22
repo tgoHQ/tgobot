@@ -53,6 +53,8 @@ export const CHANNEL_TRIP_REPORTS = async () =>
 	await fetchChannel(env.CHANNEL_TRIP_REPORTS_ID, ChannelType.GuildForum);
 export const CHANNEL_TOWN_HALL = async () =>
 	await fetchChannel(env.CHANNEL_TOWN_HALL_ID, ChannelType.GuildAnnouncement);
+export const CHANNEL_BOTS = async () =>
+	await fetchChannel(env.CHANNEL_BOTS_ID, ChannelType.GuildText);
 
 export const CHANNEL_CAMPING = async () =>
 	await fetchChannel(env.CHANNEL_CAMPING_ID, ChannelType.GuildText);
