@@ -26,6 +26,7 @@ const env = cleanEnv(process.env, {
 	CHANNEL_PHOTOS_ID: str(),
 	CHANNEL_TRIP_REPORTS_ID: str(),
 	CHANNEL_TOWN_HALL_ID: str(),
+	CHANNEL_BOTS_ID: str(),
 
 	CHANNEL_NATURE_ID: str(),
 	CHANNEL_CLIMBING_ID: str(),
