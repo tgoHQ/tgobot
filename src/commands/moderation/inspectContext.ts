@@ -29,7 +29,7 @@ export class UserInspectContextCommand extends Command {
 
 		interaction.reply({
 			flags: MessageFlags.IsComponentsV2,
-			components: [await userInspectComponent(interaction.user)],
+			components: [await userInspectComponent(interaction.targetUser)],
 			allowedMentions: {},
 		});
 	}
