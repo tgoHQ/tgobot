@@ -12,5 +12,5 @@ export const userNotes = pgTable("user_notes", {
 	userId: text("user_id").notNull(),
 	authorId: text("author_id").notNull(),
 	content: text("content").notNull(),
-	createdAt: timestamp("created_at").notNull(),
+	createdAt: timestamp("created_at").notNull().defaultNow(),
 });
