@@ -18,7 +18,7 @@ export class UserInspectContextCommand extends Command {
 			builder
 				.setName("Inspect User")
 				.setType(ApplicationCommandType.User)
-				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
+				.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers);
 		});
 	}
 
@@ -29,7 +29,7 @@ export class UserInspectContextCommand extends Command {
 
 		interaction.reply({
 			flags: MessageFlags.IsComponentsV2,
-			components: [await userInspectComponent(interaction.user)],
+			components: [await userInspectComponent(interaction.targetUser)],
 			allowedMentions: {},
 		});
 	}
