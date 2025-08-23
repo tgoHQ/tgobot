@@ -16,10 +16,14 @@ import { UserNote } from "./userNotes.js";
 export async function userInspectComponent(user: User) {
 	const guild = await GUILD();
 
-	//todo make this work on users who are not in the server. show a note on users that are currently banned, next to where it shows timeout
-	const member = await guild.members.fetch(user.id);
+	let member: GuildMember | undefined;
 
-	const ageOnJoin = getMemberAcctAgeOnJoin(member);
+	//this will throw if the user isn't a guild member
+	try {
+		member = await guild.members.fetch(user.id);
+	} catch (e) {}
+
+	const ageOnJoin = member ? getMemberAcctAgeOnJoin(member) : null;
 
 	const avatar = user.displayAvatarURL({
 		size: 4096,
@@ -30,18 +34,25 @@ export async function userInspectComponent(user: User) {
 	const tinEyeUrl = `https://tineye.com/search?url=${avatarEncoded}`;
 
 	// remove last entry because it's always @everyone
-	const roles = member.roles.cache.map((r) => r).slice(0, -1);
+	const roles = member?.roles.cache.map((r) => r).slice(0, -1) ?? [];
 	const rolesSorted = roles.sort((a, b) => b.position - a.position);
 
-	const userFlags = member.user.flags?.toArray() ?? [];
-	const memberFlags = member.flags.toArray();
+	const userFlags = user.flags?.toArray() ?? [];
+	const memberFlags = member?.flags.toArray() ?? [];
 
 	const flags = [...userFlags, ...memberFlags];
 
-	const timeout = getMemberTimeoutDuration(member);
+	const timeout = member ? getMemberTimeoutDuration(member) : null;
+	const timeoutHumanized = timeout
+		? humanizeDuration(timeout, { largest: 2, maxDecimalPoints: 0 })
+		: null;
+
+	const isBanned = await guild.bans.fetch(user.id).catch(() => null);
 
 	const notes = await UserNote.getByUser(user.id);
-	const notesSorted = notes.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+	const notesSorted = notes.sort(
+		(a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
+	);
 	const notesFormatted = notesSorted.map((n) =>
 		`
 			${n.content}
@@ -50,13 +61,13 @@ export async function userInspectComponent(user: User) {
 	);
 
 	return new ContainerBuilder()
-		.setAccentColor(member.displayColor)
+		.setAccentColor(member?.displayColor ?? 0)
 		.addTextDisplayComponents(
 			new TextDisplayBuilder().setContent(
 				`
 						# <@${user.id}>
 						-# ${user.username} · ${user.id}
-						${timeout ? `\n${Emoji.Timeout} **Timed out for** \`${humanizeDuration(timeout, { largest: 2, maxDecimalPoints: 0 })}\`**.**` : ""}
+						${timeout ? `\n${Emoji.Timeout} **Timed out for** \`${timeoutHumanized}\`**.**` : ""}${isBanned ? `\n${Emoji.Ban} **This user is banned.**` : ""}${!member && !isBanned ? `\n${Emoji.Warn} **User is not a member of this server.**` : ""}
 
 					`.replaceAll("\t", ""),
 			),

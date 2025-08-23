@@ -28,14 +28,27 @@ export class DelNoteCommand extends Command {
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction,
 	) {
-		const id = interaction.options.getNumber("id", true);
+		if (!interaction.guild) return;
 
+		const id = interaction.options.getNumber("id", true);
 		const note = await UserNote.getById(id);
 
-		if (!note)
+		if (!note) {
 			return interaction.reply({
 				content: `${Emoji.False} No note found with ID \`${id}\`.`,
 			});
+		}
+
+		const isAuthor = note.authorId === interaction.user.id;
+		const member = interaction.guild.members.cache.get(interaction.user.id);
+		if (!member) return;
+		const isAdmin = member.permissions.has(PermissionFlagsBits.ManageChannels);
+
+		if (!isAuthor && !isAdmin) {
+			return interaction.reply({
+				content: `${Emoji.False} Only an Admin or the author of the note can delete it.`,
+			});
+		}
 
 		await note.delete();
 
