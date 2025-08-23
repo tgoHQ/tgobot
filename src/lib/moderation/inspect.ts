@@ -30,6 +30,7 @@ export async function userInspectComponent(user: User) {
 
 	// remove last entry because it's always @everyone
 	const roles = member.roles.cache.map((r) => r).slice(0, -1);
+	const rolesSorted = roles.sort((a, b) => b.position - a.position);
 
 	const userFlags = member.user.flags?.toArray() ?? [];
 	const memberFlags = member.flags.toArray();
@@ -63,7 +64,7 @@ export async function userInspectComponent(user: User) {
 								**Age on Join:** \`${ageOnJoin ? humanizeDuration(ageOnJoin, { largest: 2 }) : "Unknown"}\`
 								**Avatar:** [View](${avatar}), [Google Lens](${googleLensUrl}), [Google Search](${googleClassicUrl}), [TinEye](${tinEyeUrl})
 								### Roles
-								${roles.map((r) => `<@&${r.id}>`).join(", ")}
+								${rolesSorted.map((r) => `<@&${r.id}>`).join(", ")}
 								### Flags
 								${flags.length ? flags.join(", ") : "None"}
 							`.replaceAll("\t", ""),
