@@ -23,7 +23,17 @@ export async function userInspectComponent(user: User) {
 		member = await guild.members.fetch(user.id);
 	} catch (e) {}
 
-	const ageOnJoin = member ? getMemberAcctAgeOnJoin(member) : null;
+	const memberAge = member ? getMemberAge(member) : null;
+
+	const durationAsMemberHumanized = memberAge
+		? humanizeDuration(memberAge.durationAsMember, {
+				largest: 1,
+				maxDecimalPoints: 1,
+			})
+		: "Unknown";
+	const ageOnJoinHumanized = memberAge
+		? humanizeDuration(memberAge.ageOnJoin, { largest: 1, maxDecimalPoints: 1 })
+		: "Unknown";
 
 	const avatar = user.displayAvatarURL({
 		size: 4096,
@@ -56,7 +66,7 @@ export async function userInspectComponent(user: User) {
 	const notesFormatted = notesSorted.map((n) =>
 		`
 			${n.content}
-			-# <@${n.authorId}> on <t:${Math.round(n.createdAt.getTime() / 1000)}:f> · \`${n.id}\`
+			-# <@${n.authorId}> on <t:${Math.round(n.createdAt.getTime() / 1000)}:D> · \`${n.id}\`
 		`.replaceAll("\t", ""),
 	);
 
@@ -82,7 +92,8 @@ export async function userInspectComponent(user: User) {
 						`
 								## Details
 
-								**Age on Join:** \`${ageOnJoin ? humanizeDuration(ageOnJoin, { largest: 2 }) : "Unknown"}\`
+								**Age on Join:** \`${ageOnJoinHumanized}\`
+								**On Server For:** \`${durationAsMemberHumanized}\`
 								**Avatar:** [View](${avatar}), [Google Lens](${googleLensUrl}), [Google Search](${googleClassicUrl}), [TinEye](${tinEyeUrl})
 								### Roles
 								${rolesSorted.map((r) => `<@&${r.id}>`).join(", ")}
@@ -107,13 +118,16 @@ export async function userInspectComponent(user: User) {
 		);
 }
 
-function getMemberAcctAgeOnJoin(member: GuildMember) {
+function getMemberAge(member: GuildMember) {
 	const joinedAt = member.joinedTimestamp;
 	const createdAt = member.user.createdTimestamp;
 
 	if (!joinedAt) return null;
 
-	return createdAt - joinedAt;
+	return {
+		ageOnJoin: createdAt - joinedAt,
+		durationAsMember: joinedAt - Date.now(),
+	};
 }
 
 function getMemberTimeoutDuration(member: GuildMember) {
