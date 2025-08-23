@@ -19,7 +19,7 @@ export class InspectCommand extends Command {
 						.setDescription("User to inspect")
 						.setRequired(true),
 				)
-				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
+				.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers);
 		});
 	}
 

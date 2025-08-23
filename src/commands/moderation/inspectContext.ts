@@ -18,7 +18,7 @@ export class UserInspectContextCommand extends Command {
 			builder
 				.setName("Inspect User")
 				.setType(ApplicationCommandType.User)
-				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
+				.setDefaultMemberPermissions(PermissionFlagsBits.ModerateMembers);
 		});
 	}
 
