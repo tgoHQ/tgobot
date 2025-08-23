@@ -45,8 +45,8 @@ importers:
         specifier: ^4.104.0
         version: 4.104.0(ws@8.18.3)(zod@3.25.76)
       parse-duration:
-        specifier: ^1.1.2
-        version: 1.1.2
+        specifier: ^2.1.4
+        version: 2.1.4
       postgres:
         specifier: ^3.4.7
         version: 3.4.7
@@ -61,8 +61,8 @@ importers:
         specifier: ^20.19.11
         version: 20.19.11
       dotenv:
-        specifier: ^16.6.1
-        version: 16.6.1
+        specifier: ^17.2.1
+        version: 17.2.1
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -558,8 +558,8 @@ packages:
     resolution: {integrity: sha512-3k+Kisd/v570Jr68A1kNs7qVhNehDwDJAPe4DZ2Syt+/zobf9zEcuYFvsfIaAOgCa0BiHMfOOKQY4eYINl0z7w==}
     engines: {node: '>=18'}
 
-  dotenv@16.6.1:
-    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+  dotenv@17.2.1:
+    resolution: {integrity: sha512-kQhDYKZecqnM0fCnzI5eIv5L4cAe/iRI+HqMbO/hbRdTAeXDG+M9FjipUxNfbARuEg4iHIbhnhs78BCHNbSxEQ==}
     engines: {node: '>=12'}
 
   drizzle-kit@0.31.4:
@@ -849,8 +849,8 @@ packages:
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
 
-  parse-duration@1.1.2:
-    resolution: {integrity: sha512-p8EIONG8L0u7f8GFgfVlL4n8rnChTt8O5FSxgxMz2tjc9FMP199wxVKVB6IbKx11uTbKHACSvaLVIKNnoeNR/A==}
+  parse-duration@2.1.4:
+    resolution: {integrity: sha512-b98m6MsCh+akxfyoz9w9dt0AlH2dfYLOBss5SdDsr9pkhKNvkWBXU/r8A4ahmIGByBOLV2+4YwfCuFxbDDaGyg==}
 
   path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
@@ -1342,7 +1342,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  dotenv@16.6.1: {}
+  dotenv@17.2.1: {}
 
   drizzle-kit@0.31.4:
     dependencies:
@@ -1583,7 +1583,7 @@ snapshots:
 
   package-json-from-dist@1.0.1: {}
 
-  parse-duration@1.1.2: {}
+  parse-duration@2.1.4: {}
 
   path-key@3.1.1: {}
 
