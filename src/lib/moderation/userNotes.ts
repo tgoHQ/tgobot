@@ -1,7 +1,8 @@
-import db from "../../db/drizzle";
+import db from "../../db/drizzle.js";
 import { eq } from "drizzle-orm";
 import { userNotes } from "../../db/schema.js";
 import { User } from "discord.js";
+import { container } from "@sapphire/framework";
 
 export class UserNote {
 	readonly id: number;
@@ -10,6 +11,12 @@ export class UserNote {
 	readonly content: string;
 	readonly createdAt: Date;
 
+	async targetUser() {
+		return container.client.users.fetch(this.userId);
+	}
+	async author() {
+		return container.client.users.fetch(this.authorId);
+	}
 	async delete() {
 		await db.delete(userNotes).where(eq(userNotes.id, this.id));
 	}
@@ -23,11 +30,16 @@ export class UserNote {
 	}
 
 	static async create(opts: UserNoteOpts) {
-		await db.insert(userNotes).values({
-			userId: opts.targetUser.id,
-			authorId: opts.author.id,
-			content: opts.content,
-		});
+		const row = await db
+			.insert(userNotes)
+			.values({
+				userId: opts.targetUser.id,
+				authorId: opts.author.id,
+				content: opts.content,
+			})
+			.returning();
+
+		return new UserNote(row[0]);
 	}
 
 	static async getById(id: number) {

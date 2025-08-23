@@ -1,6 +1,6 @@
 {
 	"name": "tgobot",
-	"main": "dist/bot.js",
+	"main": "dist/src/bot.js",
 	"source": "src/bot.ts",
 	"repository": "https://github.com/tgoHQ/tgobot",
 	"scripts": {
