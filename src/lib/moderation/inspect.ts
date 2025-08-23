@@ -11,6 +11,7 @@ import {
 import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../lib/util/emoji.js";
 import { GUILD } from "../discord/loadDiscordObjects.js";
+import { UserNote } from "./userNotes.js";
 
 export async function userInspectComponent(user: User) {
 	const guild = await GUILD();
@@ -38,6 +39,15 @@ export async function userInspectComponent(user: User) {
 	const flags = [...userFlags, ...memberFlags];
 
 	const timeout = getMemberTimeoutDuration(member);
+
+	const notes = await UserNote.getByUser(user.id);
+	const notesSorted = notes.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+	const notesFormatted = notesSorted.map((n) =>
+		`
+			${n.content}
+			-# <@${n.authorId}> on <t:${Math.round(n.createdAt.getTime() / 1000)}:f> · \`${n.id}\`
+		`.replaceAll("\t", ""),
+	);
 
 	return new ContainerBuilder()
 		.setAccentColor(member.displayColor)
@@ -71,6 +81,18 @@ export async function userInspectComponent(user: User) {
 					),
 				)
 				.setThumbnailAccessory(new ThumbnailBuilder().setURL(avatar)),
+		)
+		.addSeparatorComponents(
+			new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large),
+		)
+		.addTextDisplayComponents(
+			new TextDisplayBuilder().setContent(
+				`
+				## Notes
+				
+				${notesFormatted.join("")}
+				`.replaceAll("\t", ""),
+			),
 		);
 }
 
