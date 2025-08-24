@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({
+	quiet: true,
+});
 
 import { cleanEnv, str, url } from "envalid";
 
