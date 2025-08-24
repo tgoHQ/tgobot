@@ -61,8 +61,8 @@ export class GradesCommand extends Command {
 
 		const conversions = getAllConversionsForGrade(grade, scale);
 		const conversionsFormatted = conversions
-			.map((e) => `### ${e.scale.displayName}\n${e.grade}`)
-			.join("\n");
+			.map((e) => `\`${e.grade}\` | ${e.scale.displayName}`)
+			.join("\n\n");
 
 		const container = new ContainerBuilder()
 			.setAccentColor(1277018)
