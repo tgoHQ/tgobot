@@ -1,6 +1,13 @@
 import { Command } from "@sapphire/framework";
 
-import { EmbedBuilder } from "discord.js";
+import {
+	EmbedBuilder,
+	MessageFlags,
+	ContainerBuilder,
+	TextDisplayBuilder,
+	SeparatorBuilder,
+	SeparatorSpacingSize,
+} from "discord.js";
 import { Emoji } from "../../lib/util/emoji.js";
 
 export class HelpCommand extends Command {
@@ -18,11 +25,24 @@ export class HelpCommand extends Command {
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction,
 	) {
-		const embed = new EmbedBuilder()
+		new EmbedBuilder()
 			.setColor("#137c5a")
-			.setTitle(`${Emoji.SlashCommand} TGO Command Help`)
-			.setDescription(
-				`
+			.setTitle(`# ${Emoji.SlashCommand} Command Help`)
+			.setDescription("a");
+
+		const container = new ContainerBuilder()
+			.setAccentColor(1277018)
+			.addTextDisplayComponents(
+				new TextDisplayBuilder().setContent(
+					`# ${Emoji.SlashCommand} TGO Command Help`,
+				),
+			)
+			.addSeparatorComponents(
+				new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large),
+			)
+			.addTextDisplayComponents(
+				new TextDisplayBuilder().setContent(
+					`
 				</snippet:1205576907517599815> Pull up commonly used links or the answer to an FAQ.
 
 				<id:customize>: See the available roles and choose yours.
@@ -39,9 +59,14 @@ export class HelpCommand extends Command {
 
 				</climb:1081349272986988555>: Display info about a climbing route from OpenBeta.
 				</crag:1081476008538030140>: Display info about a crag from OpenBeta.
-				</grades:1165000063303565312>: Display info about a climbing grade and convert to other scales.
-			`.replaceAll("	", ""),
+				</rockgrades:1408972696976363634>: Display info about a climbing grade and convert to other scales.
+			`.replaceAll("\t", ""),
+				),
 			);
-		await interaction.reply({ embeds: [embed] });
+
+		await interaction.reply({
+			flags: MessageFlags.IsComponentsV2,
+			components: [container],
+		});
 	}
 }
