@@ -28,10 +28,16 @@ const client = new SapphireClient({
 	],
 	presence: {
 		activities: [
-			//todo figure out how to set custom status with no activity type
+
+			//todo figure out how to use emoji in custom status
+			//todo figure out how to do watching status with a youtube link
 			{
-				name: "outside",
+				type: ActivityType.Custom,
+				name: "I;m thinking about thos Beans",
+			},
+			{
 				type: ActivityType.Playing,
+				name: "outside",
 			},
 		],
 	},
