@@ -1,6 +1,12 @@
 import { Command } from "@sapphire/framework";
 
-import { EmbedBuilder } from "discord.js";
+import {
+	ContainerBuilder,
+	MessageFlags,
+	TextDisplayBuilder,
+	SeparatorBuilder,
+	SeparatorSpacingSize,
+} from "discord.js";
 import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../lib/util/emoji.js";
 
@@ -21,26 +27,33 @@ export class AboutCommand extends Command {
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction,
 	) {
-		const embed = new EmbedBuilder()
-			.setColor("#137c5a")
-			.setTitle("tgobot")
-			.addFields(
-				{
-					name: `${Emoji.DiscordJS} discord.js`,
-					value:
-						"Built with the [discord.js](https://discord.js.org/) library.",
-				},
-				{
-					name: `${Emoji.IconsDiscord} Icons`,
-					value:
-						"The icons used by this bot are provided by [iconsdiscord](https://discord.com/invite/aPvvhefmt3).",
-				},
-				{
-					name: `${Emoji.Developer} Developer`,
-					value: "`tgobot` was built by <@247070105916276736>.",
-				},
-				{ name: "Uptime", value: humanizeDuration(interaction.client.uptime) },
+		const container = new ContainerBuilder()
+			.setAccentColor(1277018)
+			.addTextDisplayComponents(
+				new TextDisplayBuilder().setContent(
+					`# \`tgobot\`\n-# Up for ${humanizeDuration(interaction.client.uptime, { largest: 1, maxDecimalPoints: 0 })}`,
+				),
+			)
+			.addSeparatorComponents(
+				new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large),
+			)
+			.addTextDisplayComponents(
+				new TextDisplayBuilder().setContent(
+					`
+					### ${Emoji.Developer} Developer
+					\`tgobot\` was built by <@247070105916276736>.
+					### ${Emoji.Shine2} Open Source
+					\`tgobot\` is AGPLv3! You can view and use the source code on [GitHub](https://github.com/tgoHQ/tgobot).
+					### ${Emoji.IconsDiscord} Icons
+					Some icons used by this bot are provided by [iconsdiscord](https://discord.com/invite/aPvvhefmt3).
+				`.replaceAll("\t", ""),
+				),
 			);
-		await interaction.reply({ embeds: [embed] });
+
+		await interaction.reply({
+			flags: MessageFlags.IsComponentsV2,
+			components: [container],
+			allowedMentions: {},
+		});
 	}
 }
