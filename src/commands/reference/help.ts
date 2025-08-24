@@ -9,6 +9,7 @@ import {
 } from "discord.js";
 import { Emoji } from "../../lib/util/emoji.js";
 import { removeTabs } from "../../lib/util/removeTabs";
+import { colors } from "../../lib/util/constants";
 
 export class HelpCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -26,7 +27,7 @@ export class HelpCommand extends Command {
 		interaction: Command.ChatInputCommandInteraction,
 	) {
 		const container = new ContainerBuilder()
-			.setAccentColor(1277018)
+			.setAccentColor(colors.staffGreen.decimal)
 			.addTextDisplayComponents(
 				new TextDisplayBuilder().setContent(
 					`# ${Emoji.SlashCommand} TGO Command Help`,

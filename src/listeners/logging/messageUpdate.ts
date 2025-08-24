@@ -3,6 +3,7 @@ import { Listener } from "@sapphire/framework";
 import env from "../../lib/util/env.js";
 import { Message, EmbedBuilder } from "discord.js";
 import { CHANNEL_LOG } from "../../lib/discord/loadDiscordObjects.js";
+import { colors } from "../../lib/util/constants";
 
 export class MessageUpdateListener extends Listener {
 	public async run(oldMessage: Message, newMessage: Message) {
@@ -12,7 +13,7 @@ export class MessageUpdateListener extends Listener {
 		if (!oldMessage.content || !newMessage.content) return; //if messages don't have content, return
 
 		const embed = new EmbedBuilder()
-			.setColor("#4a78fc")
+			.setColor(colors.blue.hex)
 			.setTitle("Message Edited")
 			.setURL(newMessage.url)
 			.setDescription(

@@ -12,12 +12,13 @@ import {
 } from "discord.js";
 import { CHANNEL_LOG } from "../../lib/discord/loadDiscordObjects.js";
 import { removeTabs } from "../../lib/util/removeTabs.js";
+import { colors } from "../../lib/util/constants";
 
 export class GuildMemberRemoveListener extends Listener {
 	public async run(member: GuildMember) {
 		const components = [
 			new ContainerBuilder()
-				.setAccentColor(1277018)
+				.setAccentColor(colors.staffGreen.decimal)
 				.addTextDisplayComponents(
 					new TextDisplayBuilder().setContent(`# ${member.user} Left`),
 				)

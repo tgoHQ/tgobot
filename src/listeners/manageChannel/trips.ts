@@ -3,6 +3,7 @@ import { EmbedBuilder, ThreadChannel } from "discord.js";
 import { CHANNEL_TRIP_REPORTS } from "../../lib/discord/loadDiscordObjects.js";
 import { sleep } from "@sapphire/utilities";
 import { removeTabs } from "../../lib/util/removeTabs.js";
+import { colors } from "../../lib/util/constants";
 
 export class MeetupsAutoMessageListener extends Listener {
 	public constructor(
@@ -27,7 +28,7 @@ export class MeetupsAutoMessageListener extends Listener {
 			embeds: [
 				new EmbedBuilder()
 					.setTitle("Trips Channel")
-					.setColor("#137c5a")
+					.setColor(colors.staffGreen.hex)
 					.setDescription(
 						removeTabs(`
 							Use this thread to post your trip report or send updates while on the trail!

@@ -2,13 +2,14 @@ import { Listener } from "@sapphire/framework";
 
 import { EmbedBuilder, Message } from "discord.js";
 import { CHANNEL_LOG, GUILD } from "../../lib/discord/loadDiscordObjects.js";
+import { colors } from "../../lib/util/constants";
 
 export class MessageDeleteListener extends Listener {
 	public async run(message: Message) {
 		if (!message.guild || message.guild !== (await GUILD())) return; //if message deleted is not from main guild, return
 
 		const embed = new EmbedBuilder()
-			.setColor("#ff3131")
+			.setColor(colors.red.hex)
 			.setTitle("Message Deleted")
 			.setURL(message.url)
 			.setDescription(

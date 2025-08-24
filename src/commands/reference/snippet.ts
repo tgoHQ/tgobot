@@ -8,6 +8,7 @@ import {
 	TextDisplayBuilder,
 } from "discord.js";
 import { removeTabs } from "../../lib/util/removeTabs";
+import { colors } from "../../lib/util/constants";
 
 const snippets = [
 	{
@@ -231,7 +232,7 @@ export class SnippetCommand extends Command {
 			snippets[parseInt(interaction.options.getString("snippet", true))];
 
 		const component = new ContainerBuilder()
-			.setAccentColor(1277018)
+			.setAccentColor(colors.staffGreen.decimal)
 			.addTextDisplayComponents(
 				new TextDisplayBuilder().setContent(`# Snippet: ${snippet.name}`),
 			)

@@ -5,6 +5,7 @@ import {
 	CHANNEL_ALERT,
 } from "../../lib/discord/loadDiscordObjects.js";
 import { removeTabs } from "../../lib/util/removeTabs";
+import { colors } from "../../lib/util/constants";
 
 export class ReadyListener extends Listener {
 	public constructor(
@@ -33,7 +34,7 @@ export class ReadyListener extends Listener {
 								Boosters get perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and access to the </ask:1191037845574529086> AI command!
 							`),
 						)
-						.setColor("#ff8950"),
+						.setColor(colors.booster.hex),
 				],
 				content: newMember.toString(),
 			});
@@ -49,7 +50,7 @@ export class ReadyListener extends Listener {
 						.setTitle("<:boost:1256023381690814536> Server Boost Ended")
 						.setThumbnail(newMember.displayAvatarURL())
 						.setDescription(`${newMember} just stopped boosting the server!`)
-						.setColor("#ff8950"),
+						.setColor(colors.booster.hex),
 				],
 				content: newMember.toString(),
 			});
