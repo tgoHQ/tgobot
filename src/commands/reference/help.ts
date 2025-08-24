@@ -59,7 +59,7 @@ export class HelpCommand extends Command {
 
 				</climb:1081349272986988555>: Display info about a climbing route from OpenBeta.
 				</crag:1081476008538030140>: Display info about a crag from OpenBeta.
-				</rockgrades:1408972696976363634>: Display info about a climbing grade and convert to other scales.
+				</rockgrade:1408972696976363634>: Display info about a climbing grade and convert to other scales.
 			`.replaceAll("\t", ""),
 				),
 			);
