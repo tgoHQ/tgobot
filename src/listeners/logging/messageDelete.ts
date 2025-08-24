@@ -22,7 +22,7 @@ export class MessageDeleteListener extends Listener {
 				},
 				{
 					name: "Timestamp",
-					value: `Posted ${`<t:${message.createdTimestamp}:F>.`}`,
+					value: `Posted ${`<t:${Math.round(message.createdTimestamp / 1000)}:F>.`}`,
 				},
 			);
 
