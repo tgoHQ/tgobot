@@ -1,5 +1,5 @@
 import { Events, Listener } from "@sapphire/framework";
-import { EmbedBuilder, ThreadChannel } from "discord.js";
+import { MessageFlags, TextDisplayBuilder, ThreadChannel } from "discord.js";
 import { CHANNEL_MEETUPS } from "../../lib/discord/loadDiscordObjects.js";
 import { sleep } from "@sapphire/utilities";
 
@@ -22,24 +22,23 @@ export class MeetupsAutoMessageListener extends Listener {
 
 		await sleep(6000);
 
-		const embed = new EmbedBuilder()
-			.setTitle("Meetups Channel")
-			.setColor("#137c5a")
-			.setDescription(
-				`Thanks for posting! Please review the guidelines below.
+		const components = [
+			new TextDisplayBuilder().setContent(
+				`
+				Thanks for posting, ${member.user}! Please remember:
 
-				**Always remember to be safe and vet anyone you choose to meet up with!**
+				- **Always be safe and vet anyone you choose to meet up with!**
+				- **Posts that are missing information will be deleted!**
+				- Your post should include:
+				  - Destination of the trip, or your general location and travel radius
+				  - The type of activity
+				  - Your experience level
+				  - A date or date range
+				  - The appropriate tags for region and activity type
+			`.replaceAll("\t", ""),
+			),
+		];
 
-				Your post should include:
-				
-				- Destination of the trip, or your general location and travel radius
-				- The type of activity
-				- Your experience level
-				- A date or date range
-				- Apply the appropriate tags for region and activity type
-			`.replaceAll("	", ""),
-			);
-
-		thread.send({ embeds: [embed], content: member.user!.toString() });
+		thread.send({ components, flags: MessageFlags.IsComponentsV2 });
 	}
 }

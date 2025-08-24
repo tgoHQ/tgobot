@@ -37,7 +37,6 @@ export class ReadyListener extends Listener {
 				content: newMember.toString(),
 			});
 
-			await message.crosspost();
 			await message.react("🔥");
 		}
 

@@ -1,7 +1,6 @@
 import { Command } from "@sapphire/framework";
 
 import {
-	EmbedBuilder,
 	MessageFlags,
 	ContainerBuilder,
 	TextDisplayBuilder,
@@ -25,11 +24,6 @@ export class HelpCommand extends Command {
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction,
 	) {
-		new EmbedBuilder()
-			.setColor("#137c5a")
-			.setTitle(`# ${Emoji.SlashCommand} Command Help`)
-			.setDescription("a");
-
 		const container = new ContainerBuilder()
 			.setAccentColor(1277018)
 			.addTextDisplayComponents(
