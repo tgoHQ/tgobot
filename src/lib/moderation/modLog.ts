@@ -1,5 +1,6 @@
 import { CHANNEL_MODLOG } from "../discord/loadDiscordObjects.js";
 import { User, EmbedBuilder } from "discord.js";
+import { colors } from "../util/constants";
 
 export async function modUserLogEmbed(
 	targetUser: User,
@@ -8,7 +9,7 @@ export async function modUserLogEmbed(
 	reason?: string,
 ) {
 	const embed = new EmbedBuilder()
-		.setColor("#137c5a")
+		.setColor(colors.staffGreen.hex)
 		.setDescription(string)
 		.setAuthor({
 			name: author.displayName,
@@ -28,7 +29,7 @@ export async function modToolLogEmbed(
 	reason?: string,
 ) {
 	const embed = new EmbedBuilder()
-		.setColor("#137c5a")
+		.setColor(colors.staffGreen.hex)
 		.setDescription(string)
 		.setAuthor({
 			name: author.displayName,

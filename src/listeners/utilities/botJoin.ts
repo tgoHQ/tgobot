@@ -15,8 +15,8 @@ export class BotJoinListener extends Listener {
 	}
 
 	public async run(member: GuildMember) {
-		//add bot role if new member is a bot
 		if (member.user.bot) {
+			//add bot role if new member is a bot
 			await member.guild.members.addRole({
 				user: member.user,
 				role: await ROLE_BOT(),

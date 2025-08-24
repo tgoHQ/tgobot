@@ -3,6 +3,7 @@ import { Command } from "@sapphire/framework";
 import { ApplicationCommandType, ContextMenuCommandType } from "discord.js";
 import OpenAI from "openai";
 import env from "../../lib/util/env.js";
+import { removeTabs } from "../../lib/util/removeTabs";
 
 export class ContextCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -37,7 +38,7 @@ export class ContextCommand extends Command {
 				messages: [
 					{
 						role: "system",
-						content: `
+						content: removeTabs(`
 							the user is being vague and is likely a beginner to outdoor recreation.
 
 							generate a sentence asking them to answer some clarifying questions so we can help them better.
@@ -53,7 +54,7 @@ export class ContextCommand extends Command {
 								"sentence": string,
 								"questions": string[]
 							}
-						`.replaceAll("	", ""),
+						`),
 					},
 					{
 						role: "user",

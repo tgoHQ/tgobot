@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
 
-import { ApplicationCommandType, ContextMenuCommandType } from "discord.js";
+import { ApplicationCommandType, MessageFlags } from "discord.js";
 
 export class LookupCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -10,11 +10,7 @@ export class LookupCommand extends Command {
 	}
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerContextMenuCommand((builder) => {
-			builder
-				.setName("Look this up")
-
-				//todo what is this stupid bullshit and why is it necessary all of a sudden?
-				.setType(ApplicationCommandType.Message as ContextMenuCommandType);
+			builder.setName("Look this up").setType(ApplicationCommandType.Message);
 		});
 	}
 
@@ -24,17 +20,14 @@ export class LookupCommand extends Command {
 		if (interaction.isMessageContextMenuCommand()) {
 			const message = interaction.targetMessage;
 
-			const responseMessage = await message.reply(
-				`https://www.startpage.com/sp/search?query=${encodeURIComponent(
-					message.content,
-				)}`,
-			);
-
-			await responseMessage.suppressEmbeds(true);
+			const encoded = encodeURIComponent(message.content);
+			const google = `https://www.google.com/search?q=${encoded}`;
+			const startpage = `https://www.startpage.com/sp/search?query=${encoded}`;
+			const duckduckgo = `https://duckduckgo.com/?q=${encoded}`;
 
 			await interaction.reply({
-				content: "Command successful.",
-				ephemeral: true,
+				content: `[Google](${google}) | [Startpage](${startpage}) | [Duckduckgo](${duckduckgo})`,
+				flags: MessageFlags.SuppressEmbeds,
 			});
 		}
 	}

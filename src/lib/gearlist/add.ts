@@ -36,7 +36,7 @@
 // 			embeds: [
 // 				new EmbedBuilder()
 // 					.setTitle("Gear List Added")
-// 					.setColor("#137c5a")
+// 					.setColor(colors.staffGreen.hex)
 // 					.addFields(
 // 						{
 // 							name: "Name",

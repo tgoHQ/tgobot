@@ -2,9 +2,12 @@
 
 import { Events, Listener } from "@sapphire/framework";
 
-import { Message } from "discord.js";
+import { Message, NewsChannel } from "discord.js";
 
-import { CHANNEL_MODLOG } from "../../lib/discord/loadDiscordObjects.js";
+import {
+	CHANNEL_MODLOG,
+	CHANNEL_TOWN_HALL,
+} from "../../lib/discord/loadDiscordObjects.js";
 
 export class AutoPublishListener extends Listener {
 	public constructor(
@@ -18,7 +21,10 @@ export class AutoPublishListener extends Listener {
 	}
 
 	public async run(message: Message) {
-		const channels = [await CHANNEL_MODLOG()];
+		const channels: NewsChannel[] = [
+			await CHANNEL_MODLOG(),
+			await CHANNEL_TOWN_HALL(),
+		];
 
 		channels.forEach((channel) => {
 			if (channel === message.channel) {

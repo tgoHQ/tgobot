@@ -1,10 +1,3 @@
-//listen for new messages
-//ignore messages from bots
-//check if the message tags steve or replies to a previous ai invocation
-//check up the reply chain for context
-//send the message to the ai
-//reply
-
 import { Events, Listener } from "@sapphire/framework";
 
 import { Message, TextChannel } from "discord.js";
@@ -40,9 +33,9 @@ export class SteveAiMessageListener extends Listener {
 		);
 
 		if (!allowedToUse) {
-			await message.reply(
-				"You don't have access to use this command! You can boost the server to gain access.",
-			);
+			// await message.reply(
+			// 	"You don't have access to use this command! You can boost the server to gain access.",
+			// );
 			return;
 		}
 

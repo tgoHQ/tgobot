@@ -2,6 +2,8 @@ import { Events, Listener } from "@sapphire/framework";
 import { EmbedBuilder, ThreadChannel } from "discord.js";
 import { CHANNEL_TRIP_REPORTS } from "../../lib/discord/loadDiscordObjects.js";
 import { sleep } from "@sapphire/utilities";
+import { removeTabs } from "../../lib/util/removeTabs.js";
+import { colors } from "../../lib/util/constants";
 
 export class MeetupsAutoMessageListener extends Listener {
 	public constructor(
@@ -26,24 +28,25 @@ export class MeetupsAutoMessageListener extends Listener {
 			embeds: [
 				new EmbedBuilder()
 					.setTitle("Trips Channel")
-					.setColor("#137c5a")
+					.setColor(colors.staffGreen.hex)
 					.setDescription(
-						`Use this thread to post your trip report or send updates while on the trail!
+						removeTabs(`
+							Use this thread to post your trip report or send updates while on the trail!
 
-						A trip report can contain things such as:
+							A trip report can contain things such as:
 
-						- Where did you go?
-						- What happened while you were there?
-						- What went well/poorly?
-						- Lessons you learned on your trip
-						- Photos, videos, or maps
-						- A list of the gear you brought
-						- The food/meals you had
+							- Where did you go?
+							- What happened while you were there?
+							- What went well/poorly?
+							- Lessons you learned on your trip
+							- Photos, videos, or maps
+							- A list of the gear you brought
+							- The food/meals you had
 
-						Once you've written your report, add one or more tags to describe the type of activity.
+							Once you've written your report, add one or more tags to describe the type of activity.
 
-						For more info, see here: https://www.reddit.com/r/Ultralight/comments/hmiwh0/meta_how_to_write_a_trip_report/
-			`.replaceAll("	", ""),
+							For more info, see here: https://www.reddit.com/r/Ultralight/comments/hmiwh0/meta_how_to_write_a_trip_report/
+						`),
 					),
 			],
 			content: member.user!.toString(),

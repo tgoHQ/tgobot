@@ -28,10 +28,16 @@ const client = new SapphireClient({
 	],
 	presence: {
 		activities: [
-			//todo figure out how to set custom status with no activity type
+
+			//todo figure out how to use emoji in custom status
+			//todo figure out how to do watching status with a youtube link
 			{
-				name: "outside",
+				type: ActivityType.Custom,
+				name: "I;m thinking about thos Beans",
+			},
+			{
 				type: ActivityType.Playing,
+				name: "outside",
 			},
 		],
 	},
@@ -46,6 +52,6 @@ await client.login(env.TOKEN);
 //load cron jobs
 import path from "node:path";
 import { glob } from "glob";
-glob.sync("./dist/cron/*.js").forEach((file) => {
+glob.sync("./dist/jobs/*.js").forEach((file) => {
 	import(path.resolve(file));
 });

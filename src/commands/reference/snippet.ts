@@ -1,6 +1,14 @@
 import { Command } from "@sapphire/framework";
 
-import { EmbedBuilder } from "discord.js";
+import {
+	ContainerBuilder,
+	MessageFlags,
+	SeparatorBuilder,
+	SeparatorSpacingSize,
+	TextDisplayBuilder,
+} from "discord.js";
+import { removeTabs } from "../../lib/util/removeTabs";
+import { colors } from "../../lib/util/constants";
 
 const snippets = [
 	{
@@ -172,7 +180,8 @@ const snippets = [
 			- Leave what you find
 			- Minimize campfire impacts
 			- Respect wildlife
-			- Be considerate of others`,
+			- Be considerate of others
+		`,
 	},
 	{
 		name: "Don't ask to ask",
@@ -207,13 +216,6 @@ export class SnippetCommand extends Command {
 						.setRequired(true)
 						.addChoices(...commandChoices),
 				)
-
-				.addUserOption((option) =>
-					option
-						.setName("user")
-						.setDescription("Ping this user in the bot's response")
-						.setRequired(false),
-				)
 				.addBooleanOption((option) =>
 					option
 						.setName("hidden")
@@ -229,17 +231,22 @@ export class SnippetCommand extends Command {
 		const snippet: { name: string; content: string } =
 			snippets[parseInt(interaction.options.getString("snippet", true))];
 
-		const taggedUser = interaction.options.getUser("user", false);
+		const component = new ContainerBuilder()
+			.setAccentColor(colors.staffGreen.decimal)
+			.addTextDisplayComponents(
+				new TextDisplayBuilder().setContent(`# Snippet: ${snippet.name}`),
+			)
+			.addSeparatorComponents(
+				new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large),
+			)
+			.addTextDisplayComponents(
+				new TextDisplayBuilder().setContent(removeTabs(snippet.content)),
+			);
 
 		await interaction.reply({
-			embeds: [
-				new EmbedBuilder()
-					.setTitle(snippet.name)
-					.setDescription(snippet.content.replaceAll("	", ""))
-					.setColor("#137c5a"),
-			],
+			components: [component],
+			flags: MessageFlags.IsComponentsV2,
 			ephemeral: !!interaction.options.getBoolean("hidden", false),
-			content: `${taggedUser ?? ""}`, // if no tagged user, it will be an empty string
 		});
 	}
 }

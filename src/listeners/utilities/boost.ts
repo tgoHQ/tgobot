@@ -4,6 +4,8 @@ import {
 	CHANNEL_TOWN_HALL,
 	CHANNEL_ALERT,
 } from "../../lib/discord/loadDiscordObjects.js";
+import { removeTabs } from "../../lib/util/removeTabs";
+import { colors } from "../../lib/util/constants";
 
 export class ReadyListener extends Listener {
 	public constructor(
@@ -27,17 +29,16 @@ export class ReadyListener extends Listener {
 						.setTitle("<:boost:1256023381690814536> New Server Boost")
 						.setThumbnail(newMember.displayAvatarURL())
 						.setDescription(
-							`
-							${newMember} just boosted the server!
-							Boosters get perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and access to the </ask:1191037845574529086> AI command!
-						`.replaceAll("	", ""),
+							removeTabs(`
+								${newMember} just boosted the server!
+								Boosters get perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and access to the </ask:1191037845574529086> AI command!
+							`),
 						)
-						.setColor("#ff8950"),
+						.setColor(colors.booster.hex),
 				],
 				content: newMember.toString(),
 			});
 
-			await message.crosspost();
 			await message.react("🔥");
 		}
 
@@ -48,12 +49,8 @@ export class ReadyListener extends Listener {
 					new EmbedBuilder()
 						.setTitle("<:boost:1256023381690814536> Server Boost Ended")
 						.setThumbnail(newMember.displayAvatarURL())
-						.setDescription(
-							`
-							${newMember} just stopped boosting the server!
-						`.replaceAll("	", ""),
-						)
-						.setColor("#ff8950"),
+						.setDescription(`${newMember} just stopped boosting the server!`)
+						.setColor(colors.booster.hex),
 				],
 				content: newMember.toString(),
 			});

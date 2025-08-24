@@ -7,6 +7,7 @@ import {
 import getDuration from "../../lib/util/getDuration.js";
 import { ThreadChannel } from "discord.js";
 import { sleep } from "@sapphire/utilities";
+import { removeTabs } from "../../lib/util/removeTabs.js";
 
 export class ReadyListener extends Listener {
 	public constructor(
@@ -41,7 +42,8 @@ export class ReadyListener extends Listener {
 		}
 
 		post?.reply(
-			`Thanks for posting! Here are a few guidelines to remember.
+			removeTabs(
+				`Thanks for posting! Here are a few guidelines to remember.
 
 			**For the poster**:
 				- If you have more unrelated photos to share later, create a separate post for them.
@@ -50,7 +52,8 @@ export class ReadyListener extends Listener {
 			**For everyone**:
 				- This thread is for discussion of the photos shared above, not for general chatting.
 				- React to this post with 🫘 to upvote it! Each week, the post with the most beans is crowned "Photo of the Week".
-			`.replaceAll("	", ""),
+			`,
+			),
 		);
 	}
 }

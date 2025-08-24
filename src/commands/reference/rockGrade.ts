@@ -8,6 +8,7 @@ import {
 	SeparatorSpacingSize,
 } from "discord.js";
 import { gradeSets } from "../../interaction-handlers/climbingGradeAutocomplete.js";
+import { colors } from "../../lib/util/constants";
 type GradeScale = (typeof gradeSets)[0]["scale"];
 
 export class GradesCommand extends Command {
@@ -61,11 +62,11 @@ export class GradesCommand extends Command {
 
 		const conversions = getAllConversionsForGrade(grade, scale);
 		const conversionsFormatted = conversions
-			.map((e) => `### ${e.scale.displayName}\n${e.grade}`)
-			.join("\n");
+			.map((e) => `\`${e.grade}\` | ${e.scale.displayName}`)
+			.join("\n\n");
 
 		const container = new ContainerBuilder()
-			.setAccentColor(1277018)
+			.setAccentColor(colors.staffGreen.decimal)
 			.addTextDisplayComponents(
 				new TextDisplayBuilder().setContent(
 					`# \`${grade}\` | ${scale.displayName}`,

@@ -1,4 +1,5 @@
 import { Command } from "@sapphire/framework";
+import { sleep } from "@sapphire/utilities";
 
 import { PermissionFlagsBits } from "discord.js";
 
@@ -26,17 +27,24 @@ export class MessageCommand extends Command {
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction,
 	) {
+		await interaction.deferReply({
+			ephemeral: true,
+		});
+
 		if (!interaction.channel?.isSendable()) {
-			return interaction.reply({
+			return interaction.editReply({
 				content: "Cannot send message.",
-				ephemeral: true,
 			});
 		}
 
 		const content = interaction.options.getString("content", true);
 
+		//simulate typing
+		await interaction.channel.sendTyping();
+		await sleep(3000);
+
 		const message = await interaction.channel.send(content);
 
-		return await interaction.reply({ content: message.url, ephemeral: true });
+		return await interaction.editReply({ content: message.url });
 	}
 }
