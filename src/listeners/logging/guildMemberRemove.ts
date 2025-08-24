@@ -12,7 +12,7 @@ import {
 } from "discord.js";
 import { CHANNEL_LOG } from "../../lib/discord/loadDiscordObjects.js";
 import { removeTabs } from "../../lib/util/removeTabs.js";
-import { colors } from "../../lib/util/constants";
+import { colors } from "../../lib/util/constants.js";
 
 export class GuildMemberRemoveListener extends Listener {
 	public async run(member: GuildMember) {

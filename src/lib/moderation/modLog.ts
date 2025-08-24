@@ -1,6 +1,6 @@
 import { CHANNEL_MODLOG } from "../discord/loadDiscordObjects.js";
 import { User, EmbedBuilder } from "discord.js";
-import { colors } from "../util/constants";
+import { colors } from "../util/constants.js";
 
 export async function modUserLogEmbed(
 	targetUser: User,

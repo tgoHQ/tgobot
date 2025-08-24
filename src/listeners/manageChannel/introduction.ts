@@ -14,8 +14,10 @@ import {
 	CHANNEL_TRIP_REPORTS,
 	CHANNEL_WINTER_SPORTS,
 	ROLE_INTRODUCED,
+	CHANNEL_MEETUPS,
 } from "../../lib/discord/loadDiscordObjects.js";
 import { Message } from "discord.js";
+import { removeTabs } from "../../lib/util/removeTabs.js";
 
 export class IntroductionsAutoMessageListener extends Listener {
 	public constructor(
@@ -65,14 +67,15 @@ export class IntroductionsAutoMessageListener extends Listener {
 
 						${await CHANNEL_HIKING()} (hiking, backpacking, ultralight, thru-hiking)
 						${await CHANNEL_CAMPING()} (frontcountry camping, car camping, boondocking, van life)
-						${await CHANNEL_PHOTOS()} (sharing photos of the outdoors)
+						${await CHANNEL_PHOTOS()} (showcasing photos of the outdoors)
 						${await CHANNEL_TRIP_REPORTS()} (trip reports)
-						${await CHANNEL_ALPINE()} (mountaineering and alpine hiking)
+						${await CHANNEL_ALPINE()} (mountaineering and alpine)
 						${await CHANNEL_BIKING()} (mountain biking and bike touring)
 						${await CHANNEL_CLIMBING()} (rock climbing and bouldering)
-						${await CHANNEL_NATURE()} (nature, wildlife, and foraging)
+						${await CHANNEL_NATURE()} (wildlife, foraging, ecology, etc)
 						${await CHANNEL_ON_THE_WATER()} (boating, kayaking, etc)
 						${await CHANNEL_WINTER_SPORTS()} (winter sports - snowboarding, snowshoeing, etc)
+						${await CHANNEL_MEETUPS()} (meetups channel for finding people to go on trips/outings with)
 
 						Do not list out the channels unless they are relevant to the user. Mention the channels using the tags provided.
 					`,
@@ -84,6 +87,11 @@ export class IntroductionsAutoMessageListener extends Listener {
 			],
 		});
 
-		thread.send(response.choices[0].message.content!);
+		thread.send(
+			removeTabs(`
+				${response.choices[0].message.content!}
+				-# I am a bot, and this is an AI-generated message.
+			`),
+		);
 	}
 }
