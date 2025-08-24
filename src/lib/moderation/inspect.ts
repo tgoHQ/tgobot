@@ -12,6 +12,7 @@ import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../lib/util/emoji.js";
 import { GUILD } from "../discord/loadDiscordObjects.js";
 import { UserNote } from "./userNotes.js";
+import { removeTabs } from "../util/removeTabs.js";
 
 export async function userInspectComponent(user: User) {
 	const guild = await GUILD();
@@ -64,22 +65,23 @@ export async function userInspectComponent(user: User) {
 		(a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
 	);
 	const notesFormatted = notesSorted.map((n) =>
-		`
+		removeTabs(`
 			${n.content}
 			-# <@${n.authorId}> on <t:${Math.round(n.createdAt.getTime() / 1000)}:D> · \`${n.id}\`
-		`.replaceAll("\t", ""),
+		`),
 	);
 
 	return new ContainerBuilder()
 		.setAccentColor(member?.displayColor ?? 0)
 		.addTextDisplayComponents(
 			new TextDisplayBuilder().setContent(
-				`
+				removeTabs(
+					`
 						# <@${user.id}>
 						-# ${user.username} · ${user.id}
 						${timeout ? `\n${Emoji.Timeout} **Timed out for** \`${timeoutHumanized}\`**.**` : ""}${isBanned ? `\n${Emoji.Ban} **This user is banned.**` : ""}${!member && !isBanned ? `\n${Emoji.Warn} **User is not a member of this server.**` : ""}
-
-					`.replaceAll("\t", ""),
+					`,
+				),
 			),
 		)
 		.addSeparatorComponents(
@@ -89,7 +91,8 @@ export async function userInspectComponent(user: User) {
 			new SectionBuilder()
 				.addTextDisplayComponents(
 					new TextDisplayBuilder().setContent(
-						`
+						removeTabs(
+							`
 								## Details
 
 								**Age on Join:** \`${ageOnJoinHumanized}\`
@@ -99,7 +102,8 @@ export async function userInspectComponent(user: User) {
 								${rolesSorted.map((r) => `<@&${r.id}>`).join(", ")}
 								### Flags
 								${flags.length ? flags.join(", ") : "None"}
-							`.replaceAll("\t", ""),
+							`,
+						),
 					),
 				)
 				.setThumbnailAccessory(new ThumbnailBuilder().setURL(avatar)),
@@ -109,11 +113,13 @@ export async function userInspectComponent(user: User) {
 		)
 		.addTextDisplayComponents(
 			new TextDisplayBuilder().setContent(
-				`
-				## Notes
+				removeTabs(
+					`
+						## Notes
 				
-				${notesFormatted.join("")}
-				`.replaceAll("\t", ""),
+						${notesFormatted.join("")}
+					`,
+				),
 			),
 		);
 }

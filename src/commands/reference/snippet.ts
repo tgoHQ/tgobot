@@ -7,6 +7,7 @@ import {
 	SeparatorSpacingSize,
 	TextDisplayBuilder,
 } from "discord.js";
+import { removeTabs } from "../../lib/util/removeTabs";
 
 const snippets = [
 	{
@@ -178,7 +179,8 @@ const snippets = [
 			- Leave what you find
 			- Minimize campfire impacts
 			- Respect wildlife
-			- Be considerate of others`,
+			- Be considerate of others
+		`,
 	},
 	{
 		name: "Don't ask to ask",
@@ -237,9 +239,7 @@ export class SnippetCommand extends Command {
 				new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large),
 			)
 			.addTextDisplayComponents(
-				new TextDisplayBuilder().setContent(
-					snippet.content.replaceAll("\t", ""),
-				),
+				new TextDisplayBuilder().setContent(removeTabs(snippet.content)),
 			);
 
 		await interaction.reply({

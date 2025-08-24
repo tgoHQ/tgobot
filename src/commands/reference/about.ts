@@ -9,6 +9,7 @@ import {
 } from "discord.js";
 import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../lib/util/emoji.js";
+import { removeTabs } from "../../lib/util/removeTabs.js";
 
 export class AboutCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -39,14 +40,16 @@ export class AboutCommand extends Command {
 			)
 			.addTextDisplayComponents(
 				new TextDisplayBuilder().setContent(
-					`
+					removeTabs(
+						`
 					### ${Emoji.Developer} Developer
 					\`tgobot\` was built by <@247070105916276736>.
 					### ${Emoji.Shine2} Open Source
 					\`tgobot\` is AGPLv3! You can view and use the source code on [GitHub](https://github.com/tgoHQ/tgobot).
 					### ${Emoji.IconsDiscord} Icons
 					Some icons used by this bot are provided by [iconsdiscord](https://discord.com/invite/aPvvhefmt3).
-				`.replaceAll("\t", ""),
+				`,
+					),
 				),
 			);
 
