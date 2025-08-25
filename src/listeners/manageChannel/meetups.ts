@@ -24,8 +24,9 @@ export class MeetupsAutoMessageListener extends Listener {
 		await sleep(6000);
 
 		const components = [
-			new TextDisplayBuilder().setContent(removeTabs(
-				`
+			new TextDisplayBuilder().setContent(
+				removeTabs(
+					`
 				Thanks for posting, ${member.user}! Please remember:
 
 				- **Always be safe and vet anyone you choose to meet up with!**
@@ -36,7 +37,8 @@ export class MeetupsAutoMessageListener extends Listener {
 				  - Your experience level
 				  - A date or date range
 				  - The appropriate tags for region and activity type
-			`),
+			`,
+				),
 			),
 		];
 

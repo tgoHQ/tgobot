@@ -79,7 +79,10 @@ export class ContextCommand extends Command {
 			-# AI-generated message. Triggered by ${interaction.user}.
 		`);
 
-		await interaction.targetMessage.reply({ content: responseContent, allowedMentions: {} });
+		await interaction.targetMessage.reply({
+			content: responseContent,
+			allowedMentions: {},
+		});
 
 		interaction.editReply({
 			content: "Command successful.",

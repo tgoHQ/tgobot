@@ -41,16 +41,14 @@ export class AboutCommand extends Command {
 			)
 			.addTextDisplayComponents(
 				new TextDisplayBuilder().setContent(
-					removeTabs(
-						`
-					### ${Emoji.Developer} Developer
-					\`tgobot\` was built by <@247070105916276736>.
-					### ${Emoji.Shine2} Open Source
-					\`tgobot\` is AGPLv3! You can view and use the source code on [GitHub](https://github.com/tgoHQ/tgobot).
-					### ${Emoji.IconsDiscord} Icons
-					Some icons used by this bot are provided by [iconsdiscord](https://discord.com/invite/aPvvhefmt3).
-				`,
-					),
+					removeTabs(`
+						### ${Emoji.Developer} Developer
+						\`tgobot\` was built by <@247070105916276736>.
+						### ${Emoji.Shine2} Open Source
+						\`tgobot\` is AGPLv3! You can view and use the source code on [GitHub](https://github.com/tgoHQ/tgobot).
+						### ${Emoji.IconsDiscord} Icons
+						Some icons used by this bot are provided by [iconsdiscord](https://discord.com/invite/aPvvhefmt3).
+					`),
 				),
 			);
 
