@@ -28,7 +28,6 @@ const client = new SapphireClient({
 	],
 	presence: {
 		activities: [
-
 			//todo figure out how to use emoji in custom status
 			//todo figure out how to do watching status with a youtube link
 			{

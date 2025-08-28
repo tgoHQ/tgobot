@@ -7,8 +7,8 @@ import {
 	SeparatorSpacingSize,
 	TextDisplayBuilder,
 } from "discord.js";
-import { removeTabs } from "../../lib/util/removeTabs";
-import { colors } from "../../lib/util/constants";
+import { removeTabs } from "../../lib/util/removeTabs.js";
+import { colors } from "../../lib/util/constants.js";
 
 const snippets = [
 	{

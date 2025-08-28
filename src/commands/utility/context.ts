@@ -1,9 +1,9 @@
 import { Command } from "@sapphire/framework";
 
-import { ApplicationCommandType, ContextMenuCommandType } from "discord.js";
+import { ApplicationCommandType } from "discord.js";
 import OpenAI from "openai";
 import env from "../../lib/util/env.js";
-import { removeTabs } from "../../lib/util/removeTabs";
+import { removeTabs } from "../../lib/util/removeTabs.js";
 
 export class ContextCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -15,74 +15,77 @@ export class ContextCommand extends Command {
 		registry.registerContextMenuCommand((builder) => {
 			builder
 				.setName("Ask for context")
-				//todo what is this stupid bullshit and why is it necessary all of a sudden?
-				.setType(ApplicationCommandType.Message as ContextMenuCommandType);
+				.setType(ApplicationCommandType.Message);
 		});
 	}
 
 	public override async contextMenuRun(
 		interaction: Command.ContextMenuCommandInteraction,
 	) {
-		if (interaction.isMessageContextMenuCommand()) {
-			const message = interaction.targetMessage;
+		if (!interaction.isMessageContextMenuCommand()) return;
 
-			await interaction.deferReply({ ephemeral: true });
+		interaction.deferReply({ ephemeral: true });
 
-			const openai = new OpenAI({
-				apiKey: env.OPENAI,
-			});
+		const openai = new OpenAI({
+			apiKey: env.OPENAI,
+		});
 
-			const response = await openai.chat.completions.create({
-				model: "gpt-4o-mini",
-				response_format: { type: "json_object" },
-				messages: [
-					{
-						role: "system",
-						content: removeTabs(`
-							the user is being vague and is likely a beginner to outdoor recreation.
+		const response = await openai.chat.completions.create({
+			model: "gpt-5",
+			response_format: { type: "json_object" },
+			messages: [
+				{
+					role: "system",
+					content: removeTabs(`
+						1. The user is being vague and is likely a beginner to outdoor recreation.
 
-							generate a sentence asking them to answer some clarifying questions so we can help them better.
+						2. Generate a sentence asking them to answer some clarifying questions so we can help them better. (You, the AI, are not the one asking/answering the questions, rather it is the helper who ran the command)
 
-							generate a list of clarifying questions to ask them. this could include their budget, the type of activity (backpacking, camping, hiking, everyday use, etc.), the type of climate or location, the mileage or length of their trips. Only ask relevant questions that will help us give advice related to their message.
-							Ask other questions not specified here if relevant. E.g., ask them questions specific to the type of gear or topic they're wondering about.
-							If it's about backpacks, ask for their full "gear list".
-							The maximum is 7 questions. The questions must be concise.
-							
-							format your response in JSON, like this:
+						3. Generate a list of clarifying questions to ask them.
+							- Only ask relevant questions that will help us give advice related to their message.
+							- This could include their budget, the type of activity (backpacking, camping, hiking, everyday use, etc.), the type of climate or location, the mileage or length of their trips, their full gear list, etc.
+							- Ask other questions not specified here if relevant. E.g., ask them questions specific to the type of gear or topic they're wondering about.
+							- Do not just ask the example questions I gave you every time- ask things that would be relevant for us to know in order to help the user better.
+							- The maximum is 6 questions. The questions must be SHORT AND CONCISE. Only generate all 6 questions if it's truly necessary.
+						
+						4. Format your response as JSON, like this:
 
-							{
-								"sentence": string,
-								"questions": string[]
-							}
-						`),
-					},
-					{
-						role: "user",
-						content: message.content,
-					},
-				],
-			});
+						{
+							"sentence": string,
+							"questions": string[]
+						}
+					`),
+				},
+				{
+					role: "user",
+					content: interaction.targetMessage.content,
+				},
+			],
+		});
 
-			if (!response.choices[0].message.content) {
-				console.error();
-				return;
-			}
-
-			const responseObj: { sentence: string; questions: string[] } =
-				await JSON.parse(response.choices[0].message.content);
-
-			//create a string with each question bulleted on a new line
-			const questionsStr = [
-				responseObj.sentence,
-				...responseObj.questions.map((q) => `- ${q}`),
-				`\nRequested by ${interaction.user}.`,
-			].join("\n");
-
-			await message.reply({ content: questionsStr, allowedMentions: {} });
-
-			interaction.editReply({
-				content: "Command successful.",
-			});
+		if (!response.choices[0].message.content) {
+			console.error();
+			return;
 		}
+
+		const output: { sentence: string; questions: string[] } = await JSON.parse(
+			response.choices[0].message.content,
+		);
+
+		//create a string with each question bulleted on a new line
+		const responseContent = removeTabs(`
+			${output.sentence}
+			${output.questions.map((q) => `- ${q}`).join("\n")}
+			-# AI-generated message. Triggered by ${interaction.user}.
+		`);
+
+		await interaction.targetMessage.reply({
+			content: responseContent,
+			allowedMentions: {},
+		});
+
+		interaction.editReply({
+			content: "Command successful.",
+		});
 	}
 }

@@ -4,12 +4,12 @@ export const colors = {
 		decimal: 1277018,
 	},
 	red: {
-		hex: "#ff3131"
+		hex: "#ff3131",
 	},
 	blue: {
-		hex: "#4a78fc"
+		hex: "#4a78fc",
 	},
 	booster: {
-		hex: "#ff8950"
-	}
+		hex: "#ff8950",
+	},
 } as const;

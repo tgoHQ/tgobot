@@ -3,7 +3,7 @@ import { Listener } from "@sapphire/framework";
 import env from "../../lib/util/env.js";
 import { Message, EmbedBuilder } from "discord.js";
 import { CHANNEL_LOG } from "../../lib/discord/loadDiscordObjects.js";
-import { colors } from "../../lib/util/constants";
+import { colors } from "../../lib/util/constants.js";
 
 export class MessageUpdateListener extends Listener {
 	public async run(oldMessage: Message, newMessage: Message) {

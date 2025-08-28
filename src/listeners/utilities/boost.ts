@@ -4,8 +4,8 @@ import {
 	CHANNEL_TOWN_HALL,
 	CHANNEL_ALERT,
 } from "../../lib/discord/loadDiscordObjects.js";
-import { removeTabs } from "../../lib/util/removeTabs";
-import { colors } from "../../lib/util/constants";
+import { removeTabs } from "../../lib/util/removeTabs.js";
+import { colors } from "../../lib/util/constants.js";
 
 export class ReadyListener extends Listener {
 	public constructor(
