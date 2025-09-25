@@ -191,6 +191,26 @@ const snippets = [
 		name: "Whipsnake",
 		content: "https://www.youtube.com/watch?v=ZAtzN_ScKXY",
 	},
+	{
+		name: "Animal ID",
+		content: `
+			When requesting help with identifying an animal or tracks, providing as much of the following info as possible will make it more likely that you will get a response:
+			- Location (country, region, and type of ecosystem)
+			- Multiple clear images, showing as much as possible
+			- The sounds they made, if applicable
+			- The approximate size, or a reference item for scale
+			- What you saw the animal doing, if applicable
+		`,
+	},
+	{
+		name: "Plant ID",
+		content: `
+			When requesting help with identifying a plant, providing as much of the following info as possible will make it more likely that you will get a response:
+			- Location (country, region, and type of ecosystem)
+			- Multiple clear images, showing as much as possible incl. leaves, flowers, stem, fruit, bark, etc
+			- The approximate size, or a reference item for scale
+		`,
+	}
 ] satisfies { name: string; content: string }[];
 
 let commandChoices: { name: string; value: string }[] = [];
