@@ -13,6 +13,7 @@ import {
 //define the list of infractions to be used in the command. generate the string options.
 const infractionTypesInCommand = [
 	InfractionType.SpammerScammer,
+	InfractionType.SelfPromoWarning,
 	InfractionType.BadFaith,
 	InfractionType.PoliticalControversial,
 	InfractionType.Lnt,
