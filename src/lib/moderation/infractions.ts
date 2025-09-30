@@ -1,6 +1,7 @@
 import { User, inlineCode } from "discord.js";
 import timeout from "./actions/users/timeout.js";
 import ban from "./actions/users/ban.js";
+import warn from "./actions/users/warn.js";
 import { Emoji } from "../util/emoji.js";
 import getDuration from "../util/getDuration.js";
 
@@ -13,6 +14,7 @@ export enum InfractionType {
 	TrollingShitposting,
 	PoliticalControversial,
 	SpammerScammer,
+	SelfPromoWarning
 }
 
 export async function infraction({
@@ -144,6 +146,16 @@ export const infractionHandlers = {
 				execute: true,
 				deleteMessages: true,
 			});
+		},
+	},
+	[InfractionType.SelfPromoWarning]: {
+		string: "Self-Promotion Warning",
+		execute: async ({ user, author, reason }) => {
+			return await warn({
+				targetUser: user,
+				author,
+				reason
+			})
 		},
 	},
 } satisfies {
