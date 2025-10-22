@@ -17,6 +17,8 @@ export const ROLE_BOT = async () => await fetchRole(env.ROLE_BOT_ID);
 export const ROLE_VCPING = async () => await fetchRole(env.ROLE_VCPING_ID);
 export const ROLE_INTRODUCED = async () =>
 	await fetchRole(env.ROLE_INTRODUCED_ID);
+export const ROLE_BOOSTER_COSMETIC = async () =>
+	await fetchRole(env.ROLE_BOOSTER_COSMETIC_ID);
 
 // CHANNELS //
 async function fetchChannel<T extends ChannelType>(

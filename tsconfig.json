@@ -23,6 +23,7 @@
 		"allowUnreachableCode": false,
 		"allowUnusedLabels": false,
 		"noUnusedParameters": true,
-		"noUnusedLocals": true
+		"noUnusedLocals": true,
+		"incremental": true,
 	}
 }

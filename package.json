@@ -14,27 +14,27 @@
 	},
 	"dependencies": {
 		"@openbeta/sandbag": "^0.0.51",
-		"@sapphire/framework": "^5.3.6",
+		"@sapphire/framework": "^5.3.7",
 		"@sapphire/utilities": "^3.18.2",
 		"@types/node-cron": "^3.0.11",
-		"discord.js": "^14.22.1",
-		"drizzle-kit": "^0.31.4",
-		"drizzle-orm": "^0.44.4",
+		"discord.js": "^14.23.2",
+		"drizzle-kit": "^0.31.5",
+		"drizzle-orm": "^0.44.6",
 		"envalid": "^8.1.0",
 		"glob": "^11.0.3",
-		"humanize-duration": "^3.33.0",
+		"humanize-duration": "^3.33.1",
 		"node-cron": "^4.2.1",
-		"openai": "^5.15.0",
+		"openai": "^5.23.2",
 		"parse-duration": "^2.1.4",
 		"postgres": "^3.4.7",
 		"zod": "^3.25.76"
 	},
 	"devDependencies": {
 		"@types/humanize-duration": "^3.27.4",
-		"@types/node": "^24.3.0",
-		"dotenv": "^17.2.1",
+		"@types/node": "^24.9.1",
+		"dotenv": "^17.2.3",
 		"prettier": "^3.6.2",
-		"typescript": "^5.9.2"
+		"typescript": "^5.9.3"
 	},
 	"type": "module"
 }
