@@ -35,8 +35,17 @@ export class IntroductionsAutoMessageListener extends Listener {
 
 		if (message.author.bot) return;
 
-		if (message.content.length < 10) {
+		const minCharacters = 10;
+
+		if (message.content.length < minCharacters) {
 			message.delete();
+
+			try {
+				await message.author.send(
+					`Introduction messages must be at least ${minCharacters} characters long! Your message was: \n\`\`\`${message.content}\`\`\``,
+				);
+			} catch {}
+
 			return;
 		}
 
