@@ -39,6 +39,10 @@ export class SteveAiMessageListener extends Listener {
 			return;
 		}
 
+		if (message.channel.isSendable()) {
+			await message.channel.sendTyping();
+		}
+
 		let context: OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming["messages"] =
 			[];
 		let currentMessage = message;
