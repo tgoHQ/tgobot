@@ -42,8 +42,8 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1
       openai:
-        specifier: ^5.23.2
-        version: 5.23.2(ws@8.18.3)(zod@3.25.76)
+        specifier: ^6.7.0
+        version: 6.7.0(ws@8.18.3)(zod@3.25.76)
       parse-duration:
         specifier: ^2.1.4
         version: 2.1.4
@@ -714,12 +714,12 @@ packages:
     resolution: {integrity: sha512-lgimEHPE/QDgFlywTd8yTR61ptugX3Qer29efeyWw2rv259HtGBNn1vZVmp8lB9uo9wC0t/AT4iGqXxia+CJFg==}
     engines: {node: '>=6.0.0'}
 
-  openai@5.23.2:
-    resolution: {integrity: sha512-MQBzmTulj+MM5O8SKEk/gL8a7s5mktS9zUtAkU257WjvobGc9nKcBuVwjyEEcb9SI8a8Y2G/mzn3vm9n1Jlleg==}
+  openai@6.7.0:
+    resolution: {integrity: sha512-mgSQXa3O/UXTbA8qFzoa7aydbXBJR5dbLQXCRapAOtoNT+v69sLdKMZzgiakpqhclRnhPggPAXoniVGn2kMY2A==}
     hasBin: true
     peerDependencies:
       ws: ^8.18.0
-      zod: ^3.23.8
+      zod: ^3.25 || ^4.0
     peerDependenciesMeta:
       ws:
         optional: true
@@ -1306,7 +1306,7 @@ snapshots:
 
   node-cron@4.2.1: {}
 
-  openai@5.23.2(ws@8.18.3)(zod@3.25.76):
+  openai@6.7.0(ws@8.18.3)(zod@3.25.76):
     optionalDependencies:
       ws: 8.18.3
       zod: 3.25.76
