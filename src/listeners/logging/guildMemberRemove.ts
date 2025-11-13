@@ -3,14 +3,16 @@ import { Listener } from "@sapphire/framework";
 import {
 	ContainerBuilder,
 	GuildMember,
-	SeparatorBuilder,
-	SeparatorSpacingSize,
 	TextDisplayBuilder,
 	MessageFlags,
 	SectionBuilder,
 	ThumbnailBuilder,
 } from "discord.js";
-import { CHANNEL_LOG } from "../../lib/discord/loadDiscordObjects.js";
+import {
+	CHANNEL_LOG,
+	ROLE_LEAVING_ALERT_ID,
+	CHANNEL_ALERT,
+} from "../../lib/discord/loadDiscordObjects.js";
 import { removeTabs } from "../../lib/util/removeTabs.js";
 import { colors } from "../../lib/util/constants.js";
 
@@ -19,12 +21,7 @@ export class GuildMemberRemoveListener extends Listener {
 		const components = [
 			new ContainerBuilder()
 				.setAccentColor(colors.staffGreen.decimal)
-				.addTextDisplayComponents(
-					new TextDisplayBuilder().setContent(`# ${member.user} Left`),
-				)
-				.addSeparatorComponents(
-					new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large),
-				)
+
 				.addSectionComponents(
 					new SectionBuilder()
 						.setThumbnailAccessory(
@@ -34,8 +31,12 @@ export class GuildMemberRemoveListener extends Listener {
 							new TextDisplayBuilder().setContent(
 								removeTabs(
 									`
+										## User Left
+										${member.user}
 										${member.user.username}
 										${member.user.id}
+										Roles
+										${member.roles.cache.map((role) => role.toString()).join(", ")}
 									`,
 								),
 							),
@@ -47,5 +48,14 @@ export class GuildMemberRemoveListener extends Listener {
 			components,
 			flags: MessageFlags.IsComponentsV2,
 		});
+
+		const leavingRole = await ROLE_LEAVING_ALERT_ID();
+
+		if (member.roles.cache.has(leavingRole.id)) {
+			(await CHANNEL_ALERT()).send({
+				components,
+				flags: MessageFlags.IsComponentsV2,
+			});
+		}
 	}
 }

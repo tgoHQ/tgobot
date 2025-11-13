@@ -24,6 +24,6 @@
 		"allowUnusedLabels": false,
 		"noUnusedParameters": true,
 		"noUnusedLocals": true,
-		"incremental": true,
+		"incremental": true
 	}
 }

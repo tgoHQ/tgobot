@@ -19,6 +19,8 @@ export const ROLE_INTRODUCED = async () =>
 	await fetchRole(env.ROLE_INTRODUCED_ID);
 export const ROLE_BOOSTER_COSMETIC = async () =>
 	await fetchRole(env.ROLE_BOOSTER_COSMETIC_ID);
+export const ROLE_LEAVING_ALERT_ID = async () =>
+	await fetchRole(env.ROLE_LEAVING_ALERT_ID);
 
 // CHANNELS //
 async function fetchChannel<T extends ChannelType>(

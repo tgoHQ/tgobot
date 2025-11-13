@@ -19,6 +19,7 @@ const env = cleanEnv(process.env, {
 	ROLE_EXPERT_ID: str(),
 	ROLE_BOOSTER_ID: str(),
 	ROLE_BOOSTER_COSMETIC_ID: str(),
+	ROLE_LEAVING_ALERT_ID: str(),
 
 	CHANNEL_INTRODUCTIONS_ID: str(),
 	CHANNEL_ALERT_ID: str(),
@@ -55,3 +56,5 @@ export default env;
 // }
 // container.env;
 // https://sapphirejs.dev/docs/Guide/additional-information/using-and-extending-container/
+
+//todo replace envalid with zod
