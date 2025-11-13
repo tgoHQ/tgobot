@@ -1,3 +1,5 @@
+add ci
+
 # loggers
 
 - make user mod action modules have separate functions for execute and log, for logging external actions
