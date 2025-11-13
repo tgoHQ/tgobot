@@ -14,7 +14,7 @@ export enum InfractionType {
 	TrollingShitposting,
 	PoliticalControversial,
 	SpammerScammer,
-	SelfPromoWarning
+	SelfPromoWarning,
 }
 
 export async function infraction({
@@ -154,8 +154,8 @@ export const infractionHandlers = {
 			return await warn({
 				targetUser: user,
 				author,
-				reason
-			})
+				reason,
+			});
 		},
 	},
 } satisfies {

@@ -57,4 +57,4 @@ jobMobules.forEach((file) => {
 	import(path.resolve(file));
 });
 
-console.log(`Loaded ${jobMobules.length} jobs`);
+console.log(`Loaded ${jobMobules.length} cron jobs`);

@@ -3,6 +3,8 @@ import OpenAI from "openai";
 import { type OpenAI as OpenAIType } from "openai";
 import { container } from "@sapphire/framework";
 
+const model = "gpt-5-mini-2025-08-07";
+
 export async function steveAi(
 	context: OpenAIType.Chat.Completions.ChatCompletionCreateParamsNonStreaming["messages"],
 ) {
@@ -13,11 +15,11 @@ export async function steveAi(
 	console.log(context);
 
 	const response = await openai.chat.completions.create({
-		model: "gpt-5-mini-2025-08-07",
+		model,
 		messages: [
 			{
 				role: "system",
-				content: `You are Steve Climber (${container.client.user!.tag}). You are an expert on all things outdoor recreation. You answer questions primarily about camping, hiking, and backpacking on Discord. Answer as succinctly and in as few words as possible (generally 3 lines or less). Feel free to use minimal formatting and partial sentences.`,
+				content: `You are Steve Climber (${container.client.user!}). You are an expert on all things outdoor recreation. You answer questions primarily about camping, hiking, and backpacking on Discord. Answer as succinctly and in as few words as possible (generally 3 lines or less). Feel free to use minimal formatting and partial sentences.`,
 			},
 			...context,
 		],

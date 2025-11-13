@@ -210,7 +210,7 @@ const snippets = [
 			- Multiple clear images, showing as much as possible incl. leaves, flowers, stem, fruit, bark, etc
 			- The approximate size, or a reference item for scale
 		`,
-	}
+	},
 ] satisfies { name: string; content: string }[];
 
 let commandChoices: { name: string; value: string }[] = [];
