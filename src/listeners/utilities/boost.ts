@@ -53,7 +53,7 @@ export class ReadyListener extends Listener {
 			const messageContent = removeTabs(`
 				## ${newMember.user} Thank you for boosting The Great Outdoors!
 
-				We're glad you're enjoying the server. You can check out ${await CHANNEL_INFO()} for more information about your booster perks, and run the \`/boosteroptions\` command to manage your perk settings. If you have any questions, feel free to ask by opening a ticket with \`/tickets open\`!
+				We're glad you're enjoying the server. You can check out ${await CHANNEL_INFO()} for more information about your booster perks, and run the </boosteroptions:1438358186921955388> command to manage your perk settings. If you have any questions, feel free to ask by opening a ticket with \`/tickets open\`!
 			`);
 
 			(await CHANNEL_BOTS()).send(messageContent);

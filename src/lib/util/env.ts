@@ -20,6 +20,7 @@ const env = cleanEnv(process.env, {
 	ROLE_BOOSTER_ID: str(),
 	ROLE_BOOSTER_COSMETIC_ID: str(),
 	ROLE_LEAVING_ALERT_ID: str(),
+	ROLE_HONEYPOT_ID: str(),
 
 	CHANNEL_INTRODUCTIONS_ID: str(),
 	CHANNEL_ALERT_ID: str(),
