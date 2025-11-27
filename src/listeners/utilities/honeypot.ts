@@ -30,7 +30,7 @@ export class HoneypotListener extends Listener {
 			type: InfractionType.SpammerScammer,
 			user: oldMember.user,
 			author: newMember.client.user,
-			comment: "Auto-banned for triggering honeypot",
+			comment: null,
 		});
 	}
 }
