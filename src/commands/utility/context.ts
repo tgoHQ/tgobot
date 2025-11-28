@@ -1,9 +1,8 @@
 import { Command } from "@sapphire/framework";
 
 import { ApplicationCommandType } from "discord.js";
-import OpenAI from "openai";
-import { env } from "../../env.js";
 import { removeTabs } from "../../util/removeTabs.js";
+import { openAi } from "../../lib/llm/openAi.js";
 
 export class ContextCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -26,11 +25,7 @@ export class ContextCommand extends Command {
 
 		interaction.deferReply({ ephemeral: true });
 
-		const openai = new OpenAI({
-			apiKey: env.OPENAI,
-		});
-
-		const response = await openai.chat.completions.create({
+		const response = await openAi.chat.completions.create({
 			model: "gpt-5",
 			response_format: { type: "json_object" },
 			messages: [

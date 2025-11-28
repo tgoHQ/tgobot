@@ -1,7 +1,5 @@
 import { Command } from "@sapphire/framework";
-
-import { env } from "../../env.js";
-import OpenAI from "openai";
+import { openAi } from "../../lib/llm/openAi.js";
 
 export class UlAdviceCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -28,14 +26,10 @@ export class UlAdviceCommand extends Command {
 	) {
 		await interaction.deferReply();
 
-		const openai = new OpenAI({
-			apiKey: env.OPENAI,
-		});
-
 		const prompt = interaction.options.getString("prompt");
 		if (!prompt) return;
 
-		const response = await openai.chat.completions.create({
+		const response = await openAi.chat.completions.create({
 			model: "gpt-4o-mini",
 			temperature: 1.2,
 			frequency_penalty: 0.1,

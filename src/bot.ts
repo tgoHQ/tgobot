@@ -51,10 +51,10 @@ await client.login(env.TOKEN);
 //load cron jobs
 import path from "node:path";
 import { glob } from "glob";
-const jobMobules = glob.sync("./dist/src/jobs/*.js");
+const jobModulePaths = glob.sync("./dist/src/jobs/*.js");
 
-jobMobules.forEach((file) => {
+jobModulePaths.forEach((file) => {
 	import(path.resolve(file));
 });
 
-console.log(`Loaded ${jobMobules.length} cron jobs`);
+client.logger.info(`Loaded ${jobModulePaths.length} cron jobs`);

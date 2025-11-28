@@ -10,7 +10,7 @@ const envSchema = z.object({
 	GUILD_ID: z.string(),
 	DB_URL: z.string(),
 	GUIDE_SEARCH_URL: z.url(),
-	OPENAI: z.string(),
+	OPENAI_API_KEY: z.string().startsWith("sk-"),
 
 	ROLE_BOT_ID: z.string(),
 	ROLE_VCPING_ID: z.string(),
@@ -44,5 +44,8 @@ const envSchema = z.object({
 
 	TAG_PHOTO_OF_THE_WEEK_ID: z.string(),
 });
+
+//todo create zod schema for discord snowflakes/ids
+//todo auto-populate the channel and role keys in this object from a registry linked to the discord object loader (DRY)
 
 export const env = envSchema.parse(process.env);
