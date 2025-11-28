@@ -1,5 +1,5 @@
 import { Command } from "@sapphire/framework";
-import { steveAi } from "../../lib/steveAi.js";
+import { chatbot } from "../../lib/chatbot.js";
 
 export class AskCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -29,7 +29,7 @@ export class AskCommand extends Command {
 		const prompt = interaction.options.getString("prompt");
 		if (!prompt) return;
 
-		const completion = await steveAi([
+		const completion = await chatbot([
 			{
 				role: "user",
 				content: prompt,

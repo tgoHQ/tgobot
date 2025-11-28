@@ -1,4 +1,4 @@
-// import env from "../../lib/util/env.js";
+// import { env } from "../../lib/util/env.js";
 // import {
 // 	Events,
 // 	ActionRowBuilder,

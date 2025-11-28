@@ -1,6 +1,6 @@
 import { EmbedBuilder, User } from "discord.js";
 import db from "../../db/drizzle.js";
-import { colors } from "../util/constants.js";
+import { colors } from "../../util/constants.js";
 
 export default async function (user: User) {
 	const rows = await db.query.gearLists.findMany({

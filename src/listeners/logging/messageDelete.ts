@@ -1,8 +1,8 @@
 import { Listener } from "@sapphire/framework";
 
 import { EmbedBuilder, Message } from "discord.js";
-import { CHANNEL_LOG, GUILD } from "../../lib/discord/loadDiscordObjects.js";
-import { colors } from "../../lib/util/constants.js";
+import { CHANNEL_LOG, GUILD } from "../../lib/loadDiscordObjects.js";
+import { colors } from "../../util/constants.js";
 
 export class MessageDeleteListener extends Listener {
 	public async run(message: Message) {

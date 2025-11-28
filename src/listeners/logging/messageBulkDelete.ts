@@ -7,8 +7,8 @@ import {
 	Message,
 	Snowflake,
 } from "discord.js";
-import { CHANNEL_LOG, GUILD } from "../../lib/discord/loadDiscordObjects.js";
-import { colors } from "../../lib/util/constants.js";
+import { CHANNEL_LOG, GUILD } from "../../lib/loadDiscordObjects.js";
+import { colors } from "../../util/constants.js";
 
 export class ReadyListener extends Listener {
 	public async run(

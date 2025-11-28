@@ -12,9 +12,9 @@ import {
 	CHANNEL_LOG,
 	ROLE_LEAVING_ALERT_ID,
 	CHANNEL_ALERT,
-} from "../../lib/discord/loadDiscordObjects.js";
-import { removeTabs } from "../../lib/util/removeTabs.js";
-import { colors } from "../../lib/util/constants.js";
+} from "../../lib/loadDiscordObjects.js";
+import { removeTabs } from "../../util/removeTabs.js";
+import { colors } from "../../util/constants.js";
 
 export class GuildMemberRemoveListener extends Listener {
 	public async run(member: GuildMember) {

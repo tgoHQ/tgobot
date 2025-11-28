@@ -1,5 +1,5 @@
 import { Events, Listener } from "@sapphire/framework";
-import env from "../../lib/util/env.js";
+import { env } from "../../env.js";
 import OpenAI from "openai";
 import {
 	CHANNEL_ALPINE,
@@ -15,9 +15,9 @@ import {
 	CHANNEL_WINTER_SPORTS,
 	ROLE_INTRODUCED,
 	CHANNEL_MEETUPS,
-} from "../../lib/discord/loadDiscordObjects.js";
+} from "../../lib/loadDiscordObjects.js";
 import { Message } from "discord.js";
-import { removeTabs } from "../../lib/util/removeTabs.js";
+import { removeTabs } from "../../util/removeTabs.js";
 
 export class IntroductionsAutoMessageListener extends Listener {
 	public constructor(

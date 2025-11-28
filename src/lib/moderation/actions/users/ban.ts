@@ -1,8 +1,8 @@
 import { modUserLogEmbed } from "../../modLog.js";
 import type { User } from "discord.js";
-import { GUILD } from "../../../discord/loadDiscordObjects.js";
-import { Emoji } from "../../../util/emoji.js";
-import getDuration from "../../../util/getDuration.js";
+import { GUILD } from "../../../loadDiscordObjects.js";
+import { Emoji } from "../../../../util/emoji.js";
+import getDuration from "../../../../util/getDuration.js";
 
 export default async function ban({
 	targetUser,

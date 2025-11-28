@@ -1,11 +1,11 @@
-import env from "./util/env.js";
+import { env } from "../env.js";
 import OpenAI from "openai";
 import { type OpenAI as OpenAIType } from "openai";
 import { container } from "@sapphire/framework";
 
 const model = "gpt-5-mini-2025-08-07";
 
-export async function steveAi(
+export async function chatbot(
 	context: OpenAIType.Chat.Completions.ChatCompletionCreateParamsNonStreaming["messages"],
 ) {
 	const openai = new OpenAI({

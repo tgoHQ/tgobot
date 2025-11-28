@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
 
-import env from "../../lib/util/env.js";
+import { env } from "../../env.js";
 import OpenAI from "openai";
 
 export class UlAdviceCommand extends Command {

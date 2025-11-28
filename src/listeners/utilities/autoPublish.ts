@@ -7,7 +7,7 @@ import { Message, NewsChannel } from "discord.js";
 import {
 	CHANNEL_MODLOG,
 	CHANNEL_TOWN_HALL,
-} from "../../lib/discord/loadDiscordObjects.js";
+} from "../../lib/loadDiscordObjects.js";
 
 export class AutoPublishListener extends Listener {
 	public constructor(

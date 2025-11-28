@@ -1,4 +1,4 @@
-import env from "../util/env.js";
+import { env } from "../env.js";
 import { container } from "@sapphire/framework";
 import { Channel, ChannelType, Role } from "discord.js";
 
@@ -86,6 +86,3 @@ export const TAG_PHOTO_OF_THE_WEEK = async () => {
 
 	return tag;
 };
-
-//todo attach this to container for clean import
-//make it an object instead of individual exports/imports

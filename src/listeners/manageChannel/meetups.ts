@@ -1,8 +1,8 @@
 import { Events, Listener } from "@sapphire/framework";
 import { MessageFlags, TextDisplayBuilder, ThreadChannel } from "discord.js";
-import { CHANNEL_MEETUPS } from "../../lib/discord/loadDiscordObjects.js";
+import { CHANNEL_MEETUPS } from "../../lib/loadDiscordObjects.js";
 import { sleep } from "@sapphire/utilities";
-import { removeTabs } from "../../lib/util/removeTabs.js";
+import { removeTabs } from "../../util/removeTabs.js";
 
 export class MeetupsAutoMessageListener extends Listener {
 	public constructor(
