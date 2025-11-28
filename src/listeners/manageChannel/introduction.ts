@@ -1,5 +1,5 @@
 import { Events, Listener } from "@sapphire/framework";
-import env from "../../lib/util/env.js";
+import { env } from "../../lib/util/env.js";
 import OpenAI from "openai";
 import {
 	CHANNEL_ALPINE,

@@ -1,4 +1,4 @@
-import env from "./util/env.js";
+import { env } from "./util/env.js";
 import OpenAI from "openai";
 import { type OpenAI as OpenAIType } from "openai";
 import { container } from "@sapphire/framework";

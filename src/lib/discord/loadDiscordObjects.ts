@@ -1,4 +1,4 @@
-import env from "../util/env.js";
+import { env } from "../util/env.js";
 import { container } from "@sapphire/framework";
 import { Channel, ChannelType, Role } from "discord.js";
 

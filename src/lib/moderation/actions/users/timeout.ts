@@ -1,5 +1,5 @@
 import { User } from "discord.js";
-import env from "../../../util/env.js";
+import { env } from "../../../util/env.js";
 import { container } from "@sapphire/framework";
 import { Emoji } from "../../../util/emoji.js";
 

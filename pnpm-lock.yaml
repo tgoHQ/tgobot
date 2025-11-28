@@ -29,9 +29,6 @@ importers:
       drizzle-orm:
         specifier: ^0.44.7
         version: 0.44.7(postgres@3.4.7)
-      envalid:
-        specifier: ^8.1.1
-        version: 8.1.1
       glob:
         specifier: ^13.0.0
         version: 13.0.0
@@ -602,10 +599,6 @@ packages:
       sqlite3:
         optional: true
 
-  envalid@8.1.1:
-    resolution: {integrity: sha512-vOUfHxAFFvkBjbVQbBfgnCO9d3GcNfMMTtVfgqSU2rQGMFEVqWy9GBuoSfHnwGu7EqR0/GeukQcL3KjFBaga9w==}
-    engines: {node: '>=18'}
-
   esbuild-register@3.6.0:
     resolution: {integrity: sha512-H2/S7Pm8a9CL1uhp9OvjwrBh5Pvx0H8qVOxNu8Wed9Y7qv56MPtq+GGM8RJpq6glYJn9Wspr8uw7l55uyinNeg==}
     peerDependencies:
@@ -1062,10 +1055,6 @@ snapshots:
   drizzle-orm@0.44.7(postgres@3.4.7):
     optionalDependencies:
       postgres: 3.4.7
-
-  envalid@8.1.1:
-    dependencies:
-      tslib: 2.8.1
 
   esbuild-register@3.6.0(esbuild@0.25.12):
     dependencies:

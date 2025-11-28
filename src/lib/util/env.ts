@@ -3,59 +3,46 @@ dotenv.config({
 	quiet: true,
 });
 
-import { cleanEnv, str, url } from "envalid";
+import { z } from "zod";
 
-const env = cleanEnv(process.env, {
-	TOKEN: str(),
-	GUILD_ID: str(),
-	DB_URL: str(),
-	GUIDE_SEARCH_URL: url(),
-	OPENAI: str(),
+const envSchema = z.object({
+	TOKEN: z.string(),
+	GUILD_ID: z.string(),
+	DB_URL: z.string(),
+	GUIDE_SEARCH_URL: z.url(),
+	OPENAI: z.string(),
 
-	ROLE_BOT_ID: str(),
-	ROLE_VCPING_ID: str(),
-	ROLE_INTRODUCED_ID: str(),
-	ROLE_MODERATOR_ID: str(),
-	ROLE_EXPERT_ID: str(),
-	ROLE_BOOSTER_ID: str(),
-	ROLE_BOOSTER_COSMETIC_ID: str(),
-	ROLE_LEAVING_ALERT_ID: str(),
-	ROLE_HONEYPOT_ID: str(),
+	ROLE_BOT_ID: z.string(),
+	ROLE_VCPING_ID: z.string(),
+	ROLE_INTRODUCED_ID: z.string(),
+	ROLE_MODERATOR_ID: z.string(),
+	ROLE_EXPERT_ID: z.string(),
+	ROLE_BOOSTER_ID: z.string(),
+	ROLE_BOOSTER_COSMETIC_ID: z.string(),
+	ROLE_LEAVING_ALERT_ID: z.string(),
+	ROLE_HONEYPOT_ID: z.string(),
 
-	CHANNEL_INTRODUCTIONS_ID: str(),
-	CHANNEL_ALERT_ID: str(),
-	CHANNEL_LOG_ID: str(),
-	CHANNEL_MODLOG_ID: str(),
-	CHANNEL_INFO_ID: str(),
-	CHANNEL_MEETUPS_ID: str(),
-	CHANNEL_PHOTOS_ID: str(),
-	CHANNEL_TRIP_REPORTS_ID: str(),
-	CHANNEL_TOWN_HALL_ID: str(),
-	CHANNEL_BOTS_ID: str(),
+	CHANNEL_INTRODUCTIONS_ID: z.string(),
+	CHANNEL_ALERT_ID: z.string(),
+	CHANNEL_LOG_ID: z.string(),
+	CHANNEL_MODLOG_ID: z.string(),
+	CHANNEL_INFO_ID: z.string(),
+	CHANNEL_MEETUPS_ID: z.string(),
+	CHANNEL_PHOTOS_ID: z.string(),
+	CHANNEL_TRIP_REPORTS_ID: z.string(),
+	CHANNEL_TOWN_HALL_ID: z.string(),
+	CHANNEL_BOTS_ID: z.string(),
 
-	CHANNEL_NATURE_ID: str(),
-	CHANNEL_CLIMBING_ID: str(),
-	CHANNEL_BIKING_ID: str(),
-	CHANNEL_ALPINE_ID: str(),
-	CHANNEL_CAMPING_ID: str(),
-	CHANNEL_HIKING_ID: str(),
-	CHANNEL_ON_THE_WATER_ID: str(),
-	CHANNEL_WINTER_SPORTS_ID: str(),
+	CHANNEL_NATURE_ID: z.string(),
+	CHANNEL_CLIMBING_ID: z.string(),
+	CHANNEL_BIKING_ID: z.string(),
+	CHANNEL_ALPINE_ID: z.string(),
+	CHANNEL_CAMPING_ID: z.string(),
+	CHANNEL_HIKING_ID: z.string(),
+	CHANNEL_ON_THE_WATER_ID: z.string(),
+	CHANNEL_WINTER_SPORTS_ID: z.string(),
 
-	TAG_PHOTO_OF_THE_WEEK_ID: str(),
+	TAG_PHOTO_OF_THE_WEEK_ID: z.string(),
 });
-export default env;
 
-//todo attach env to container for easy import
-
-// container.env = env;
-
-// declare module "@sapphire/pieces" {
-// 	interface Container {
-// 		env: typeof env;
-// 	}
-// }
-// container.env;
-// https://sapphirejs.dev/docs/Guide/additional-information/using-and-extending-container/
-
-//todo replace envalid with zod
+export const env = envSchema.parse(process.env);

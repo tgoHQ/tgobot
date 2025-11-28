@@ -23,7 +23,6 @@
 		"discord.js": "^14.25.1",
 		"drizzle-kit": "^0.31.7",
 		"drizzle-orm": "^0.44.7",
-		"envalid": "^8.1.1",
 		"glob": "^13.0.0",
 		"humanize-duration": "^3.33.1",
 		"node-cron": "^4.2.1",

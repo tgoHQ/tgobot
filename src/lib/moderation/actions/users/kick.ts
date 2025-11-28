@@ -1,7 +1,7 @@
 import { User } from "discord.js";
 import { modUserLogEmbed } from "../../modLog.js";
 import { container } from "@sapphire/framework";
-import env from "../../../util/env.js";
+import { env } from "../../../util/env.js";
 import { Emoji } from "../../../util/emoji.js";
 
 export default async function kick({

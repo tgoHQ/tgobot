@@ -3,7 +3,7 @@ import { Events, Listener } from "@sapphire/framework";
 import { Message, TextChannel } from "discord.js";
 import { type OpenAI } from "openai";
 import { steveAi } from "../../lib/steveAi.js";
-import env from "../../lib/util/env.js";
+import { env } from "../../lib/util/env.js";
 
 export class SteveAiMessageListener extends Listener {
 	public constructor(

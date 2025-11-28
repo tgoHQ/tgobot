@@ -3,7 +3,7 @@ import {
 	InteractionHandlerTypes,
 } from "@sapphire/framework";
 import type { AutocompleteInteraction } from "discord.js";
-import env from "../lib/util/env.js";
+import { env } from "../lib/util/env.js";
 
 export class GuideAutocompleteHandler extends InteractionHandler {
 	public constructor(
