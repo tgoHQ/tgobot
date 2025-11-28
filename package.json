@@ -24,7 +24,7 @@
 		"drizzle-kit": "^0.31.5",
 		"drizzle-orm": "^0.44.6",
 		"envalid": "^8.1.0",
-		"glob": "^11.0.3",
+		"glob": "^11.1.0",
 		"humanize-duration": "^3.33.1",
 		"node-cron": "^4.2.1",
 		"openai": "^5.23.2",
