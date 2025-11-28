@@ -1,6 +1,4 @@
 import { Events, Listener } from "@sapphire/framework";
-import { env } from "../../env.js";
-import OpenAI from "openai";
 import {
 	CHANNEL_ALPINE,
 	CHANNEL_BIKING,
@@ -18,6 +16,7 @@ import {
 } from "../../lib/loadDiscordObjects.js";
 import { Message } from "discord.js";
 import { removeTabs } from "../../util/removeTabs.js";
+import { openAi } from "../../lib/llm/openAi.js";
 
 export class IntroductionsAutoMessageListener extends Listener {
 	public constructor(
@@ -52,17 +51,13 @@ export class IntroductionsAutoMessageListener extends Listener {
 		message.react("👋");
 		message.member?.roles.add(await ROLE_INTRODUCED());
 
-		const openai = new OpenAI({
-			apiKey: env.OPENAI,
-		});
-
 		const thread = await message.startThread({
 			name: message.author.displayName,
 		});
 
 		thread.sendTyping();
 
-		const response = await openai.chat.completions.create({
+		const response = await openAi.chat.completions.create({
 			model: "gpt-4o-mini",
 			temperature: 1.4,
 			messages: [

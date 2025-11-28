@@ -1,5 +1,5 @@
 import { Command } from "@sapphire/framework";
-import { chatbot } from "../../lib/chatbot.js";
+import { chatbot } from "../../lib/llm/chatbot.js";
 
 export class AskCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

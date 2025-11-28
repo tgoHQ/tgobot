@@ -1,4 +1,4 @@
-import { env } from "../env.js";
+import { env } from "../../env.js";
 import OpenAI from "openai";
 import { type OpenAI as OpenAIType } from "openai";
 import { container } from "@sapphire/framework";
@@ -9,7 +9,7 @@ export async function chatbot(
 	context: OpenAIType.Chat.Completions.ChatCompletionCreateParamsNonStreaming["messages"],
 ) {
 	const openai = new OpenAI({
-		apiKey: env.OPENAI,
+		apiKey: env.OPENAI_API_KEY,
 	});
 
 	console.log(context);

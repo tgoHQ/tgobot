@@ -26,10 +26,10 @@ export class InfractionCommand extends Command {
 						.setDescription("The type of infraction")
 						.setRequired(true)
 						.addChoices(
-							...Object.values(InfractionTypes).map((handler) => {
+							...Object.entries(InfractionTypes).map(([key, handler]) => {
 								return {
 									name: handler.humanName,
-									value: handler.humanName,
+									value: key,
 								};
 							}),
 						),

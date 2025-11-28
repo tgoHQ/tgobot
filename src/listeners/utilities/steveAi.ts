@@ -2,7 +2,7 @@ import { Events, Listener } from "@sapphire/framework";
 
 import { Message, TextChannel } from "discord.js";
 import { type OpenAI } from "openai";
-import { chatbot } from "../../lib/chatbot.js";
+import { chatbot } from "../../lib/llm/chatbot.js";
 import { env } from "../../env.js";
 
 export class SteveAiMessageListener extends Listener {
