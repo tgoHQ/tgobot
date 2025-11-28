@@ -4,11 +4,13 @@
 	"source": "src/bot.ts",
 	"repository": "https://github.com/tgoHQ/tgobot",
 	"scripts": {
-		"start": "node .",
 		"dev": "tsc && node .",
-		"check": "tsc --noEmit",
 		"build": "tsc",
+		"start": "node .",
+		"check": "pnpm format && pnpm types",
+		"types": "tsc --noEmit",
 		"format": "prettier --write .",
+		"format:check": "prettier --check .",
 		"db:studio": "drizzle-kit studio",
 		"db:migrate": "drizzle-kit migrate"
 	},
