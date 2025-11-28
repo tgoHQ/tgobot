@@ -3,6 +3,7 @@
 	"main": "dist/src/bot.js",
 	"source": "src/bot.ts",
 	"repository": "https://github.com/tgoHQ/tgobot",
+	"packageManager": "pnpm@10.24.0",
 	"scripts": {
 		"dev": "tsc && node .",
 		"build": "tsc",
