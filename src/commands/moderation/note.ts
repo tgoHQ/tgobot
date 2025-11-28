@@ -2,7 +2,7 @@ import { Command } from "@sapphire/framework";
 
 import { PermissionFlagsBits } from "discord.js";
 import { UserNote } from "../../lib/moderation/userNotes.js";
-import { Emoji } from "../../lib/util/emoji.js";
+import { Emoji } from "../../util/emoji.js";
 
 export class NoteCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

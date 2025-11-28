@@ -3,7 +3,7 @@ import { Events, Listener } from "@sapphire/framework";
 import { AuditLogEvent, Guild, GuildAuditLogsEntry } from "discord.js";
 import { container } from "@sapphire/framework";
 import ban from "../../lib/moderation/actions/users/ban.js";
-import { GUILD } from "../../lib/discord/loadDiscordObjects.js";
+import { GUILD } from "../../lib/loadDiscordObjects.js";
 
 export class BanListener extends Listener {
 	public constructor(

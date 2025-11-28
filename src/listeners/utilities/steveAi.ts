@@ -2,8 +2,8 @@ import { Events, Listener } from "@sapphire/framework";
 
 import { Message, TextChannel } from "discord.js";
 import { type OpenAI } from "openai";
-import { steveAi } from "../../lib/steveAi.js";
-import { env } from "../../lib/util/env.js";
+import { chatbot } from "../../lib/chatbot.js";
+import { env } from "../../env.js";
 
 export class SteveAiMessageListener extends Listener {
 	public constructor(
@@ -71,7 +71,7 @@ export class SteveAiMessageListener extends Listener {
 			currentMessage = await replyChannel.messages.fetch(replyInfo.messageId);
 		}
 
-		const completion = await steveAi(context.reverse());
+		const completion = await chatbot(context.reverse());
 
 		await message.reply(completion);
 	}

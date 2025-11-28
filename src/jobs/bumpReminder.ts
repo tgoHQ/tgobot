@@ -1,5 +1,5 @@
 import cron from "node-cron";
-import { CHANNEL_BOTS } from "../lib/discord/loadDiscordObjects.js";
+import { CHANNEL_BOTS } from "../lib/loadDiscordObjects.js";
 
 // at midnight every 3 days
 cron.schedule("0 0 * * *", async () => {

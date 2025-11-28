@@ -2,7 +2,7 @@
 
 // import { AuditLogEvent, Guild, GuildAuditLogsEntry } from "discord.js";
 // import { container } from "@sapphire/framework";
-// import { GUILD } from "../../lib/discord/loadDiscordObjects.js";
+// import { GUILD } from "../../lib/loadDiscordObjects.js";
 // import timeout from "../../lib/moderation/actions/users/timeout.js";
 
 // export class TimeoutListener extends Listener {

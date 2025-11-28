@@ -1,7 +1,7 @@
 import { modUserLogEmbed } from "../../modLog.js";
 
 import type { User } from "discord.js";
-import { Emoji } from "../../../util/emoji.js";
+import { Emoji } from "../../../../util/emoji.js";
 
 type WarnUserOpts = {
 	/** the user who is receiving the warning */

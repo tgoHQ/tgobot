@@ -1,5 +1,5 @@
 import { GuildTextBasedChannel, User } from "discord.js";
-import { Emoji } from "../../../util/emoji.js";
+import { Emoji } from "../../../../util/emoji.js";
 import { modToolLogEmbed } from "../../modLog.js";
 
 export default async function bulkDelete({

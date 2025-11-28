@@ -1,10 +1,8 @@
 import { Listener, Events } from "@sapphire/framework";
 import { GuildMember } from "discord.js";
-import { ROLE_HONEYPOT_ID } from "../../lib/discord/loadDiscordObjects.js";
-import {
-	infraction,
-	InfractionType,
-} from "../../lib/moderation/infractions.js";
+import { ROLE_HONEYPOT_ID } from "../../lib/loadDiscordObjects.js";
+import { createInfraction } from "../../lib/moderation/infractions/createInfraction.js";
+import { InfractionTypes } from "../../lib/moderation/infractions/handlers.js";
 import { sleep } from "@sapphire/utilities";
 
 export class HoneypotListener extends Listener {
@@ -26,8 +24,8 @@ export class HoneypotListener extends Listener {
 		await sleep(5000);
 		if (!newMember.roles.cache.has(honeypotRole.id)) return;
 
-		await infraction({
-			type: InfractionType.SpammerScammer,
+		await createInfraction({
+			type: InfractionTypes.SpammerScammer,
 			user: oldMember.user,
 			author: newMember.client.user,
 			comment: null,

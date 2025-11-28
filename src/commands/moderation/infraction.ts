@@ -1,34 +1,7 @@
 import { Command } from "@sapphire/framework";
-
-import {
-	PermissionFlagsBits,
-	APIApplicationCommandOptionChoice,
-} from "discord.js";
-import {
-	InfractionType,
-	infraction,
-	infractionHandlers,
-} from "../../lib/moderation/infractions.js";
-
-//define the list of infractions to be used in the command. generate the string options.
-const infractionTypesInCommand = [
-	InfractionType.SpammerScammer,
-	InfractionType.SelfPromoWarning,
-	InfractionType.BadFaith,
-	InfractionType.PoliticalControversial,
-	InfractionType.Lnt,
-	InfractionType.Nsfw,
-	InfractionType.PersonalAttacks,
-	InfractionType.TrollingShitposting,
-	InfractionType.BigotrySlurs,
-];
-let infractionOptions: APIApplicationCommandOptionChoice<string>[] = [];
-for (const key of infractionTypesInCommand) {
-	infractionOptions.push({
-		name: infractionHandlers[key].string,
-		value: key.toString(),
-	});
-}
+import { PermissionFlagsBits } from "discord.js";
+import { createInfraction } from "../../lib/moderation/infractions/createInfraction.js";
+import { InfractionTypes } from "../../lib/moderation/infractions/handlers.js";
 
 export class InfractionCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -52,7 +25,14 @@ export class InfractionCommand extends Command {
 						.setName("type")
 						.setDescription("The type of infraction")
 						.setRequired(true)
-						.addChoices(...infractionOptions),
+						.addChoices(
+							...Object.values(InfractionTypes).map((handler) => {
+								return {
+									name: handler.humanName,
+									value: handler.humanName,
+								};
+							}),
+						),
 				)
 				.addStringOption((option) =>
 					option
@@ -68,12 +48,13 @@ export class InfractionCommand extends Command {
 	) {
 		//get options
 		const user = interaction.options.getUser("user", true);
-		const infractionKey = parseInt(interaction.options.getString("type", true));
+		const infractionKey = interaction.options.getString("type", true);
 		const comment = interaction.options.getString("comments");
 
 		//execute
-		const response = await infraction({
-			type: infractionKey,
+		const response = await createInfraction({
+			//@ts-expect-error
+			type: InfractionTypes[infractionKey],
 			user,
 			author: interaction.user,
 			comment,
