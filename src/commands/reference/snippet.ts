@@ -215,7 +215,7 @@ const snippets = [
 		name: "R-Value",
 		content: `
 			R-value is a unit used to measure insulation. Within the context of outdoors gear, it's used to describe the warmth of a sleeping pad.
-			- It can range from less than (a midsummer pad) to 7 or more (for deep winter).
+			- It can range from less than 1 (a summer-only pad) to 7 or more (for deep winter).
 			- Stacking two or more pads on top of each other will add their R-values together.
 			- Pads that don't list an R-value should be assumed to be suitable for summer only.
 		`,
