@@ -211,12 +211,16 @@ const snippets = [
 			- The approximate size, or a reference item for scale
 		`,
 	},
+	{
+		name: "R-Value",
+		content: `
+			R-value is a unit used to measure insulation. Within the context of outdoors gear, it's used to describe the warmth of a sleeping pad.
+			- It can range from less than (a midsummer pad) to 7 or more (for deep winter).
+			- Stacking two or more pads on top of each other will add their R-values together.
+			- Pads that don't list an R-value should be assumed to be suitable for summer only.
+		`,
+	},
 ] satisfies { name: string; content: string }[];
-
-let commandChoices: { name: string; value: string }[] = [];
-snippets.forEach((snippet, index) => {
-	commandChoices.push({ name: snippet.name, value: index.toString() });
-});
 
 export class SnippetCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -234,7 +238,11 @@ export class SnippetCommand extends Command {
 						.setName("snippet")
 						.setDescription("The name of the snippet to run")
 						.setRequired(true)
-						.addChoices(...commandChoices),
+						.addChoices(
+							...snippets.map((snippet, index) => {
+								return { name: snippet.name, value: index.toString() };
+							}),
+						),
 				)
 				.addBooleanOption((option) =>
 					option
@@ -254,7 +262,7 @@ export class SnippetCommand extends Command {
 		const component = new ContainerBuilder()
 			.setAccentColor(colors.staffGreen.decimal)
 			.addTextDisplayComponents(
-				new TextDisplayBuilder().setContent(`# Snippet: ${snippet.name}`),
+				new TextDisplayBuilder().setContent(`# ${snippet.name}`),
 			)
 			.addSeparatorComponents(
 				new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large),
