@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
 import { PermissionFlagsBits } from "discord.js";
-import { photoOfTheWeek } from "../../jobs/photoOfWeek.js";
+import { photoOfTheWeek } from "../../jobs/modules/photoOfWeek.js";
 
 export class PhotoOfWeekCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

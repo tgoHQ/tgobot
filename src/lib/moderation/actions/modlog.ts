@@ -1,13 +1,23 @@
-import { CHANNEL_MODLOG } from "../loadDiscordObjects.js";
+import { CHANNEL_MODLOG } from "../../loadDiscordObjects.js";
 import { User, EmbedBuilder } from "discord.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../../util/constants.js";
 
-export async function modUserLogEmbed(
-	targetUser: User,
-	string: string,
-	author: User,
-	reason?: string,
-) {
+export const modlog = {
+	postUserAction: userAction,
+	postToolRun: toolRun,
+};
+
+async function userAction({
+	targetUser,
+	string,
+	author,
+	reason,
+}: {
+	targetUser: User;
+	string: string;
+	author: User;
+	reason?: string;
+}) {
 	const embed = new EmbedBuilder()
 		.setColor(colors.staffGreen.hex)
 		.setDescription(string)
@@ -21,13 +31,18 @@ export async function modUserLogEmbed(
 			text: `${targetUser.displayName} - ${targetUser.username} - ${targetUser.id}`,
 		});
 
-	return modLogPost(embed);
+	return postEmbed(embed);
 }
-export async function modToolLogEmbed(
-	string: string,
-	author: User,
-	reason?: string,
-) {
+
+async function toolRun({
+	string,
+	author,
+	reason,
+}: {
+	string: string;
+	author: User;
+	reason?: string;
+}) {
 	const embed = new EmbedBuilder()
 		.setColor(colors.staffGreen.hex)
 		.setDescription(string)
@@ -36,9 +51,9 @@ export async function modToolLogEmbed(
 			iconURL: author.displayAvatarURL(),
 		})
 		.addFields({ name: "Reason", value: reason ?? "No reason provided." });
-	return modLogPost(embed);
+	return postEmbed(embed);
 }
 
-async function modLogPost(embed: EmbedBuilder) {
+async function postEmbed(embed: EmbedBuilder) {
 	return await (await CHANNEL_MODLOG()).send({ embeds: [embed] });
 }
