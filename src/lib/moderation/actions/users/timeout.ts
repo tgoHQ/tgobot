@@ -2,7 +2,7 @@ import { User } from "discord.js";
 import { GUILD } from "../../../loadDiscordObjects.js";
 import { Emoji } from "../../../../util/emoji.js";
 import humanizeDuration from "humanize-duration";
-import { handleUserModAction } from ".";
+import { handleUserModAction } from "./index.js";
 
 export default async function timeout({
 	targetUser,

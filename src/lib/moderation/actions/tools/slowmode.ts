@@ -1,5 +1,5 @@
 import { GuildTextBasedChannel, User } from "discord.js";
-import { handleToolModAction } from ".";
+import { handleToolModAction } from "./index.js";
 import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../../../util/emoji.js";
 
