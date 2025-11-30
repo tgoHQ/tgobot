@@ -12,7 +12,6 @@ export const InfractionTypes = {
 				targetUser,
 				reason,
 				author,
-				execute: true,
 				deleteMessages: false,
 			});
 		},
@@ -90,7 +89,6 @@ export const InfractionTypes = {
 				targetUser,
 				reason,
 				author,
-				execute: true,
 				deleteMessages: true,
 			});
 		},

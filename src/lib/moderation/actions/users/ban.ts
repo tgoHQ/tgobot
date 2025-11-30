@@ -1,5 +1,5 @@
-import { modUserLogEmbed } from "../../modLog.js";
 import type { User } from "discord.js";
+import { modlog } from "../../modlog.js";
 import { GUILD } from "../../../loadDiscordObjects.js";
 import { Emoji } from "../../../../util/emoji.js";
 import getDuration from "../../../../util/getDuration.js";
@@ -8,26 +8,27 @@ export default async function ban({
 	targetUser,
 	reason,
 	author,
-	execute,
+	loggingOnly,
 	deleteMessages,
 }: {
 	targetUser: User;
 	reason?: string;
 	author: User;
-	execute: boolean;
+	loggingOnly?: boolean;
 	deleteMessages: boolean;
 }) {
-	//todo dm the user
+	const string = `${Emoji.Ban} Banned ${targetUser}`;
 
-	if (execute)
-		await (
-			await GUILD()
-		).bans.create(targetUser, {
+	//todo dm the user
+	await modlog.postUserAction({ targetUser, string, author, reason });
+
+	if (!loggingOnly) {
+		const guild = await GUILD();
+		await guild.bans.create(targetUser, {
 			reason,
 			deleteMessageSeconds: deleteMessages ? getDuration.days(7) / 1000 : 0,
 		});
+	}
 
-	const string = `${Emoji.Ban} Banned ${targetUser}`;
-	await modUserLogEmbed(targetUser, string, author, reason);
 	return string;
 }

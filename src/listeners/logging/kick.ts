@@ -38,7 +38,7 @@ export class KickListener extends Listener {
 			targetUser: target,
 			reason: auditLog.reason ?? undefined,
 			author,
-			execute: false,
+			loggingOnly: true,
 		});
 	}
 }

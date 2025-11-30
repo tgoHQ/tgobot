@@ -21,7 +21,8 @@ export class AutoPublishListener extends Listener {
 	}
 
 	public async run(message: Message) {
-		const channels: Channel[] = [ // type the array as any kind of channel to make TS happy when doing the .inclues() below
+		const channels: Channel[] = [
+			// type the array as any kind of channel to make TS happy when doing the .inclues() below
 			await CHANNEL_MODLOG(),
 			await CHANNEL_TOWN_HALL(),
 		] satisfies NewsChannel[]; //make sure we only put announcement channels here
