@@ -1,6 +1,6 @@
 import { env } from "../env.js";
 import { container } from "@sapphire/framework";
-import { Channel, ChannelType, Role } from "discord.js";
+import { Channel, ForumChannel, ChannelType, Role } from "discord.js";
 
 export const GUILD = async () =>
 	await container.client.guilds.fetch(env.GUILD_ID);
@@ -77,12 +77,13 @@ export const CHANNEL_BIKING = async () =>
 export const CHANNEL_ALPINE = async () =>
 	await fetchChannel(env.CHANNEL_ALPINE_ID, ChannelType.GuildText);
 
-export const TAG_PHOTO_OF_THE_WEEK = async () => {
-	const tag = (await CHANNEL_PHOTOS()).availableTags.find(
-		(tag) => tag.id === env.TAG_PHOTO_OF_THE_WEEK_ID,
-	);
+// FORUM CHANNEL TAGS //
+async function fetchTag(channel: ForumChannel, id: string) {
+	const tag = channel.availableTags.find((tag) => tag.id === id);
 
-	if (!tag) throw new Error("Photo of the week tag not found");
+	if (!tag) throw new Error(`Tag ${id} not found`);
 
 	return tag;
-};
+}
+export const TAG_PHOTO_OF_THE_WEEK = async () =>
+	await fetchTag(await CHANNEL_PHOTOS(), env.TAG_PHOTO_OF_THE_WEEK_ID);
