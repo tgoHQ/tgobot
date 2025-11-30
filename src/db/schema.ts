@@ -9,7 +9,9 @@ export const gearLists = pgTable("gear_lists", {
 
 export const userNotes = pgTable("user_notes", {
 	id: serial("id").primaryKey(),
+	/** ID of the Discord user that this note is about */
 	userId: text("user_id").notNull(),
+	/** ID of the Discord user who created the note */
 	authorId: text("author_id").notNull(),
 	content: text("content").notNull(),
 	createdAt: timestamp("created_at").notNull().defaultNow(),
