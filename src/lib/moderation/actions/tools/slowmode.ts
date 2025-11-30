@@ -1,5 +1,5 @@
 import { GuildTextBasedChannel, User } from "discord.js";
-import { modlog } from "../../modlog.js";
+import { modlog } from "../modlog.js";
 import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../../../util/emoji.js";
 

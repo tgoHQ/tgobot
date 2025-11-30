@@ -1,8 +1,9 @@
 import type { User } from "discord.js";
-import { modlog } from "../../modlog.js";
+import { modlog } from "../modlog.js";
 import { GUILD } from "../../../loadDiscordObjects.js";
 import { Emoji } from "../../../../util/emoji.js";
 import getDuration from "../../../../util/getDuration.js";
+import { modActionDmUser } from "./dmUser.js";
 
 export default async function ban({
 	targetUser,
@@ -19,7 +20,7 @@ export default async function ban({
 }) {
 	const string = `${Emoji.Ban} Banned ${targetUser}`;
 
-	//todo dm the user
+	await modActionDmUser({ targetUser, string, author, reason });
 	await modlog.postUserAction({ targetUser, string, author, reason });
 
 	if (!loggingOnly) {
