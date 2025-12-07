@@ -1,11 +1,8 @@
 import { User } from "discord.js";
 import { GUILD } from "../../../loadDiscordObjects.js";
 import { Emoji } from "../../../../util/emoji.js";
-import { modActionDmUser } from "./dmUser.js";
-import { logUserActionToNotes } from "./logUserActionToNotes.js";
-
-import { modlog } from "../modlog.js";
 import humanizeDuration from "humanize-duration";
+import { handleUserModAction } from "./index.js";
 
 export default async function timeout({
 	targetUser,
@@ -25,9 +22,7 @@ export default async function timeout({
 		Emoji.Timeout
 	} Timed out ${targetUser} for ${humanizeDuration(duration)}`;
 
-	await logUserActionToNotes({ targetUser, string, reason, author });
-	await modActionDmUser({ targetUser, string, author, reason });
-	await modlog.postUserAction({ targetUser, string, author, reason });
+	await handleUserModAction({ targetUser, string, reason, author });
 
 	if (!loggingOnly) {
 		const guild = await GUILD();

@@ -1,9 +1,6 @@
-import { modlog } from "../modlog.js";
-
 import type { User } from "discord.js";
 import { Emoji } from "../../../../util/emoji.js";
-import { modActionDmUser } from "./dmUser.js";
-import { logUserActionToNotes } from "./logUserActionToNotes.js";
+import { handleUserModAction } from "./index.js";
 
 type WarnUserOpts = {
 	/** the user who is receiving the warning */
@@ -21,14 +18,7 @@ export default async function warn({
 }: WarnUserOpts) {
 	const string = `${Emoji.Warn} Warned ${targetUser}`;
 
-	await logUserActionToNotes({ targetUser, string, reason, author });
-	await modActionDmUser({ targetUser, string, author, reason });
-	await modlog.postUserAction({
-		targetUser,
-		string,
-		author,
-		reason,
-	});
+	await handleUserModAction({ targetUser, string, reason, author });
 
 	return string;
 }

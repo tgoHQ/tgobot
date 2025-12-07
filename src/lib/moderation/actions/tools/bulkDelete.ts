@@ -1,6 +1,6 @@
 import { GuildTextBasedChannel, User } from "discord.js";
 import { Emoji } from "../../../../util/emoji.js";
-import { modlog } from "../modlog.js";
+import { handleToolModAction } from "./index.js";
 
 export default async function bulkDelete({
 	targetChannel,
@@ -17,7 +17,7 @@ export default async function bulkDelete({
 
 	const string = `${Emoji.Delete} Bulk deleted ${messages.size} messages in ${targetChannel}`;
 
-	await modlog.postToolRun({ string, author, reason });
+	await handleToolModAction({ string, author, reason });
 
 	return string;
 }
