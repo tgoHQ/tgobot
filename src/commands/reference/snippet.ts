@@ -220,6 +220,12 @@ const snippets = [
 			- Pads that don't list an R-value should be assumed to be suitable for summer only.
 		`,
 	},
+	{
+		name: "Tickets and Reports",
+		content: `
+			Tickets are the preferred way to report moderation concerns. You can open a ticket with the command </tickes open:839848848003825673>. Once the ticket is created, send the full details of your issue/report.
+		`,
+	},
 ] satisfies { name: string; content: string }[];
 
 export class SnippetCommand extends Command {
