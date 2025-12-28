@@ -21,6 +21,7 @@ const envSchema = z.object({
 	ROLE_BOOSTER_COSMETIC_ID: z.string(),
 	ROLE_LEAVING_ALERT_ID: z.string(),
 	ROLE_HONEYPOT_ID: z.string(),
+	ROLE_MINECRAFT_ID: z.string(),
 
 	CHANNEL_INTRODUCTIONS_ID: z.string(),
 	CHANNEL_ALERT_ID: z.string(),
