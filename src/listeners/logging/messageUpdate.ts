@@ -8,6 +8,7 @@ import { colors } from "../../util/constants.js";
 export class MessageUpdateListener extends Listener {
 	public async run(oldMessage: Message, newMessage: Message) {
 		if (newMessage.guild?.id != env.GUILD_ID) return; //if message edited is not from main guild, return
+		if (newMessage.author?.bot) return; //if message edited is from a bot, return
 
 		if (oldMessage.content === newMessage.content) return; //if text content of message hasn't changed, return
 		if (!oldMessage.content || !newMessage.content) return; //if messages don't have content, return
