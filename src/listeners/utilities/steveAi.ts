@@ -26,10 +26,7 @@ export class SteveAiMessageListener extends Listener {
 
 		//ignore if they don't have access
 		const allowedToUse = message.member?.roles.cache.some(
-			(role) =>
-				role.id === env.ROLE_MODERATOR_ID ||
-				role.id === env.ROLE_EXPERT_ID ||
-				role.id === env.ROLE_BOOSTER_ID,
+			(role) => role.id === env.ROLE_PERKS_ID,
 		);
 
 		if (!allowedToUse) {

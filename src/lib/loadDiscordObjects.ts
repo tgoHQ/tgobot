@@ -17,14 +17,26 @@ export const ROLE_BOT = async () => await fetchRole(env.ROLE_BOT_ID);
 export const ROLE_VCPING = async () => await fetchRole(env.ROLE_VCPING_ID);
 export const ROLE_INTRODUCED = async () =>
 	await fetchRole(env.ROLE_INTRODUCED_ID);
+export const ROLE_BOOSTER_BASE = async () =>
+	await fetchRole(env.ROLE_BOOSTER_BASE_ID);
 export const ROLE_BOOSTER_COSMETIC = async () =>
 	await fetchRole(env.ROLE_BOOSTER_COSMETIC_ID);
+export const ROLE_PATRON_BASE = async () =>
+	await fetchRole(env.ROLE_PATRON_BASE_ID);
+export const ROLE_PATRON_COSMETIC = async () =>
+	await fetchRole(env.ROLE_PATRON_COSMETIC_ID);
 export const ROLE_LEAVING_ALERT_ID = async () =>
 	await fetchRole(env.ROLE_LEAVING_ALERT_ID);
 export const ROLE_HONEYPOT_ID = async () =>
 	await fetchRole(env.ROLE_HONEYPOT_ID);
 export const ROLE_MINECRAFT = async () =>
 	await fetchRole(env.ROLE_MINECRAFT_ID);
+export const ROLE_PERKS = async () => await fetchRole(env.ROLE_PERKS_ID);
+export const ROLE_EXPERT = async () => await fetchRole(env.ROLE_EXPERT_ID);
+export const ROLE_MODERATOR_BASE = async () =>
+	await fetchRole(env.ROLE_MODERATOR_BASE_ID);
+export const ROLE_MODERATOR_COSMETIC = async () =>
+	await fetchRole(env.ROLE_MODERATOR_COSMETIC_ID);
 
 // CHANNELS //
 async function fetchChannel<T extends ChannelType>(
