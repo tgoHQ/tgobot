@@ -6,23 +6,34 @@ dotenv.config({
 import { z } from "zod";
 
 const envSchema = z.object({
+	// DISCORD
 	TOKEN: z.string(),
 	GUILD_ID: z.string(),
+
+	// KEYS AND URLS
 	DB_URL: z.string(),
 	GUIDE_SEARCH_URL: z.url(),
 	OPENAI_API_KEY: z.string().startsWith("sk-"),
 
+	// ROLES
+	ROLE_MODERATOR_BASE_ID: z.string(),
+	ROLE_MODERATOR_COSMETIC_ID: z.string(),
+	ROLE_EXPERT_ID: z.string(),
+
+	ROLE_PERKS_ID: z.string(),
+	ROLE_BOOSTER_BASE_ID: z.string(),
+	ROLE_BOOSTER_COSMETIC_ID: z.string(),
+	ROLE_PATRON_BASE_ID: z.string(),
+	ROLE_PATRON_COSMETIC_ID: z.string(),
+
 	ROLE_BOT_ID: z.string(),
 	ROLE_VCPING_ID: z.string(),
 	ROLE_INTRODUCED_ID: z.string(),
-	ROLE_MODERATOR_ID: z.string(),
-	ROLE_EXPERT_ID: z.string(),
-	ROLE_BOOSTER_ID: z.string(),
-	ROLE_BOOSTER_COSMETIC_ID: z.string(),
 	ROLE_LEAVING_ALERT_ID: z.string(),
 	ROLE_HONEYPOT_ID: z.string(),
 	ROLE_MINECRAFT_ID: z.string(),
 
+	// CHANNELS
 	CHANNEL_INTRODUCTIONS_ID: z.string(),
 	CHANNEL_ALERT_ID: z.string(),
 	CHANNEL_LOG_ID: z.string(),
@@ -43,6 +54,7 @@ const envSchema = z.object({
 	CHANNEL_ON_THE_WATER_ID: z.string(),
 	CHANNEL_WINTER_SPORTS_ID: z.string(),
 
+	// FORUM CHANNEL TAGS
 	TAG_PHOTO_OF_THE_WEEK_ID: z.string(),
 });
 
