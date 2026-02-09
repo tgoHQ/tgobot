@@ -46,7 +46,7 @@ export class ReadyListener extends Listener {
 
 			await message.react("🔥");
 
-			//give them the booster cosmetic role
+			//give them the booster cosmetic role by default
 			newMember.roles.add(cosmeticRole);
 
 			//send them a message
@@ -71,11 +71,6 @@ export class ReadyListener extends Listener {
 				],
 				content: newMember.toString(),
 			});
-
-			//remove the booster cosmetic role, if they have it
-			if (newMember.roles.cache.has(cosmeticRole.id)) {
-				newMember.roles.remove(cosmeticRole);
-			}
 		}
 	}
 }
