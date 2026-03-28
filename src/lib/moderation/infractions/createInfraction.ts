@@ -2,6 +2,7 @@ import { User, inlineCode } from "discord.js";
 import { Emoji } from "../../../util/emoji.js";
 import type { InfractionType } from "./handlers.js";
 
+/** unified interface for creating an infraction against a user */
 export async function createInfraction({
 	type,
 	user,
@@ -28,7 +29,7 @@ export async function createInfraction({
 	)} against ${user}${comment ? " with comment " + inlineCode(comment) : ""}.`;
 
 	//execute the chosen infraction type module
-	const actionResultsString = await type.execute({
+	const actionResultsString = await type.executeConsequence({
 		targetUser: user,
 		author,
 		reason,

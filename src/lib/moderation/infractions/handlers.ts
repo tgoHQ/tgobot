@@ -7,7 +7,7 @@ import type { User } from "discord.js";
 export const InfractionTypes = {
 	nsfw: {
 		humanName: "NSFW Content",
-		execute: async ({ targetUser, author, reason }) => {
+		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -18,7 +18,7 @@ export const InfractionTypes = {
 	},
 	personalAttacks: {
 		humanName: "Personal Attacks",
-		execute: async ({ targetUser, author, reason }) => {
+		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -29,7 +29,7 @@ export const InfractionTypes = {
 	},
 	bigotrySlurs: {
 		humanName: "Bigotry/Slurs",
-		execute: async ({ targetUser, author, reason }) => {
+		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -40,7 +40,7 @@ export const InfractionTypes = {
 	},
 	lnt: {
 		humanName: "Anti-LNT Practices",
-		execute: async ({ targetUser, author, reason }) => {
+		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -51,7 +51,7 @@ export const InfractionTypes = {
 	},
 	trollingShitposting: {
 		humanName: "Trolling/Shitposting",
-		execute: async ({ targetUser, author, reason }) => {
+		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -62,7 +62,7 @@ export const InfractionTypes = {
 	},
 	politicalControversial: {
 		humanName: "Political/Controversial Topics",
-		execute: async ({ targetUser, author, reason }) => {
+		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -73,7 +73,7 @@ export const InfractionTypes = {
 	},
 	selfPromoWarning: {
 		humanName: "Self-Promotion, Warning",
-		execute: async ({ targetUser, author, reason }) => {
+		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await warn({
 				targetUser,
 				author,
@@ -83,7 +83,7 @@ export const InfractionTypes = {
 	},
 	selfPromoBadFaith: {
 		humanName: "Self-Promotion, Bad-Faith",
-		execute: async ({ targetUser, author, reason }) => {
+		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
 				reason,
@@ -94,7 +94,7 @@ export const InfractionTypes = {
 	},
 	badFaith: {
 		humanName: "Bad-Faith User",
-		execute: async ({ targetUser, author, reason }) => {
+		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
 				reason,
@@ -111,7 +111,8 @@ export const InfractionTypes = {
 export type InfractionType = {
 	/** the title of this infraction type */
 	humanName: string;
-	execute: ({
+	/** the function that executes the consequence of this infraction, such as giving the proper warnig, timeout, or ban */
+	executeConsequence: ({
 		targetUser,
 		author,
 		reason,
