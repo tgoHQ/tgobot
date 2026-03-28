@@ -109,6 +109,7 @@ export const InfractionTypes = {
 
 /** an infraction type is a module that defines and can execute a particular infraction on a user */
 export type InfractionType = {
+	/** the title of this infraction type */
 	humanName: string;
 	execute: ({
 		targetUser,

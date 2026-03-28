@@ -3,7 +3,7 @@ import { Emoji } from "../../../util/emoji.js";
 import type { InfractionType } from "./handlers.js";
 
 export async function createInfraction({
-	type: type,
+	type,
 	user,
 	author,
 	comment,

@@ -2,7 +2,7 @@ import { Command } from "@sapphire/framework";
 
 import { ApplicationCommandType } from "discord.js";
 import { removeTabs } from "../../util/removeTabs.js";
-import { openAi } from "../../lib/llm/openAi.js";
+import { openAi } from "../../lib/llm/openAiClient.js";
 
 export class ContextCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
