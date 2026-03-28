@@ -6,6 +6,4 @@ import postgres from "postgres";
 import * as schema from "./schema.js";
 
 const sql = postgres(env.DB_URL);
-const db = drizzle(sql, { schema });
-
-export default db;
+export const db = drizzle(sql, { schema });

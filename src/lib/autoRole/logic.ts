@@ -1,4 +1,5 @@
 // automatically apply and remove roles based on other required roles
+// todo this is spaghetti and needs more comments
 
 import { Role, GuildMember } from "discord.js";
 import { getAutoRoleConfig } from "./config.js";
