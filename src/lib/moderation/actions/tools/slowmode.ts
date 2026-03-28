@@ -3,7 +3,8 @@ import { handleToolModAction } from "./index.js";
 import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../../../util/emoji.js";
 
-export default async function slowmode({
+/** mod action to set the slowmode in a channel */
+export async function slowmode({
 	targetChannel,
 	reason,
 	author,

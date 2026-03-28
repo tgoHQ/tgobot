@@ -1,22 +1,11 @@
-import timeout from "../actions/users/timeout.js";
-import ban from "../actions/users/ban.js";
-import warn from "../actions/users/warn.js";
-import getDuration from "../../../util/getDuration.js";
+import { timeout } from "../actions/users/timeout.js";
+import { ban } from "../actions/users/ban.js";
+import { warn } from "../actions/users/warn.js";
+import { getDuration } from "../../../util/getDuration.js";
 import type { User } from "discord.js";
 
 export const InfractionTypes = {
-	BadFaith: {
-		humanName: "Bad-Faith User",
-		execute: async ({ targetUser, author, reason }) => {
-			return await ban({
-				targetUser,
-				reason,
-				author,
-				deleteMessages: false,
-			});
-		},
-	},
-	Nsfw: {
+	nsfw: {
 		humanName: "NSFW Content",
 		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
@@ -27,7 +16,7 @@ export const InfractionTypes = {
 			});
 		},
 	},
-	PersonalAttacks: {
+	personalAttacks: {
 		humanName: "Personal Attacks",
 		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
@@ -38,7 +27,7 @@ export const InfractionTypes = {
 			});
 		},
 	},
-	BigotrySlurs: {
+	bigotrySlurs: {
 		humanName: "Bigotry/Slurs",
 		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
@@ -49,7 +38,7 @@ export const InfractionTypes = {
 			});
 		},
 	},
-	Lnt: {
+	lnt: {
 		humanName: "Anti-LNT Practices",
 		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
@@ -60,7 +49,7 @@ export const InfractionTypes = {
 			});
 		},
 	},
-	TrollingShitposting: {
+	trollingShitposting: {
 		humanName: "Trolling/Shitposting",
 		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
@@ -71,7 +60,7 @@ export const InfractionTypes = {
 			});
 		},
 	},
-	PoliticalControversial: {
+	politicalControversial: {
 		humanName: "Political/Controversial Topics",
 		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
@@ -82,8 +71,18 @@ export const InfractionTypes = {
 			});
 		},
 	},
-	SpammerScammer: {
-		humanName: "Spammer/Scammer",
+	selfPromoWarning: {
+		humanName: "Self-Promotion, Warning",
+		execute: async ({ targetUser, author, reason }) => {
+			return await warn({
+				targetUser,
+				author,
+				reason,
+			});
+		},
+	},
+	selfPromoBadFaith: {
+		humanName: "Self-Promotion, Bad-Faith",
 		execute: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
@@ -93,21 +92,23 @@ export const InfractionTypes = {
 			});
 		},
 	},
-	SelfPromoWarning: {
-		humanName: "Self-Promotion Warning",
+	badFaith: {
+		humanName: "Bad-Faith User",
 		execute: async ({ targetUser, author, reason }) => {
-			return await warn({
+			return await ban({
 				targetUser,
-				author,
 				reason,
+				author,
+				deleteMessages: false,
 			});
 		},
 	},
 } as const satisfies {
-	[K in string]: InfractionHandler;
+	[K in string]: InfractionType;
 };
 
-export type InfractionHandler = {
+/** an infraction type is a module that defines and can execute a particular infraction on a user */
+export type InfractionType = {
 	humanName: string;
 	execute: ({
 		targetUser,

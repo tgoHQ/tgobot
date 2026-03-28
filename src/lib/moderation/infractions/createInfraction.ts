@@ -1,6 +1,6 @@
 import { User, inlineCode } from "discord.js";
 import { Emoji } from "../../../util/emoji.js";
-import type { InfractionHandler } from "./handlers.js";
+import type { InfractionType } from "./handlers.js";
 
 export async function createInfraction({
 	type: type,
@@ -8,7 +8,7 @@ export async function createInfraction({
 	author,
 	comment,
 }: {
-	type: InfractionHandler;
+	type: InfractionType;
 	user: User;
 	author: User;
 	comment: string | null;

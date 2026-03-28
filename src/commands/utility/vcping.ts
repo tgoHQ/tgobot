@@ -4,10 +4,10 @@ import { ChannelType } from "discord.js";
 import { ROLE_VCPING } from "../../lib/loadDiscordObjects.js";
 import { Emoji } from "../../util/emoji.js";
 import humanizeDuration from "humanize-duration";
-import duration from "../../util/getDuration.js";
+import { getDuration } from "../../util/getDuration.js";
 
 const MIN_CONNECTED_USERS = 3;
-const COOLDOWN = duration.hours(6);
+const COOLDOWN = getDuration.hours(6);
 
 let vcPingCooldown: boolean = false;
 

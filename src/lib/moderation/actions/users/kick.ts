@@ -3,7 +3,8 @@ import { GUILD } from "../../../loadDiscordObjects.js";
 import { Emoji } from "../../../../util/emoji.js";
 import { handleUserModAction } from "./index.js";
 
-export default async function kick({
+/** mod action to kick a user */
+export async function kick({
 	targetUser,
 	reason,
 	author,

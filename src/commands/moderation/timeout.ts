@@ -2,8 +2,8 @@ import { Command } from "@sapphire/framework";
 
 import { PermissionFlagsBits } from "discord.js";
 import parseDuration from "parse-duration";
-import timeout from "../../lib/moderation/actions/users/timeout.js";
-import getDuration from "../../util/getDuration.js";
+import { timeout } from "../../lib/moderation/actions/users/timeout.js";
+import { getDuration } from "../../util/getDuration.js";
 
 export class TimeoutCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

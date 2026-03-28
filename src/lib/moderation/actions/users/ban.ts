@@ -1,10 +1,11 @@
 import type { User } from "discord.js";
 import { GUILD } from "../../../loadDiscordObjects.js";
 import { Emoji } from "../../../../util/emoji.js";
-import getDuration from "../../../../util/getDuration.js";
+import { getDuration } from "../../../../util/getDuration.js";
 import { handleUserModAction } from "./index.js";
 
-export default async function ban({
+/** mod action to ban a user */
+export async function ban({
 	targetUser,
 	reason,
 	author,

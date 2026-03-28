@@ -2,8 +2,8 @@ import { Command } from "@sapphire/framework";
 
 import { PermissionFlagsBits, ChannelType } from "discord.js";
 import parseDuration from "parse-duration";
-import slowmode from "../../lib/moderation/actions/tools/slowmode.js";
-import getDuration from "../../util/getDuration.js";
+import { slowmode } from "../../lib/moderation/actions/tools/slowmode.js";
+import { getDuration } from "../../util/getDuration.js";
 
 export class SlowmodeCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

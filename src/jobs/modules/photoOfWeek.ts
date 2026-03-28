@@ -4,7 +4,7 @@ import {
 	CHANNEL_TOWN_HALL,
 	TAG_PHOTO_OF_THE_WEEK,
 } from "../../lib/loadDiscordObjects.js";
-import getDuration from "../../util/getDuration.js";
+import { getDuration } from "../../util/getDuration.js";
 
 import type { AnyThreadChannel } from "discord.js";
 

@@ -4,7 +4,8 @@ import { Emoji } from "../../../../util/emoji.js";
 import humanizeDuration from "humanize-duration";
 import { handleUserModAction } from "./index.js";
 
-export default async function timeout({
+/** mod action to timeout a user */
+export async function timeout({
 	targetUser,
 	reason,
 	author,
