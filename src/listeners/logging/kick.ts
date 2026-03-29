@@ -2,7 +2,7 @@ import { Listener, Events } from "@sapphire/framework";
 import { AuditLogEvent, Guild, GuildAuditLogsEntry } from "discord.js";
 import { container } from "@sapphire/framework";
 import { GUILD } from "../../lib/loadDiscordObjects.js";
-import kick from "../../lib/moderation/actions/users/kick.js";
+import { kick } from "../../lib/moderation/actions/users/kick.js";
 
 export class KickListener extends Listener {
 	public constructor(

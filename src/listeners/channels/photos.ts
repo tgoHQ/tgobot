@@ -4,7 +4,7 @@ import {
 	CHANNEL_PHOTOS,
 	CHANNEL_TRIP_REPORTS,
 } from "../../lib/loadDiscordObjects.js";
-import getDuration from "../../util/getDuration.js";
+import { getDuration } from "../../util/getDuration.js";
 import { ThreadChannel } from "discord.js";
 import { sleep } from "@sapphire/utilities";
 import { removeTabs } from "../../util/removeTabs.js";

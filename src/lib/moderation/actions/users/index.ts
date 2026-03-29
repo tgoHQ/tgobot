@@ -4,7 +4,7 @@ import { UserNote } from "../../userNotes.js";
 import { type User, EmbedBuilder } from "discord.js";
 import { removeTabs } from "../../../../util/removeTabs.js";
 
-type UserModActionHandlerOpts = {
+type HandleUserModActionOpts = {
 	/** the user who is being actioned */
 	targetUser: User;
 	/** the user who created the warning */
@@ -16,7 +16,7 @@ type UserModActionHandlerOpts = {
 };
 
 /** to be run in every user mod action module. handles the common logic of DMs and logging */
-export async function handleUserModAction(opts: UserModActionHandlerOpts) {
+export async function handleUserModAction(opts: HandleUserModActionOpts) {
 	await dmTargetUser(opts);
 	await logToUserNotes(opts);
 	await postToModlog(opts);
@@ -27,7 +27,7 @@ async function dmTargetUser({
 	string,
 	author,
 	reason,
-}: UserModActionHandlerOpts) {
+}: HandleUserModActionOpts) {
 	try {
 		await targetUser.send({
 			content: removeTabs(`
@@ -50,10 +50,10 @@ async function logToUserNotes({
 	string,
 	reason,
 	author,
-}: UserModActionHandlerOpts) {
-	UserNote.create({
+}: HandleUserModActionOpts) {
+	await UserNote.create({
 		author,
-		content: `${string}\n${reason ?? "No reason provided."}`,
+		content: `${string}. ${reason ?? "No reason provided."}`,
 		targetUser,
 	});
 }

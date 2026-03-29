@@ -66,7 +66,7 @@ export async function userInspectComponent(user: User) {
 	);
 	const notesFormatted = notesSorted.map((n) =>
 		removeTabs(`
-			${n.content}
+			> ${n.content}
 			-# <@${n.authorId}> on <t:${Math.round(n.createdAt.getTime() / 1000)}:D> · \`${n.id}\`
 		`),
 	);

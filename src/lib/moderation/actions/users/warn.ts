@@ -11,11 +11,8 @@ type WarnUserOpts = {
 	author: User;
 };
 
-export default async function warn({
-	targetUser,
-	reason,
-	author,
-}: WarnUserOpts) {
+/** mod action to warn a user */
+export async function warn({ targetUser, reason, author }: WarnUserOpts) {
 	const string = `${Emoji.Warn} Warned ${targetUser}`;
 
 	await handleUserModAction({ targetUser, string, reason, author });

@@ -1,4 +1,5 @@
-export default {
+/** get a duration in milliseconds */
+export const getDuration = {
 	/** get the number of milliseconds in a given number of seconds */
 	seconds: (seconds: number) => seconds * 1000,
 	/** get the number of milliseconds in a given number of minutes */

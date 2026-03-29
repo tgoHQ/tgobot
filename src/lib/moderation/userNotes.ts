@@ -1,4 +1,4 @@
-import db from "../../db/drizzle.js";
+import { db } from "../../db/drizzle.js";
 import { eq } from "drizzle-orm";
 import { userNotes } from "../../db/schema.js";
 import { User } from "discord.js";

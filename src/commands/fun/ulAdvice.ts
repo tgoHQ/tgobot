@@ -1,5 +1,5 @@
 import { Command } from "@sapphire/framework";
-import { openAi } from "../../lib/llm/openAi.js";
+import { openAi } from "../../lib/llm/openAiClient.js";
 
 export class UlAdviceCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

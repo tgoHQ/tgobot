@@ -1,7 +1,7 @@
 import { Command } from "@sapphire/framework";
 
 import { PermissionFlagsBits, ChannelType } from "discord.js";
-import bulkDelete from "../../lib/moderation/actions/tools/bulkDelete.js";
+import { bulkDelete } from "../../lib/moderation/actions/tools/bulkDelete.js";
 
 export class CleanCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
