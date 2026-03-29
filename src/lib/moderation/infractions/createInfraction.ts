@@ -1,6 +1,6 @@
 import { User, inlineCode } from "discord.js";
 import { Emoji } from "../../../util/emoji.js";
-import type { InfractionType } from "./handlers.js";
+import type { InfractionType } from "./infractionTypes.js";
 
 /** unified interface for creating an infraction against a user */
 export async function createInfraction({
@@ -22,10 +22,10 @@ export async function createInfraction({
 	}
 
 	//combine infraction string and mod comment to create reason
-	const reason = `${type.humanName}${comment ? ". Comment: " + comment : ""}.`;
+	const reason = `${type.group}: ${type.title}${comment ? ". Comment: " + comment : ""}.`;
 
 	const infractionString = `${Emoji.True} Logged infraction ${inlineCode(
-		type.humanName,
+		`${type.group}: ${type.title}`,
 	)} against ${user}${comment ? " with comment " + inlineCode(comment) : ""}.`;
 
 	//execute the chosen infraction type module

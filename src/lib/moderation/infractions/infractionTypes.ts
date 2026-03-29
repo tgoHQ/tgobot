@@ -4,9 +4,10 @@ import { warn } from "../actions/users/warn.js";
 import { getDuration } from "../../../util/getDuration.js";
 import type { User } from "discord.js";
 
-export const InfractionTypes = {
-	nsfw: {
-		humanName: "NSFW Content",
+export const InfractionTypes: InfractionType[] = [
+	{
+		group: "NSFW Content",
+		title: "4d",
 		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
@@ -16,84 +17,9 @@ export const InfractionTypes = {
 			});
 		},
 	},
-	personalAttacks: {
-		humanName: "Personal Attacks",
-		executeConsequence: async ({ targetUser, author, reason }) => {
-			return await timeout({
-				targetUser,
-				reason,
-				author,
-				duration: getDuration.days(3),
-			});
-		},
-	},
-	bigotrySlurs: {
-		humanName: "Bigotry/Slurs",
-		executeConsequence: async ({ targetUser, author, reason }) => {
-			return await timeout({
-				targetUser,
-				reason,
-				author,
-				duration: getDuration.days(4),
-			});
-		},
-	},
-	lnt: {
-		humanName: "Anti-LNT Practices",
-		executeConsequence: async ({ targetUser, author, reason }) => {
-			return await timeout({
-				targetUser,
-				reason,
-				author,
-				duration: getDuration.hours(12),
-			});
-		},
-	},
-	trollingShitposting: {
-		humanName: "Trolling/Shitposting",
-		executeConsequence: async ({ targetUser, author, reason }) => {
-			return await timeout({
-				targetUser,
-				reason,
-				author,
-				duration: getDuration.hours(12),
-			});
-		},
-	},
-	politicalControversial: {
-		humanName: "Political/Controversial Topics",
-		executeConsequence: async ({ targetUser, author, reason }) => {
-			return await timeout({
-				targetUser,
-				reason,
-				author,
-				duration: getDuration.hours(12),
-			});
-		},
-	},
-	selfPromoWarning: {
-		humanName: "Self-Promotion, Warning",
-		executeConsequence: async ({ targetUser, author, reason }) => {
-			return await warn({
-				targetUser,
-				author,
-				reason,
-			});
-		},
-	},
-	selfPromoBadFaith: {
-		humanName: "Self-Promotion, Bad-Faith",
-		executeConsequence: async ({ targetUser, author, reason }) => {
-			return await ban({
-				targetUser,
-				reason,
-				author,
-				deleteMessages: true,
-			});
-		},
-	},
-	badFaith: {
-		humanName: "Bad-Faith User",
+	{
+		group: "NSFW Content",
+		title: "Bad-Faith",
 		executeConsequence: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
@@ -103,14 +29,157 @@ export const InfractionTypes = {
 			});
 		},
 	},
-} as const satisfies {
-	[K in string]: InfractionType;
-};
+	{
+		group: "Personal Attacks",
+		title: "3d",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await timeout({
+				targetUser,
+				reason,
+				author,
+				duration: getDuration.days(3),
+			});
+		},
+	},
+	{
+		group: "Personal Attacks",
+		title: "Bad-Faith",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await ban({
+				targetUser,
+				reason,
+				author,
+				deleteMessages: false,
+			});
+		},
+	},
+	{
+		group: "Bigotry/Slurs",
+		title: "4d",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await timeout({
+				targetUser,
+				reason,
+				author,
+				duration: getDuration.days(4),
+			});
+		},
+	},
+	{
+		group: "Bigotry/Slurs",
+		title: "Bad-Faith",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await ban({
+				targetUser,
+				reason,
+				author,
+				deleteMessages: false,
+			});
+		},
+	},
+	{
+		group: "Anti-LNT Practices",
+		title: "12h",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await timeout({
+				targetUser,
+				reason,
+				author,
+				duration: getDuration.hours(12),
+			});
+		},
+	},
+	{
+		group: "Anti-LNT Practices",
+		title: "Bad-Faith",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await ban({
+				targetUser,
+				reason,
+				author,
+				deleteMessages: false,
+			});
+		},
+	},
+	{
+		group: "Trolling/Shitposting",
+		title: "12h",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await timeout({
+				targetUser,
+				reason,
+				author,
+				duration: getDuration.hours(12),
+			});
+		},
+	},
+	{
+		group: "Trolling/Shitposting",
+		title: "Bad-Faith",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await ban({
+				targetUser,
+				reason,
+				author,
+				deleteMessages: false,
+			});
+		},
+	},
+	{
+		group: "Political/Controversial Topics",
+		title: "12h",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await timeout({
+				targetUser,
+				reason,
+				author,
+				duration: getDuration.hours(12),
+			});
+		},
+	},
+	{
+		group: "Political/Controversial Topics",
+		title: "Bad-Faith",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await ban({
+				targetUser,
+				reason,
+				author,
+				deleteMessages: false,
+			});
+		},
+	},
+	{
+		group: "Soliciting",
+		title: "Warning",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await warn({
+				targetUser,
+				author,
+				reason,
+			});
+		},
+	},
+	{
+		group: "Soliciting",
+		title: "Bad-Faith",
+		executeConsequence: async ({ targetUser, author, reason }) => {
+			return await ban({
+				targetUser,
+				reason,
+				author,
+				deleteMessages: true,
+			});
+		},
+	},
+];
 
 /** an infraction type is a module that defines and can execute a particular infraction on a user */
 export type InfractionType = {
-	/** the title of this infraction type */
-	humanName: string;
+	/** the human friendly name of the group/category this infraction type belongs to */
+	group: string;
+	/** the human-friendly title of this infraction type */
+	title: string;
 	/** the function that executes the consequence of this infraction, such as giving the proper warnig, timeout, or ban */
 	executeConsequence: ({
 		targetUser,

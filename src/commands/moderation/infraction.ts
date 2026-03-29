@@ -1,7 +1,9 @@
 import { Command } from "@sapphire/framework";
-import { PermissionFlagsBits } from "discord.js";
+import { AutocompleteInteraction, PermissionFlagsBits } from "discord.js";
 import { createInfraction } from "../../lib/moderation/infractions/createInfraction.js";
-import { InfractionTypes } from "../../lib/moderation/infractions/handlers.js";
+import { InfractionTypes } from "../../lib/moderation/infractions/infractionTypes.js";
+
+const infractionGroups = [...new Set(InfractionTypes.map((e) => e.group))];
 
 export class InfractionCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -22,17 +24,24 @@ export class InfractionCommand extends Command {
 				)
 				.addStringOption((option) =>
 					option
-						.setName("type")
-						.setDescription("The type of infraction")
+						.setName("group")
+						.setDescription("The group/category of infraction")
 						.setRequired(true)
 						.addChoices(
-							...Object.entries(InfractionTypes).map(([key, handler]) => {
+							...infractionGroups.map((name) => {
 								return {
-									name: handler.humanName,
-									value: key,
+									name,
+									value: name,
 								};
 							}),
 						),
+				)
+				.addStringOption((option) =>
+					option
+						.setName("type")
+						.setDescription("The type of infraction")
+						.setRequired(true)
+						.setAutocomplete(true),
 				)
 				.addStringOption((option) =>
 					option
@@ -43,18 +52,40 @@ export class InfractionCommand extends Command {
 		});
 	}
 
+	public override autocompleteRun(interaction: AutocompleteInteraction) {
+		const group = interaction.options.getString("group", true);
+
+		const options = InfractionTypes.filter((e) => e.group === group).map(
+			(e) => {
+				return {
+					name: e.title,
+					value: e.title,
+				};
+			},
+		);
+
+		return interaction.respond(options);
+	}
+
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction,
 	) {
 		//get options
 		const user = interaction.options.getUser("user", true);
-		const infractionKey = interaction.options.getString("type", true);
+
+		const infractionGroupName = interaction.options.getString("group", true);
+		const infractionTypeName = interaction.options.getString("type", true);
+
+		const infractionType = InfractionTypes.find(
+			(e) => e.group === infractionGroupName && e.title === infractionTypeName,
+		);
+		if (!infractionType) throw new Error("Invalid infraction type");
+
 		const comment = interaction.options.getString("comments");
 
 		//execute
 		const response = await createInfraction({
-			//@ts-expect-error
-			type: InfractionTypes[infractionKey],
+			type: infractionType,
 			user,
 			author: interaction.user,
 			comment,

@@ -53,7 +53,7 @@ async function logToUserNotes({
 }: HandleUserModActionOpts) {
 	await UserNote.create({
 		author,
-		content: `${string}\n${reason ?? "No reason provided."}`,
+		content: `${string}. ${reason ?? "No reason provided."}`,
 		targetUser,
 	});
 }
