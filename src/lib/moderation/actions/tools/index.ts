@@ -1,6 +1,6 @@
 import { CHANNEL_MODLOG } from "../../../loadDiscordObjects.js";
 import { User, EmbedBuilder } from "discord.js";
-import { colors } from "../../../../util/constants.js";
+import { colors } from "../../../../util/colors.js";
 
 export async function handleToolModAction({
 	string,

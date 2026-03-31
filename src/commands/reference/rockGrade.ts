@@ -8,7 +8,7 @@ import {
 	SeparatorSpacingSize,
 } from "discord.js";
 import { gradeSets } from "../../interaction-handlers/climbingGradeAutocomplete.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../util/colors.js";
 type GradeScale = (typeof gradeSets)[0]["scale"];
 
 export class GradesCommand extends Command {

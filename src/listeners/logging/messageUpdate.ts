@@ -1,9 +1,14 @@
 import { Listener } from "@sapphire/framework";
-
 import { env } from "../../env.js";
-import { Message, EmbedBuilder } from "discord.js";
+import {
+	Message,
+	ContainerBuilder,
+	TextDisplayBuilder,
+	MessageFlags,
+} from "discord.js";
 import { CHANNEL_LOG } from "../../lib/loadDiscordObjects.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../util/colors.js";
+import { removeTabs } from "../../util/removeTabs.js";
 
 export class MessageUpdateListener extends Listener {
 	public async run(oldMessage: Message, newMessage: Message) {
@@ -13,18 +18,25 @@ export class MessageUpdateListener extends Listener {
 		if (oldMessage.content === newMessage.content) return; //if text content of message hasn't changed, return
 		if (!oldMessage.content || !newMessage.content) return; //if messages don't have content, return
 
-		const embed = new EmbedBuilder()
-			.setColor(colors.blue.hex)
-			.setTitle("Message Edited")
-			.setURL(newMessage.url)
-			.setDescription(
-				`Message edited by ${newMessage.author} in ${newMessage.channel}.`,
-			)
-			.setFields(
-				{ name: "Before", value: oldMessage.content },
-				{ name: "After", value: newMessage.content },
-			);
+		const component = new ContainerBuilder()
+			.addTextDisplayComponents([
+				new TextDisplayBuilder().setContent(
+					removeTabs(`
+				## [Message Edited](${newMessage.url})
+				Message edited by ${newMessage.author} in ${newMessage.channel}.
+				### Before
+				${oldMessage.content}
+				### After
+				${newMessage.content}
+			`),
+				),
+			])
+			.setAccentColor(colors.blue.decimal);
 
-		(await CHANNEL_LOG()).send({ embeds: [embed] });
+		(await CHANNEL_LOG()).send({
+			components: [component],
+			flags: [MessageFlags.IsComponentsV2],
+			allowedMentions: {},
+		});
 	}
 }

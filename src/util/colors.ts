@@ -8,6 +8,7 @@ export const colors = {
 	},
 	blue: {
 		hex: "#4a78fc",
+		decimal: 4880636,
 	},
 	booster: {
 		hex: "#ff8950",

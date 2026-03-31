@@ -8,7 +8,7 @@ import {
 	CHANNEL_BOTS,
 } from "../../lib/loadDiscordObjects.js";
 import { removeTabs } from "../../util/removeTabs.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../util/colors.js";
 
 export class ReadyListener extends Listener {
 	public constructor(
