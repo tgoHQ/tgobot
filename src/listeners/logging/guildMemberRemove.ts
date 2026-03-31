@@ -14,7 +14,7 @@ import {
 	CHANNEL_ALERT,
 } from "../../lib/loadDiscordObjects.js";
 import { removeTabs } from "../../util/removeTabs.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../util/colors.js";
 
 export class GuildMemberRemoveListener extends Listener {
 	public async run(member: GuildMember) {

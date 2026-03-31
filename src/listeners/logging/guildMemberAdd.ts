@@ -3,7 +3,7 @@ import { Listener } from "@sapphire/framework";
 import { EmbedBuilder, GuildMember } from "discord.js";
 import humanizeDuration from "humanize-duration";
 import { CHANNEL_LOG } from "../../lib/loadDiscordObjects.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../util/colors.js";
 
 export class MemberLeaveListener extends Listener {
 	public async run(member: GuildMember) {

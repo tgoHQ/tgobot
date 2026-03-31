@@ -6,36 +6,14 @@ import {
 	SeparatorBuilder,
 	SeparatorSpacingSize,
 	TextDisplayBuilder,
+	MediaGalleryBuilder,
+	MediaGalleryItemBuilder,
+	AutocompleteInteraction,
 } from "discord.js";
 import { removeTabs } from "../../util/removeTabs.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../util/colors.js";
 
-const snippets = [
-	{
-		name: "Rule 1",
-		content:
-			"Respect the other members of this server. No NSFW content, personal attacks, or bigotry.",
-	},
-	{
-		name: "Rule 2",
-		content:
-			"Respect the outdoors. Enjoy nature responsibly and follow the [Leave No Trace](https://lnt.org/why/7-principles/) principles.",
-	},
-	{
-		name: "Rule 3",
-		content:
-			"Use the correct channel for your topic. Don't spam, troll, or shitpost.",
-	},
-	{
-		name: "Rule 4",
-		content:
-			"You may only promote your social media, website, surveys, other servers, etc. once you are <@&594761861770117140> or above. Don't promote through DMs.",
-	},
-	{
-		name: "Rule 5",
-		content:
-			"5. Political topics, and topics that are controversial in a way not strictly related to outdoor recreation, are not allowed.",
-	},
+const snippets: Snippet[] = [
 	{
 		name: "Backpacking Checklist",
 		content:
@@ -219,6 +197,9 @@ const snippets = [
 			- Stacking two or more pads on top of each other will add their R-values together.
 			- Pads that don't list an R-value should be assumed to be suitable for summer only.
 		`,
+		images: [
+			"https://cdn11.bigcommerce.com/s-xhsipki9fu/product_images/uploaded_images/r-value-explained3.jpg",
+		],
 	},
 	{
 		name: "Tickets and Reports",
@@ -226,7 +207,13 @@ const snippets = [
 			Tickets are the preferred way to report moderation concerns. You can open a ticket with the command </tickets open:839848848003825673>. Once the ticket is created, send the full details of your issue/report.
 		`,
 	},
-] satisfies { name: string; content: string }[];
+];
+
+type Snippet = {
+	name: string;
+	content: string;
+	images?: string[];
+};
 
 export class SnippetCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -244,11 +231,7 @@ export class SnippetCommand extends Command {
 						.setName("snippet")
 						.setDescription("The name of the snippet to run")
 						.setRequired(true)
-						.addChoices(
-							...snippets.map((snippet, index) => {
-								return { name: snippet.name, value: index.toString() };
-							}),
-						),
+						.setAutocomplete(true),
 				)
 				.addBooleanOption((option) =>
 					option
@@ -259,23 +242,58 @@ export class SnippetCommand extends Command {
 		});
 	}
 
+	public override autocompleteRun(interaction: AutocompleteInteraction) {
+		const query = interaction.options.getString("snippet", true);
+
+		const queryResults = snippets
+			.map((snippet, index) => ({ snippet, index }))
+			.filter((item) => {
+				const titleMatch = item.snippet.name
+					.toLowerCase()
+					.includes(query.toLowerCase());
+				const contentMatch = item.snippet.content
+					.toLowerCase()
+					.includes(query.toLowerCase());
+				return titleMatch || contentMatch;
+			});
+
+		const toApiFormat = queryResults.map((item) => {
+			return {
+				name: item.snippet.name,
+				value: item.index.toString(),
+			};
+		});
+
+		return interaction.respond(toApiFormat);
+	}
+
 	public override async chatInputRun(
 		interaction: Command.ChatInputCommandInteraction,
 	) {
-		const snippet: { name: string; content: string } =
+		const snippet =
 			snippets[parseInt(interaction.options.getString("snippet", true))];
 
 		const component = new ContainerBuilder()
 			.setAccentColor(colors.staffGreen.decimal)
 			.addTextDisplayComponents(
-				new TextDisplayBuilder().setContent(`# ${snippet.name}`),
+				new TextDisplayBuilder().setContent(`## ${snippet.name}`),
 			)
 			.addSeparatorComponents(
-				new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large),
+				new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small),
 			)
 			.addTextDisplayComponents(
 				new TextDisplayBuilder().setContent(removeTabs(snippet.content)),
 			);
+
+		if (snippet.images) {
+			const mediaItems = snippet.images.map((url) =>
+				new MediaGalleryItemBuilder().setURL(url),
+			);
+
+			component.addMediaGalleryComponents([
+				new MediaGalleryBuilder().addItems(...mediaItems),
+			]);
+		}
 
 		await interaction.reply({
 			components: [component],

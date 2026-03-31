@@ -10,7 +10,7 @@ import {
 import humanizeDuration from "humanize-duration";
 import { Emoji } from "../../util/emoji.js";
 import { removeTabs } from "../../util/removeTabs.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../util/colors.js";
 
 export class AboutCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

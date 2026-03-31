@@ -1,4 +1,4 @@
-import { colors } from "../../../../util/constants.js";
+import { colors } from "../../../../util/colors.js";
 import { CHANNEL_MODLOG } from "../../../loadDiscordObjects.js";
 import { UserNote } from "../../userNotes.js";
 import { type User, EmbedBuilder } from "discord.js";

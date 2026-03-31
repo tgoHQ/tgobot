@@ -8,7 +8,7 @@ import {
 	Snowflake,
 } from "discord.js";
 import { CHANNEL_LOG, GUILD } from "../../lib/loadDiscordObjects.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../util/colors.js";
 
 export class ReadyListener extends Listener {
 	public async run(

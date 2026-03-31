@@ -3,7 +3,7 @@ import { EmbedBuilder, ThreadChannel } from "discord.js";
 import { CHANNEL_TRIP_REPORTS } from "../../lib/loadDiscordObjects.js";
 import { sleep } from "@sapphire/utilities";
 import { removeTabs } from "../../util/removeTabs.js";
-import { colors } from "../../util/constants.js";
+import { colors } from "../../util/colors.js";
 
 export class MeetupsAutoMessageListener extends Listener {
 	public constructor(
