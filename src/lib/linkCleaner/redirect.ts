@@ -11,7 +11,13 @@ export type RedirectResult = {
 /** removes redirects from a URL */
 export async function cleanRedirect(inputUrl: URL): Promise<RedirectResult> {
 	const response = await fetch(inputUrl);
-	const outputUrl = new URL(response.url);
+
+	// if we got redirected, the output url is the destination of the redirect.
+	// otherwise, no redirect was found, so the output is the same as the input.
+	const outputUrl = response.redirected ? new URL(response.url) : inputUrl;
+
+	//todo ignore it if the redirect is just from root domain to www or vice versa
+
 	return {
 		inputUrl,
 		outputUrl,

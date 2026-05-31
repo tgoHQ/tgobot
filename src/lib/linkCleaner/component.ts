@@ -34,6 +34,13 @@ export function linkCleanerResultsComponent(result: CleanLinkResult) {
 					]
 				: []),
 
+			...(result.amp.modified
+				? [
+						new TextDisplayBuilder().setContent(`
+							-# Unwrapped [AMP link](https://www.amputatorbot.com/) to: \`${result.amp.outputUrl.toString()}\`
+						`),
+					]
+				: []),
 			...(result.sanitize.modified
 				? [
 						new TextDisplayBuilder().setContent(`
