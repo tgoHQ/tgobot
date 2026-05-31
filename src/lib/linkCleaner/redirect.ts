@@ -1,5 +1,5 @@
 /** the return type of the cleanRedirect function */
-export type CleanRedirectResult = {
+export type RedirectResult = {
 	/** the original URL that was passed in */
 	inputUrl: URL;
 	/** the cleaned URL with redirect removed */
@@ -9,16 +9,9 @@ export type CleanRedirectResult = {
 };
 
 /** removes redirects from a URL */
-export async function cleanRedirect(url: URL): Promise<CleanRedirectResult> {
-	const inputUrl = new URL(url.toString());
-
-	let outputUrl = new URL(url.toString());
-
-	try {
-		const response = await fetch(inputUrl.toString());
-		outputUrl = new URL(response.url);
-	} catch (e) {}
-
+export async function cleanRedirect(inputUrl: URL): Promise<RedirectResult> {
+	const response = await fetch(inputUrl);
+	const outputUrl = new URL(response.url);
 	return {
 		inputUrl,
 		outputUrl,
