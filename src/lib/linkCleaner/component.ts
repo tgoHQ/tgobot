@@ -13,9 +13,11 @@ export function linkCleanerResultsComponent(result: CleanLinkResult) {
 	return new ContainerBuilder()
 		.setAccentColor(colors.staffGreen.decimal)
 		.addTextDisplayComponents(
-			new TextDisplayBuilder().setContent(removeTabs(`
+			new TextDisplayBuilder().setContent(
+				removeTabs(`
 				### ${result.outputUrl.toString()}
-			`)),
+			`),
+			),
 		)
 		.addSeparatorComponents(
 			new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small),
