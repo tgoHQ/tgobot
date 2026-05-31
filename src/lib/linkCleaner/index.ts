@@ -1,4 +1,5 @@
 import { cleanRedirect, RedirectResult } from "./redirect.js";
+import { cleanAmp, AmpResult } from "./amp.js";
 import { sanitizeUrl, SanitizeResult } from "./sanitize.js";
 import { cleanParams } from "./params.js";
 
@@ -8,14 +9,16 @@ export type CleanLinkResult = {
 	outputUrl: URL;
 	modified: boolean;
 	redirect: RedirectResult;
+	amp: AmpResult;
 	sanitize: SanitizeResult;
 };
 
 /** cleans a URL */
 export async function cleanLink(inputUrl: URL): Promise<CleanLinkResult> {
 	const redirect = await cleanRedirect(inputUrl);
+	const amp = await cleanAmp(redirect.outputUrl);
 
-	const sanitizeResults = sanitizeUrl(redirect.outputUrl);
+	const sanitizeResults = sanitizeUrl(amp.outputUrl);
 	const paramsResults = cleanParams(new URL(sanitizeResults.outputUrl));
 
 	const totalParams = sanitizeResults.removedParams.concat(
@@ -27,7 +30,8 @@ export async function cleanLink(inputUrl: URL): Promise<CleanLinkResult> {
 		outputUrl: paramsResults.outputUrl,
 		modified: inputUrl.toString() !== paramsResults.outputUrl.toString(),
 
-		redirect: redirect,
+		redirect,
+		amp,
 		sanitize: {
 			inputUrl: sanitizeResults.inputUrl,
 			outputUrl: paramsResults.outputUrl,
