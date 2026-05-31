@@ -13,10 +13,9 @@ export type CleanPathResult = {
 /** removes bad path segments from a URL */
 export function cleanPath(url: URL): CleanPathResult {
 	const inputUrl = new URL(url.toString());
+	const outputUrl = new URL(url.toString());
 
-	const segments = url.pathname.split("/").filter(Boolean);
-
-	console.log(segments);
+	const segments = inputUrl.pathname.split("/").filter(Boolean);
 
 	/** match this url's segments against the list of bad segments */
 	const matchedSegments = segments.filter((segment) => {
@@ -25,24 +24,16 @@ export function cleanPath(url: URL): CleanPathResult {
 		});
 	});
 
-	console.log(matchedSegments);
-
 	for (const segment of matchedSegments) {
-		url.pathname = url.pathname.replace(segment, "");
+		outputUrl.pathname = outputUrl.pathname.replace(segment, "");
 	}
-
-	console.log(url.pathname);
-
-	console.log(url);
 
 	const result = {
 		inputUrl,
-		outputUrl: url,
+		outputUrl,
 		removedSegments: matchedSegments,
 		modified: matchedSegments.length > 0,
 	};
-
-	console.log(result);
 
 	return result;
 }
@@ -57,5 +48,9 @@ const badSegments: BadSegment[] = [
 	{
 		//amazon
 		regex: /ref=.+/,
+	},
+	{
+		//google maps
+		regex: /data=.+/,
 	},
 ];
