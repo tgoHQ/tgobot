@@ -20,6 +20,12 @@ importers:
       '@types/node-cron':
         specifier: ^3.0.11
         version: 3.0.11
+      '@url-sanitize/clearurls':
+        specifier: ^0.1.2
+        version: 0.1.2
+      '@url-sanitize/core':
+        specifier: ^0.1.2
+        version: 0.1.2
       discord.js:
         specifier: ^14.25.1
         version: 14.25.1
@@ -475,6 +481,12 @@ packages:
 
   '@types/ws@8.18.1':
     resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
+
+  '@url-sanitize/clearurls@0.1.2':
+    resolution: {integrity: sha512-SjZn3YB59hmdzLpjnz9rC58EMrl2oImmx6qmGeA5TQmKdMXZKkLC+D3+TeeLeRKGdqx6VT4pRVi4SmVeO+JStQ==}
+
+  '@url-sanitize/core@0.1.2':
+    resolution: {integrity: sha512-z71GOHMA95UvXTg7GN6wwGMR2iRo53+3NLmv5ovHZYyZdR2jmAb196JWJ7VYiMCBO9K2l5UiHFpY2nsBsTqmDA==}
 
   '@vladfrangu/async_event_emitter@2.4.7':
     resolution: {integrity: sha512-Xfe6rpCTxSxfbswi/W/Pz7zp1WWSNn4A0eW4mLkQUewCrXXtMj31lCg+iQyTkh/CkusZSq9eDflu7tjEDXUY6g==}
@@ -1011,6 +1023,12 @@ snapshots:
   '@types/ws@8.18.1':
     dependencies:
       '@types/node': 24.10.1
+
+  '@url-sanitize/clearurls@0.1.2':
+    dependencies:
+      '@url-sanitize/core': 0.1.2
+
+  '@url-sanitize/core@0.1.2': {}
 
   '@vladfrangu/async_event_emitter@2.4.7': {}
 

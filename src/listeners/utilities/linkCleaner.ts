@@ -1,9 +1,9 @@
 import { Events, Listener } from "@sapphire/framework";
-import { Message, MessageFlags, SeparatorSpacingSize } from "discord.js";
+import { Message, MessageFlags } from "discord.js";
 
 import { cleanLink } from "../../lib/linkCleaner/index.js";
-import { TextDisplayBuilder, SeparatorBuilder } from "discord.js";
-import { removeTabs } from "../../util/removeTabs.js";
+import { linkCleanerResultsComponent } from "../../lib/linkCleaner/component.js";
+
 
 export class LinkListener extends Listener {
 	public constructor(
@@ -25,52 +25,14 @@ export class LinkListener extends Listener {
 
 		if (matches) {
 			for (const match of matches) {
-				const url = new URL(match);
-				const result = await cleanLink(url);
+				const result = await cleanLink(new URL(match));
 
-				if (result.cleanUrl.toString() !== new URL(match).toString()) {
+				if (result.modified) {
 					message.reply({
 						flags: MessageFlags.IsComponentsV2,
 						allowedMentions: { repliedUser: false },
 						components: [
-							new TextDisplayBuilder().setContent(
-								removeTabs(
-									`I cleaned up this link for you to remove invasive tracking information!
-								${result.cleanUrl}`,
-								),
-							),
-							new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small),
-
-							...(result.redirect.modified
-								? [
-										new TextDisplayBuilder().setContent(`
-											-# Followed redirect to: \`${result.redirect.outputUrl.toString()}\`
-										`),
-									]
-								: []),
-							...(result.path.modified
-								? [
-										new TextDisplayBuilder().setContent(`
-											-# Removed path segments: ${result.path.removedSegments
-												.map((segment) => "`" + segment + "`")
-												.join(", ")}
-										`),
-									]
-								: []),
-							...(result.params.modified
-								? [
-										new TextDisplayBuilder().setContent(`
-											-# Removed query parameters: ${result.params.removedParams
-												.map((param) => {
-													if (param.referenceUrl) {
-														return `[\`${param.name}\`](${param.referenceUrl})`;
-													}
-													return `\`${param.name}\``;
-												})
-												.join(", ")}
-										`),
-									]
-								: []),
+							linkCleanerResultsComponent(result),
 						],
 					});
 				}
