@@ -20,6 +20,8 @@ export async function cleanAmp(inputUrl: URL): Promise<AmpResult> {
 		},
 		body: JSON.stringify({
 			query: inputUrl.toString(),
+			guessAndCheck: false,
+			generateMarkdownComment: false,
 		}),
 	});
 
@@ -37,7 +39,11 @@ export async function cleanAmp(inputUrl: URL): Promise<AmpResult> {
 		console.log(response.status);
 		console.log(response.statusText);
 		console.log(await response.json());
-		throw new Error("amputatorbot API returned an error");
+		return {
+			inputUrl,
+			outputUrl: inputUrl,
+			modified: false,
+		};
 	}
 
 	// parse the response

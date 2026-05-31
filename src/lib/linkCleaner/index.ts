@@ -15,10 +15,10 @@ export type CleanLinkResult = {
 
 /** cleans a URL */
 export async function cleanLink(inputUrl: URL): Promise<CleanLinkResult> {
-	const redirect = await cleanRedirect(inputUrl);
-	const amp = await cleanAmp(redirect.outputUrl);
+	const amp = await cleanAmp(inputUrl);
+	const redirect = await cleanRedirect(amp.outputUrl);
 
-	const sanitizeResults = sanitizeUrl(amp.outputUrl);
+	const sanitizeResults = sanitizeUrl(redirect.outputUrl);
 	const paramsResults = cleanParams(new URL(sanitizeResults.outputUrl));
 
 	const totalParams = sanitizeResults.removedParams.concat(
