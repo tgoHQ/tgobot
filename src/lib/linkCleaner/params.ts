@@ -13,6 +13,7 @@ export type CleanParamsResult = {
 /** removes bad parameters from a URL */
 export function cleanParams(url: URL): CleanParamsResult {
 	const inputUrl = new URL(url.toString());
+	const outputUrl = new URL(url.toString());
 
 	/** match this url's parameters against the list of bad parameters */
 	const matchedParams = badParams.filter((badParam) => {
@@ -21,12 +22,12 @@ export function cleanParams(url: URL): CleanParamsResult {
 
 	/** remove the bad parameters from the url */
 	for (const param of matchedParams) {
-		url.searchParams.delete(param.name);
+		outputUrl.searchParams.delete(param.name);
 	}
 
 	return {
 		inputUrl,
-		outputUrl: url,
+		outputUrl,
 		removedParams: matchedParams,
 		modified: matchedParams.length > 0,
 	};
@@ -144,6 +145,10 @@ const badParams: BadParam[] = [
 		name: "edk",
 	},
 	{
+		// amazon
+		name: "geniuslink",
+	},
+	{
 		//facebook
 		name: "fbclid",
 	},
@@ -152,7 +157,91 @@ const badParams: BadParam[] = [
 		name: "si",
 	},
 	{
+		//youtube
+		name: "feature",
+	},
+	{
 		//instagram
 		name: "igsh",
+	},
+	{
+		//google
+		name: "kgmid",
+	},
+	{
+		//google
+		name: "source",
+	},
+	{
+		//google
+		name: "kgs",
+	},
+	{
+		//google
+		name: "shndl",
+	},
+	{
+		//google
+		name: "hl",
+	},
+	{
+		//google maps
+		name: "skid",
+	},
+	{
+		//google maps
+		name: "g_ep",
+	},
+	{
+		//google maps
+		name: "entry",
+	},
+	{
+		// google maps
+		name: "coh",
+	},
+	{
+		// google maps
+		name: "ftid",
+	},
+	{
+		// google maps
+		name: "lucs",
+	},
+	{
+		// google maps
+		name: "shh",
+	},
+	{
+		// google maps
+		name: "g_st",
+	},
+	{
+		// shopify?
+		name: "rfsn",
+	},
+	{
+		// shopify?
+		name: "subid",
+	},
+	{
+		//generic
+		name: "coupon",
+	},
+	{
+		//generic, amazon
+		name: "tag",
+	},
+	{
+		//generic, amazon
+		name: "keywords",
+	},
+	{
+		//epdiemic sound
+		name: "_usx",
+	},
+	{
+		//epdiemic sound
+		name: "_us",
 	},
 ];

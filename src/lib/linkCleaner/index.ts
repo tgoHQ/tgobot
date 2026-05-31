@@ -1,21 +1,25 @@
 import { cleanParams, CleanParamsResult } from "./params.js";
 import { cleanPath, CleanPathResult } from "./path.js";
+import { cleanRedirect, CleanRedirectResult } from "./redirect.js";
 
 type CleanLinkResult = {
 	cleanUrl: URL;
-	params: CleanParamsResult;
+	redirect: CleanRedirectResult;
 	path: CleanPathResult;
+	params: CleanParamsResult;
 };
 
-export function cleanLink(url: URL): CleanLinkResult {
-	const params = cleanParams(url);
-	const path = cleanPath(params.outputUrl);
+export async function cleanLink(url: URL): Promise<CleanLinkResult> {
+	const redirect = await cleanRedirect(url);
+	const path = cleanPath(redirect.outputUrl);
+	const params = cleanParams(path.outputUrl);
 
-	const cleanUrl = path.outputUrl;
+	const cleanUrl = params.outputUrl;
 
 	return {
 		cleanUrl,
-		params,
+		redirect,
 		path,
+		params,
 	};
 }

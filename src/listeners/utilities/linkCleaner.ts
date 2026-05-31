@@ -3,6 +3,7 @@ import { Message, MessageFlags, SeparatorSpacingSize } from "discord.js";
 
 import { cleanLink } from "../../lib/linkCleaner/index.js";
 import { TextDisplayBuilder, SeparatorBuilder } from "discord.js";
+import { removeTabs } from "../../util/removeTabs.js";
 
 export class LinkListener extends Listener {
 	public constructor(
@@ -25,38 +26,47 @@ export class LinkListener extends Listener {
 		if (matches) {
 			for (const match of matches) {
 				const url = new URL(match);
-				const result = cleanLink(url);
+				const result = await cleanLink(url);
 
 				if (result.cleanUrl.toString() !== new URL(match).toString()) {
 					message.reply({
 						flags: MessageFlags.IsComponentsV2,
 						allowedMentions: { repliedUser: false },
 						components: [
-							new TextDisplayBuilder().setContent(result.cleanUrl.toString()),
+							new TextDisplayBuilder().setContent(
+								removeTabs(
+									`I cleaned up this link for you to remove invasive tracking information!
+								${result.cleanUrl}`,
+								),
+							),
 							new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small),
-							new TextDisplayBuilder().setContent(`
-								-# I cleaned up this link for you to remove tracking information! Here's what I took out:
-							`),
+
+							...(result.redirect.modified
+								? [
+										new TextDisplayBuilder().setContent(`
+											-# Followed redirect to: \`${result.redirect.outputUrl.toString()}\`
+										`),
+									]
+								: []),
+							...(result.path.modified
+								? [
+										new TextDisplayBuilder().setContent(`
+											-# Removed path segments: ${result.path.removedSegments
+												.map((segment) => "`" + segment + "`")
+												.join(", ")}
+										`),
+									]
+								: []),
 							...(result.params.modified
 								? [
 										new TextDisplayBuilder().setContent(`
-											-# Query parameters: ${result.params.removedParams
+											-# Removed query parameters: ${result.params.removedParams
 												.map((param) => {
 													if (param.referenceUrl) {
 														return `[\`${param.name}\`](${param.referenceUrl})`;
 													}
 													return `\`${param.name}\``;
 												})
-												.join(", ")}
-										`),
-									]
-								: []),
-
-							...(result.path.modified
-								? [
-										new TextDisplayBuilder().setContent(`
-											-# Path segments: ${result.path.removedSegments
-												.map((segment) => "`" + segment + "`")
 												.join(", ")}
 										`),
 									]
