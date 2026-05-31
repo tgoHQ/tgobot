@@ -15,8 +15,8 @@ export function linkCleanerResultsComponent(result: CleanLinkResult) {
 		.addTextDisplayComponents(
 			new TextDisplayBuilder().setContent(
 				removeTabs(`
-				### ${result.outputUrl.toString()}
-			`),
+					### ${result.outputUrl.toString()}
+				`),
 			),
 		)
 		.addSeparatorComponents(
@@ -28,26 +28,33 @@ export function linkCleanerResultsComponent(result: CleanLinkResult) {
 			),
 			...(result.redirect.modified
 				? [
-						new TextDisplayBuilder().setContent(`
-							-# Followed redirect to: \`${result.redirect.outputUrl.toString()}\`
-						`),
+						new TextDisplayBuilder().setContent(
+							removeTabs(`
+								-# Followed redirect to:
+								-# \`${result.redirect.outputUrl.toString()}\`
+							`),
+						),
 					]
 				: []),
 
 			...(result.amp.modified
 				? [
-						new TextDisplayBuilder().setContent(`
-							-# Unwrapped [AMP link](https://www.amputatorbot.com/) to: \`${result.amp.outputUrl.toString()}\`
-						`),
+						new TextDisplayBuilder().setContent(
+							removeTabs(`
+								-# Unwrapped [AMP link](https://www.amputatorbot.com/) to:
+								-# \`${result.amp.outputUrl.toString()}\`
+							`),
+						),
 					]
 				: []),
 			...(result.sanitize.modified
 				? [
-						new TextDisplayBuilder().setContent(`
-							-# Removed query parameters: ${result.sanitize.removedParams
-								.map((param) => `\`${param}\``)
-								.join(", ")}
-						`),
+						new TextDisplayBuilder().setContent(
+							removeTabs(`
+								-# Removed query parameters:
+								-# ${result.sanitize.removedParams.map((param) => `\`${param}\``).join(", ")}
+							`),
+						),
 					]
 				: []),
 		);
