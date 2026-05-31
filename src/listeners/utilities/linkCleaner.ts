@@ -4,7 +4,6 @@ import { Message, MessageFlags } from "discord.js";
 import { cleanLink } from "../../lib/linkCleaner/index.js";
 import { linkCleanerResultsComponent } from "../../lib/linkCleaner/component.js";
 
-
 export class LinkListener extends Listener {
 	public constructor(
 		context: Listener.LoaderContext,
@@ -31,9 +30,7 @@ export class LinkListener extends Listener {
 					message.reply({
 						flags: MessageFlags.IsComponentsV2,
 						allowedMentions: { repliedUser: false },
-						components: [
-							linkCleanerResultsComponent(result),
-						],
+						components: [linkCleanerResultsComponent(result)],
 					});
 				}
 			}
