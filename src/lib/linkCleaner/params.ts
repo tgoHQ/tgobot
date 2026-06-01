@@ -94,4 +94,8 @@ const badParams: string[] = [
 	//epdiemic sound
 	"_usx",
 	"_us",
+
+	// google ads - can appear on any site
+	"gad_campaignid",
+	"gad_source",
 ];
