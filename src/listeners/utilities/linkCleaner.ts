@@ -1,7 +1,7 @@
 import { Events, Listener } from "@sapphire/framework";
 import { Message, MessageFlags } from "discord.js";
 
-import { cleanLink } from "../../lib/linkCleaner/index.js";
+import { cleanLink } from "../../lib/linkCleaner/cleanLink.js";
 import { linkCleanerResultsComponent } from "../../lib/linkCleaner/component.js";
 
 export class LinkListener extends Listener {
