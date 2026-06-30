@@ -12,8 +12,7 @@
 		"types": "tsc --noEmit",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
-		"db:studio": "drizzle-kit studio",
-		"db:migrate": "drizzle-kit migrate",
+		"db": "drizzle-kit",
 		"knip": "knip --treat-config-hints-as-errors"
 	},
 	"dependencies": {
