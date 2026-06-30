@@ -1,9 +1,7 @@
 //automatically publish all messages sent in a given array of announcement channels
 
 import { Events, Listener } from "@sapphire/framework";
-
-import { Message, NewsChannel, Channel } from "discord.js";
-
+import type { Message, NewsChannel, Channel } from "discord.js";
 import {
 	CHANNEL_MODLOG,
 	CHANNEL_TOWN_HALL,

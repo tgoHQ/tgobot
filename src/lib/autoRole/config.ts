@@ -1,4 +1,4 @@
-import { AutoRoleConfigRule } from "./logic.js";
+import type { AutoRoleConfigRule } from "./logic.js";
 import {
 	ROLE_MODERATOR_BASE,
 	ROLE_MODERATOR_COSMETIC,

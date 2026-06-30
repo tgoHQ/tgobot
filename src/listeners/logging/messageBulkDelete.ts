@@ -1,11 +1,11 @@
 import { Listener } from "@sapphire/framework";
 
 import {
-	Collection,
+	type Collection,
 	EmbedBuilder,
-	GuildChannel,
-	Message,
-	Snowflake,
+	type GuildChannel,
+	type Message,
+	type Snowflake,
 } from "discord.js";
 import { CHANNEL_LOG, GUILD } from "../../lib/loadDiscordObjects.js";
 import { colors } from "../../util/colors.js";
