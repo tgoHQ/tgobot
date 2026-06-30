@@ -5,7 +5,7 @@ import humanizeDuration from "humanize-duration";
 import { CHANNEL_LOG } from "../../lib/loadDiscordObjects.js";
 import { colors } from "../../util/colors.js";
 
-export class MemberLeaveListener extends Listener {
+export class GuildMemberAddListener extends Listener {
 	public async run(member: GuildMember) {
 		const embed = new EmbedBuilder()
 			.setColor(colors.staffGreen.hex)
