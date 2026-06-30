@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -14,15 +18,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
+          cache: "pnpm"
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm and dependencies
-        with:
-          run_install: true
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Prettier
         run: pnpm format:check
