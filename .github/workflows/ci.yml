@@ -30,5 +30,8 @@ jobs:
       - name: Typechecking
         run: pnpm types
 
+      - name: Knip
+        run: pnpm knip
+
     outputs:
       status: ${{ job.status }}

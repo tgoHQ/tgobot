@@ -1,16 +1,20 @@
 import { container } from "@sapphire/framework";
-import path from "node:path";
-import { glob } from "glob";
+import cron from "node-cron";
+import { bumpReminder } from "./modules/bumpReminder.js";
+import { disableDms } from "./modules/disableDms.js";
+import { photoOfWeekJob } from "./modules/photoOfWeek.js";
 
-//todo export a standardized interface for cron jobs and register all the jobs in this file instead of within each module
+export type CronJob = {
+	/** cron expression for when the job runs */
+	schedule: string;
+	/** the function to run on schedule */
+	execute: () => void | Promise<void>;
+};
+
+const jobs: CronJob[] = [bumpReminder, disableDms, photoOfWeekJob];
 
 export function initializeCronJobs() {
-	container.client.logger.info("Cron: Initializing jobs");
+	jobs.forEach((job) => cron.schedule(job.schedule, job.execute));
 
-	const jobModulePaths = glob.sync("./dist/src/jobs/modules/*.js");
-
-	jobModulePaths.forEach((file) => {
-		import(path.resolve(file));
-	});
-	container.client.logger.info(`Cron: Loaded ${jobModulePaths.length} jobs`);
+	container.client.logger.info(`Cron: Loaded ${jobs.length} jobs`);
 }
