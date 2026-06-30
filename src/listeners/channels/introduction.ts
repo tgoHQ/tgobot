@@ -93,7 +93,7 @@ export class IntroductionsAutoMessageListener extends Listener {
 
 		thread.send(
 			removeTabs(`
-				${response.choices[0].message.content!}
+				${response.choices[0]?.message.content!}
 				-# I am a bot, and this is an AI-generated message.
 			`),
 		);

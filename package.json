@@ -1,12 +1,12 @@
 {
 	"name": "tgobot",
-	"main": "dist/src/bot.js",
+	"main": "dist/bot.js",
 	"source": "src/bot.ts",
 	"repository": "https://github.com/tgoHQ/tgobot",
 	"packageManager": "pnpm@10.24.0",
 	"scripts": {
-		"dev": "tsc && node .",
-		"build": "tsc",
+		"dev": "pnpm build && pnpm start",
+		"build": "rm -rf dist && tsc",
 		"start": "node .",
 		"check": "pnpm format && pnpm types",
 		"types": "tsc --noEmit",

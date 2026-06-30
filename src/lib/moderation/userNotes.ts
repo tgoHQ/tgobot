@@ -30,7 +30,7 @@ export class UserNote {
 	}
 
 	static async create(opts: UserNoteOpts) {
-		const row = await db
+		const [row] = await db
 			.insert(userNotes)
 			.values({
 				userId: opts.targetUser.id,
@@ -39,7 +39,7 @@ export class UserNote {
 			})
 			.returning();
 
-		return new UserNote(row[0]);
+		return new UserNote(row!);
 	}
 
 	static async getById(id: number) {

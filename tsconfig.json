@@ -1,10 +1,18 @@
 {
 	"compilerOptions": {
 		"target": "ESNext",
-		"module": "ESNext",
-		"moduleResolution": "Node",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
 
 		"outDir": "./dist",
+		"rootDir": "./src",
+
+		// @openbeta/sandbag ships a broken exports map (no "types" condition),
+		// so NodeNext can't find its bundled .d.ts. Point TS at it directly.
+		// Affects type-checking only; Node's runtime resolution is unaffected.
+		"paths": {
+			"@openbeta/sandbag": ["./node_modules/@openbeta/sandbag/dist/index.d.ts"]
+		},
 
 		"allowJs": false,
 		"esModuleInterop": true,
@@ -19,12 +27,12 @@
 		"noPropertyAccessFromIndexSignature": true,
 		"noFallthroughCasesInSwitch": true,
 		// "exactOptionalPropertyTypes": true,
-		// "noUncheckedIndexedAccess": true,
+		"noUncheckedIndexedAccess": true,
 
 		"allowUnreachableCode": false,
 		"allowUnusedLabels": false,
 		"noUnusedParameters": true,
-		"noUnusedLocals": true,
-		"incremental": true
-	}
+		"noUnusedLocals": true
+	},
+	"include": ["src/**/*.ts"]
 }

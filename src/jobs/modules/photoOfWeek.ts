@@ -64,13 +64,13 @@ export async function photoOfTheWeek() {
 
 	for (let i = 0; i < thisWeekThreads.length; i++) {
 		console.log(
-			`Thread ${thisWeekThreads[i].name} has ${beansPerThread[i]} beans on it`,
+			`Thread ${thisWeekThreads[i]!.name} has ${beansPerThread[i]} beans on it`,
 		);
 	}
 
 	//find the thread with the most beans
 	const winnerThread =
-		thisWeekThreads[beansPerThread.indexOf(Math.max(...beansPerThread))];
+		thisWeekThreads[beansPerThread.indexOf(Math.max(...beansPerThread))]!;
 
 	//send a message to that thread
 	await winnerThread.send(

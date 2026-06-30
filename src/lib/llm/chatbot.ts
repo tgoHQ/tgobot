@@ -25,7 +25,7 @@ export async function chatbot(
 		],
 	});
 
-	if (!response.choices[0].message.content) {
+	if (!response.choices[0]?.message.content) {
 		throw new Error("Unexpected response from Steve AI");
 	}
 

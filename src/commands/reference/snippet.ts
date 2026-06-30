@@ -273,6 +273,10 @@ export class SnippetCommand extends Command {
 		const snippet =
 			snippets[parseInt(interaction.options.getString("snippet", true))];
 
+		if (!snippet) {
+			throw new Error(`invalid snipped index`);
+		}
+
 		const component = new ContainerBuilder()
 			.setAccentColor(colors.staffGreen.decimal)
 			.addTextDisplayComponents(

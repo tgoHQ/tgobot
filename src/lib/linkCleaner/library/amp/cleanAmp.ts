@@ -48,7 +48,7 @@ export async function cleanAmp(inputUrl: URL): Promise<AmpResult> {
 
 	// parse the response
 	const json = amputatorSchema.parse(await response.json());
-	const result = json.links[0].canonical?.url;
+	const result = json.links[0]!.canonical?.url;
 	// if this is an amp link, but no canonical url was found, return the input url
 	const outputUrl = result ? new URL(result) : inputUrl;
 
