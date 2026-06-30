@@ -35,7 +35,6 @@
 	"devDependencies": {
 		"@types/humanize-duration": "^3.27.4",
 		"@types/node": "^26.0.1",
-		"@types/node-cron": "^3.0.11",
 		"dotenv": "^17.4.2",
 		"drizzle-kit": "^0.31.10",
 		"knip": "^6.23.0",

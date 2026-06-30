@@ -57,9 +57,6 @@ importers:
       '@types/node':
         specifier: ^26.0.1
         version: 26.0.1
-      '@types/node-cron':
-        specifier: ^3.0.11
-        version: 3.0.11
       dotenv:
         specifier: ^17.4.2
         version: 17.4.2
@@ -868,9 +865,6 @@ packages:
 
   '@types/humanize-duration@3.27.4':
     resolution: {integrity: sha512-yaf7kan2Sq0goxpbcwTQ+8E9RP6HutFBPv74T/IA/ojcHKhuKVlk2YFYyHhWZeLvZPzzLE3aatuQB4h0iqyyUA==}
-
-  '@types/node-cron@3.0.11':
-    resolution: {integrity: sha512-0ikrnug3/IyneSHqCBeslAhlK2aBfYek1fGo4bP4QnZPmiqSGRK+Oy7ZMisLWkesffJvQ1cqAcBnJC+8+nxIAg==}
 
   '@types/node@26.0.1':
     resolution: {integrity: sha512-fc3KiUoBt6kie0N9bIW3E47vZsuaMf0PM2AaUpLCLT0s/LvX1nxAim6Fc049cNxODPpGm6qRAuUOB86SkRuPQw==}
@@ -1707,8 +1701,6 @@ snapshots:
     optional: true
 
   '@types/humanize-duration@3.27.4': {}
-
-  '@types/node-cron@3.0.11': {}
 
   '@types/node@26.0.1':
     dependencies:
