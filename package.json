@@ -22,6 +22,7 @@
 		"@types/node-cron": "^3.0.11",
 		"@url-sanitize/clearurls": "^0.1.2",
 		"@url-sanitize/core": "^0.1.2",
+		"clean-links": "^0.0.7",
 		"discord.js": "^14.25.1",
 		"drizzle-kit": "^0.31.7",
 		"drizzle-orm": "^0.44.7",

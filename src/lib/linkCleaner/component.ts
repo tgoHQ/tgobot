@@ -1,4 +1,4 @@
-import { CleanLinkResult } from "./index.js";
+import { CleanLinkResult } from "./cleanLink.js";
 
 import {
 	ContainerBuilder,
