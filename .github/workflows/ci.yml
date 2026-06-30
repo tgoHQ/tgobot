@@ -30,6 +30,9 @@ jobs:
       - name: Typechecking
         run: pnpm types
 
+      - name: Build
+        run: pnpm build
+
       - name: Knip
         run: pnpm knip
 
