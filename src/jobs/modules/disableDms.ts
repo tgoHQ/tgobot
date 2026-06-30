@@ -1,13 +1,14 @@
-import cron from "node-cron";
 import { getDuration } from "../../util/getDuration.js";
 import { GUILD } from "../../lib/loadDiscordObjects.js";
+import type { CronJob } from "../index.js";
 
-//run every 12 hours at midnight and noon
-cron.schedule("0 0,12 * * *", disableGuildDms);
-
-async function disableGuildDms() {
-	const guild = await GUILD();
-	guild.setIncidentActions({
-		dmsDisabledUntil: new Date(Date.now() + getDuration.hours(12)),
-	});
-}
+export const disableDms: CronJob = {
+	// run every 12 hours at midnight and noon
+	schedule: "0 0,12 * * *",
+	execute: async () => {
+		const guild = await GUILD();
+		guild.setIncidentActions({
+			dmsDisabledUntil: new Date(Date.now() + getDuration.hours(12)),
+		});
+	},
+};

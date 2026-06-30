@@ -1,15 +1,18 @@
-import cron from "node-cron";
 import {
 	CHANNEL_PHOTOS,
 	CHANNEL_TOWN_HALL,
 	TAG_PHOTO_OF_THE_WEEK,
 } from "../../lib/loadDiscordObjects.js";
 import { getDuration } from "../../util/getDuration.js";
+import type { CronJob } from "../index.js";
 
 import type { AnyThreadChannel } from "discord.js";
 
-//run every Friday at 5pm ET
-cron.schedule("0 22 * * 5", photoOfTheWeek);
+export const photoOfWeekJob: CronJob = {
+	// run every Friday at 5pm ET
+	schedule: "0 22 * * 5",
+	execute: photoOfTheWeek,
+};
 
 export async function photoOfTheWeek() {
 	const PHOTOS = await CHANNEL_PHOTOS();
