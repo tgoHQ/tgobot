@@ -2,25 +2,9 @@ add ci
 
 # loggers
 
-- make user mod action modules have separate functions for execute and log, for logging external actions
 - detect unban, timeout, untimeout, bulk delete, kick made outside of bot
 - log bulk emoji removals for all of one emoji or all message emojis
 - figure out how to specifically log when messages are deleted by someone other than the author
-
-# infractions
-
-- system to dm users when actioned
-
-- infraction records
-  - save infractions to database
-  - type definition for entry
-  - record types that are not posted in modlog channel (moderation notes)
-  - connect row in db to message in modlog channel. callback to automatically edit the message in modlog when the log is edited
-
-- way to delete user messages on ban
-- badfaith command with preset types.
-
-- when a mod does native ban/timeout/kick on a user, ping them and get them to submit a reason through a modal. update the reason in the log
 
 # utility
 
@@ -68,10 +52,6 @@ add ci
   giveBean slash command
 - refactor discord object loader for better dx
 - stop hardcoding slash command ids in response message content- figure out how to fetch from the command registry by command name or by referencing the command's exported class
-- learn how user-installed bots work and look into making tgobot user installable
-  currency, unit, language translation?
-  gpt features?
-  wolfram alpha / math solver?
-  use packlist and snippets globally
-  permission checks for moderation actions (acting on a higher-ranked user?)
-  combine tickets with reports and cases
+
+permission checks for moderation actions (acting on a higher-ranked user?)
+combine tickets with reports and cases
