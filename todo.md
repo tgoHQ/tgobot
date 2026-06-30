@@ -1,8 +1,6 @@
-add ci
-
 # loggers
 
-- detect unban, timeout, untimeout, bulk delete, kick made outside of bot
+- detect unban, timeout, untimeout made outside of bot
 - log bulk emoji removals for all of one emoji or all message emojis
 - figure out how to specifically log when messages are deleted by someone other than the author
 
@@ -17,8 +15,6 @@ add ci
 
   - event to detect gear list links and prompt to save them
   - context command to pull up user's gear lists
-
-- log deleted messages from clean command, log user ids whose messages were deleted, for searchability
 
 - emoji shortcut to delete introduction channel message and thread at once
 
