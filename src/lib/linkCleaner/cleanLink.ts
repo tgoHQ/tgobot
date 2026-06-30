@@ -1,6 +1,6 @@
 import { cleanRedirect, type CleanRedirectResult } from "clean-links";
-import { cleanAmp, AmpResult } from "./library/amp/cleanAmp.js";
-import { sanitizeUrl, SanitizeResult } from "./library/sanitize.js";
+import { cleanAmp, type AmpResult } from "./library/amp/cleanAmp.js";
+import { sanitizeUrl, type SanitizeResult } from "./library/sanitize.js";
 import { cleanParams } from "./library/params/cleanParams.js";
 import { badParams } from "./library/params/config.js";
 

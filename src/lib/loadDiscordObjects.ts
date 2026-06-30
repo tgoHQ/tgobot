@@ -1,6 +1,11 @@
 import { env } from "../env.js";
 import { container } from "@sapphire/framework";
-import { Channel, ForumChannel, ChannelType, Role } from "discord.js";
+import {
+	type Channel,
+	type ForumChannel,
+	ChannelType,
+	type Role,
+} from "discord.js";
 
 export const GUILD = async () =>
 	await container.client.guilds.fetch(env.GUILD_ID);

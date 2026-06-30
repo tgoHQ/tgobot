@@ -64,7 +64,7 @@ export function setRotatingPresence() {
 
 	console.log(`Loaded ${presences.length} statuses`);
 
-	console.log(`Setting activity to ${presences[index].name}`);
+	console.log(`Setting activity to ${presences[index]!.name}`);
 
 	container.client.user?.setActivity(presences[index]);
 }

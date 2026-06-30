@@ -58,7 +58,7 @@ export class ContextCommand extends Command {
 			],
 		});
 
-		if (!response.choices[0].message.content) {
+		if (!response.choices[0]?.message.content) {
 			console.error();
 			return;
 		}

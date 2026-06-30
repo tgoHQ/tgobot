@@ -1,4 +1,4 @@
-import { GuildTextBasedChannel, User } from "discord.js";
+import type { GuildTextBasedChannel, User } from "discord.js";
 import { Emoji } from "../../../../util/emoji.js";
 import { handleToolModAction } from "./index.js";
 

@@ -60,7 +60,7 @@ export class GradesCommand extends Command {
 		})?.scale;
 		if (!scale) return; //todo
 
-		const conversions = getAllConversionsForGrade(grade, scale);
+		const conversions = getAllConversionsForGrade(grade!, scale);
 		const conversionsFormatted = conversions
 			.map((e) => `\`${e.grade}\` | ${e.scale.displayName}`)
 			.join("\n\n");

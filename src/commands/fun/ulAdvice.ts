@@ -48,7 +48,7 @@ export class UlAdviceCommand extends Command {
 			],
 		});
 
-		if (response.choices[0].message.content) {
+		if (response.choices[0]?.message.content) {
 			await interaction.editReply(
 				`**Question**: ${prompt}\n\n**Advice**:\n${response.choices[0].message.content}`,
 			);
