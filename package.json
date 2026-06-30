@@ -20,12 +20,10 @@
 		"@openbeta/sandbag": "^0.0.51",
 		"@sapphire/framework": "^5.4.0",
 		"@sapphire/utilities": "^3.18.2",
-		"@types/node-cron": "^3.0.11",
 		"@url-sanitize/clearurls": "^0.1.2",
 		"@url-sanitize/core": "^0.1.2",
 		"clean-links": "^0.0.7",
 		"discord.js": "^14.25.1",
-		"drizzle-kit": "^0.31.7",
 		"drizzle-orm": "^0.44.7",
 		"humanize-duration": "^3.33.1",
 		"node-cron": "^4.2.1",
@@ -37,7 +35,9 @@
 	"devDependencies": {
 		"@types/humanize-duration": "^3.27.4",
 		"@types/node": "^24.10.1",
+		"@types/node-cron": "^3.0.11",
 		"dotenv": "^17.2.3",
+		"drizzle-kit": "^0.31.10",
 		"knip": "^6.23.0",
 		"prettier": "^3.7.3",
 		"typescript": "^5.9.3"
