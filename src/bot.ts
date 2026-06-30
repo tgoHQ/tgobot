@@ -3,7 +3,7 @@ import {
 	RegisterBehavior,
 	SapphireClient,
 } from "@sapphire/framework";
-import { ActivityType, GatewayIntentBits } from "discord.js";
+import { GatewayIntentBits } from "discord.js";
 
 import { env } from "./env.js";
 import { initializeCronJobs } from "./jobs/index.js";
@@ -27,20 +27,7 @@ const client = new SapphireClient({
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildMessages,
 	],
-	presence: {
-		activities: [
-			//todo figure out how to use emoji in custom status
-			//todo figure out how to do watching status with a youtube link
-			{
-				type: ActivityType.Custom,
-				name: "I;m thinking about thos Beans",
-			},
-			{
-				type: ActivityType.Playing,
-				name: "outside",
-			},
-		],
-	},
+	// initial presence is set from the ready listener and rotated daily by the rotatePresence cron job
 	allowedMentions: {
 		parse: ["users"],
 		repliedUser: true,
