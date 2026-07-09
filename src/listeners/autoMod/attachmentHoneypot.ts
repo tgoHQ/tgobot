@@ -1,9 +1,7 @@
 import { Events, Listener } from "@sapphire/framework";
 import { Message } from "discord.js";
 import { ROLE_ATTACHMENTS } from "../../lib/loadDiscordObjects.js";
-import { timeout } from "../../lib/moderation/actions/users/timeout.js";
-
-const timeoutLength = 6 * 60 * 60 * 1000;
+import { ban } from "../../lib/moderation/actions/users/ban.js";
 
 export class AttachmentHoneypotListener extends Listener {
 	public constructor(
@@ -32,11 +30,11 @@ export class AttachmentHoneypotListener extends Listener {
 		// delete the triggering message
 		await message.delete();
 
-		await timeout({
+		await ban({
 			targetUser: message.author,
 			author: message.client.user,
-			reason: "Triggered the attachment spammer honeypot",
-			duration: timeoutLength,
+			reason: "Soliciting - Bad-Faith. Triggered by Steve Climber AutoMod.",
+			deleteMessages: false,
 		});
 	}
 }
