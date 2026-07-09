@@ -29,6 +29,9 @@ export class AttachmentHoneypotListener extends Listener {
 		// if they already have the attachments role, they're trusted
 		if (message.member.roles.cache.has(attachmentsRole.id)) return;
 
+		// delete the triggering message
+		await message.delete();
+
 		await timeout({
 			targetUser: message.author,
 			author: message.client.user,
