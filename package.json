@@ -8,7 +8,7 @@
 		"dev": "pnpm build && pnpm start",
 		"build": "rm -rf dist && tsc",
 		"start": "node .",
-		"check": "pnpm format && pnpm types",
+		"check": "pnpm format && pnpm types && pnpm knip",
 		"types": "tsc --noEmit",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
@@ -28,7 +28,6 @@
 		"drizzle-orm": "^0.45.2",
 		"humanize-duration": "^3.34.0",
 		"node-cron": "^4.5.0",
-		"openai": "^6.45.0",
 		"parse-duration": "^2.1.6",
 		"postgres": "^3.4.9",
 		"zod": "^4.4.3"

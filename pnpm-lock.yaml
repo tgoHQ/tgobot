@@ -44,9 +44,6 @@ importers:
       node-cron:
         specifier: ^4.5.0
         version: 4.5.0
-      openai:
-        specifier: ^6.45.0
-        version: 6.45.0(ws@8.21.0)(zod@4.4.3)
       parse-duration:
         specifier: ^2.1.6
         version: 2.1.6
@@ -1114,27 +1111,6 @@ packages:
     resolution: {integrity: sha512-4Trh+kjvbXokyJkwQumvD5YAgeJfgHLR/sKyu71uSmxfCR5QMO1hldpvmFZOICN5pLgNY+J5Y8+ar3XKo5/4tQ==}
     engines: {node: '>=20'}
 
-  openai@6.45.0:
-    resolution: {integrity: sha512-5DQVNErssk0afNpTTHUm/qZPU4iKR9OYdNid8Ib4puq4gHNNvGWZht2zY4h9a8JMF949Ik6m8gQutllVPbjdnw==}
-    hasBin: true
-    peerDependencies:
-      '@aws-sdk/credential-provider-node': '>=3.972.0 <4'
-      '@smithy/hash-node': '>=4.3.0 <5'
-      '@smithy/signature-v4': '>=5.4.0 <6'
-      ws: ^8.18.0
-      zod: ^3.25 || ^4.0
-    peerDependenciesMeta:
-      '@aws-sdk/credential-provider-node':
-        optional: true
-      '@smithy/hash-node':
-        optional: true
-      '@smithy/signature-v4':
-        optional: true
-      ws:
-        optional: true
-      zod:
-        optional: true
-
   oxc-parser@0.137.0:
     resolution: {integrity: sha512-yFImD+WLElJpLKy8llG1qe4DCmMsL18peRp8XP1JKfig/gISbJkglnpDtX2aTmAn10kZF7164HbN2H8QPsXxGg==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -1985,11 +1961,6 @@ snapshots:
   magic-bytes.js@1.13.0: {}
 
   node-cron@4.5.0: {}
-
-  openai@6.45.0(ws@8.21.0)(zod@4.4.3):
-    optionalDependencies:
-      ws: 8.21.0
-      zod: 4.4.3
 
   oxc-parser@0.137.0:
     dependencies:
