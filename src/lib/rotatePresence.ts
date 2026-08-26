@@ -4,26 +4,24 @@ import { ActivityType, type ActivitiesOptions } from "discord.js";
 // presence configs to rotate through, one per day. only the first activity in
 // each config is shown (bots only render one), so each entry is a single activity.
 const presences: ActivitiesOptions[] = [
-	{ type: ActivityType.Playing, name: "outside" },
+	{ type: ActivityType.Playing, name: "playing outside" },
 	{ type: ActivityType.Custom, name: "🫘 I;m thinking about thos Beans" },
 	{ type: ActivityType.Custom, name: "touched grass (it was wet)" },
-	{ type: ActivityType.Watching, name: "the campfire" },
+	{ type: ActivityType.Watching, name: "watching the campfire" },
 	{ type: ActivityType.Custom, name: "just think of the weight savings" },
-	{ type: ActivityType.Watching, name: "the sunset" },
 	{ type: ActivityType.Custom, name: "sawing my toothbrush in half" },
-	{ type: ActivityType.Watching, name: "my base weight" },
+	{ type: ActivityType.Watching, name: "watching my base weight" },
 	{ type: ActivityType.Custom, name: "shorter the shorts, quicker the miles" },
 	{ type: ActivityType.Custom, name: "shivering to save 2 oz" },
-	{ type: ActivityType.Listening, name: "the birds" },
 	{ type: ActivityType.Custom, name: "have you even heard of ray jardine?" },
-	{ type: ActivityType.Listening, name: "mosquitoes" },
+	{ type: ActivityType.Listening, name: "listening to mosquitoes" },
 	{ type: ActivityType.Custom, name: "is this aid?" },
 	{
 		type: ActivityType.Streaming,
 		name: "my thru-hike",
 		url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
 	},
-	{ type: ActivityType.Playing, name: "with my digital scale" },
+	{ type: ActivityType.Playing, name: "weighing my band-aids" },
 	{ type: ActivityType.Custom, name: "intimidate your surroundings" },
 	{
 		type: ActivityType.Custom,
@@ -62,9 +60,9 @@ function dayOfYear(date = new Date()): number {
 export function setRotatingPresence() {
 	const index = dayOfYear() % presences.length;
 
-	console.log(`Loaded ${presences.length} statuses`);
+	console.log(`Loaded ${presences.length} presence statuses`);
 
-	console.log(`Setting activity to ${presences[index]!.name}`);
+	console.log(`Setting status to "${presences[index]!.name}"`);
 
 	container.client.user?.setActivity(presences[index]);
 }
