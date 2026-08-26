@@ -1,3 +1,5 @@
+//todo move this into the main /guide command file
+
 import {
 	InteractionHandler,
 	InteractionHandlerTypes,
