@@ -13,7 +13,7 @@ const envSchema = z.object({
 	// KEYS AND URLS
 	DB_URL: z.string(),
 	GUIDE_SEARCH_URL: z.url(),
-	OPENAI_API_KEY: z.string().startsWith("sk-"),
+	ANTHROPIC_API_KEY: z.string().startsWith("sk-ant-"),
 
 	// ROLES
 	ROLE_MODERATOR_BASE_ID: z.string(),

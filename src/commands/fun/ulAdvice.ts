@@ -1,5 +1,6 @@
 import { Command } from "@sapphire/framework";
-import { openAi } from "../../lib/llm/openAiClient.js";
+import { chatbot } from "../../lib/llm/chatbot.js";
+import { removeTabs } from "../../util/removeTabs.js";
 
 export class UlAdviceCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -26,21 +27,21 @@ export class UlAdviceCommand extends Command {
 	) {
 		await interaction.deferReply();
 
-		const prompt = interaction.options.getString("prompt");
-		if (!prompt) return;
+		const prompt = interaction.options.getString("prompt", true);
 
-		const response = await openAi.chat.completions.create({
-			model: "gpt-4o-mini",
-			temperature: 1.2,
-			frequency_penalty: 0.1,
-			presence_penalty: 0.1,
-			max_tokens: 500,
+		if (!interaction.channel || interaction.channel.isDMBased()) return;
+
+		const response = await chatbot({
+			currentChannel: interaction.channel,
+			instructions: removeTabs(`
+				the user is asking for advice about backpacking gear.
+				tell them how silly they are and that their base weight is too high.
+				tell them to cut their toothbrush in half or shave every milligram possible off their kit.
+				make up other impractical ultralight advice, drawing inspiration from r/ultralight_jerk.
+				be unhinged and condescending.
+				the user knows this is tongue-in-cheak, so it's okay to respond this way, and you should not break the 4th wall.
+			`),
 			messages: [
-				{
-					role: "system",
-					content:
-						"the user is asking for advice about backpacking gear. tell them how silly they are and that their base weight is too high. tell them to cut their toothbrush in half or shave every milligram possible off their kit. make up other impractical ultralight advice, drawing inspiration from r/ultralight_jerk. Be unhinged and condescending.",
-				},
 				{
 					role: "user",
 					content: prompt,
@@ -48,10 +49,8 @@ export class UlAdviceCommand extends Command {
 			],
 		});
 
-		if (response.choices[0]?.message.content) {
-			await interaction.editReply(
-				`**Question**: ${prompt}\n\n**Advice**:\n${response.choices[0].message.content}`,
-			);
-		}
+		await interaction.editReply(
+			`**Question**: ${prompt}\n\n**Advice**:\n${response.text}`,
+		);
 	}
 }

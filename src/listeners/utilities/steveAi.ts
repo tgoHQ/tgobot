@@ -1,8 +1,7 @@
 import { Events, Listener } from "@sapphire/framework";
 
 import { Message, TextChannel } from "discord.js";
-import { type OpenAI } from "openai";
-import { chatbot } from "../../lib/llm/chatbot.js";
+import { chatbot, type ChatbotMessage } from "../../lib/llm/chatbot.js";
 import { env } from "../../env.js";
 
 export class SteveAiMessageListener extends Listener {
@@ -17,22 +16,20 @@ export class SteveAiMessageListener extends Listener {
 	}
 
 	public async run(message: Message) {
-		// check if the message tags steve
-		const steveTag = message.mentions.users.has(message.client.user?.id);
+		// check if the message pings steve (this will also trigger on replies with ping turned on)
+		const steveTag = message.mentions.users.has(message.client.user.id);
 		if (!steveTag) return;
 
 		// ignore messages from bots
 		if (message?.member?.user.bot) return;
 
+		if (!message.channel || message.channel.isDMBased()) return;
+
 		//ignore if they don't have access
 		const allowedToUse = message.member?.roles.cache.some(
 			(role) => role.id === env.ROLE_PERKS_ID,
 		);
-
 		if (!allowedToUse) {
-			// await message.reply(
-			// 	"You don't have access to use this command! You can boost the server to gain access.",
-			// );
 			return;
 		}
 
@@ -40,21 +37,17 @@ export class SteveAiMessageListener extends Listener {
 			await message.channel.sendTyping();
 		}
 
-		let context: OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming["messages"] =
-			[];
+		const context: ChatbotMessage[] = [];
 		let currentMessage = message;
 
 		// check up the reply chain for context
 		while (true) {
 			const messageIsFromBot =
-				currentMessage.author.id === message.client.user?.id;
+				currentMessage.author.id === message.client.user.id;
 
 			context.push({
 				role: messageIsFromBot ? "assistant" : "user",
 				content: currentMessage.content,
-				name: `${currentMessage.author.username
-					.replaceAll(".", "-")
-					.replaceAll(" ", "-")}`,
 			});
 
 			const replyInfo = currentMessage.reference;
@@ -62,14 +55,20 @@ export class SteveAiMessageListener extends Listener {
 
 			const replyChannel = currentMessage.client.channels.cache.get(
 				replyInfo.channelId,
-			) as TextChannel | undefined;
+			);
 			if (!replyChannel) break;
-			//current message is now the reply
+			if (!(replyChannel instanceof TextChannel))
+				throw new Error("Reply channel is not a text channel");
+
+			//new current message is now the reply
 			currentMessage = await replyChannel.messages.fetch(replyInfo.messageId);
 		}
 
-		const completion = await chatbot(context.reverse());
+		const { text } = await chatbot({
+			messages: context.reverse(),
+			currentChannel: message.channel,
+		});
 
-		await message.reply(completion);
+		await message.reply(text);
 	}
 }

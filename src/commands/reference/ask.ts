@@ -26,17 +26,20 @@ export class AskCommand extends Command {
 	) {
 		await interaction.deferReply();
 
-		const prompt = interaction.options.getString("prompt");
-		if (!prompt) return;
+		const prompt = interaction.options.getString("prompt", true);
 
-		const completion = await chatbot([
-			{
-				role: "user",
-				content: prompt,
-				name: interaction.user.username.replaceAll(".", "-"),
-			},
-		]);
+		if (!interaction.channel || interaction.channel.isDMBased()) return;
 
-		await interaction.editReply(completion);
+		const { text } = await chatbot({
+			currentChannel: interaction.channel,
+			messages: [
+				{
+					role: "user",
+					content: prompt,
+				},
+			],
+		});
+
+		await interaction.editReply(text);
 	}
 }
