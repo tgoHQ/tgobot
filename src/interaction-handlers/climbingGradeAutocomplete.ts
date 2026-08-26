@@ -86,15 +86,8 @@ export const gradeScales = [
 	AI,
 	WI,
 	Aid,
-] as GradeScale[];
+];
 
-// todo why is this not picking up the types from the library?
-// todo also why does the library not export an array of all the scales?
-export type GradeScale = {
-	name: string;
-	displayName: string;
-	grades: string[];
-	getGradeBand: (grade: string) => string;
-	getScore: (grade: string) => number[];
-	getGrade: (score: number[]) => string;
-};
+// todo sandbag doesn't export an array of all the scales, nor its GradeScale
+// interface from the package root, so derive it from the array above.
+export type GradeScale = (typeof gradeScales)[number];

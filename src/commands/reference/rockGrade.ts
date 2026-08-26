@@ -103,8 +103,6 @@ export class GradesCommand extends Command {
 			components: [container],
 		});
 	}
-
-	
 }
 
 function getAllConversionsForGrade(grade: string, originalScale: GradeScale) {

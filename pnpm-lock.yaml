@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@openbeta/sandbag@0.0.55':
+    hash: c24a6eff1f2c25898efd4ce11191de4ce2868430f7504265b87807df17123ce0
+    path: patches/@openbeta__sandbag@0.0.55.patch
+
 importers:
 
   .:
@@ -13,7 +18,7 @@ importers:
         version: 4.0.44(zod@4.4.3)
       '@openbeta/sandbag':
         specifier: ^0.0.55
-        version: 0.0.55
+        version: 0.0.55(patch_hash=c24a6eff1f2c25898efd4ce11191de4ce2868430f7504265b87807df17123ce0)
       '@sapphire/framework':
         specifier: ^5.5.1
         version: 5.5.1
@@ -1654,7 +1659,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.3
     optional: true
 
-  '@openbeta/sandbag@0.0.55': {}
+  '@openbeta/sandbag@0.0.55(patch_hash=c24a6eff1f2c25898efd4ce11191de4ce2868430f7504265b87807df17123ce0)': {}
 
   '@oxc-parser/binding-android-arm-eabi@0.143.0':
     optional: true
