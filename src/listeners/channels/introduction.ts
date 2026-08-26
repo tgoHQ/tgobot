@@ -1,22 +1,11 @@
 import { Events, Listener } from "@sapphire/framework";
 import {
-	CHANNEL_ALPINE,
-	CHANNEL_BIKING,
-	CHANNEL_HIKING,
-	CHANNEL_CAMPING,
-	CHANNEL_CLIMBING,
 	CHANNEL_INTRODUCTIONS,
-	CHANNEL_NATURE,
-	CHANNEL_ON_THE_WATER,
-	CHANNEL_PHOTOS,
-	CHANNEL_TRIP_REPORTS,
-	CHANNEL_WINTER_SPORTS,
 	ROLE_INTRODUCED,
-	CHANNEL_MEETUPS,
 } from "../../lib/loadDiscordObjects.js";
 import { Message } from "discord.js";
 import { removeTabs } from "../../util/removeTabs.js";
-import { openAi } from "../../lib/llm/openAiClient.js";
+import { chatbot } from "../../lib/llm/chatbot.js";
 
 export class IntroductionsAutoMessageListener extends Listener {
 	public constructor(
@@ -57,44 +46,20 @@ export class IntroductionsAutoMessageListener extends Listener {
 
 		thread.sendTyping();
 
-		const response = await openAi.chat.completions.create({
-			model: "gpt-4o-mini",
-			temperature: 1.4,
-			messages: [
-				{
-					role: "system",
-					content: `
-						A user is introducing theirself to our Discord community about the outdoors.
-						Respond with a short paragraph welcoming them. Personalize the response based on what they said in their introduction.
-
-						You can direct them to the appropriate channels for their interests. We have:
-
-						${await CHANNEL_HIKING()} (hiking, backpacking, ultralight, thru-hiking)
-						${await CHANNEL_CAMPING()} (frontcountry camping, car camping, boondocking, van life)
-						${await CHANNEL_PHOTOS()} (showcasing photos of the outdoors)
-						${await CHANNEL_TRIP_REPORTS()} (trip reports)
-						${await CHANNEL_ALPINE()} (mountaineering and alpine)
-						${await CHANNEL_BIKING()} (mountain biking and bike touring)
-						${await CHANNEL_CLIMBING()} (rock climbing and bouldering)
-						${await CHANNEL_NATURE()} (wildlife, foraging, ecology, etc)
-						${await CHANNEL_ON_THE_WATER()} (boating, kayaking, etc)
-						${await CHANNEL_WINTER_SPORTS()} (winter sports - snowboarding, snowshoeing, etc)
-						${await CHANNEL_MEETUPS()} (meetups channel for finding people to go on trips/outings with)
-
-						Do not list out the channels unless they are relevant to the user. Mention the channels using the tags provided.
-					`,
-				},
-				{
-					role: "user",
-					content: message.content,
-				},
-			],
+		const { text } = await chatbot({
+			instructions: removeTabs(`
+				The user just sent their introduction message.
+				Respond with a short paragraph welcoming them. Personalize the response based on what they said in their introduction.
+				You can direct them to the appropriate channels for their interests. Do not list out the channels unless they are relevant to the user.
+			`),
+			currentChannel: message.channel,
+			messages: [{ role: "user", content: message.content }],
 		});
 
 		thread.send(
 			removeTabs(`
-				${response.choices[0]?.message.content!}
-				-# I am a bot, and this is an AI-generated message.
+				${text}
+				-# I am a bot.
 			`),
 		);
 	}

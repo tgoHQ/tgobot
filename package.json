@@ -8,7 +8,7 @@
 		"dev": "pnpm build && pnpm start",
 		"build": "rm -rf dist && tsc",
 		"start": "node .",
-		"check": "pnpm format && pnpm types",
+		"check": "pnpm format && pnpm types && pnpm knip",
 		"types": "tsc --noEmit",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
@@ -16,17 +16,18 @@
 		"knip": "knip --treat-config-hints-as-errors"
 	},
 	"dependencies": {
+		"@ai-sdk/anthropic": "^4.0.42",
 		"@openbeta/sandbag": "^0.0.55",
 		"@sapphire/framework": "^5.5.0",
 		"@sapphire/utilities": "^3.18.2",
 		"@url-sanitize/clearurls": "^2.0.2",
 		"@url-sanitize/core": "^2.0.2",
+		"ai": "^7.0.79",
 		"clean-links": "^0.0.7",
 		"discord.js": "^14.26.4",
 		"drizzle-orm": "^0.45.2",
 		"humanize-duration": "^3.34.0",
 		"node-cron": "^4.5.0",
-		"openai": "^6.45.0",
 		"parse-duration": "^2.1.6",
 		"postgres": "^3.4.9",
 		"zod": "^4.4.3"
