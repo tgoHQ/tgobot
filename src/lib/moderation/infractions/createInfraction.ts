@@ -29,7 +29,7 @@ export async function createInfraction({
 	)} against ${user}${comment ? " with comment " + inlineCode(comment) : ""}.`;
 
 	//execute the chosen infraction type module
-	const actionResultsString = await type.executeConsequence({
+	const actionResultsString = await type.execute({
 		targetUser: user,
 		author,
 		reason,
