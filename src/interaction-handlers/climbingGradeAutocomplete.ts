@@ -34,15 +34,15 @@ export class ClimbingGradeAutoComplete extends InteractionHandler {
 		}
 
 		//get the scale
-		const gradeSet = gradeSets.find((e) => {
-			return e.scale.name === scaleName;
+		const gradeScale = gradeScales.find((e) => {
+			return e.name === scaleName;
 		});
-		if (!gradeSet) return this.none();
+		if (!gradeScale) return this.none();
 
-		const options = gradeSet.grades.map((grade) => {
+		const options = gradeScale.grades.map((grade) => {
 			return {
 				name: `${grade}`,
-				value: `${gradeSet.scale.name}@${grade}`,
+				value: `${gradeScale.name}@${grade}`,
 			};
 		});
 
@@ -59,7 +59,6 @@ export class ClimbingGradeAutoComplete extends InteractionHandler {
 }
 
 import {
-	freeClimbing,
 	YosemiteDecimal,
 	UIAA,
 	French,
@@ -67,22 +66,35 @@ import {
 	Saxon,
 	Norwegian,
 	BrazilianCrux,
+	Font,
+	VScale,
+	AI,
+	WI,
+	Aid,
 } from "@openbeta/sandbag";
 
-const ydsGrades = freeClimbing.clean.yds;
-const uiaaGrades = freeClimbing.clean.UIAA;
-const frenchGrades = freeClimbing.clean.French;
-const ewbankGrades = freeClimbing.clean.Ewbank;
-const saxonGrades = freeClimbing.clean.Saxon;
-const norwegianGrades = freeClimbing.clean.Norwegian;
-const brazilianGrades = freeClimbing.clean.BrazilianCrux;
+export const gradeScales = [
+	YosemiteDecimal,
+	UIAA,
+	French,
+	Ewbank,
+	Saxon,
+	Norwegian,
+	BrazilianCrux,
+	Font,
+	VScale,
+	AI,
+	WI,
+	Aid,
+] as GradeScale[];
 
-export const gradeSets = [
-	{ scale: YosemiteDecimal, grades: ydsGrades },
-	{ scale: UIAA, grades: uiaaGrades },
-	{ scale: French, grades: frenchGrades },
-	{ scale: Ewbank, grades: ewbankGrades },
-	{ scale: Saxon, grades: saxonGrades },
-	{ scale: Norwegian, grades: norwegianGrades },
-	{ scale: BrazilianCrux, grades: brazilianGrades ?? [] },
-];
+// todo why is this not picking up the types from the library?
+// todo also why does the library not export an array of all the scales?
+export type GradeScale = {
+	name: string;
+	displayName: string;
+	grades: string[];
+	getGradeBand: (grade: string) => string;
+	getScore: (grade: string) => number[];
+	getGrade: (score: number[]) => string;
+};

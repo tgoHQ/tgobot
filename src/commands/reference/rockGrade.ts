@@ -7,9 +7,11 @@ import {
 	SeparatorBuilder,
 	SeparatorSpacingSize,
 } from "discord.js";
-import { gradeSets } from "../../interaction-handlers/climbingGradeAutocomplete.js";
+import {
+	gradeScales,
+	type GradeScale,
+} from "../../interaction-handlers/climbingGradeAutocomplete.js";
 import { colors } from "../../util/colors.js";
-type GradeScale = (typeof gradeSets)[0]["scale"];
 
 export class GradesCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -30,10 +32,10 @@ export class GradesCommand extends Command {
 						.setDescription("The scale of the grade you're looking up")
 						.setRequired(true)
 						.addChoices(
-							gradeSets.map((e) => {
+							gradeScales.map((scale) => {
 								return {
-									name: e.scale.displayName,
-									value: e.scale.name,
+									name: scale.displayName,
+									value: scale.name,
 								};
 							}),
 						),
@@ -54,13 +56,16 @@ export class GradesCommand extends Command {
 		const input = interaction.options.getString("grade", true);
 		const [scaleName, grade] = input.split("@");
 
-		//find grade scale from input
-		const scale = gradeSets.find((e) => {
-			return e.scale.name === scaleName;
-		})?.scale;
-		if (!scale) return; //todo
+		if (!scaleName || !grade) return;
 
-		const conversions = getAllConversionsForGrade(grade!, scale);
+		//find grade scale from input
+		const scale = gradeScales.find((scale) => {
+			return scale.name === scaleName;
+		});
+
+		if (!scale) return;
+
+		const conversions = getAllConversionsForGrade(grade, scale);
 		const conversionsFormatted = conversions
 			.map((e) => `\`${e.grade}\` | ${e.scale.displayName}`)
 			.join("\n\n");
@@ -98,18 +103,21 @@ export class GradesCommand extends Command {
 			components: [container],
 		});
 	}
+
+	
 }
 
-function getAllConversionsForGrade(grade: string, scale: GradeScale) {
-	const score = scale.getScore(grade);
+function getAllConversionsForGrade(grade: string, originalScale: GradeScale) {
+	const difficultyScore = originalScale.getScore(grade);
 
-	return gradeSets.flatMap((e) => {
+	return gradeScales.flatMap((convertScale) => {
 		//do not "convert" it to the scale it already is
-		if (e.scale.name === scale.name) return [];
+		if (convertScale.name === originalScale.name) return [];
 
+		//find the grade for this difficulty score within this scale
 		return {
-			scale: e.scale,
-			grade: e.scale.getGrade(score),
+			scale: convertScale,
+			grade: convertScale.getGrade(difficultyScore),
 		};
 	});
 }
