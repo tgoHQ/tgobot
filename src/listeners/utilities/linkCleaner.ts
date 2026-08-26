@@ -1,8 +1,7 @@
 import { Events, Listener } from "@sapphire/framework";
-import { Message, MessageFlags } from "discord.js";
+import { Message } from "discord.js";
 
 import { cleanLink } from "../../lib/linkCleaner/cleanLink.js";
-import { linkCleanerResultsComponent } from "../../lib/linkCleaner/component.js";
 
 export class LinkListener extends Listener {
 	public constructor(
@@ -27,11 +26,12 @@ export class LinkListener extends Listener {
 				const result = await cleanLink(new URL(match));
 
 				if (result.modified) {
-					message.reply({
-						flags: MessageFlags.IsComponentsV2,
+					const reply = await message.reply({
 						allowedMentions: { repliedUser: false },
-						components: [linkCleanerResultsComponent(result)],
+						content: `### 🧼 Cleaned your link!\n${result.outputUrl.toString()}`,
 					});
+
+					await reply.suppressEmbeds();
 				}
 			}
 		}
