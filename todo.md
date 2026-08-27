@@ -18,8 +18,6 @@
 
 - emoji shortcut to delete introduction channel message and thread at once
 
-- commmand to search/look up articles from tgo guide
-
 - ticket command
   - opens a private thread with specified name, adds the user
   - don't allow user to add other users?

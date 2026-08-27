@@ -24,6 +24,8 @@ export type ChatbotMessage = ModelMessage & {
 	role: "user" | "assistant";
 };
 
+// todo test web search functionality and add the ability to see image attachments in messages
+
 /** generate a response message from the steve climber assistant */
 export async function chatbot({
 	messages,
@@ -41,6 +43,14 @@ export async function chatbot({
 		reasoning: "medium",
 		maxOutputTokens: 650,
 		messages,
+		tools: {
+			web_search: anthropic.tools.webSearch_20260209({
+				maxUses: 5,
+			}),
+			web_fetch: anthropic.tools.webFetch_20260209({
+				maxUses: 1,
+			}),
+		},
 
 		...(responseSchema
 			? {

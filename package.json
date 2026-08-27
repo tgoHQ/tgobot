@@ -16,30 +16,30 @@
 		"knip": "knip --treat-config-hints-as-errors"
 	},
 	"dependencies": {
-		"@ai-sdk/anthropic": "^4.0.42",
+		"@ai-sdk/anthropic": "^4.0.44",
 		"@openbeta/sandbag": "^0.0.55",
-		"@sapphire/framework": "^5.5.0",
+		"@sapphire/framework": "^5.5.1",
 		"@sapphire/utilities": "^3.18.2",
 		"@url-sanitize/clearurls": "^2.0.2",
 		"@url-sanitize/core": "^2.0.2",
-		"ai": "^7.0.79",
+		"ai": "^7.0.82",
 		"clean-links": "^0.0.7",
-		"discord.js": "^14.26.4",
+		"discord.js": "^14.27.0",
 		"drizzle-orm": "^0.45.2",
-		"humanize-duration": "^3.34.0",
-		"node-cron": "^4.5.0",
-		"parse-duration": "^2.1.6",
+		"humanize-duration": "^3.34.1",
+		"node-cron": "^4.6.0",
+		"parse-duration": "^2.1.8",
 		"postgres": "^3.4.9",
 		"zod": "^4.4.3"
 	},
 	"devDependencies": {
 		"@types/humanize-duration": "^3.27.4",
-		"@types/node": "^26.0.1",
+		"@types/node": "^26.3.0",
 		"dotenv": "^17.4.2",
 		"drizzle-kit": "^0.31.10",
-		"knip": "^6.23.0",
-		"prettier": "^3.9.4",
-		"typescript": "^6.0.3"
+		"knip": "^6.32.3",
+		"prettier": "^3.9.6",
+		"typescript": "^7.0.2"
 	},
 	"type": "module"
 }

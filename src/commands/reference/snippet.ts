@@ -43,6 +43,24 @@ const snippets: Snippet[] = [
 		`,
 	},
 	{
+		name: "Trail Runners vs Boots",
+		content: `
+			For the vast majority of hiking and backpacking, trail runners beat boots. They're lighter, more comfortable out of the box, and they dry in hours instead of days.
+
+			**Waterproof vs non-waterproof**
+			Waterproof shoes only stay dry until water comes in over the collar, and then they stay wet. Non-waterproof shoes drain and dry as you walk, and they breathe far better in heat. Save waterproof for cold, snow, and persistent wet.
+
+			**Ankle support**
+			A high cuff does not prevent ankle sprains — see the \`Ankle Support\` snippet for the research. Ankle strength comes from conditioning, not from a stiff shoe.
+
+			**Where to start**
+
+			Start with one of these trail runner models, which are well-suited for general hiking and backpacking.
+			- Altra Lone Peak — wide toe box, zero drop
+			- Topo Pursuit — wide toe box, 5mm drop
+		`,
+	},
+	{
 		name: "Weight",
 		content: `
 			**Worn weight** is the clothing you wear __all the time__ while hiking.

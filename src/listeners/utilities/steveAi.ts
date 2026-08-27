@@ -1,6 +1,6 @@
 import { Events, Listener } from "@sapphire/framework";
 
-import { Message, TextChannel } from "discord.js";
+import { Message } from "discord.js";
 import { chatbot, type ChatbotMessage } from "../../lib/llm/chatbot.js";
 import { env } from "../../env.js";
 
@@ -37,35 +37,44 @@ export class SteveAiMessageListener extends Listener {
 			await message.channel.sendTyping();
 		}
 
-		const context: ChatbotMessage[] = [];
+		const history: ChatbotMessage[] = [];
 		let currentMessage = message;
 
-		// check up the reply chain for context
+		async function processMessage(message: Message) {
+			const data: ChatbotMessage = {
+				role:
+					message.author.id === message.client.user.id ? "assistant" : "user",
+				content: [
+					{
+						type: "text",
+						text: message.content,
+					},
+				],
+			};
+
+			const repliedTo = message.reference?.messageId
+				? await message.channel.messages.fetch(message.reference.messageId)
+				: null;
+
+			return {
+				chatbotMessage: data,
+				repliedTo,
+			};
+		}
+
+		// walk up the reply chain to reconstruct the message history
 		while (true) {
-			const messageIsFromBot =
-				currentMessage.author.id === message.client.user.id;
+			const { chatbotMessage, repliedTo } =
+				await processMessage(currentMessage);
 
-			context.push({
-				role: messageIsFromBot ? "assistant" : "user",
-				content: currentMessage.content,
-			});
+			history.push(chatbotMessage);
 
-			const replyInfo = currentMessage.reference;
-			if (!replyInfo?.messageId) break;
-
-			const replyChannel = currentMessage.client.channels.cache.get(
-				replyInfo.channelId,
-			);
-			if (!replyChannel) break;
-			if (!(replyChannel instanceof TextChannel))
-				throw new Error("Reply channel is not a text channel");
-
-			//new current message is now the reply
-			currentMessage = await replyChannel.messages.fetch(replyInfo.messageId);
+			if (!repliedTo) break;
+			currentMessage = repliedTo;
 		}
 
 		const { text } = await chatbot({
-			messages: context.reverse(),
+			messages: history.reverse(),
 			currentChannel: message.channel,
 		});
 

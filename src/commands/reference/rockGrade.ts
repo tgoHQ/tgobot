@@ -7,9 +7,41 @@ import {
 	SeparatorBuilder,
 	SeparatorSpacingSize,
 } from "discord.js";
-import { gradeSets } from "../../interaction-handlers/climbingGradeAutocomplete.js";
 import { colors } from "../../util/colors.js";
-type GradeScale = (typeof gradeSets)[0]["scale"];
+
+import {
+	YosemiteDecimal,
+	UIAA,
+	French,
+	Ewbank,
+	Saxon,
+	Norwegian,
+	BrazilianCrux,
+	Font,
+	VScale,
+	AI,
+	WI,
+	Aid,
+} from "@openbeta/sandbag";
+
+// todo sandbag doesn't export an array of all the scales - make a PR to fix this
+export const gradeScales = [
+	YosemiteDecimal,
+	UIAA,
+	French,
+	Ewbank,
+	Saxon,
+	Norwegian,
+	BrazilianCrux,
+	Font,
+	VScale,
+	AI,
+	WI,
+	Aid,
+];
+
+//todo sandbag doesn't export the GradeScale type - make a PR to fix this
+type GradeScale = (typeof gradeScales)[number];
 
 export class GradesCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -30,10 +62,10 @@ export class GradesCommand extends Command {
 						.setDescription("The scale of the grade you're looking up")
 						.setRequired(true)
 						.addChoices(
-							gradeSets.map((e) => {
+							gradeScales.map((scale) => {
 								return {
-									name: e.scale.displayName,
-									value: e.scale.name,
+									name: scale.displayName,
+									value: scale.name,
 								};
 							}),
 						),
@@ -54,13 +86,16 @@ export class GradesCommand extends Command {
 		const input = interaction.options.getString("grade", true);
 		const [scaleName, grade] = input.split("@");
 
-		//find grade scale from input
-		const scale = gradeSets.find((e) => {
-			return e.scale.name === scaleName;
-		})?.scale;
-		if (!scale) return; //todo
+		if (!scaleName || !grade) return;
 
-		const conversions = getAllConversionsForGrade(grade!, scale);
+		//find grade scale from input
+		const scale = gradeScales.find((scale) => {
+			return scale.name === scaleName;
+		});
+
+		if (!scale) return;
+
+		const conversions = getAllConversionsForGrade(grade, scale);
 		const conversionsFormatted = conversions
 			.map((e) => `\`${e.grade}\` | ${e.scale.displayName}`)
 			.join("\n\n");
@@ -98,18 +133,53 @@ export class GradesCommand extends Command {
 			components: [container],
 		});
 	}
+
+	public override autocompleteRun(
+		interaction: Command.AutocompleteInteraction,
+	) {
+		const scaleName = interaction.options.getString("scale");
+		const gradeQuery = interaction.options.getString("grade") ?? "";
+
+		// if no scale is selected yet, return no items
+		if (!scaleName) {
+			return interaction.respond([]);
+		}
+
+		//get the scale
+		const gradeScale = gradeScales.find((e) => {
+			return e.name === scaleName;
+		});
+		if (!gradeScale) return interaction.respond([]);
+
+		const filteredGrades = gradeScale.grades.filter((grade) => {
+			return grade.toUpperCase().includes(gradeQuery.toUpperCase());
+		});
+
+		const options = filteredGrades.map((grade) => {
+			return {
+				name: `${grade}`,
+				value: `${gradeScale.name}@${grade}`,
+			};
+		});
+
+		//the max number of options to return is 25
+		const result = options.slice(0, 24);
+
+		return interaction.respond(result);
+	}
 }
 
-function getAllConversionsForGrade(grade: string, scale: GradeScale) {
-	const score = scale.getScore(grade);
+function getAllConversionsForGrade(grade: string, originalScale: GradeScale) {
+	const difficultyScore = originalScale.getScore(grade);
 
-	return gradeSets.flatMap((e) => {
+	return gradeScales.flatMap((convertScale) => {
 		//do not "convert" it to the scale it already is
-		if (e.scale.name === scale.name) return [];
+		if (convertScale.name === originalScale.name) return [];
 
+		//find the grade for this difficulty score within this scale
 		return {
-			scale: e.scale,
-			grade: e.scale.getGrade(score),
+			scale: convertScale,
+			grade: convertScale.getGrade(difficultyScore),
 		};
 	});
 }

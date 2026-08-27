@@ -1,0 +1,2 @@
+patchedDependencies:
+  "@openbeta/sandbag@0.0.55": patches/@openbeta__sandbag@0.0.55.patch

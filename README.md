@@ -18,13 +18,7 @@ Built with [Sapphire](https://sapphirejs.dev) on top of [discord.js](https://dis
 pnpm install
 ```
 
-Create a `.env` file with the required configuration. Every value is validated at startup by the Zod schema in [`src/env.ts`](src/env.ts) — see that file for the complete, authoritative list. It includes:
-
-- **Discord:** `TOKEN`, `GUILD_ID`
-- **Keys & URLs:** `DB_URL`, `GUIDE_SEARCH_URL`, `OPENAI_API_KEY`
-- **Role IDs:** `ROLE_*` (moderator, expert, booster, patron, bot, etc.)
-- **Channel IDs:** `CHANNEL_*` (introductions, logs, forums, activity channels, etc.)
-- **Forum tag IDs:** `TAG_*`
+Create a `.env` file with the required configuration. Every value is validated at startup by the Zod schema in [`src/env.ts`](src/env.ts) — see that file for the complete, authoritative list.
 
 Push the database schema:
 
@@ -71,7 +65,6 @@ src/
   env.ts                 Zod-validated environment configuration
   commands/              Slash & context commands (fun, moderation, reference, utility)
   listeners/             Discord event handlers (autoMod, channels, logging, utilities)
-  interaction-handlers/  Autocomplete / button / modal handlers
   lib/                   Business logic (moderation, llm, autoRole, linkCleaner, ...)
   jobs/                  Scheduled cron jobs
   db/                    Drizzle schema and client

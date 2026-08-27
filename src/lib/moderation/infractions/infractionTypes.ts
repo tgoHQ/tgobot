@@ -8,7 +8,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "NSFW Content",
 		title: "4d",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -20,7 +20,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "NSFW Content",
 		title: "Bad-Faith",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
 				reason,
@@ -32,7 +32,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Personal Attacks",
 		title: "3d",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -44,7 +44,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Personal Attacks",
 		title: "Bad-Faith",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
 				reason,
@@ -54,9 +54,21 @@ export const InfractionTypes: InfractionType[] = [
 		},
 	},
 	{
-		group: "Bigotry/Slurs",
+		group: "Bigotry",
+		title: "12h",
+		execute: async ({ targetUser, author, reason }) => {
+			return await timeout({
+				targetUser,
+				reason,
+				author,
+				duration: getDuration.hours(12),
+			});
+		},
+	},
+	{
+		group: "Bigotry",
 		title: "4d",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -66,9 +78,9 @@ export const InfractionTypes: InfractionType[] = [
 		},
 	},
 	{
-		group: "Bigotry/Slurs",
+		group: "Bigotry",
 		title: "Bad-Faith",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
 				reason,
@@ -80,7 +92,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Anti-LNT Practices",
 		title: "12h",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -92,7 +104,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Anti-LNT Practices",
 		title: "Bad-Faith",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
 				reason,
@@ -104,7 +116,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Trolling/Shitposting",
 		title: "12h",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -116,7 +128,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Trolling/Shitposting",
 		title: "Bad-Faith",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
 				reason,
@@ -128,7 +140,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Political/Controversial Topics",
 		title: "12h",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await timeout({
 				targetUser,
 				reason,
@@ -140,7 +152,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Political/Controversial Topics",
 		title: "Bad-Faith",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
 				reason,
@@ -152,7 +164,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Soliciting",
 		title: "Warning",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await warn({
 				targetUser,
 				author,
@@ -163,7 +175,7 @@ export const InfractionTypes: InfractionType[] = [
 	{
 		group: "Soliciting",
 		title: "Bad-Faith",
-		executeConsequence: async ({ targetUser, author, reason }) => {
+		execute: async ({ targetUser, author, reason }) => {
 			return await ban({
 				targetUser,
 				reason,
@@ -181,7 +193,7 @@ export type InfractionType = {
 	/** the human-friendly title of this infraction type */
 	title: string;
 	/** the function that executes the consequence of this infraction, such as giving the proper warnig, timeout, or ban */
-	executeConsequence: ({
+	execute: ({
 		targetUser,
 		author,
 		reason,

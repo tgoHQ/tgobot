@@ -39,10 +39,7 @@ export class SlowmodeCommand extends Command {
 						.setRequired(true),
 				)
 				.addStringOption((option) =>
-					option
-						.setName("reason")
-						.setDescription("Reason for the slowmode")
-						.setRequired(true),
+					option.setName("reason").setDescription("Reason for the slowmode"),
 				)
 				.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
 		});
@@ -65,7 +62,7 @@ export class SlowmodeCommand extends Command {
 					ChannelType.PublicThread,
 					ChannelType.GuildVoice,
 				]),
-				reason: interaction.options.getString("reason", true),
+				reason: interaction.options.getString("reason") ?? undefined,
 				author: interaction.user,
 				interval,
 			}),

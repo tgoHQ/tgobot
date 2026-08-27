@@ -11,7 +11,7 @@ export async function slowmode({
 	interval,
 }: {
 	targetChannel: GuildTextBasedChannel;
-	reason: string;
+	reason?: string;
 	author: User;
 	/** Slowmode interval in milliseconds */
 	interval: number;
