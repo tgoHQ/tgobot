@@ -12,6 +12,8 @@ import { removeTabs } from "../../util/removeTabs.js";
 
 export class MessageUpdateListener extends Listener {
 	public async run(oldMessage: Message, newMessage: Message) {
+		//todo handle partials here by refetching the message. this will allow for logging of older message that are uncached
+
 		if (newMessage.guild?.id != env.GUILD_ID) return; //if message edited is not from main guild, return
 		if (newMessage.author?.bot) return; //if message edited is from a bot, return
 

@@ -5,6 +5,7 @@ export const colors = {
 	},
 	red: {
 		hex: "#ff3131",
+		decimal: 16724273,
 	},
 	blue: {
 		hex: "#4a78fc",

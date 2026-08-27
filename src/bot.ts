@@ -3,7 +3,7 @@ import {
 	RegisterBehavior,
 	SapphireClient,
 } from "@sapphire/framework";
-import { GatewayIntentBits } from "discord.js";
+import { GatewayIntentBits, Partials } from "discord.js";
 
 import { env } from "./env.js";
 import { initializeCronJobs } from "./jobs/index.js";
@@ -26,7 +26,11 @@ const client = new SapphireClient({
 		GatewayIntentBits.MessageContent,
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.GuildMessageReactions,
 	],
+	// reactions on messages from before the current session arrive partial;
+	// without these the reaction events never fire for them at all
+	partials: [Partials.Message, Partials.Reaction, Partials.User],
 	// initial presence is set from the ready listener and rotated daily by the rotatePresence cron job
 	allowedMentions: {
 		parse: ["users"],

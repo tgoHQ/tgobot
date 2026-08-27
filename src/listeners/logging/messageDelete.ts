@@ -1,11 +1,12 @@
 import { Listener } from "@sapphire/framework";
 
-import { EmbedBuilder, Message } from "discord.js";
+import { EmbedBuilder, Message, type PartialMessage } from "discord.js";
 import { CHANNEL_LOG, GUILD } from "../../lib/loadDiscordObjects.js";
 import { colors } from "../../util/colors.js";
 
 export class MessageDeleteListener extends Listener {
-	public async run(message: Message) {
+	public async run(message: Message | PartialMessage) {
+		if (message.partial) return; //todo handle partials here by refetching the message. this will allow for logging of older message that are uncached
 		if (!message.guild || message.guild !== (await GUILD())) return; //if message deleted is not from main guild, return
 
 		const logChannel = await CHANNEL_LOG();
