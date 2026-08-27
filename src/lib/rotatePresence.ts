@@ -18,7 +18,7 @@ const presences: ActivitiesOptions[] = [
 	{ type: ActivityType.Custom, name: "is this aid?" },
 	{
 		type: ActivityType.Streaming,
-		name: "my thru-hike",
+		name: "streaming my thru-hike",
 		url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
 	},
 	{ type: ActivityType.Playing, name: "weighing my band-aids" },
