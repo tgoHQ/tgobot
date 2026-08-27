@@ -90,6 +90,4 @@ export const gradeScales = [
 	Aid,
 ];
 
-// todo sandbag doesn't export an array of all the scales, nor its GradeScale
-// interface from the package root, so derive it from the array above.
-export type GradeScale = (typeof gradeScales)[number];
+// todo sandbag doesn't export an array of all the scales as an array - make a PR to fix this
