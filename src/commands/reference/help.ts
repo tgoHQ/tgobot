@@ -41,6 +41,7 @@ export class HelpCommand extends Command {
 					removeTabs(
 						`
 							</snippet:1205576907517599815> Pull up commonly used links or the answer to an FAQ.
+							</guide:1280285914765201461> Pull up an article from TGO Guide.
 
 							<id:customize>: See the available roles and choose yours.
 
