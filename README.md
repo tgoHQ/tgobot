@@ -65,7 +65,6 @@ src/
   env.ts                 Zod-validated environment configuration
   commands/              Slash & context commands (fun, moderation, reference, utility)
   listeners/             Discord event handlers (autoMod, channels, logging, utilities)
-  interaction-handlers/  Autocomplete / button / modal handlers
   lib/                   Business logic (moderation, llm, autoRole, linkCleaner, ...)
   jobs/                  Scheduled cron jobs
   db/                    Drizzle schema and client
