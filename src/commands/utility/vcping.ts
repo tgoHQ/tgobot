@@ -64,7 +64,7 @@ export class VcPingCommand extends Command {
 		}, COOLDOWN);
 
 		await interaction.reply(
-			`${Emoji.Call} ${ROLE_VCPING}, there are ${connected} people in ${channel}!`,
+			`${Emoji.Call} ${await ROLE_VCPING()}, there are ${connected} people in ${channel}!`,
 		);
 	}
 }
