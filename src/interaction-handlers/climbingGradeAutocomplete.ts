@@ -75,6 +75,7 @@ import {
 	Aid,
 } from "@openbeta/sandbag";
 
+// todo sandbag doesn't export an array of all the scales - make a PR to fix this
 export const gradeScales = [
 	YosemiteDecimal,
 	UIAA,
@@ -90,4 +91,3 @@ export const gradeScales = [
 	Aid,
 ];
 
-// todo sandbag doesn't export an array of all the scales as an array - make a PR to fix this
