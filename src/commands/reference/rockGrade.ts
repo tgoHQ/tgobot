@@ -7,11 +7,41 @@ import {
 	SeparatorBuilder,
 	SeparatorSpacingSize,
 } from "discord.js";
-import {
-	gradeScales,
-	type GradeScale,
-} from "../../interaction-handlers/climbingGradeAutocomplete.js";
 import { colors } from "../../util/colors.js";
+
+import {
+	YosemiteDecimal,
+	UIAA,
+	French,
+	Ewbank,
+	Saxon,
+	Norwegian,
+	BrazilianCrux,
+	Font,
+	VScale,
+	AI,
+	WI,
+	Aid,
+} from "@openbeta/sandbag";
+
+// todo sandbag doesn't export an array of all the scales - make a PR to fix this
+export const gradeScales = [
+	YosemiteDecimal,
+	UIAA,
+	French,
+	Ewbank,
+	Saxon,
+	Norwegian,
+	BrazilianCrux,
+	Font,
+	VScale,
+	AI,
+	WI,
+	Aid,
+];
+
+//todo sandbag doesn't export the GradeScale type - make a PR to fix this
+type GradeScale = (typeof gradeScales)[number];
 
 export class GradesCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -102,6 +132,40 @@ export class GradesCommand extends Command {
 			flags: MessageFlags.IsComponentsV2,
 			components: [container],
 		});
+	}
+
+	public override autocompleteRun(
+		interaction: Command.AutocompleteInteraction,
+	) {
+		const scaleName = interaction.options.getString("scale");
+		const gradeQuery = interaction.options.getString("grade") ?? "";
+
+		// if no scale is selected yet, return no items
+		if (!scaleName) {
+			return interaction.respond([]);
+		}
+
+		//get the scale
+		const gradeScale = gradeScales.find((e) => {
+			return e.name === scaleName;
+		});
+		if (!gradeScale) return interaction.respond([]);
+
+		const filteredGrades = gradeScale.grades.filter((grade) => {
+			return grade.toUpperCase().includes(gradeQuery.toUpperCase());
+		});
+
+		const options = filteredGrades.map((grade) => {
+			return {
+				name: `${grade}`,
+				value: `${gradeScale.name}@${grade}`,
+			};
+		});
+
+		//the max number of options to return is 25
+		const result = options.slice(0, 24);
+
+		return interaction.respond(result);
 	}
 }
 
