@@ -43,6 +43,14 @@ export async function chatbot({
 		reasoning: "medium",
 		maxOutputTokens: 650,
 		messages,
+		tools: {
+			web_search: anthropic.tools.webSearch_20260209({
+				maxUses: 5,
+			}),
+			web_fetch: anthropic.tools.webFetch_20260209({
+				maxUses: 1,
+			}),
+		},
 
 		...(responseSchema
 			? {
