@@ -2,7 +2,6 @@
 	"$schema": "https://unpkg.com/knip@5/schema.json",
 	"entry": [
 		"src/commands/**/*.ts",
-		"src/listeners/**/*.ts",
-		"src/interaction-handlers/**/*.ts"
+		"src/listeners/**/*.ts"
 	]
 }
