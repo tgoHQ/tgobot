@@ -14,7 +14,7 @@ export const photoOfWeekJob: CronJob = {
 	execute: photoOfTheWeek,
 };
 
-export async function photoOfTheWeek() {
+async function photoOfTheWeek() {
 	const PHOTOS = await CHANNEL_PHOTOS();
 	const TOWN_HALL = await CHANNEL_TOWN_HALL();
 	const TAG = await TAG_PHOTO_OF_THE_WEEK();
