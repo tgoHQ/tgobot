@@ -2,7 +2,7 @@
 // todo this is spaghetti and needs more comments
 
 import { Role, GuildMember } from "discord.js";
-import { getAutoRoleConfig } from "./config.js";
+import { getAutoRoleConfig } from "#lib/autoRole/config";
 
 export type AutoRoleConfigRule = {
 	/** the role to be automated */

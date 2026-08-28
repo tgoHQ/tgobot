@@ -1,7 +1,7 @@
 import { Events, Listener } from "@sapphire/framework";
 import { Message } from "discord.js";
-import { ROLE_ATTACHMENTS } from "../../lib/loadDiscordObjects.js";
-import { ban } from "../../lib/moderation/actions/users/ban.js";
+import { ROLE_ATTACHMENTS } from "#lib/loadDiscordObjects";
+import { ban } from "#lib/moderation/actions/users/ban";
 
 export class AttachmentHoneypotListener extends Listener {
 	public constructor(

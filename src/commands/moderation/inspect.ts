@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
 import { MessageFlags, PermissionFlagsBits } from "discord.js";
-import { userInspectComponent } from "../../lib/moderation/inspect.js";
+import { userInspectComponent } from "#lib/moderation/inspect";
 
 export class InspectCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

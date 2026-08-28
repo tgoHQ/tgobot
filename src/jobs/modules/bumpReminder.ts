@@ -1,5 +1,5 @@
-import { CHANNEL_BOTS } from "../../lib/loadDiscordObjects.js";
-import type { CronJob } from "../index.js";
+import { CHANNEL_BOTS } from "#lib/loadDiscordObjects";
+import type { CronJob } from "#jobs/index";
 
 export const bumpReminder: CronJob = {
 	// at midnight every 3 days

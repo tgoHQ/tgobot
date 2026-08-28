@@ -2,9 +2,9 @@ import {
 	CHANNEL_PHOTOS,
 	CHANNEL_TOWN_HALL,
 	TAG_PHOTO_OF_THE_WEEK,
-} from "../../lib/loadDiscordObjects.js";
-import { getDuration } from "../../util/getDuration.js";
-import type { CronJob } from "../index.js";
+} from "#lib/loadDiscordObjects";
+import { getDuration } from "#util/getDuration";
+import type { CronJob } from "#jobs/index";
 
 import type { AnyThreadChannel } from "discord.js";
 
@@ -14,7 +14,7 @@ export const photoOfWeekJob: CronJob = {
 	execute: photoOfTheWeek,
 };
 
-export async function photoOfTheWeek() {
+async function photoOfTheWeek() {
 	const PHOTOS = await CHANNEL_PHOTOS();
 	const TOWN_HALL = await CHANNEL_TOWN_HALL();
 	const TAG = await TAG_PHOTO_OF_THE_WEEK();

@@ -1,14 +1,14 @@
 import { Listener } from "@sapphire/framework";
-import { env } from "../../env.js";
+import { env } from "#env";
 import {
 	Message,
 	ContainerBuilder,
 	TextDisplayBuilder,
 	MessageFlags,
 } from "discord.js";
-import { CHANNEL_LOG } from "../../lib/loadDiscordObjects.js";
-import { colors } from "../../util/colors.js";
-import { removeTabs } from "../../util/removeTabs.js";
+import { CHANNEL_LOG } from "#lib/loadDiscordObjects";
+import { colors } from "#util/colors";
+import { removeTabs } from "#util/removeTabs";
 
 export class MessageUpdateListener extends Listener {
 	public async run(oldMessage: Message, newMessage: Message) {

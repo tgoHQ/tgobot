@@ -1,6 +1,6 @@
 import { Events, Listener } from "@sapphire/framework";
 import { Client } from "discord.js";
-import { setRotatingPresence } from "../../lib/rotatePresence.js";
+import { setRotatingPresence } from "#lib/rotatePresence";
 
 export class ReadyListener extends Listener {
 	public constructor(

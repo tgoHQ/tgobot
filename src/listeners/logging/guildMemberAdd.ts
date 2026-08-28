@@ -2,8 +2,8 @@ import { Listener } from "@sapphire/framework";
 
 import { EmbedBuilder, GuildMember } from "discord.js";
 import humanizeDuration from "humanize-duration";
-import { CHANNEL_LOG } from "../../lib/loadDiscordObjects.js";
-import { colors } from "../../util/colors.js";
+import { CHANNEL_LOG } from "#lib/loadDiscordObjects";
+import { colors } from "#util/colors";
 
 export class GuildMemberAddListener extends Listener {
 	public async run(member: GuildMember) {

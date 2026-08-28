@@ -1,8 +1,8 @@
 import type { User } from "discord.js";
-import { GUILD } from "../../../loadDiscordObjects.js";
-import { Emoji } from "../../../../util/emoji.js";
-import { getDuration } from "../../../../util/getDuration.js";
-import { handleUserModAction } from "./index.js";
+import { GUILD } from "#lib/loadDiscordObjects";
+import { Emoji } from "#util/emoji";
+import { getDuration } from "#util/getDuration";
+import { handleUserModAction } from "#lib/moderation/actions/users/index";
 
 /** mod action to ban a user */
 export async function ban({

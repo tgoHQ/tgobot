@@ -1,7 +1,7 @@
 import { Listener } from "@sapphire/framework";
 
 import { GuildMember, Events } from "discord.js";
-import { ROLE_BOT } from "../../lib/loadDiscordObjects.js";
+import { ROLE_BOT } from "#lib/loadDiscordObjects";
 
 export class BotJoinListener extends Listener {
 	public constructor(

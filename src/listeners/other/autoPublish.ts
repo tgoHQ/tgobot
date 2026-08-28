@@ -2,10 +2,7 @@
 
 import { Events, Listener } from "@sapphire/framework";
 import type { Message, NewsChannel, Channel } from "discord.js";
-import {
-	CHANNEL_MODLOG,
-	CHANNEL_TOWN_HALL,
-} from "../../lib/loadDiscordObjects.js";
+import { CHANNEL_MODLOG, CHANNEL_TOWN_HALL } from "#lib/loadDiscordObjects";
 
 export class AutoPublishListener extends Listener {
 	public constructor(

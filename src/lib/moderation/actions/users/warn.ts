@@ -1,6 +1,6 @@
 import type { User } from "discord.js";
-import { Emoji } from "../../../../util/emoji.js";
-import { handleUserModAction } from "./index.js";
+import { Emoji } from "#util/emoji";
+import { handleUserModAction } from "#lib/moderation/actions/users/index";
 
 type WarnUserOpts = {
 	/** the user who is receiving the warning */

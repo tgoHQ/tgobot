@@ -1,8 +1,8 @@
 import { User } from "discord.js";
-import { GUILD, ROLE_MINECRAFT } from "../../../loadDiscordObjects.js";
-import { Emoji } from "../../../../util/emoji.js";
+import { GUILD } from "#lib/loadDiscordObjects";
+import { Emoji } from "#util/emoji";
 import humanizeDuration from "humanize-duration";
-import { handleUserModAction } from "./index.js";
+import { handleUserModAction } from "#lib/moderation/actions/users/index";
 
 /** mod action to timeout a user */
 export async function timeout({
@@ -29,12 +29,6 @@ export async function timeout({
 		const guild = await GUILD();
 		const member = await guild.members.fetch(targetUser);
 		await member.timeout(duration, reason);
-
-		// remove the minecraft access role when someone gets timed out
-		const role = await ROLE_MINECRAFT();
-		if (member.roles.cache.has(role.id)) {
-			await member.roles.remove(role);
-		}
 	}
 
 	return string;

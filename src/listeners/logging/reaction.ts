@@ -10,10 +10,10 @@ import {
 	type PartialUser,
 	type User,
 } from "discord.js";
-import { env } from "../../env.js";
-import { CHANNEL_LOG } from "../../lib/loadDiscordObjects.js";
-import { colors } from "../../util/colors.js";
-import { removeTabs } from "../../util/removeTabs.js";
+import { env } from "#env";
+import { CHANNEL_LOG } from "#lib/loadDiscordObjects";
+import { colors } from "#util/colors";
+import { removeTabs } from "#util/removeTabs";
 
 /**
  * Reactions on messages that predate the current session arrive partial, so both

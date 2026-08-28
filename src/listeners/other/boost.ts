@@ -6,9 +6,9 @@ import {
 	ROLE_BOOSTER_COSMETIC,
 	CHANNEL_INFO,
 	CHANNEL_BOTS,
-} from "../../lib/loadDiscordObjects.js";
-import { removeTabs } from "../../util/removeTabs.js";
-import { colors } from "../../util/colors.js";
+} from "#lib/loadDiscordObjects";
+import { removeTabs } from "#util/removeTabs";
+import { colors } from "#util/colors";
 
 export class ReadyListener extends Listener {
 	public constructor(

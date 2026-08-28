@@ -2,10 +2,10 @@ import { Events, Listener } from "@sapphire/framework";
 import {
 	CHANNEL_INTRODUCTIONS,
 	ROLE_INTRODUCED,
-} from "../../lib/loadDiscordObjects.js";
+} from "#lib/loadDiscordObjects";
 import { Message } from "discord.js";
-import { removeTabs } from "../../util/removeTabs.js";
-import { chatbot } from "../../lib/llm/chatbot.js";
+import { removeTabs } from "#util/removeTabs";
+import { chatbot } from "#lib/llm/chatbot";
 
 export class IntroductionsAutoMessageListener extends Listener {
 	public constructor(

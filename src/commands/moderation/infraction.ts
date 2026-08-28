@@ -1,7 +1,7 @@
 import { Command } from "@sapphire/framework";
 import { AutocompleteInteraction, PermissionFlagsBits } from "discord.js";
-import { createInfraction } from "../../lib/moderation/infractions/createInfraction.js";
-import { InfractionTypes } from "../../lib/moderation/infractions/infractionTypes.js";
+import { createInfraction } from "#lib/moderation/infractions/createInfraction";
+import { InfractionTypes } from "#lib/moderation/infractions/infractionTypes";
 
 const infractionGroups = [...new Set(InfractionTypes.map((e) => e.group))];
 

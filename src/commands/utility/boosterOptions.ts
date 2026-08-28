@@ -1,5 +1,5 @@
 import { Command } from "@sapphire/framework";
-import { ROLE_BOOSTER_COSMETIC, GUILD } from "../../lib/loadDiscordObjects.js";
+import { ROLE_BOOSTER_COSMETIC, GUILD } from "#lib/loadDiscordObjects";
 
 export class BoosterOptionsCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

@@ -1,8 +1,14 @@
 import { cleanRedirect, type CleanRedirectResult } from "clean-links";
-import { cleanAmp, type AmpResult } from "./library/amp/cleanAmp.js";
-import { sanitizeUrl, type SanitizeResult } from "./library/sanitize.js";
-import { cleanParams } from "./library/params/cleanParams.js";
-import { badParams } from "./library/params/config.js";
+import {
+	cleanAmp,
+	type AmpResult,
+} from "#lib/linkCleaner/library/amp/cleanAmp";
+import {
+	sanitizeUrl,
+	type SanitizeResult,
+} from "#lib/linkCleaner/library/sanitize";
+import { cleanParams } from "#lib/linkCleaner/library/params/cleanParams";
+import { badParams } from "#lib/linkCleaner/library/params/config";
 
 /** the return type of the cleanLink function */
 export type CleanLinkResult = {

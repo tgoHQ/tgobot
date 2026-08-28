@@ -1,10 +1,10 @@
 import { Command } from "@sapphire/framework";
 
 import { ChannelType } from "discord.js";
-import { ROLE_VCPING } from "../../lib/loadDiscordObjects.js";
-import { Emoji } from "../../util/emoji.js";
+import { ROLE_VCPING } from "#lib/loadDiscordObjects";
+import { Emoji } from "#util/emoji";
 import humanizeDuration from "humanize-duration";
-import { getDuration } from "../../util/getDuration.js";
+import { getDuration } from "#util/getDuration";
 
 const MIN_CONNECTED_USERS = 3;
 const COOLDOWN = getDuration.hours(6);

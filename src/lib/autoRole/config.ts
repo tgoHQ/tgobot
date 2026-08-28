@@ -1,4 +1,4 @@
-import type { AutoRoleConfigRule } from "./logic.js";
+import type { AutoRoleConfigRule } from "#lib/autoRole/logic";
 import {
 	ROLE_MODERATOR_BASE,
 	ROLE_MODERATOR_COSMETIC,
@@ -8,8 +8,7 @@ import {
 	ROLE_BOOSTER_COSMETIC,
 	ROLE_PATRON_BASE,
 	ROLE_PATRON_COSMETIC,
-	ROLE_MINECRAFT,
-} from "../loadDiscordObjects.js";
+} from "#lib/loadDiscordObjects";
 
 export async function getAutoRoleConfig(): Promise<AutoRoleConfigRule[]> {
 	return [
@@ -24,14 +23,6 @@ export async function getAutoRoleConfig(): Promise<AutoRoleConfigRule[]> {
 					await ROLE_PATRON_BASE(),
 				],
 				type: "any",
-			},
-		},
-		{
-			role: await ROLE_MINECRAFT(),
-			mode: "remove",
-			roleRequirements: {
-				roles: [await ROLE_PERKS()],
-				type: "all",
 			},
 		},
 		{

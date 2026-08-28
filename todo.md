@@ -32,7 +32,6 @@
 - sapphire logger
 - subcommands and autocompletes
 - https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-utilities-store/
-- https://sapphirejs.dev/docs/Documentation/api-plugins/@sapphire/plugin-hmr/
 
 # some day
 

@@ -1,5 +1,5 @@
-import { setRotatingPresence } from "../../lib/rotatePresence.js";
-import type { CronJob } from "../index.js";
+import { setRotatingPresence } from "#lib/rotatePresence";
+import type { CronJob } from "#jobs/index";
 
 export const rotatePresence: CronJob = {
 	// every day at midnight

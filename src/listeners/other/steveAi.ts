@@ -1,8 +1,8 @@
 import { Events, Listener } from "@sapphire/framework";
 
 import { Message } from "discord.js";
-import { chatbot, type ChatbotMessage } from "../../lib/llm/chatbot.js";
-import { env } from "../../env.js";
+import { chatbot, type ChatbotMessage } from "#lib/llm/chatbot";
+import { env } from "#env";
 
 export class SteveAiMessageListener extends Listener {
 	public constructor(

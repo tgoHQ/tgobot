@@ -5,9 +5,10 @@
 	"repository": "https://github.com/tgoHQ/tgobot",
 	"packageManager": "pnpm@10.24.0",
 	"scripts": {
-		"dev": "pnpm build && pnpm start",
 		"build": "rm -rf dist && tsc",
+		"watch": "tsc --watch --preserveWatchOutput",
 		"start": "node .",
+		"dev": "pnpm build && concurrently -k -n tsc,bot -c blue,green \"npm:watch\" \"npm:start\"",
 		"check": "pnpm format && pnpm types && pnpm knip",
 		"types": "tsc --noEmit",
 		"format": "prettier --write .",
@@ -19,7 +20,7 @@
 		"@ai-sdk/anthropic": "^4.0.44",
 		"@openbeta/sandbag": "^0.0.55",
 		"@sapphire/framework": "^5.5.1",
-		"@sapphire/utilities": "^3.18.2",
+		"@sapphire/plugin-hmr": "^3.0.2",
 		"@url-sanitize/clearurls": "^2.0.2",
 		"@url-sanitize/core": "^2.0.2",
 		"ai": "^7.0.82",
@@ -35,11 +36,15 @@
 	"devDependencies": {
 		"@types/humanize-duration": "^3.27.4",
 		"@types/node": "^26.3.0",
+		"concurrently": "^10.0.5",
 		"dotenv": "^17.4.2",
 		"drizzle-kit": "^0.31.10",
 		"knip": "^6.32.3",
 		"prettier": "^3.9.6",
 		"typescript": "^7.0.2"
 	},
-	"type": "module"
+	"type": "module",
+	"imports": {
+		"#*": "./dist/*.js"
+	}
 }

@@ -10,8 +10,8 @@ import {
 	MediaGalleryItemBuilder,
 	AutocompleteInteraction,
 } from "discord.js";
-import { removeTabs } from "../../util/removeTabs.js";
-import { colors } from "../../util/colors.js";
+import { removeTabs } from "#util/removeTabs";
+import { colors } from "#util/colors";
 
 const snippets: Snippet[] = [
 	{

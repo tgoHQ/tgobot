@@ -1,8 +1,8 @@
-import { colors } from "../../../../util/colors.js";
-import { CHANNEL_MODLOG } from "../../../loadDiscordObjects.js";
-import { UserNote } from "../../userNotes.js";
+import { colors } from "#util/colors";
+import { CHANNEL_MODLOG } from "#lib/loadDiscordObjects";
+import { UserNote } from "#lib/moderation/userNotes";
 import { type User, EmbedBuilder } from "discord.js";
-import { removeTabs } from "../../../../util/removeTabs.js";
+import { removeTabs } from "#util/removeTabs";
 
 type HandleUserModActionOpts = {
 	/** the user who is being actioned */
