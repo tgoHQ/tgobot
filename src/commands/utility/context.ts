@@ -1,10 +1,10 @@
 import { Command } from "@sapphire/framework";
 
 import { ApplicationCommandType } from "discord.js";
-import { removeTabs } from "../../util/removeTabs.js";
+import { removeTabs } from "#util/removeTabs";
 import { z } from "zod";
 
-import { chatbot } from "../../lib/llm/chatbot.js";
+import { chatbot } from "#lib/llm/chatbot";
 
 const responseSchema = z.object({
 	sentence: z.string(),

@@ -1,13 +1,10 @@
 import { Events, Listener } from "@sapphire/framework";
 
-import {
-	CHANNEL_PHOTOS,
-	CHANNEL_TRIP_REPORTS,
-} from "../../lib/loadDiscordObjects.js";
-import { getDuration } from "../../util/getDuration.js";
+import { CHANNEL_PHOTOS, CHANNEL_TRIP_REPORTS } from "#lib/loadDiscordObjects";
+import { getDuration } from "#util/getDuration";
 import { ThreadChannel } from "discord.js";
-import { sleep } from "../../util/sleep.js";
-import { removeTabs } from "../../util/removeTabs.js";
+import { sleep } from "#util/sleep";
+import { removeTabs } from "#util/removeTabs";
 
 export class ReadyListener extends Listener {
 	public constructor(

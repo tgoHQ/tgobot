@@ -1,6 +1,6 @@
 import { User, inlineCode } from "discord.js";
-import { Emoji } from "../../../util/emoji.js";
-import type { InfractionType } from "./infractionTypes.js";
+import { Emoji } from "#util/emoji";
+import type { InfractionType } from "#lib/moderation/infractions/infractionTypes";
 
 /** unified interface for creating an infraction against a user */
 export async function createInfraction({

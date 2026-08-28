@@ -1,7 +1,7 @@
 import { Listener, Events } from "@sapphire/framework";
 import { GuildMember } from "discord.js";
-import { ROLE_HONEYPOT_ID } from "../../lib/loadDiscordObjects.js";
-import { CHANNEL_ALERT } from "../../lib/loadDiscordObjects.js";
+import { ROLE_HONEYPOT_ID } from "#lib/loadDiscordObjects";
+import { CHANNEL_ALERT } from "#lib/loadDiscordObjects";
 
 export class HoneypotListener extends Listener {
 	public constructor(

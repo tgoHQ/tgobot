@@ -1,7 +1,7 @@
 import type { GuildTextBasedChannel, User } from "discord.js";
-import { handleToolModAction } from "./index.js";
+import { handleToolModAction } from "#lib/moderation/actions/tools/index";
 import humanizeDuration from "humanize-duration";
-import { Emoji } from "../../../../util/emoji.js";
+import { Emoji } from "#util/emoji";
 
 /** mod action to set the slowmode in a channel */
 export async function slowmode({

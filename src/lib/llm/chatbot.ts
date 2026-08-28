@@ -1,6 +1,6 @@
 import { generateText, type ModelMessage, Output } from "ai";
 import { container } from "@sapphire/framework";
-import { removeTabs } from "../../util/removeTabs.js";
+import { removeTabs } from "#util/removeTabs";
 import { anthropic } from "@ai-sdk/anthropic";
 import type { GuildTextBasedChannel, ForumChannel } from "discord.js";
 import type { ZodObject } from "zod";
@@ -18,7 +18,7 @@ import {
 	CHANNEL_TRIP_REPORTS,
 	CHANNEL_WINTER_SPORTS,
 	CHANNEL_MEETUPS,
-} from "../../lib/loadDiscordObjects.js";
+} from "#lib/loadDiscordObjects";
 
 export type ChatbotMessage = ModelMessage & {
 	role: "user" | "assistant";

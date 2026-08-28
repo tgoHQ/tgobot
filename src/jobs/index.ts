@@ -1,9 +1,9 @@
 import { container } from "@sapphire/framework";
 import cron from "node-cron";
-import { bumpReminder } from "./modules/bumpReminder.js";
-import { disableDms } from "./modules/disableDms.js";
-import { photoOfWeekJob } from "./modules/photoOfWeek.js";
-import { rotatePresence } from "./modules/rotatePresence.js";
+import { bumpReminder } from "#jobs/modules/bumpReminder";
+import { disableDms } from "#jobs/modules/disableDms";
+import { photoOfWeekJob } from "#jobs/modules/photoOfWeek";
+import { rotatePresence } from "#jobs/modules/rotatePresence";
 
 export type CronJob = {
 	/** cron expression for when the job runs */

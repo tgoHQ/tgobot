@@ -1,6 +1,6 @@
 import { Events, Listener } from "@sapphire/framework";
 import { Message } from "discord.js";
-import { ROLE_ATTACHMENTS } from "../../lib/loadDiscordObjects.js";
+import { ROLE_ATTACHMENTS } from "#lib/loadDiscordObjects";
 
 export class AttachmentsRoleListener extends Listener {
 	public constructor(

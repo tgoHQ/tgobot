@@ -1,6 +1,6 @@
 import { Events, Listener } from "@sapphire/framework";
 import { GuildMember } from "discord.js";
-import { executeMemberAutoRoles } from "../../lib/autoRole/logic.js";
+import { executeMemberAutoRoles } from "#lib/autoRole/logic";
 
 export class AutoRoleListener extends Listener {
 	public constructor(

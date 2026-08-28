@@ -1,5 +1,5 @@
 import { Command } from "@sapphire/framework";
-import { sleep } from "../../util/sleep.js";
+import { sleep } from "#util/sleep";
 
 import { PermissionFlagsBits } from "discord.js";
 

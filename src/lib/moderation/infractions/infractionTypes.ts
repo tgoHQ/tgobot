@@ -1,7 +1,7 @@
-import { timeout } from "../actions/users/timeout.js";
-import { ban } from "../actions/users/ban.js";
-import { warn } from "../actions/users/warn.js";
-import { getDuration } from "../../../util/getDuration.js";
+import { timeout } from "#lib/moderation/actions/users/timeout";
+import { ban } from "#lib/moderation/actions/users/ban";
+import { warn } from "#lib/moderation/actions/users/warn";
+import { getDuration } from "#util/getDuration";
 import type { User } from "discord.js";
 
 export const InfractionTypes: InfractionType[] = [

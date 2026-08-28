@@ -1,6 +1,6 @@
-import { db } from "../../db/drizzle.js";
+import { db } from "#db/drizzle";
 import { eq } from "drizzle-orm";
-import { userNotes } from "../../db/schema.js";
+import { userNotes } from "#db/schema";
 import { User } from "discord.js";
 import { container } from "@sapphire/framework";
 

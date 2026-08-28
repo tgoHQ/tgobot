@@ -1,6 +1,6 @@
-import { getDuration } from "../../util/getDuration.js";
-import { GUILD } from "../../lib/loadDiscordObjects.js";
-import type { CronJob } from "../index.js";
+import { getDuration } from "#util/getDuration";
+import { GUILD } from "#lib/loadDiscordObjects";
+import type { CronJob } from "#jobs/index";
 
 export const disableDms: CronJob = {
 	// run every 12 hours at midnight and noon

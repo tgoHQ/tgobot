@@ -1,4 +1,4 @@
-import type { AutoRoleConfigRule } from "./logic.js";
+import type { AutoRoleConfigRule } from "#lib/autoRole/logic";
 import {
 	ROLE_MODERATOR_BASE,
 	ROLE_MODERATOR_COSMETIC,
@@ -8,7 +8,7 @@ import {
 	ROLE_BOOSTER_COSMETIC,
 	ROLE_PATRON_BASE,
 	ROLE_PATRON_COSMETIC,
-} from "../loadDiscordObjects.js";
+} from "#lib/loadDiscordObjects";
 
 export async function getAutoRoleConfig(): Promise<AutoRoleConfigRule[]> {
 	return [

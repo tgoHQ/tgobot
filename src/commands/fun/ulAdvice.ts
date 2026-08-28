@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
-import { chatbot } from "../../lib/llm/chatbot.js";
-import { removeTabs } from "../../util/removeTabs.js";
+import { chatbot } from "#lib/llm/chatbot";
+import { removeTabs } from "#util/removeTabs";
 
 export class UlAdviceCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

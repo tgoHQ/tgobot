@@ -1,8 +1,8 @@
 import { Command } from "@sapphire/framework";
 
 import { PermissionFlagsBits } from "discord.js";
-import { UserNote } from "../../lib/moderation/userNotes.js";
-import { Emoji } from "../../util/emoji.js";
+import { UserNote } from "#lib/moderation/userNotes";
+import { Emoji } from "#util/emoji";
 
 export class DelNoteCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

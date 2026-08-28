@@ -9,10 +9,10 @@ import {
 	ThumbnailBuilder,
 } from "discord.js";
 import humanizeDuration from "humanize-duration";
-import { Emoji } from "../../util/emoji.js";
-import { GUILD } from "../loadDiscordObjects.js";
-import { UserNote } from "./userNotes.js";
-import { removeTabs } from "../../util/removeTabs.js";
+import { Emoji } from "#util/emoji";
+import { GUILD } from "#lib/loadDiscordObjects";
+import { UserNote } from "#lib/moderation/userNotes";
+import { removeTabs } from "#util/removeTabs";
 
 export async function userInspectComponent(user: User) {
 	const guild = await GUILD();

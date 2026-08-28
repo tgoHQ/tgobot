@@ -8,9 +8,9 @@ import {
 	SeparatorSpacingSize,
 } from "discord.js";
 import humanizeDuration from "humanize-duration";
-import { Emoji } from "../../util/emoji.js";
-import { removeTabs } from "../../util/removeTabs.js";
-import { colors } from "../../util/colors.js";
+import { Emoji } from "#util/emoji";
+import { removeTabs } from "#util/removeTabs";
+import { colors } from "#util/colors";
 
 export class AboutCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

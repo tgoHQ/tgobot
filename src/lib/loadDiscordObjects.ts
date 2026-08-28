@@ -1,4 +1,4 @@
-import { env } from "../env.js";
+import { env } from "#env";
 import { container } from "@sapphire/framework";
 import {
 	type Channel,

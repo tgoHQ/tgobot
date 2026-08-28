@@ -7,7 +7,7 @@ import {
 	SeparatorBuilder,
 	SeparatorSpacingSize,
 } from "discord.js";
-import { colors } from "../../util/colors.js";
+import { colors } from "#util/colors";
 
 import {
 	YosemiteDecimal,

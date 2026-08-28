@@ -1,8 +1,8 @@
 import { Listener } from "@sapphire/framework";
 
 import { EmbedBuilder, Message, type PartialMessage } from "discord.js";
-import { CHANNEL_LOG, GUILD } from "../../lib/loadDiscordObjects.js";
-import { colors } from "../../util/colors.js";
+import { CHANNEL_LOG, GUILD } from "#lib/loadDiscordObjects";
+import { colors } from "#util/colors";
 
 export class MessageDeleteListener extends Listener {
 	public async run(message: Message | PartialMessage) {

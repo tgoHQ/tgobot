@@ -1,6 +1,6 @@
 import { Command } from "@sapphire/framework";
 import { AutocompleteInteraction } from "discord.js";
-import { env } from "../../env.js";
+import { env } from "#env";
 
 export class GuideCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {

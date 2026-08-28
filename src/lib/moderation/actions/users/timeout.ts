@@ -1,8 +1,8 @@
 import { User } from "discord.js";
-import { GUILD } from "../../../loadDiscordObjects.js";
-import { Emoji } from "../../../../util/emoji.js";
+import { GUILD } from "#lib/loadDiscordObjects";
+import { Emoji } from "#util/emoji";
 import humanizeDuration from "humanize-duration";
-import { handleUserModAction } from "./index.js";
+import { handleUserModAction } from "#lib/moderation/actions/users/index";
 
 /** mod action to timeout a user */
 export async function timeout({
