@@ -16,6 +16,14 @@ export class SlowmodeCommand extends Command {
 			builder
 				.setName("slowmode")
 				.setDescription("Sets slowmode on a channel.")
+				.addStringOption((option) =>
+					option
+						.setName("interval")
+						.setDescription(
+							"Slowmode interval. Accepts units and abbreviations. Set to 0 to disable slowmode.",
+						)
+						.setRequired(true),
+				)
 				.addChannelOption((option) =>
 					option
 						.setName("channel")
@@ -28,14 +36,6 @@ export class SlowmodeCommand extends Command {
 							ChannelType.PublicThread,
 							ChannelType.GuildVoice,
 						),
-				)
-				.addStringOption((option) =>
-					option
-						.setName("interval")
-						.setDescription(
-							"Slowmode interval. Accepts units and abbreviations. Set to 0 to disable slowmode.",
-						)
-						.setRequired(true),
 				)
 				.addStringOption((option) =>
 					option.setName("reason").setDescription("Reason for the slowmode"),
