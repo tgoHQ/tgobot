@@ -22,9 +22,6 @@ importers:
       '@sapphire/framework':
         specifier: ^5.5.1
         version: 5.5.1
-      '@sapphire/utilities':
-        specifier: ^3.18.2
-        version: 3.18.2
       '@url-sanitize/clearurls':
         specifier: ^2.0.2
         version: 2.0.2

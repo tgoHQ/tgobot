@@ -19,7 +19,6 @@
 		"@ai-sdk/anthropic": "^4.0.44",
 		"@openbeta/sandbag": "^0.0.55",
 		"@sapphire/framework": "^5.5.1",
-		"@sapphire/utilities": "^3.18.2",
 		"@url-sanitize/clearurls": "^2.0.2",
 		"@url-sanitize/core": "^2.0.2",
 		"ai": "^7.0.82",

@@ -1,7 +1,7 @@
 import { Events, Listener } from "@sapphire/framework";
 import { EmbedBuilder, ThreadChannel } from "discord.js";
 import { CHANNEL_TRIP_REPORTS } from "../../lib/loadDiscordObjects.js";
-import { sleep } from "@sapphire/utilities";
+import { sleep } from "../../util/sleep.js";
 import { removeTabs } from "../../util/removeTabs.js";
 import { colors } from "../../util/colors.js";
 

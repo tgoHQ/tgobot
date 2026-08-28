@@ -21,5 +21,7 @@ export class DetectGearlistListener extends Listener {
 		//check if link is lighterpack
 		const isMatch = lighterpackRE.test(message.content);
 		if (!isMatch) return;
+
+		//todo currently this does nothing
 	}
 }
