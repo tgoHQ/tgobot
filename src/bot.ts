@@ -39,7 +39,7 @@ const client = new SapphireClient({
 		repliedUser: true,
 	},
 	hmr: {
-		enabled: process.env["NODE_ENV"] === "development",
+		enabled: process.env["NODE_ENV"] !== "production",
 	},
 });
 

@@ -5,9 +5,11 @@
 	"repository": "https://github.com/tgoHQ/tgobot",
 	"packageManager": "pnpm@10.24.0",
 	"scripts": {
-		"dev": "pnpm build && pnpm start",
 		"build": "rm -rf dist && tsc",
+		"watch": "tsc --watch --preserveWatchOutput",
 		"start": "node .",
+		"dev": "pnpm build && concurrently -k -n tsc,bot -c blue,green \"npm:watch\" \"npm:start\"",
+
 		"check": "pnpm format && pnpm types && pnpm knip",
 		"types": "tsc --noEmit",
 		"format": "prettier --write .",
