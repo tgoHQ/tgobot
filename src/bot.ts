@@ -3,6 +3,8 @@ import {
 	RegisterBehavior,
 	SapphireClient,
 } from "@sapphire/framework";
+import "@sapphire/plugin-hmr/register";
+
 import { GatewayIntentBits, Partials } from "discord.js";
 
 import { env } from "./env.js";
@@ -35,6 +37,9 @@ const client = new SapphireClient({
 	allowedMentions: {
 		parse: ["users"],
 		repliedUser: true,
+	},
+	hmr: {
+		enabled: process.env["NODE_ENV"] === "development",
 	},
 });
 

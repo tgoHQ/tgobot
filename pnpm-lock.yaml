@@ -22,6 +22,9 @@ importers:
       '@sapphire/framework':
         specifier: ^5.5.1
         version: 5.5.1
+      '@sapphire/plugin-hmr':
+        specifier: ^3.0.2
+        version: 3.0.2
       '@url-sanitize/clearurls':
         specifier: ^2.0.2
         version: 2.0.2
@@ -849,6 +852,10 @@ packages:
     resolution: {integrity: sha512-2v49P++RzHGb23bdjSa9u7flkdvhrq94IUO9PneY538TILN5QiMxfaXVK+pDR2YR7jpQYBy9APwtFDes2Svykg==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
 
+  '@sapphire/plugin-hmr@3.0.2':
+    resolution: {integrity: sha512-Rn1NV/ERUpMVgWQacDlASLbUPQvdzZOZykHlrlGCFMaSStf3t6Pv80gzuHMpd3rSJubo+SwHFyy+kY+Bxvnq6Q==}
+    engines: {node: '>=v18', npm: '>=7'}
+
   '@sapphire/ratelimits@2.4.11':
     resolution: {integrity: sha512-O6FNA/P0wxU4Ve9gxL948CoZw7+sSpujyUR2CLyLLCNuNvuFGFxPCJVl5crFVLXMIyBIrc2qk+/H9bsqsyQK1Q==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
@@ -1033,6 +1040,10 @@ packages:
 
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
+
+  chokidar@4.0.3:
+    resolution: {integrity: sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==}
+    engines: {node: '>= 14.16.0'}
 
   clean-links@0.0.7:
     resolution: {integrity: sha512-taWfyoszcmEidMkmgC3WtOh0lYHEwdvKjgsbt7KOkdn10w1q4OrnKl+PLvJ5cexyN52x2dQqG7iA9W+H9ez9sw==}
@@ -1244,6 +1255,10 @@ packages:
     resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
     engines: {node: '>=14'}
     hasBin: true
+
+  readdirp@4.1.2:
+    resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
+    engines: {node: '>= 14.18.0'}
 
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
@@ -1819,6 +1834,10 @@ snapshots:
       '@sapphire/utilities': 3.18.2
       tslib: 2.8.1
 
+  '@sapphire/plugin-hmr@3.0.2':
+    dependencies:
+      chokidar: 4.0.3
+
   '@sapphire/ratelimits@2.4.11': {}
 
   '@sapphire/result@2.8.0': {}
@@ -1933,6 +1952,10 @@ snapshots:
       zod: 4.4.3
 
   buffer-from@1.1.2: {}
+
+  chokidar@4.0.3:
+    dependencies:
+      readdirp: 4.1.2
 
   clean-links@0.0.7: {}
 
@@ -2163,6 +2186,8 @@ snapshots:
   postgres@3.4.9: {}
 
   prettier@3.9.6: {}
+
+  readdirp@4.1.2: {}
 
   resolve-pkg-maps@1.0.0: {}
 
