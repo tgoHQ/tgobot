@@ -40,7 +40,7 @@ export async function chatbot({
 }) {
 	const response = await generateText({
 		model: anthropic("claude-sonnet-5"),
-		reasoning: "medium",
+		reasoning: "low",
 		maxOutputTokens: 650,
 		messages,
 		tools: {
