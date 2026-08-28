@@ -7,8 +7,8 @@ import "@sapphire/plugin-hmr/register";
 
 import { GatewayIntentBits, Partials } from "discord.js";
 
-import { env } from "./env.js";
-import { initializeCronJobs } from "./jobs/index.js";
+import { env } from "#env";
+import { initializeCronJobs } from "#jobs/index";
 
 //delete all existing commands and repopulate each time the bot starts
 //https://sapphirejs.dev/docs/Guide/commands/application-commands/application-command-registry/advanced/setting-global-behavior-when-not-identical

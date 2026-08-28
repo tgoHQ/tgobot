@@ -41,5 +41,8 @@
 		"prettier": "^3.9.6",
 		"typescript": "^7.0.2"
 	},
-	"type": "module"
+	"type": "module",
+	"imports": {
+		"#*": "./dist/*.js"
+	}
 }
