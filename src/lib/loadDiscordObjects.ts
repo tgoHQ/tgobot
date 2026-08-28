@@ -34,8 +34,6 @@ export const ROLE_LEAVING_ALERT_ID = async () =>
 	await fetchRole(env.ROLE_LEAVING_ALERT_ID);
 export const ROLE_HONEYPOT_ID = async () =>
 	await fetchRole(env.ROLE_HONEYPOT_ID);
-export const ROLE_MINECRAFT = async () =>
-	await fetchRole(env.ROLE_MINECRAFT_ID);
 export const ROLE_ATTACHMENTS = async () =>
 	await fetchRole(env.ROLE_ATTACHMENTS_ID);
 export const ROLE_PERKS = async () => await fetchRole(env.ROLE_PERKS_ID);

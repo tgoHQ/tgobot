@@ -8,7 +8,6 @@ import {
 	ROLE_BOOSTER_COSMETIC,
 	ROLE_PATRON_BASE,
 	ROLE_PATRON_COSMETIC,
-	ROLE_MINECRAFT,
 } from "../loadDiscordObjects.js";
 
 export async function getAutoRoleConfig(): Promise<AutoRoleConfigRule[]> {
@@ -24,14 +23,6 @@ export async function getAutoRoleConfig(): Promise<AutoRoleConfigRule[]> {
 					await ROLE_PATRON_BASE(),
 				],
 				type: "any",
-			},
-		},
-		{
-			role: await ROLE_MINECRAFT(),
-			mode: "remove",
-			roleRequirements: {
-				roles: [await ROLE_PERKS()],
-				type: "all",
 			},
 		},
 		{
