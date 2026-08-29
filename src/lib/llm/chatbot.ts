@@ -24,7 +24,7 @@ export type ChatbotMessage = ModelMessage & {
 	role: "user" | "assistant";
 };
 
-// todo test web search functionality and add the ability to see image attachments in messages
+// todo add the ability to see image attachments in messages
 
 /** generate a response message from the steve climber assistant */
 export async function chatbot({
@@ -32,17 +32,19 @@ export async function chatbot({
 	instructions,
 	responseSchema,
 	currentChannel,
+	cache,
 }: {
 	messages: ChatbotMessage[];
 	instructions?: string;
 	responseSchema?: ZodObject;
 	currentChannel: GuildTextBasedChannel | ForumChannel;
+	cache: boolean;
 }) {
 	const response = await generateText({
 		model: anthropic("claude-sonnet-5"),
 		reasoning: "low",
 		maxOutputTokens: 650,
-		messages,
+		messages: cache ? withCache(messages) : messages,
 		tools: {
 			web_search: anthropic.tools.webSearch_20260209({
 				maxUses: 5,
@@ -60,7 +62,9 @@ export async function chatbot({
 				}
 			: {}),
 
-		instructions: removeTabs(`
+		instructions: {
+			role: "system",
+			content: removeTabs(`
 			# Assistant Info
 			
 			## Identity, Purpose, and Tone
@@ -68,7 +72,7 @@ export async function chatbot({
 			You are Steve Climber (${container.client.user!}).
 			You are the assistant bot on a Discord server primarily about camping, hiking, and backpacking.
 			Answer very succinctly (generally 3 lines or less) so as not to disrupt the chat. Never hit the user with a wall of text.
-			Feel free to use minimal formatting and speak in an informal, familiar tone.
+			Feel free to use minimal formatting and speak in an informal, familiar tone. Speak like a normal person.
 			Feel free to ask follow-up questions. but only when necessary- not just to make conversation.
 
 			## Subject Matter
@@ -110,11 +114,38 @@ export async function chatbot({
 
 			${instructions}
 		`),
+		},
 	});
+
+	console.log(
+		"cache write tokens",
+		response.usage.inputTokenDetails.cacheWriteTokens,
+	);
+	console.log(
+		"cache read tokens",
+		response.usage.inputTokenDetails.cacheReadTokens,
+	);
+	console.log(
+		"uncached input tokens",
+		response.usage.inputTokenDetails.noCacheTokens,
+	);
 
 	return response;
 }
 
 function formatChannel(channel: GuildTextBasedChannel | ForumChannel) {
 	return `\`${channel.toString()}\` (#${channel.name})`;
+}
+
+/** enable prompt caching */
+function withCache(messages: ModelMessage[]): ModelMessage[] {
+	const last = messages.at(-1);
+	if (!last) return messages;
+	return [
+		...messages.slice(0, -1),
+		{
+			...last,
+			providerOptions: { anthropic: { cacheControl: { type: "ephemeral" } } },
+		},
+	];
 }

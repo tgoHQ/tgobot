@@ -76,6 +76,7 @@ export class SteveAiMessageListener extends Listener {
 		const { text } = await chatbot({
 			messages: history.reverse(),
 			currentChannel: message.channel,
+			cache: true,
 		});
 
 		await message.reply(text);
