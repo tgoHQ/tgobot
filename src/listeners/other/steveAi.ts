@@ -45,7 +45,7 @@ export class SteveAiMessageListener extends Listener {
 			const images: FilePart[] = [...message.attachments.values()].flatMap(
 				(attachment) => {
 					console.log(attachment.contentType);
-					
+
 					if (!attachment.contentType) return [];
 
 					if (!attachment.contentType.startsWith("image/")) {

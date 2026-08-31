@@ -16,7 +16,7 @@ export class AttachmentHoneypotListener extends Listener {
 
 	public async run(message: Message) {
 		if (message.author.bot) return;
-		if (message.guild !== await GUILD()) return;
+		if (message.guild !== (await GUILD())) return;
 
 		// only care about messages with a file attachment
 		if (message.attachments.size === 0) return;
