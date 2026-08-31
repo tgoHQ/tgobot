@@ -24,8 +24,6 @@ export type ChatbotMessage = ModelMessage & {
 	role: "user" | "assistant";
 };
 
-// todo add the ability to see image attachments in messages
-
 /** generate a response message from the steve climber assistant */
 export async function chatbot({
 	messages,
