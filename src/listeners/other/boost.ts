@@ -36,7 +36,7 @@ export class ReadyListener extends Listener {
 						.setDescription(
 							removeTabs(`
 								${newMember} just boosted the server!
-								Boosters get perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and access to the </ask:1191037845574529086> AI command!
+								Boosters get perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and can ping ${oldMember.client.user} to talk to him!
 							`),
 						)
 						.setColor(colors.booster.hex),

@@ -54,6 +54,7 @@ export class IntroductionsAutoMessageListener extends Listener {
 			`),
 			currentChannel: message.channel,
 			messages: [{ role: "user", content: message.content }],
+			cache: false,
 		});
 
 		thread.send(

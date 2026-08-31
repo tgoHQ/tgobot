@@ -3,6 +3,7 @@ import { Events, Listener } from "@sapphire/framework";
 import { Message } from "discord.js";
 import { chatbot, type ChatbotMessage } from "#lib/llm/chatbot";
 import { env } from "#env";
+import type { FilePart } from "ai";
 
 export class SteveAiMessageListener extends Listener {
 	public constructor(
@@ -41,6 +42,29 @@ export class SteveAiMessageListener extends Listener {
 		let currentMessage = message;
 
 		async function processMessage(message: Message) {
+			const images: FilePart[] = [...message.attachments.values()].flatMap(
+				(attachment) => {
+					console.log(attachment.contentType);
+
+					if (!attachment.contentType) return [];
+
+					if (!attachment.contentType.startsWith("image/")) {
+						return [];
+					}
+
+					return [
+						{
+							type: "file",
+							mediaType: attachment.contentType,
+							fileName: attachment.name,
+							data: new URL(attachment.url),
+						},
+					];
+				},
+			);
+
+			console.log(images);
+
 			const data: ChatbotMessage = {
 				role:
 					message.author.id === message.client.user.id ? "assistant" : "user",
@@ -49,6 +73,7 @@ export class SteveAiMessageListener extends Listener {
 						type: "text",
 						text: message.content,
 					},
+					...images,
 				],
 			};
 
@@ -76,6 +101,7 @@ export class SteveAiMessageListener extends Listener {
 		const { text } = await chatbot({
 			messages: history.reverse(),
 			currentChannel: message.channel,
+			cache: true,
 		});
 
 		await message.reply(text);

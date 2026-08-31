@@ -47,6 +47,7 @@ export class UlAdviceCommand extends Command {
 					content: prompt,
 				},
 			],
+			cache: false,
 		});
 
 		await interaction.editReply(

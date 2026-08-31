@@ -54,6 +54,7 @@ export class ContextCommand extends Command {
 					content: interaction.targetMessage.content,
 				},
 			],
+			cache: false,
 		});
 
 		console.log(response.output);
