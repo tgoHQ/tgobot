@@ -1,6 +1,6 @@
 import { Events, Listener } from "@sapphire/framework";
 import { Message } from "discord.js";
-import { ROLE_ATTACHMENTS } from "#lib/loadDiscordObjects";
+import { ROLE_ATTACHMENTS, GUILD } from "#lib/loadDiscordObjects";
 import { ban } from "#lib/moderation/actions/users/ban";
 
 export class AttachmentHoneypotListener extends Listener {
@@ -16,6 +16,7 @@ export class AttachmentHoneypotListener extends Listener {
 
 	public async run(message: Message) {
 		if (message.author.bot) return;
+		if (message.guild !== await GUILD()) return;
 
 		// only care about messages with a file attachment
 		if (message.attachments.size === 0) return;
