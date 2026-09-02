@@ -55,9 +55,7 @@ const snippets: Snippet[] = [
 
 			**Where to start**
 
-			Start with one of these trail runner models, which are well-suited for general hiking and backpacking.
-			- Altra Lone Peak — wide toe box, zero drop
-			- Topo Pursuit — wide toe box, 5mm drop
+			Try shoes on in person if you can — fit varies a lot between brands and even between models of the same brand. Wide toeboxes (Altra, Topo, Brooks Cascadia) and zero-drop are popular ergonomic features to look for. Good brands to check out: Altra, Topo, Brooks, La Sportiva, Hoka.
 		`,
 	},
 	{
