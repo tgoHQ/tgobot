@@ -12,6 +12,7 @@ import humanizeDuration from "humanize-duration";
 import { Emoji } from "#util/emoji";
 import { GUILD } from "#lib/loadDiscordObjects";
 import { UserNote } from "#lib/moderation/userNotes";
+import { getJoinAlertByUser } from "#lib/moderation/joinAlert";
 import { removeTabs } from "#util/removeTabs";
 
 export async function userInspectComponent(user: User) {
@@ -60,6 +61,11 @@ export async function userInspectComponent(user: User) {
 
 	const isBanned = await guild.bans.fetch(user.id).catch(() => null);
 
+	const joinAlert = await getJoinAlertByUser(user.id);
+	const joinAlertLine = joinAlert
+		? `\n${Emoji.Warn} **Join alert set** by <@${joinAlert.authorId}> on <t:${Math.round(joinAlert.createdAt.getTime() / 1000)}:D>.${joinAlert.reason ? ` \`${joinAlert.reason}\`` : ""}`
+		: "";
+
 	const notes = await UserNote.getByUser(user.id);
 	const notesSorted = notes.sort(
 		(a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
@@ -79,7 +85,7 @@ export async function userInspectComponent(user: User) {
 					`
 						# <@${user.id}>
 						-# ${user.username} · ${user.id}
-						${timeout ? `\n${Emoji.Timeout} **Timed out for** \`${timeoutHumanized}\`**.**` : ""}${isBanned ? `\n${Emoji.Ban} **This user is banned.**` : ""}${!member && !isBanned ? `\n${Emoji.Warn} **User is not a member of this server.**` : ""}
+						${timeout ? `\n${Emoji.Timeout} **Timed out for** \`${timeoutHumanized}\`**.**` : ""}${isBanned ? `\n${Emoji.Ban} **This user is banned.**` : ""}${!member && !isBanned ? `\n${Emoji.Warn} **User is not a member of this server.**` : ""}${joinAlertLine}
 					`,
 				),
 			),
