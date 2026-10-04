@@ -1,8 +1,17 @@
+import { extname } from "node:path";
 import { Listener } from "@sapphire/framework";
 
-import { EmbedBuilder, Message, type PartialMessage } from "discord.js";
+import {
+	ContainerBuilder,
+	MediaGalleryBuilder,
+	Message,
+	MessageFlags,
+	TextDisplayBuilder,
+	type PartialMessage,
+} from "discord.js";
 import { CHANNEL_LOG, GUILD } from "#lib/loadDiscordObjects";
 import { colors } from "#util/colors";
+import { removeTabs } from "#util/removeTabs";
 
 export class MessageDeleteListener extends Listener {
 	public async run(message: Message | PartialMessage) {
@@ -13,25 +22,49 @@ export class MessageDeleteListener extends Listener {
 
 		if (message.channel === logChannel) return; //if message deleted is from the log channel, return
 
-		const embed = new EmbedBuilder()
-			.setColor(colors.red.hex)
-			.setTitle("Message Deleted")
-			.setURL(message.url)
-			.setDescription(
-				`Message by ${message.author} deleted in ${message.channel}.`,
-			)
-			.setFields(
-				{
-					name: "Content",
-					value:
-						message.content || "Message did not contain text (embed or media).",
-				},
-				{
-					name: "Timestamp",
-					value: `Posted ${`<t:${Math.round(message.createdTimestamp / 1000)}:F>.`}`,
-				},
-			);
+		//deleted attachments get purged from the cdn, so re-upload them to keep them viewable in the log
+		const images = message.attachments
+			.filter((attachment) => attachment.contentType?.startsWith("image/"))
+			.map((attachment, id) => ({
+				attachment: attachment.url,
+				name: `image-${id}${extname(attachment.name)}`,
+				spoiler: attachment.spoiler,
+			}));
 
-		logChannel.send({ embeds: [embed] });
+		//text displays cap at 4000 chars total, so leave room for the surrounding text
+		const component = new ContainerBuilder()
+			.addTextDisplayComponents([
+				new TextDisplayBuilder().setContent(
+					removeTabs(`
+				## [Message Deleted](${message.url})
+				Message by ${message.author} deleted in ${message.channel}.
+				### Content
+				${message.content.slice(0, 3500) || "Message did not contain text (embed or media)."}
+				### Timestamp
+				Posted <t:${Math.round(message.createdTimestamp / 1000)}:F>.
+			`),
+				),
+			])
+			.setAccentColor(colors.red.decimal);
+
+		if (images.length > 0) {
+			component.addMediaGalleryComponents(
+				new MediaGalleryBuilder().addItems(
+					images.map(
+						(image) => (item) =>
+							item
+								.setURL(`attachment://${image.name}`)
+								.setSpoiler(image.spoiler),
+					),
+				),
+			);
+		}
+
+		await logChannel.send({
+			components: [component],
+			files: images.map(({ attachment, name }) => ({ attachment, name })),
+			flags: [MessageFlags.IsComponentsV2],
+			allowedMentions: {},
+		});
 	}
 }
