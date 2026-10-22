@@ -1,5 +1,10 @@
 import { Events, Listener } from "@sapphire/framework";
-import { EmbedBuilder, ThreadChannel } from "discord.js";
+import {
+	ContainerBuilder,
+	MessageFlags,
+	TextDisplayBuilder,
+	ThreadChannel,
+} from "discord.js";
 import { CHANNEL_TRIP_REPORTS } from "#lib/loadDiscordObjects";
 import { sleep } from "#util/sleep";
 import { removeTabs } from "#util/removeTabs";
@@ -25,12 +30,14 @@ export class MeetupsAutoMessageListener extends Listener {
 		await sleep(6000);
 
 		thread.send({
-			embeds: [
-				new EmbedBuilder()
-					.setTitle("Trips Channel")
-					.setColor(colors.staffGreen.hex)
-					.setDescription(
-						removeTabs(`
+			components: [
+				new TextDisplayBuilder().setContent(member.user!.toString()),
+				new ContainerBuilder()
+					.setAccentColor(colors.staffGreen.decimal)
+					.addTextDisplayComponents(
+						new TextDisplayBuilder().setContent(
+							removeTabs(`
+							## Trips Channel
 							Use this thread to post your trip report or send updates while on the trail!
 
 							A trip report can contain things such as:
@@ -47,9 +54,10 @@ export class MeetupsAutoMessageListener extends Listener {
 
 							For more info, see here: https://www.reddit.com/r/Ultralight/comments/hmiwh0/meta_how_to_write_a_trip_report/
 						`),
+						),
 					),
 			],
-			content: member.user!.toString(),
+			flags: MessageFlags.IsComponentsV2,
 		});
 
 		const post = await thread.fetchStarterMessage();

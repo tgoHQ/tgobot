@@ -1,5 +1,12 @@
 import { Events, Listener } from "@sapphire/framework";
-import { EmbedBuilder, GuildMember } from "discord.js";
+import {
+	ContainerBuilder,
+	GuildMember,
+	MessageFlags,
+	SectionBuilder,
+	TextDisplayBuilder,
+	ThumbnailBuilder,
+} from "discord.js";
 import {
 	CHANNEL_TOWN_HALL,
 	CHANNEL_ALERT,
@@ -29,19 +36,28 @@ export class ReadyListener extends Listener {
 			const message = await (
 				await CHANNEL_TOWN_HALL()
 			).send({
-				embeds: [
-					new EmbedBuilder()
-						.setTitle("<:boost:1256023381690814536> New Server Boost")
-						.setThumbnail(newMember.displayAvatarURL())
-						.setDescription(
-							removeTabs(`
-								${newMember} just boosted the server!
-								Boosters get perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and can ping ${oldMember.client.user} to talk to him!
-							`),
-						)
-						.setColor(colors.booster.hex),
+				components: [
+					new TextDisplayBuilder().setContent(newMember.toString()),
+					new ContainerBuilder()
+						.setAccentColor(colors.booster.decimal)
+						.addSectionComponents(
+							new SectionBuilder()
+								.setThumbnailAccessory(
+									new ThumbnailBuilder().setURL(newMember.displayAvatarURL()),
+								)
+								.addTextDisplayComponents(
+									new TextDisplayBuilder().setContent(
+										removeTabs(`
+											## <:boost:1256023381690814536> New Server Boost
+											${newMember} just boosted the server!
+											Boosters get perks like a special color, role icon, hoisted sidebar position, external emoji/stickers/sounds, and can ping ${oldMember.client.user} to talk to him!
+										`),
+									),
+								),
+						),
 				],
-				content: newMember.toString(),
+				flags: MessageFlags.IsComponentsV2,
+				allowedMentions: { users: [newMember.id] },
 			});
 
 			await message.react("🔥");
@@ -62,14 +78,27 @@ export class ReadyListener extends Listener {
 		//if old member was boosting, and new member is not boosting
 		if (oldMember.premiumSince && !newMember.premiumSince) {
 			(await CHANNEL_ALERT()).send({
-				embeds: [
-					new EmbedBuilder()
-						.setTitle("<:boost:1256023381690814536> Server Boost Ended")
-						.setThumbnail(newMember.displayAvatarURL())
-						.setDescription(`${newMember} just stopped boosting the server!`)
-						.setColor(colors.booster.hex),
+				components: [
+					new TextDisplayBuilder().setContent(newMember.toString()),
+					new ContainerBuilder()
+						.setAccentColor(colors.booster.decimal)
+						.addSectionComponents(
+							new SectionBuilder()
+								.setThumbnailAccessory(
+									new ThumbnailBuilder().setURL(newMember.displayAvatarURL()),
+								)
+								.addTextDisplayComponents(
+									new TextDisplayBuilder().setContent(
+										removeTabs(`
+											## <:boost:1256023381690814536> Server Boost Ended
+											${newMember} just stopped boosting the server!
+										`),
+									),
+								),
+						),
 				],
-				content: newMember.toString(),
+				flags: MessageFlags.IsComponentsV2,
+				allowedMentions: { users: [newMember.id] },
 			});
 		}
 	}

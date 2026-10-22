@@ -1,27 +1,53 @@
 import { Listener } from "@sapphire/framework";
 
-import { EmbedBuilder, GuildMember } from "discord.js";
+import {
+	ContainerBuilder,
+	GuildMember,
+	MessageFlags,
+	SectionBuilder,
+	TextDisplayBuilder,
+	ThumbnailBuilder,
+} from "discord.js";
 import humanizeDuration from "humanize-duration";
 import { CHANNEL_LOG } from "#lib/loadDiscordObjects";
 import { colors } from "#util/colors";
+import { removeTabs } from "#util/removeTabs";
 
 export class GuildMemberAddListener extends Listener {
 	public async run(member: GuildMember) {
-		const embed = new EmbedBuilder()
-			.setColor(colors.staffGreen.hex)
-			.setTitle("User Joined")
-			.setThumbnail(member.user.displayAvatarURL())
-			.setDescription(member.user.toString())
-			.addFields(
-				{ name: "Username", value: member.user.username },
-				{
-					name: "Account Age",
-					value: humanizeDuration(Date.now() - member.user.createdTimestamp, {
-						largest: 2,
-						units: ["y", "mo", "d", "h", "m", "s"],
-					}),
-				},
+		const accountAge = humanizeDuration(
+			Date.now() - member.user.createdTimestamp,
+			{
+				largest: 2,
+				units: ["y", "mo", "d", "h", "m", "s"],
+			},
+		);
+
+		const component = new ContainerBuilder()
+			.setAccentColor(colors.staffGreen.decimal)
+			.addSectionComponents(
+				new SectionBuilder()
+					.setThumbnailAccessory(
+						new ThumbnailBuilder().setURL(member.user.displayAvatarURL()),
+					)
+					.addTextDisplayComponents(
+						new TextDisplayBuilder().setContent(
+							removeTabs(`
+								## User Joined
+								${member.user}
+								### Username
+								${member.user.username}
+								### Account Age
+								${accountAge}
+							`),
+						),
+					),
 			);
-		(await CHANNEL_LOG()).send({ embeds: [embed] });
+
+		(await CHANNEL_LOG()).send({
+			components: [component],
+			flags: MessageFlags.IsComponentsV2,
+			allowedMentions: {},
+		});
 	}
 }

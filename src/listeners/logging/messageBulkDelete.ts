@@ -2,14 +2,17 @@ import { Listener } from "@sapphire/framework";
 
 import {
 	type Collection,
-	EmbedBuilder,
+	ContainerBuilder,
 	type GuildChannel,
 	type Message,
+	MessageFlags,
 	type Snowflake,
+	TextDisplayBuilder,
 	Events,
 } from "discord.js";
 import { CHANNEL_LOG, GUILD } from "#lib/loadDiscordObjects";
 import { colors } from "#util/colors";
+import { removeTabs } from "#util/removeTabs";
 
 export class BulkDeleteListener extends Listener {
 	public constructor(
@@ -53,17 +56,23 @@ export class BulkDeleteListener extends Listener {
 		await (
 			await CHANNEL_LOG()
 		).send({
-			embeds: [
-				new EmbedBuilder()
-					.setColor(colors.red.hex)
-					.setTitle("Messages Bulk Deleted")
-					.setDescription(`${messages.size} messages deleted in ${channel}.`)
-					.addFields({
-						name: "Users affected",
-						value: affectedUsers.map((user) => user.toString()).join(", "),
-					}),
+			components: [
+				new ContainerBuilder()
+					.setAccentColor(colors.red.decimal)
+					.addTextDisplayComponents(
+						new TextDisplayBuilder().setContent(
+							removeTabs(`
+								## Messages Bulk Deleted
+								${messages.size} messages deleted in ${channel}.
+								### Users affected
+								${affectedUsers.map((user) => user.toString()).join(", ")}
+							`),
+						),
+					),
 			],
 			files: [{ name: "messages.txt", attachment: buffer }],
+			flags: MessageFlags.IsComponentsV2,
+			allowedMentions: {},
 		});
 	}
 }

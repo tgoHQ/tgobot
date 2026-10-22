@@ -13,5 +13,6 @@ export const colors = {
 	},
 	booster: {
 		hex: "#ff8950",
+		decimal: 16746832,
 	},
 } as const;
